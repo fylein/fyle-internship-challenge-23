@@ -1,0 +1,4 @@
+<div *ngIf="user" class="flex flex-col items-center">
+    <img [src]="user.avatar_url" alt="{{ user.name }}'s avatar" class="w-72 h-72 rounded-full">
+    <p class="text-left text-lg font-semibold pt-2">{{user.name}}</p>
+</div>

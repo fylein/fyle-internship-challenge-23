@@ -1,0 +1,8 @@
+<div *ngFor="let repo of repositories">
+    <div *ngIf="repositories.length > 0; else noData" class="">
+        <app-card [repo]="repo"/>
+    </div>
+    <ng-template #noData>
+        <p>No repositories found.</p>
+    </ng-template>
+</div>

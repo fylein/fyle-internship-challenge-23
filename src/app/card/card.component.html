@@ -1,0 +1,33 @@
+<div class="p-4 w-[25rem] h-[8rem] bg-white rounded-lg border border-gray-200 shadow flex flex-col justify-between">
+    <div>
+        <div class="flex justify-between mb-2 relative">
+            <h5 class="text-lg font-medium text-blue-600 ">{{ repo.name }}</h5>
+            <p
+                class="absolute right-0 top-0 text-[10px] px-3 border border-neutral-300 text-neutral-500 font-medium rounded-full">
+                Public</p>
+        </div>
+        <p class="mb-3 text-xs text-neutral-600">{{ repo.description }}</p>
+    </div>
+    <div class="flex justify-between">
+        <app-repo-tag [languages_url]="repo.languages_url" />
+        <div class="flex gap-2 text-[12px] text-neutral-700">
+            <div class="flex gap-x-1">
+                <img src="../../assets/star.svg" alt="Logo" class="w-4">
+                <p>{{repo.stargazers_count}}</p>
+            </div>
+            <div class="flex gap-x-1">
+                <img src="../../assets/git-fork.svg" alt="Logo" class="w-4">
+                <p>{{repo.forks_count}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- stargazers_count
+: 
+286
+forks_count
+: 
+66
+ -->
