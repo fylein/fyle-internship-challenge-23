@@ -1,0 +1,38 @@
+.container {
+  background-color: rgb(37, 37, 37);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100vw;
+}
+
+.repo_card {
+  // color: aliceblue;
+  background-color: red;
+  width: 10cm;
+  height: 5cm;
+  margin: 0.5cm;
+}
+
+h1 {
+  font-weight: bolder;
+  font-size: 0.6cm;
+  text-transform: capitalize;
+}
+
+.lang {
+  background-color: black;
+  color: white;
+  font-size: 0.5cm;
+  padding: 0.2cm 0.7cm;
+  width: max-content;
+}
+
+input
+{
+    width: 100vw;
+    height: 1cm;
+    background-color: rebeccapurple;
+    
+}
