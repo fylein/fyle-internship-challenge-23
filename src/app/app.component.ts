@@ -10,7 +10,7 @@ import './shared/repos.model';
 })
 export class AppComponent implements OnInit {
   constructor(private apiService: ApiService) {}
-  username: string = 'nithishrcta';
+  username: string = 'AnuragBetageri';
   user: any;
 
   repos_data: any;
