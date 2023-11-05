@@ -1,0 +1,263 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  .main {
+    // border: 3px solid green;
+    height: auto;
+    width: 100%;
+     background-image: url('../assets/images/background2');
+
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+  }
+  
+  .container1 {
+    // border: 2px solid red;
+    height: 195px;
+    width: 96%;
+    margin: 20px;
+    display: flex;
+    color: darkblue;
+    font-size: 20px;
+    font-family: cursive;
+
+   
+  }
+  
+  .column1 {
+    width: 50%;
+    // border: 1px solid blue;
+      height: 180px;
+      margin-left: 20px;
+      margin-top: 8px;
+  
+  }
+  
+  .column-content1 {
+    margin: 10px;
+    padding: 10px;
+    height: 120px;
+    width: 120px;
+    margin:auto;
+      border-radius: 50%;
+      background-size: cover;
+ 
+     background-repeat: no-repeat;
+     background-position: center;
+    // border: 2px solid green; /* Add a 2px green border */
+  }
+
+  .column-content2 {
+
+    height: 30px;
+    width: 380px;
+    margin:auto;
+     
+   
+    // border: 2px solid green; /* Add a 2px green border */
+  }
+  
+
+  .container2 {
+    border: 2px solid red;
+    height: 510px;
+    width: 96%;
+    margin: 20px;
+    display: flex;
+    flex-direction: column; /* Make it a column layout */
+  }
+  
+  .row {
+    display: flex;
+    gap: 30px;
+    margin: 10px 0; /* Add some margin between rows */
+  }
+  
+  .column2 {
+    width: 450px; /* Set a fixed width of 200px for all columns */
+    height: 150px;
+    margin-left: 10px;
+    border: 1px solid blue;
+  }
+
+
+  .container3 {
+    // border: 2px solid red;
+    height: 150px;
+    width: 96%;
+    margin: 20px;
+  
+ 
+  }
+
+
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Styling for normal pagination links */
+.page-link {
+  color: #007bff;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+
+/* Styling for active pagination links */
+.page-link.active {
+  color: #fff;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+}
+
+/* Styling for disabled pagination links */
+.page-link[disabled] {
+  color: #6c757d;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  cursor: not-allowed;
+}
+
+/* Styling for Previous and Next links */
+.page-link[aria-label="Previous"]::before,
+.page-link[aria-label="Next"]::before {
+  content: "«";
+}
+
+/* Styling for active Previous and Next links */
+.page-item.active.page-link[aria-label="Previous"]::before,
+.page-item.active.page-link[aria-label="Next"]::before {
+  color: #007bff;
+}
+
+/* Styling for disabled Previous and Next links */
+.page-link[aria-label="Previous"][disabled]::before,
+.page-link[aria-label="Next"][disabled]::before {
+  color: #6c757d;
+}
+
+
+
+.btn button
+{
+    border: 1px solid red;
+    margin-left: 300px;
+    width: 100px;
+    height: auto;
+    border-radius: 55%;
+    margin-top: 20px;
+}
+
+
+
+ /* CSS for search box and button */
+ .search-container {
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+
+    margin-top: 50px;
+    background-color: skyblue;
+  
+  }
+  
+  .search-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .search-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .search-button:hover {
+    padding: 10px 20px;
+    background-color: darkblue;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+
+  /* Add this CSS in your component's SCSS or CSS file */
+
+
+
+
+  
+  .container4 {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .repository-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates a 2-column grid */
+    gap: 20px; /* Adjust the gap between items as needed */
+  }
+  
+  .repository-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .repository-item h3 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .repository-item p {
+    margin: 5px 0;
+  }
+  
+  .repository-item a {
+    text-decoration: none;
+    color: #007BFF;
+  }
+    
+  .btn2 {
+   
+
+    border: 2px solid red;
+    background-color: blue;
+    color: whitesmoke;
+
+  }
+
+ 
+
+
+
+
+  /* Add this CSS in your component's SCSS or CSS file */
+
+/* Styling for selected pagination links */
+.page-item.selected .page-link {
+  color: #fff;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+}

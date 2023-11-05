@@ -1,5 +1,78 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="main">
+  <div class="search-container">
+    <input
+      type="text"
+      class="search-box"
+      placeholder="Search..."
+      [(ngModel)]="user_name"
+    >
+    <button class="search-button" (click)="updateUserName()">Submit</button>
+  </div>
+
+  <!-- container1 start-->
+  <div class="container1">
+    <div class="column1">
+      <img class="column-content1" [src]="userData?.avatar_url" alt="User Avatar" />
+      <div class="column-content2">
+        <p> {{userData?.url}} </p>
+      </div>
+    </div>
+    <div class="column1">
+      <p class="name">{{userData?.name}}</p>
+      <p class="bio">{{userData?.bio}}</p>
+      <img src="assets/images/location.png" height="10" width="10"> {{userData?.location}}
+      <p class="twitter">{{userData?.twitter_username}}</p>
+    </div>
+  </div>
+  <!-- end container1-->
+
+  <div class="container4">
+    <h2>User Repositories</h2>
+    <div class="repository-grid">
+      <div *ngFor="let repo of userRepos; let i = index" class="repository-item">
+        <h3>{{ repo.name }}</h3>
+        <p>{{ repo.description }}</p>
+        <button class="btn2"> {{ repo.language }}</button>
+        <p>URL: <a [href]="repo.html_url" target="_blank">{{ repo.html_url }}</a></p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="container3">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="#" (click)="changePage('prev')" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+
+      <ng-container *ngFor="let page of getPages(totalItems, perPage); let i = index">
+        <li class="page-item" [ngClass]="{'page-link': true, 'selected': i + 1 === selectedPage, 'disabled': i + 1 !== selectedPage }">
+          <a class="page-link" href="#" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+        </li>
+      </ng-container>
+
+      <li class="page-item">
+        <a class="page-link" href="#" (click)="changePage('next')" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+ 
+
+
+    
+
+
+
+
+
+    <div class="btn">
+      <button  (click)="changePage(1)">Older</button>
+      <button>Newer</button>
+    </div>
   </div>
 </div>
