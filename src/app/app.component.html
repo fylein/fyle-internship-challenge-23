@@ -1,5 +1,11 @@
 <div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+  <div class="font-bold text-3xl">Fyle Internship Challenge</div>
+
+  <input type="text" #inputValue class="input" />
+  <button (click)="search(inputValue)">search</button>
+  <div *ngIf="flag == false">
+    <h1>{{ username }} : NO DATA FOUND</h1>
   </div>
+
+<app-repocard></app-repocard>
 </div>

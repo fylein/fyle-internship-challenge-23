@@ -1,0 +1,129 @@
+section
+{
+    
+    width: 100vw;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-evenly;
+    row-gap: 1.5cm;
+
+
+.repo_card {
+    width: 15cm;
+    height: auto;
+    background-color: rgb(241, 241, 241);
+    border-radius: 0.5cm;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  
+    div {
+      
+      h1 {
+        font-size: 0.55cm;
+        font-weight: bolder;
+        padding: 0.65cm;
+        border-bottom: solid rgb(56, 56, 56) 2px;
+  
+        background-color: rgb(187, 187, 187);
+      }
+  
+      .count {
+        display: flex;
+        align-items: center;
+        padding: 0.2cm 0.75cm;
+        justify-content: space-between;
+        // background-color: aqua;
+        div {
+          display: flex;
+          gap: 0.3cm;
+          align-items: center;
+          // justify-content: space-between;
+  
+          img {
+            height: 0.6cm;
+            width: auto;
+          }
+  
+          h2 {
+            font-weight: bolder;
+            font-size: 0.5cm;
+          }
+  
+          .visibility {
+            background-color: black;
+            color: white;
+            padding: 0.1cm 0.25cm;
+            border-radius: 0.2cm;
+          }
+        }
+      }
+    }
+  
+    .desrip {
+      padding: 0.75cm 0.75cm;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+  
+      // background-color: aqua;
+  
+      p {
+        text-align: justify;
+        height: 1.4cm;
+        max-height: 3em;
+        overflow: hidden;
+        margin-bottom: 0.4cm;
+  
+      //      &::-webkit-scrollbar {
+      //     width: 0.1cm;
+      //     background-color: black;
+  
+      // }
+  
+  
+      // &::-webkit-scrollbar-thumb
+      // {
+      //     background-color: red;
+      //     width: 0.1cm;
+      //    height: 5px;
+      //    margin-top: 0.1cm;
+      // }
+      }
+      .lang_body {
+        display: flex;
+        align-items: center;
+         column-gap: 0.5cm;
+         flex-wrap: wrap;
+        row-gap: 0.2cm;
+      //   &::-webkit-scrollbar {
+      //     height: 0.1cm;
+      //     background-color: black;
+  
+      // }
+  
+  
+      // &::-webkit-scrollbar-thumb
+      // {
+      //     background-color: red;
+      //     height: 0.1cm;
+      //    width: 5px;
+      //    margin-top: 0.1cm;
+      // }
+  
+        // background-color: red;
+  
+        div {
+          background-color: black;
+          color: white;
+          font-weight: bolder;
+          padding: 0.2cm 0.5cm;
+        }
+      }
+    }
+  }
+  
+}

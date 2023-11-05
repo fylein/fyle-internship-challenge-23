@@ -1,0 +1,48 @@
+<section>
+    <div class="repo_card" *ngFor="let repoooo of repomodel">
+        <div>
+          <h1>{{ repoooo.name }}</h1>
+          <div class="count">
+            <div>
+              <h2>{{ repoooo.forks }}</h2>
+              <img
+                src="../../assets/images/fork.png"
+                alt=""
+                srcset=""
+                title="Number of FORKS"
+              />
+            </div>
+            <div>
+              <h2>{{ repoooo.watchers_count }}</h2>
+              <img
+                src="../../assets/images/fork.png"
+                alt=""
+                srcset=""
+                title="Number of Watchers"
+              />
+            </div>
+            <div>
+              <h2 class="visibility">{{ repoooo.visibility }}</h2>
+              <!-- <img src="../../assets/images/fork.png" alt="" srcset=""> -->
+            </div>
+          </div>
+        </div>
+      
+        <div class="desrip">
+         <p>
+        {{ repoooo.description == null ? 'No description available' : repoooo.description }}
+      </p>
+      
+          
+          <div *ngIf="repoooo.langs.length != 0" class="lang_body">
+            <div *ngFor="let lang of repoooo.langs">
+              {{ lang }}
+            </div>
+          </div>
+          <div *ngIf="repoooo.langs.length ==0">
+              No data
+            </div>
+        </div>
+      </div>
+      
+</section>
