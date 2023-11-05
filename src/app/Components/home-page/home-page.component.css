@@ -1,0 +1,26 @@
+.root {
+    background-image: url("../../../assets/social-2deb6d7d43e7.png"); /* Set a background image for the 'root' element. */
+    background-repeat: no-repeat; /* Prevent the background image from repeating. */
+    background-position: center; /* Center the background image. */
+    background-size: cover; /* Ensure the background image covers the entire element. */
+    height: 753px; /* Set the height of the 'root' element to 753 pixels. */
+    width: 100%; /* Set the width to 100% of the parent container. */
+    /* position:relative; */ /* (This line is commented out, so it doesn't affect the layout.) */
+    font-family: 'Poppins', sans-serif; /* Set the font family for text within the 'root' element. */
+}
+
+.container {
+    padding-top: 90px; /* Add top padding to the 'container' element, pushing content down. */
+    text-align: center; /* Center-align text within the 'container'. */
+    color: white; /* Set the text color to white. */
+}
+
+.attractive-text {
+    font-size: 60px; /* Increase the font size for emphasis. */
+    color: white; /* Set the text color to white. */
+    text-shadow: 2px 2px 4px #000000; /* Apply a subtle text shadow for a 3D effect. */
+    font-weight: bold; /* Make the text bold for emphasis. */
+    text-transform: uppercase; /* Convert text to uppercase for a stylish look. */
+    letter-spacing: 2px; /* Add letter spacing for readability and style. */
+    margin-bottom: 20px; /* Add space below the text for separation. */
+}

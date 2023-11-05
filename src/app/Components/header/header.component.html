@@ -1,0 +1,24 @@
+<div>
+  <nav class="navbar navbar-expand-sm bg-light fixed-top navbar-dark d-flex justify-content-between">
+      <!-- Navigation bar with a light background, fixed at the top of the page, and dark text color.
+           It uses flexbox to arrange its content. -->
+      
+      <a class="navbar-brand" href="/">
+          <!-- A link with the class "navbar-brand" that serves as the website's logo. It links to the root URL "/".
+               It contains an image displayed as the logo with a maximum width of 150px. -->
+          <img src="../../../assets/programming_GitHub_logo_with_mark.png" alt="Logo" style="width:150px;">
+          <!-- The image source ("src") is relative to the current HTML file. It displays the logo image with the specified width. -->
+      </a>
+      
+      <div class="">
+          <!-- A div element used for arranging content.
+               Inside this div, there's an input element for searching or jumping to a URL. -->
+          
+          <input type="text" class="form-control" [(ngModel)]="searchtext" (keypress)="onKeypressEvent($event)" placeholder="Search or jump to /">
+          <!-- Input field of type "text" with the class "form-control".
+               - The "[(ngModel)]" is likely used for two-way data binding in an Angular application.
+               - The "(keypress)" event is likely used to handle keypress events and trigger a function "onKeypressEvent" in the component.
+               - The "placeholder" attribute provides a default text for the input field. -->
+      </div>
+  </nav>
+</div>

@@ -1,0 +1,90 @@
+.listing{
+    background-image: url("../../../assets/social-2deb6d7d43e7.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* height: 753px inherit; */
+    width: 100%;
+    /* position:relative; */
+    font-family: 'Poppins', sans-serif;
+}
+.content{
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+.wrapper .card-img-top{
+    height: 90px;
+  width: 88%;
+  /* border-radius: 50%; */
+}
+
+.card-button {
+  /* Add your custom button styles here */
+  background-color: #007BFF; /* Change the background color */
+  color: #FFFFFF; /* Change the text color */
+  border: 2px solid #007BFF; /* Change the border style */
+  padding: 8px 12px; /* Add padding to the buttons */
+  margin: 4px; /* Add margin to create spacing between buttons */
+  flex: 1; /* Allow buttons to flex and share available space */
+  
+  text-align: center; /* Center-align text within buttons */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Show ellipsis for long text */
+  /* Add more styles as needed */
+}
+
+
+ .br {
+    border-radius: 8px;  
+  }
+  .w80 {
+    width: 70%;
+ }
+ .wrapper {
+    width: 0px;
+    animation: fullView 0.5s forwards cubic-bezier(0.250, 0.460, 0.450, 0.940);
+  }
+  .profilePic {
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+  }
+  .comment {
+    height: 10px;
+    background: #777;
+    margin-top: 20px;
+  }
+  
+  @keyframes fullView {
+    100% {
+      width: 100%;
+    }
+  }
+  
+  
+  .animate {
+     animation : shimmer 2s infinite linear;
+     background: linear-gradient(to right, #eff1f3 4%, #e2e2e2 25%, #eff1f3 36%);
+      background-size: 1000px 100%;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+@media (min-width: 300px) and (max-width: 1024px){
+    .listing{
+        background-image: url("../../../assets/social-2deb6d7d43e7.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: auto;
+        width: 100%;
+    }
+}

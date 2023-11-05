@@ -1,0 +1,31 @@
+<div class="root">
+    <!-- The 'root' div, likely representing the main container of the web page. -->
+
+    <div>
+        <!-- This div contains a navigation bar. -->
+        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+            <!-- A responsive navigation bar with a light background and light text. -->
+            <a class="navbar-brand" href="/">
+                <!-- A link serving as the logo. Links to the root URL "/" -->
+                <img src="../../../assets/programming_GitHub_logo_with_mark.png" alt="Logo" style="width:150px;">
+                <!-- An image displayed as the logo with a maximum width of 150px. -->
+            </a>
+        </nav>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+        <!-- Another div containing content. Uses flexbox to center content horizontally. -->
+        <div>
+            <!-- This div contains a heading and an input field. -->
+
+            <h3 class="attractive-text">Find Your Repository</h3>
+            <!-- A styled heading with the class 'attractive-text'. Likely an eye-catching title. -->
+
+            <div class="pl-4 pr-4">
+                <!-- A div with horizontal padding. -->
+                <input type="text" class="form-control" id="usr" placeholder="GitHub UserName" [(ngModel)]="githubUsername" (keypress)="onKeypressEvent($event)">
+                <!-- An input field for entering a GitHub username. Binds the input value to 'githubUsername' using ngModel. It triggers the 'onKeypressEvent' function on keypress. -->
+            </div>
+        </div>
+    </div>
+</div>

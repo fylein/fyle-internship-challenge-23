@@ -1,0 +1,14 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "../tsconfig.base.json", // Extending the base TypeScript configuration file from a relative path.
+  "compilerOptions": {
+    "outDir": "../out-tsc/e2e", // Output directory for transpiled TypeScript files used in end-to-end tests.
+    "module": "commonjs", // Specify the module system (CommonJS in this case).
+    "target": "ES2018", // Specify the ECMAScript version to target (ES2018 in this case, can be changed if needed).
+    "types": [
+      "jasmine",
+      "jasminewd2",
+      "node"
+    ]
+  }
+}

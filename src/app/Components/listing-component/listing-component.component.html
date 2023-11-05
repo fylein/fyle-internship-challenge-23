@@ -1,0 +1,122 @@
+<div class="listing" [ngStyle]="{'height':(limit==0)? '753px':'inherit'}">
+    <div>
+        <app-header></app-header>
+    </div>
+    <div class="container content" *ngIf="loaded && errors">
+        <h4 class="text-center text-white">"<b>{{name}}</b>" git user not available, try another user</h4>
+    </div>
+    <div class="content row mr-0 ml-0" *ngIf="loaded && !errors">
+        <div class="col-sm-3">
+            <div class="card mt-3">
+                <img class="card-img-top" src="{{gituser.avatar_url? gituser.avatar_url : '../../../assets/placeholder.png'}}" alt="Card image">
+                <div class="card-body">
+                  <h4 class="card-title text-truncate mb-0" style="cursor: pointer;" title="{{gituser.login}}">{{gituser.login}}</h4>
+                  <p class="card-text text-truncate mb-2" style="cursor: pointer;" title="{{gituser.name}}">{{gituser.name?gituser.name:''}}</p>
+                  <p class="card-text text-truncate d-flex" *ngIf="gituser.email" style="cursor: pointer;" title="{{gituser.email}}">
+                    <span class="material-icons">
+                        alternate_email
+                        </span>{{gituser.email?gituser.email:'Email not available'}}</p>
+                  <p class="d-flex text-truncate" style="cursor: pointer;" title="{{gituser.html_url}}"><span class="material-icons">
+                    share
+                    </span> &nbsp;{{gituser.html_url}}</p>
+                  <p class="d-flex text-truncate" *ngIf="gituser.location" style="cursor: pointer;" title="{{gituser.location}}">
+                    <span class="material-icons">
+                        location_on
+                    </span> &nbsp;{{gituser.location}}
+                  </p>
+                  <a href="{{gituser.html_url}}" class="btn btn-primary">See Profile</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="row ml-0 mr-0 mt-3">
+                <h3 class="col-sm text-white" ><b>Repositories</b></h3>
+                <div class="col-sm float-right">
+                    <div class="row ml-0 mr-0">
+                        <div class="col-md-8 col-sm pr-md-3 pl-0 pr-0">
+                            <input type="text" *ngIf="limit!=0" class="form-control" [(ngModel)]="searchtext" (keyup)="onKey($event)" (keypress)="onKeypressEvent($event)" placeholder="Find the repository..">
+                        </div>
+                        <div class="col-md-4 col-sm mt-md-0 mt-2 pl-0 pr-0">
+                            <input type="number" *ngIf="limit!=0" class="form-control" [(ngModel)]="usercount" (keypress)="onKeypressEventpage($event)" placeholder="no.of repos/page" min="10" max="100">
+                            <label *ngIf="message" class="text-danger"><b>No. of repos/page can be >=10 or <=100</b></label>
+                            <label *ngIf="!message" class="text-danger"><br><br></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ml-0 mr-0" *ngIf="orepos.length==0">
+                <h4 class="ml-2 text-white"><em>"{{name}}" doesn't have any public repositories yet.</em></h4>
+            </div>
+            <div class="row ml-0 mr-0" *ngIf="repos.length==0 && orepos.length!=0">
+                <h4 class="ml-2 text-white"><em><b>{{name}}</b> doesn't have any repositories named <b>"{{searchtext}}"</b></em></h4>
+            </div>
+            <div class="row ml-0 mr-0" *ngIf="limit!=0">
+                <div *ngFor="let git of repos; let i = index;" style="padding-left: 10px;" class="mt-3 col-sm-3 col-md-6 col-lg-3 d-flex align-items-stretch">
+                    <div class="card flex-fill hover-card">
+                        <div class="card-body shadow">
+                            <h5 style="line-height:2"
+                                class="card-title font-weight-bold text-truncate" style="cursor: pointer;" title="{{git.name}}">
+                                {{git.name ? git.name : ' '}}
+                            </h5>
+            
+                            <div class="card-text text-truncate" style="line-height: 2" data-toggle="tooltip" style="cursor: pointer;" data-placement="right" title="{{git.description}}">
+                            {{git.description ? git.description : 'Descriptipn not available'}}
+                            </div><br />
+                            <div class="card-text text-truncate" style="line-height: 2" data-toggle="tooltip" style="cursor: pointer;" data-placement="right" title="{{git.html_url}}">
+                                <a href="{{git.html_url }}">{{git.html_url }}</a>
+                            </div><br />
+            
+                            <div class="d-flex my-1">
+                                <div class="athlete-info-section col mr-0 mt-auto pl-0 pr-0 py-2">
+                                    <div *ngIf="git.topics.length!=0">
+                                        <div class="d-flex justify-content-between">
+                                            <button *ngFor="let tp of git.topics" class="btn btn-primary btn-small card-button">{{tp}}</button>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="git.topics.length==0">
+                                        <div class="d-flex justify-content-between">
+                                            <button class="btn btn-primary btn-small card-button">{{git.language?git.language:'JavaScript'}}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-md-none mt-5 pl-2 pr-2" *ngIf="limit>1">
+                <div class="row ml-0 mr-0">
+                    <div class="col float-left pl-0" >
+                        <button *ngIf="count!=1" class="btn btn-primary card-bu" (click)="previous()">Previous</button>
+                    </div>
+                    <div class="col text-right">
+                        <button *ngIf="limit!=count" class="btn btn-primary card-button" (click)="next()">Next</button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-md-none mt-4 text-center">
+                    <div class="btn-group btn-group">
+                        <button *ngFor="let lt of limits" type="button" class="btn" [ngClass]="count==lt?'btn-light':'btn-primary'" (click)="changePage(lt)">{{lt}}</button>
+                    </div>
+            </div>
+            <div class="d-md-block d-none">
+                <div class="row ml-0 mr-0 mt-5 pl-2 pr-2" *ngIf="limit>1">
+                    <div class="col-sm-3 col-md pl-0 float-left" >
+                        <button *ngIf="count!=1" class="btn btn-primary card-button" (click)="previous()">Previous</button>
+                    </div>
+                    <div class="col-sm-6 col-md mt-md-0 mt-2 text-center">
+                        <div class="btn-group btn-group">
+                            <button *ngFor="let lt of limits" type="button" class="btn" [ngClass]="count==lt?'btn-light':'btn-primary'" (click)="changePage(lt)">{{lt}}</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md mt-md-0 mt-2 text-right" >
+                        <button *ngIf="limit!=count" class="btn btn-primary card-buuton" (click)="next()">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content" *ngIf="!loaded">
+        <app-loating-compoent></app-loating-compoent>
+    </div>
+</div>
