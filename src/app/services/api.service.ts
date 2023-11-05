@@ -42,7 +42,8 @@ export class ApiService {
         repos_data.visibility,
         repos_data.url,
         repos_data.watchers_count,
-        langs
+        langs,
+        repos_data.description
       )
     );
   }

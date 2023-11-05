@@ -10,42 +10,37 @@ import './shared/repos.model';
 })
 export class AppComponent implements OnInit {
   constructor(private apiService: ApiService) {}
-  username: string = 'AnuragBetageri';
+  username: string = 'nithishrcta';
   user: any;
 
   repos_data: any;
   langs: any[] = [];
 
-  repomodel: repos[] = [];
   flag: boolean = true;
   ngOnInit() {
-
-   
-    this.repomodel = this.apiService.reposs;
     this.loadrepo();
-    this.username=''
-   
+    this.username = '';
+  
 
   }
 
   search(inputValue: HTMLInputElement) {
-    this.flag=true;
-    this.repomodel.length = 0;
+    this.flag = true;
+    this.apiService.reposs.length = 0;
     this.username = inputValue.value;
-    // this.repomodel = []
     this.loadrepo();
-    //here we get access to the user basic data like name
   }
 
-  loadrepo()
-  {
-    this.apiService.getUser(this.username).subscribe((data) => {
-      this.user = data;
-      console.log(this.user);
-    },(error :any)=>
-    {
-      this.flag = false;
-    });
+  loadrepo() {
+    this.apiService.getUser(this.username).subscribe(
+      (data) => {
+        this.user = data;
+        console.log(this.user);
+      },
+      (error: any) => {
+        this.flag = false;
+      }
+    );
 
     // get Repo data and languages used in those repo and bundle them in repos.model(for better data maintaince)
 

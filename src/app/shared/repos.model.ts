@@ -5,7 +5,8 @@ export class repos {
     public visibility: string,
     public url: string,
     public watchers_count: any,
-    public langs: any[] = []
+    public langs: any[] = [],
+    public description : string = "No description avalible"
   ) {}
 }
 //using a shortcut to define the model instaed of the convincal method

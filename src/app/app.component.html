@@ -1,53 +1,11 @@
 <div class="grid h-screen place-items-center">
   <div class="font-bold text-3xl">Fyle Internship Challenge</div>
 
-
-
-
-    <input type="text" #inputValue class="input">
-    <button (click)="search(inputValue)">search</button>
-<div *ngIf="flag==false">
-  <h1>
-    {{username}} :  NO DATA FOUND
-  </h1>
-</div>
- 
-
-  <div *ngIf="flag == true">
-    <div>{{ user.name }}</div>
-    <div class="container">
-      <div *ngFor="let repoooo of repomodel" class="repos">
-        <!-- <img
-          src="https://github-readme-stats.vercel.app/api/top-langs/?username=AnuragBetageri&theme=default&layout=compact&hide_border=false%22%20id=%22top%22"
-          alt=""
-          srcset=""
-        /> -->
-
-        <div class="repo_card">
-          <h1>{{ repoooo.name }}</h1>
-          Number of forks {{ repoooo.forks }}
-          <!-- {{repo.forks_url}} -->
-          <!-- {{repo.git_url}} -->
-
-          <div *ngIf="repoooo.visibility == 'public'">
-            true(logo)
-            {{ repoooo.visibility }}
-          </div>
-          <!-- {{repo.watchers}} -->
-          {{ repoooo.watchers_count }}
-          <div class="lang" *ngIf="repoooo.langs.length != 0">
-            <div *ngFor="let lang of repoooo.langs">
-              {{ lang }}
-            </div>
-          </div>
-
-          <!-- {{repo.url}} -->
-        </div>
-      </div>
-    </div>
+  <input type="text" #inputValue class="input" />
+  <button (click)="search(inputValue)">search</button>
+  <div *ngIf="flag == false">
+    <h1>{{ username }} : NO DATA FOUND</h1>
   </div>
-  <div></div>
-  <div></div>
+
+<app-repocard></app-repocard>
 </div>
-
-
