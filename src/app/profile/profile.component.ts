@@ -1,4 +1,5 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component,Input, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -6,17 +7,28 @@ import { ApiService } from '../services/api.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
+
 export class ProfileComponent implements OnInit {
   @Input() user: any;
+  private searchSubscription!: Subscription;
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.getUser('torvalds');
+    this.searchSubscription = this.apiService.getSearchTerm().subscribe(term => {
+      if (term) this.getUser();
+    }); 
   }
 
-  getUser(githubUsername: string) {
-    this.apiService.getUser(githubUsername).subscribe((userJson: any) => {
+  ngOnDestroy() {
+    if (this.searchSubscription) {
+      this.searchSubscription.unsubscribe();
+    }
+  }
+
+  getUser() {
+    this.apiService.getUser().subscribe((userJson: any) => {
       this.user = userJson;
+      this.apiService.setTotalPages((userJson.public_repos + 5) / 6);
     });
   }
 }

@@ -1,8 +1,49 @@
-<div *ngFor="let repo of repositories">
-    <div *ngIf="repositories.length > 0; else noData" class="">
-        <app-card [repo]="repo"/>
+<ng-container *ngIf="!isLoading">
+    <div *ngIf="repositories.length > 0; else noData" class="grid md:grid-cols-repos grid-cols-1 grid-flow-row-dense gap-3">
+        <div *ngFor="let repo of repositories">
+            <app-card [repo]="repo"></app-card>
+        </div>
     </div>
     <ng-template #noData>
         <p>No repositories found.</p>
     </ng-template>
-</div>
+</ng-container>
+
+
+
+<ng-template #loadingOrEmpty>
+    <div *ngIf="isLoading">
+        <!-- Repeat the skeleton loader a few times -->
+        <!-- <app-skeleton-loader></app-skeleton-loader>
+      <app-skeleton-loader></app-skeleton-loader>
+      <app-skeleton-loader></app-skeleton-loader> -->
+
+        <div *ngIf="isLoading">
+            <div
+                class="p-4 w-[25rem] h-[8rem] bg-white rounded-lg border border-gray-200 shadow flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between mb-2 relative">
+                        <h5 class="animate-pulse bg-gray-300 h-12 w-full rounded"></h5>
+                        <p
+                            class="absolute right-0 top-0 text-[10px] px-3 border border-neutral-300 text-neutral-500 font-medium rounded-full animate-pulse bg-gray-300 h-12 w-full">
+                        </p>
+                    </div>
+                    <p class="mb-3 animate-pulse bg-gray-300 h-12 w-full rounded"></p>
+                </div>
+                <!-- <div class="flex justify-between">
+                <app-repo-tag [languages_url]="repo.languages_url" />
+                <div class="flex gap-2 text-[12px] text-neutral-700">
+                    <div class="flex gap-x-1">
+                        <img src="../../assets/star.svg" alt="Logo" class="w-4">
+                        <p>{{repo.stargazers_count}}</p>
+                    </div>
+                    <div class="flex gap-x-1">
+                        <img src="../../assets/git-fork.svg" alt="Logo" class="w-4">
+                        <p>{{repo.forks_count}}</p>
+                    </div>
+                </div>
+            </div> -->
+            </div>
+        </div>
+    </div>
+</ng-template>

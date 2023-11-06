@@ -1,5 +1,9 @@
-<div  class="h-screen flex justify-between items-center px-12">
-  <app-profile class="w-full"></app-profile>
-  <!-- <app-card class="flex flex-wrap gap-4"/> -->
-  <app-repositories class="grid grid-cols-repos grid-flow-row-dense gap-4"/>
+<div >
+  <app-search />
+  <div class="flex flex-col md:flex-row items-center md:px-32  px-0 my-8"> 
+    <app-profile class="w-full" />
+    <!-- <app-card class="flex flex-wrap gap-4"/> -->
+    <app-repositories />
+  </div>
+  <app-pagination />
 </div>

@@ -1,4 +1,29 @@
-<div *ngIf="user" class="flex flex-col items-center">
-    <img [src]="user.avatar_url" alt="{{ user.name }}'s avatar" class="w-72 h-72 rounded-full">
+<!-- <div *ngIf="user" class="flex flex-col justify-center items-center w-full">
+    <div class="w-72 h-72">
+        <img [src]="user.avatar_url" alt="{{ user.name }}'s avatar" class="w-72 h-72 rounded-full">
+    </div>
     <p class="text-left text-lg font-semibold pt-2">{{user.name}}</p>
+</div> -->
+
+<div *ngIf="user" class="flex flex-col items-center w-full">
+    <div class="w-64 h-64">
+        <img [src]="user.avatar_url" alt="{{ user.name }}'s avatar"
+            class="w-64 h-64 rounded-full border border-gray-300">
+    </div>
+    <div class="flex flex-col justify-start mt-4">
+        <a [href]="user.html_url" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800">{{
+            user.login }}</a>
+        <p class="text-lg font-semibold pt-2">{{ user.name }}</p>
+        <p *ngIf="user.bio" class="text-center text-gray-700 mt-2">{{ user.bio }}</p>
+        <p *ngIf="user.company" class="text-gray-700 mt-1"><strong>Company:</strong> {{ user.company }}</p>
+        <p *ngIf="user.location" class="text-gray-700 mt-1"><strong>Location:</strong> {{ user.location }}</p>
+        <p *ngIf="user.blog" class="text-blue-600 hover:text-blue-800 mt-1">
+            <a [href]="user.blog" target="_blank" rel="noopener noreferrer">Blog</a>
+        </p>
+
+        <div class="flex space-x-4 mt-2">
+            <span class="text-gray-700"><strong>Followers:</strong> {{ user.followers }}</span>
+            <span class="text-gray-700"><strong>Following:</strong> {{ user.following }}</span>
+        </div>
+    </div>
 </div>
