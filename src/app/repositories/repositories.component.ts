@@ -22,8 +22,8 @@ export class RepositoriesComponent implements OnInit, OnDestroy {
     this.searchSubscription = this.apiService.getCurrPage().subscribe(term => {
       if (term) this.getRepos();
     });
-
     
+    this.isLoading = false;
   }
 
   ngOnDestroy() {

@@ -13,7 +13,6 @@ export class SearchComponent {
 
   onSearch(): void {
     this.apiService.setSearchTerm(this.searchTerm);
-    console.log('Search Term:', this.searchTerm);
   }
 
 }
