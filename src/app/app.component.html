@@ -3,7 +3,7 @@
     {{title}}
   </div>
   <div *ngIf="!isLoaded">
-    <p [ngStyle]="{color:'#126eff'}">Loading....</p>
+    <span [ngStyle]="{color:'#126eff'}">Loading</span>
     <span class="dot"></span>
     <span class="dot"></span>
     <span class="dot"></span>
@@ -33,7 +33,7 @@
     </div>
   </ng-template>
   <ng-template #elseBlock>
-    <div 
+    <div
       class="py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
       <img class="block mx-auto w-24 h-24 rounded-full sm:mx-0 sm:shrink-0 box-border border-2" src="" alt="picture" />
       <div class="text-center space-y-2 sm:text-left">
@@ -55,18 +55,24 @@
       </div>
     </div>
   </ng-template>
-
-  <div class="flex">
-    <div class="basis-1/2">
-      <p>repository name</p>
-      <p>Description</p>
-      <p>Languages</p>
-    </div>
-    <div class="basis-1/2">
-      <p>repository name</p>
-      <p>Description</p>
-      <p>Languages</p>
-    </div>
+</div>
+<div class="center" *ngIf="repos$">
+  <div class="grid-container mt-3">
+    <ng-container *ngFor="let repo$ of repos$ | async; let idx=index">
+      <div>
+        <p class="repo-name">{{repo$.name | titlecase}}</p>
+        <p>{{repo$.description}}</p>
+        <p *ngIf="repo$.language"><button class="button">{{repo$.language}}</button></p>
+      </div>
+    </ng-container>
   </div>
 
+  <div class="pagination mt-3">
+    <a href="#">&laquo;</a>
+    <ng-container *ngFor="let i of noOfPages$ | async">
+      <a href="#">{{i}}</a>
+    </ng-container>
+
+    <a href="#">&raquo;</a>
+  </div>
 </div>

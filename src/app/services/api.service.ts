@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, throwError } from 'rxjs';
+import { Observable, tap, throwError } from 'rxjs';
+import {REPO} from './data';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class ApiService {
       `https://api.github.com/users/${githubUsername}`
     );
   }
-  getRepo(githubUsername: string) {
+  getRepo(githubUsername: string):Observable<unknown> {
     return this.httpClient.get(
       `https://api.github.com/users/${githubUsername}/repos`
     );
