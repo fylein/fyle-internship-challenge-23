@@ -1,0 +1,102 @@
+<div class="w-full">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="w-full md:col-span-2" >
+      <div class="text-center">
+        <h5 class="text-xl md:text-2xl">Search any user</h5>
+        <p class="text-xl">Please enter a <b>username</b>.</p>
+      </div>
+    </div>
+
+    <div class="w-full m-4 md:col-span-2" >
+      <form (ngSubmit)="searchUser()">
+        <div class="py-4 md:py-12">
+          <div class="flex flex-col md:flex-row justify-center items-center">
+            <input
+              type="text"
+              class="w-full md:w-3/4 h-10 shadow-xl text-center mb-2 md:mb-0"
+              placeholder="Enter Github username..."
+              [(ngModel)]="username"
+              name="username"
+            >
+            <button type="submit" class="shadow-xl bg-blue-500 hover:bg-blue-700 text-white w-full md:w-auto px-4 py-2 rounded-md">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <hr>
+
+  <div class=" bg-gray-100 grid-cols-1 md:grid-cols-2" *ngIf="user">
+    <div class="mb-4">
+      <div class="border rounded-lg shadow-lg p-4 text-center">
+        <h3 class="text-xl md:text-2xl font-bold text-black px-2 py-1 rounded-md">{{user.name}}'s Profile</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-2 md:p-14">
+          <div class="w-full md:w-3/4">
+            <img
+              src="{{user.avatar_url}}"
+              alt="{{user.name}}"
+              class="rounded-full mx-auto"
+            >
+            <a
+              href="{{user.html_url}}"
+              class="block  mt-2 md:mt-4 bg-blue-600 text-white p-2 rounded-lg"
+              target="_blank"
+            >
+              View Profile
+            </a>
+          </div>
+          <div class="w-full text-xl md:w-full ">
+            <br>
+            <ul class="list-inside">
+              <li><strong>Username</strong>: {{user.login}}</li>
+              <li><strong>Bio</strong>: {{userBio}}</li>
+              <li><strong>Location</strong>: {{user.location}}</li>
+              <li><strong>Email</strong>: {{user.email}}</li>
+            </ul>
+            <div class="mt-2 md:mt-4">
+              <span class=" bg-blue-600 text-white px-2 py-1 rounded-md">{{user.public_repos}} Public Repos</span>
+              <div class="m-4"></div>
+              <span class=" bg-blue-600 text-white px-4 py-1 rounded-md">{{user.following}} Following</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <div class="border rounded-lg shadow-lg p-4">
+        <h3 class="text-xl md:text-2xl text-center font-bold text-black px-2 py-4 rounded-md">{{user.name}}'s Repos</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ng-container *ngFor="let repo of displayedRepos">
+            <div class="mb-4">
+              <app-loading-skeleton *ngIf="isLoading"></app-loading-skeleton>
+              <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-4 text-center">
+                  <h1 class="text-xl md:text-2xl font-bold text-gray-800">
+                    <a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a>
+                  </h1>
+                  <p class="text-gray-600 mt-2">{{repo.description}}</p>
+                  <div class="flex justify-center">
+                    <span class="bg-gray-400 text-black px-2 py-1 rounded-md mr-2">{{repo.watchers}} Watchers</span>
+                    <span class="bg-blue-600 text-white px-2 py-1 rounded-md">{{repo.forks}} Forks</span>
+                    <span class="bg-green-200 text-black px-2 py-1 rounded-md ml-2">{{repo.language}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="flex flex-col justify-center mt-2 md:mt-4">
+          <div class="bg-white p-4 rounded-md shadow-md flex justify-center items-center">
+            <button (click)="previousPage()" [disabled]="currentPage === 1" class="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mb-2 md:mb-0">Previous</button>
+            <ng-container *ngFor="let page of totalPages">
+              <span class="mr-2 cursor-pointer bg-gray-400 text-white px-2 py-1 rounded-md ml-2" (click)="changePage(page)">{{page}}</span>
+            </ng-container>
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages.length" class="bg-blue-600 text-white px-4 py-2 rounded-md shadow-md ml-2">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
