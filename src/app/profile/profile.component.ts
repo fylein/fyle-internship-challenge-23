@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
     this.apiService.getUser().subscribe((userJson: any) => {
       this.user = userJson;
       this.apiService.setTotalPages(Math.floor((userJson.public_repos + 5) / 6));
+      this.apiService.setCurrPage(1);
       this.isLoading = false;
     });
   }
