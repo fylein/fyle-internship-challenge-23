@@ -9,7 +9,7 @@ import { ApiService } from '../services/api.service';
 export class RepoTagComponent implements OnInit {
   languages: string[] = [];
   @Input() languages_url: any;
-
+  
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
