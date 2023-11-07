@@ -1,5 +1,59 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="container mx-auto p-4">
+  <div class="bg-white rounded-lg shadow-lg p-4">
+    <div class="flex flex-col items-center mb-4">
+      <input
+        type="text"
+        class="border p-2 rounded-md w-64"
+        placeholder="Search..."
+        [(ngModel)]="userName"
+      >
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2" (click)="updateUserName()">Submit</button>
+    </div>
+
+    <!-- User Info -->
+    <div class="flex justify-center items-center">
+      <img class="w-16 h-16 rounded-full" [src]="userDetails?.avatar_url" alt="User Avatar" />
+      <div class="ml-4">
+        <p class="font-bold">{{ userDetails?.name }}</p>
+        <p class="text-gray-600">{{ userDetails?.bio }}</p>
+        <div class="flex items-center">
+          <p class="text-gray-600">{{ userDetails?.location }}</p>
+        </div>
+        <p class="text-blue-500">{{ userDetails?.twitter_username }}</p>
+      </div>
+    </div>
+
+    <!-- User Repositories -->
+    <div class="mt-8">
+      <h2 class="text-2xl font-semibold">User Repositories</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+        <div *ngFor="let repo of userRepos" class="bg-white border rounded-lg p-4">
+          <h3 class="text-lg font-semibold">{{ repo.name }}</h3>
+          <p class="text-gray-600">{{ repo.description }}</p>
+          <button class="bg-blue-500 text-white px-2 py-1 rounded-md mt-2">{{ repo.language }}</button>
+          <p class="text-blue-500">
+            URL:
+            <a [href]="repo.html_url" target="_blank">{{ repo.html_url }}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-8">
+      <ul class="flex justify-center space-x-2">
+        <li *ngIf="selectedPage > 1">
+          <a class="bg-blue-500 text-white px-3 py-2 rounded-md" (click)="handlePageChange('prev')">Previous</a>
+        </li>
+        <ng-container *ngFor="let page of calculateTotalPages(totalItems, itemsPerPage); let i = index">
+          <li [ngClass]="{'disabled': i + 1 !== selectedPage }">
+            <a class="bg-blue-200 text-blue-600 px-3 py-2 rounded-md" (click)="handlePageChange(i + 1)">{{ i + 1 }}</a>
+          </li>
+        </ng-container>
+        <li *ngIf="selectedPage < totalPages">
+          <a class="bg-blue-500 text-white px-3 py-2 rounded-md" (click)="handlePageChange('next')">Next</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
