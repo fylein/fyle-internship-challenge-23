@@ -5,7 +5,7 @@
     <p class="text-left text-lg font-semibold pt-2">{{user.name}}</p>
 </div> -->
 
-<div *ngIf="user" class="flex flex-col items-center w-full">
+<div *ngIf="user" class="flex flex-col items-center w-full mb-4">
     <div class="w-64 h-64">
         <img [src]="user.avatar_url" alt="{{ user.name }}'s avatar"
             class="w-64 h-64 rounded-full border border-gray-300">
