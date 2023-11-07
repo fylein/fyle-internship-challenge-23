@@ -32,6 +32,7 @@ export class ApiService {
     return this.repositories.asObservable();
   }
 
+
   private getStoredSearchTerm(): string {
     return localStorage.getItem('searchTerm') || '';
   }
@@ -74,3 +75,4 @@ export class ApiService {
     return this.httpClient.get<any[]>(url);
   }
 }
+
