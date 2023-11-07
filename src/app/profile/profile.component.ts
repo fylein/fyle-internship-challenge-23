@@ -11,9 +11,11 @@ import { ApiService } from '../services/api.service';
 export class ProfileComponent implements OnInit {
   @Input() user: any;
   private searchSubscription!: Subscription;
+  isLoading: boolean = false;
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.searchSubscription = this.apiService.getSearchTerm().subscribe(term => {
       if (term) this.getUser();
     }); 
@@ -26,9 +28,11 @@ export class ProfileComponent implements OnInit {
   }
 
   getUser() {
+    this.isLoading = true;
     this.apiService.getUser().subscribe((userJson: any) => {
       this.user = userJson;
       this.apiService.setTotalPages(Math.floor((userJson.public_repos + 5) / 6));
+      this.isLoading = false;
     });
   }
 }

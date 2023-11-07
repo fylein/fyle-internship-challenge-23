@@ -14,18 +14,16 @@ export class RepositoriesComponent implements OnInit, OnDestroy {
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {  
-    
+    this.isLoading = true;
     this.searchSubscription = this.apiService.getSearchTerm().subscribe(term => {
-      this.isLoading = true;
       if (term) this.getRepos();
     });
 
     this.searchSubscription = this.apiService.getCurrPage().subscribe(term => {
-      this.isLoading = true;
       if (term) this.getRepos();
     });
 
-    this.isLoading = false;
+    
   }
 
   ngOnDestroy() {
@@ -38,13 +36,13 @@ export class RepositoriesComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.apiService.getRepos().subscribe({
       next: (repos) => {
-        
+        this.isLoading = false;
         this.repositories = repos;
       },
       error: (err) => {
+        this.isLoading = false;
         console.error('Error fetching repositories:', err);
       }
     });
-    this.isLoading = false;
   }
 }

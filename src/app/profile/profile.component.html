@@ -1,11 +1,21 @@
-<!-- <div *ngIf="user" class="flex flex-col justify-center items-center w-full">
-    <div class="w-72 h-72">
-        <img [src]="user.avatar_url" alt="{{ user.name }}'s avatar" class="w-72 h-72 rounded-full">
+<div *ngIf="isLoading">
+    <div *ngIf="isLoading" class="flex flex-col items-center w-full mb-4">
+        <div class="w-64 h-64 bg-gray-300 rounded-full animate-pulse"></div>
+    
+        <div class="flex flex-col justify-start mt-4">
+        <div class="mt-4 w-48 h-6 bg-gray-300 rounded animate-pulse"></div> 
+        <div class="mt-2 w-32 h-6 bg-gray-300 rounded animate-pulse"></div> 
+        <div class="mt-2 w-56 h-4 bg-gray-300 rounded animate-pulse"></div> 
+        <div class="mt-2 w-40 h-4 bg-gray-300 rounded animate-pulse"></div> 
+        <div class="mt-2 w-40 h-4 bg-gray-300 rounded animate-pulse"></div> 
+        <div class="mt-2 w-24 h-4 bg-gray-300 rounded animate-pulse"></div> 
+        <div class="mt-2 w-24 h-4 bg-gray-300 rounded animate-pulse"></div>
     </div>
-    <p class="text-left text-lg font-semibold pt-2">{{user.name}}</p>
-</div> -->
+    </div>
+    
+</div>
 
-<div *ngIf="user" class="flex flex-col items-center w-full mb-4">
+<div *ngIf="!isLoading && user" class="flex flex-col items-center w-full mb-4">
     <div class="w-64 h-64">
         <img [src]="user.avatar_url" alt="{{ user.name }}'s avatar"
             class="w-64 h-64 rounded-full border border-gray-300">
