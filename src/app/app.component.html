@@ -33,7 +33,7 @@
         <h3>{{ repo.name }}</h3>
         <p>{{ repo.description }}</p>
         <button class="btn2"> {{ repo.language }}</button>
-        <p>URL: <a [href]="repo.html_url" target="_blank">{{ repo.html_url }}</a></p>
+        <p>URL: <a class="hh" [href]="repo.html_url" target="_blank">{{ repo.html_url }}</a></p>
       </div>
     </div>
   </div>
@@ -62,7 +62,18 @@
       </li>
     </ul>
  
+       
+    <span class="text-gray-600">Showing {{currentPage}} of {{totalPages}} page</span>
+        <div>
+          <label for="perPage">Show per page:</label>
+<select [(ngModel)]="perPage" name="perPage" (change)="hetOption()">
+  <option>10</option>
+  <option>25</option>
+  <option>50</option>
+  <option>100</option>
+</select>
 
+          </div>
 
     
 
@@ -71,8 +82,8 @@
 
 
     <div class="btn">
-      <button  (click)="changePage(1)">Older</button>
-      <button>Newer</button>
+      <button (click)="setOlderFilter()">Older</button>
+      <button (click)="setNewerFilter()">Newer</button>
     </div>
   </div>
 </div>

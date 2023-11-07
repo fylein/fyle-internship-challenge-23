@@ -31,6 +31,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "src/app/app.component.scss"
               
             ],
             "scripts": []
@@ -41,12 +42,15 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "1mb",
+                
+                  
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
+                  "maximumWarning": "3kb",
                   "maximumError": "4kb"
+                  
                 }
               ],
               "outputHashing": "all"

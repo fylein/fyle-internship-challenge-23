@@ -216,6 +216,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Creates a 2-column grid */
     gap: 20px; /* Adjust the gap between items as needed */
+  
   }
   
   .repository-item {
@@ -261,3 +262,60 @@
   background-color: #007bff;
   border: 1px solid #007bff;
 }
+
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 300px) and (max-width: 610px){
+  .container1, .container2, .container3, .pagination {
+    width: 100%; /* Make containers and pagination full width */
+  }
+
+  .column-content2 {
+
+    height: 40px;
+    width: 150px;
+    margin:auto;
+     
+   
+  }
+
+  .repository-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Creates a 2-column grid */
+    gap: 20px; /* Adjust the gap between items as needed */
+  
+  }
+  .repository-grid p .hh {
+    
+    font-size: 10px;
+  
+  }
+  
+  .repository-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    width: 90%;
+    font-size: 12px;
+  }
+  
+  .repository-item h3 {
+    font-size: 15px;
+    margin: 0;
+  }
+
+ 
+
+
+
+}
+
+

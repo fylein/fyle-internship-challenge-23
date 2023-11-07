@@ -7,6 +7,9 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+getOption() {
+throw new Error('Method not implemented.');
+}
   totalItems: number = 1;
   currentPage: number = 1;
   userData: any;
@@ -15,6 +18,7 @@ export class AppComponent implements OnInit {
   perPage: number = 10;
   totalPages: number = 1;
   selectedPage: number = 1;
+  filterDate: Date | null = null;
 
   constructor(private apiService: ApiService) {
     this.currentPage = 1;
@@ -34,9 +38,13 @@ export class AppComponent implements OnInit {
 
   fetchUserRepos(reposUrl: string, page: number, itemsPerPage: number) {
     const startIndex = (page - 1) * itemsPerPage;
+    
     const apiUrl = `${reposUrl}?page=${page}&per_page=${itemsPerPage}`;
     this.apiService.getRepos(apiUrl).subscribe((repos: any[]) => {
+    
       this.userRepos = repos;
+     
+
     });
   }
 
@@ -84,6 +92,30 @@ export class AppComponent implements OnInit {
     this.user_name = newName;
     this.updateUserName();
   }
+
+
+  setOlderFilter() {
+    if (this.filterDate) {
+      this.filterDate = new Date(this.filterDate.getTime() - 24 * 60 * 60 * 1000); // Decrease by a day
+      this.fetchUserRepos(this.userData.repos_url, this.currentPage, this.perPage);
+    }
+  }
+  
+  setNewerFilter() {
+    if (this.filterDate) {
+      this.filterDate = new Date(this.filterDate.getTime() + 24 * 60 * 60 * 1000); // Increase by a day
+      this.fetchUserRepos(this.userData.repos_url, this.currentPage, this.perPage);
+    }
+  }
+
+  
+  hetOption() {
+    // Update the data based on the selected value of 'perPage'
+    this.currentPage = 1; // Reset to the first page
+    this.selectedPage = 1;
+    this.fetchUserData(this.user_name);
+  }
+  
 
   @HostListener('window:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
