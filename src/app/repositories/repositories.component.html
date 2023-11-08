@@ -1,8 +1,8 @@
 <div *ngIf="isLoading">
     <!-- Repeat the skeleton loader to match the number of cards you expect -->
-    <div class="grid md:grid-cols-repos grid-cols-1 gap-3">
+    <div class="grid md:grid-cols-repos grid-cols-1 gap-3 ">
         <div *ngFor="let loader of [].constructor(8)"
-            class="animate-pulse bg-gray-100 p-4 w-[25rem] h-[8rem]  rounded-lg border border-gray-200 shadow flex flex-col justify-betwee">
+            class="animate-pulse bg-gray-100 p-4 h-[8rem]  rounded-lg border border-gray-200 shadow flex flex-col justify-betwee">
             <div>
                 <div class="flex justify-between mb-2 relative">
                     <h5 class="animate-pulse h-5 w-1/2 bg-neutral-300 rounded"></h5>
@@ -29,7 +29,7 @@
 </div>
 
 <div *ngIf="!isLoading">
-    <div class="flex flex-col justify-center">
+    <div class="flex flex-col justify-center ">
         <div *ngIf="repositories.length > 0; else noData"
             class="grid md:grid-cols-repos grid-cols-1 grid-flow-row-dense gap-3">
             <div *ngFor="let repo of repositories">
@@ -41,7 +41,7 @@
     <ng-template #noData>
         <div class="grid md:grid-cols-repos grid-cols-1 gap-3">
             <div *ngFor="let loader of [].constructor(8)"
-                class="animate-pulse bg-gray-100 p-4 w-[25rem] h-[8rem]  rounded-lg border border-gray-200 shadow flex flex-col justify-betwee">
+                class="animate-pulse bg-gray-100 p-4 h-[8rem]  rounded-lg border border-gray-200 shadow flex flex-col justify-betwee">
                 <div>
                     <div class="flex justify-between mb-2 relative">
                         <h5 class="animate-pulse h-5 w-1/2 bg-neutral-300 rounded"></h5>
