@@ -2,7 +2,7 @@
     <!-- Repeat the skeleton loader to match the number of cards you expect -->
     <div class="grid md:grid-cols-repos grid-cols-1 gap-3 ">
         <div *ngFor="let loader of [].constructor(8)"
-            class="animate-pulse bg-gray-100 p-4 h-[8rem]  rounded-lg border border-gray-200 shadow flex flex-col justify-betwee">
+            class="animate-pulse bg-gray-100 p-4 w-[25rem] h-[8rem] rounded-lg border border-gray-200 shadow flex flex-col justify-betwee">
             <div>
                 <div class="flex justify-between mb-2 relative">
                     <h5 class="animate-pulse h-5 w-1/2 bg-neutral-300 rounded"></h5>
@@ -41,7 +41,7 @@
     <ng-template #noData>
         <div class="grid md:grid-cols-repos grid-cols-1 gap-3">
             <div *ngFor="let loader of [].constructor(8)"
-                class="animate-pulse bg-gray-100 p-4 h-[8rem]  rounded-lg border border-gray-200 shadow flex flex-col justify-betwee">
+                class="animate-pulse bg-gray-100 p-4 h-[8rem] w-[25rem] rounded-lg border border-gray-200 shadow flex flex-col justify-betwee">
                 <div>
                     <div class="flex justify-between mb-2 relative">
                         <h5 class="animate-pulse h-5 w-1/2 bg-neutral-300 rounded"></h5>
