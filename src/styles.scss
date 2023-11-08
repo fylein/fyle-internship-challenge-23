@@ -90,12 +90,14 @@ span.dot {
   transition: background-color 0.3s;
   border: 1px solid #ddd;
   margin: 0 4px;
+  cursor:pointer;
 }
 
 .pagination a.active {
   background-color: #008cba;
   color: white;
   border: 1px solid #008cba;
+  cursor:none;
 }
 
 .pagination a:hover:not(.active) {

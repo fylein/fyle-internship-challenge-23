@@ -55,24 +55,31 @@
       </div>
     </div>
   </ng-template>
-</div>
-<div class="center" *ngIf="repos$">
-  <div class="grid-container mt-3">
-    <ng-container *ngFor="let repo$ of repos$ | async; let idx=index">
-      <div>
-        <p class="repo-name">{{repo$.name | titlecase}}</p>
-        <p>{{repo$.description}}</p>
-        <p *ngIf="repo$.language"><button class="button">{{repo$.language}}</button></p>
+  <div class="center" *ngIf="repos$">
+    <p>Repositories</p>
+    <div class="grid-container mt-3">
+      <ng-container *ngFor="let repo$ of repos$ | async ;let idx=index">
+        <div>
+          <p class="repo-name">{{repo$.name | titlecase}}</p>
+          <p>{{repo$.description}}</p>
+          <p *ngIf="repo$.language"><button class="button">{{repo$.language}}</button></p>
+        </div>
+      </ng-container>
+
+
+      <!-- <div class="d-flex justify-content-center">
+      <pagination-controls
+        (pageChange)="renderPage($event)"
+      ></pagination-controls>
+    </div> -->
+
+      <div class="pagination mt-3">
+        <a href="#">&laquo;</a>
+        <ng-container *ngFor="let idx of noOfPages$ | async">
+          <a (click)="setRepos(idx)" [ngClass]="selectedPage===idx?'active':''">{{idx}}</a>
+        </ng-container>
+
+        <a href="#">&raquo;</a>
+
       </div>
-    </ng-container>
-  </div>
-
-  <div class="pagination mt-3">
-    <a href="#">&laquo;</a>
-    <ng-container *ngFor="let i of noOfPages$ | async">
-      <a href="#">{{i}}</a>
-    </ng-container>
-
-    <a href="#">&raquo;</a>
-  </div>
-</div>
+    </div>
