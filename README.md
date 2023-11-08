@@ -1,6 +1,8 @@
 # Fyle Frontend development challenge
 Challenge outline: Github Repositories listing page
 
+![NoteDrop Home Page](https://i.imgur.com/5nngZgr.png)
+
 ## Table of Contents
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -56,16 +58,16 @@ To run the GitHub User Search Application, follow these steps:
 
 The assignment requires unit tests with 100% code coverage for at least one component and one service. To run the unit tests, use the following commands:
 
-1. For the component unit test:
-
-   ```
-   ng test --include=**/app.component.spec.ts
-   ```
-
-2. For the service unit test:
+1. For the service unit test:
 
    ```
    ng test --include=**/api.service.spec.ts
+   ```
+
+2. For the component unit test:
+
+   ```
+   ng test --include=**/app.component.spec.ts
    ```
 
 Ensure that your unit tests achieve 100% code coverage, and you can view the code coverage report after running the tests.
@@ -76,7 +78,6 @@ Please note the following assumptions made during the development of this assign
 
 - The assignment focuses on searching for GitHub users, displaying user details, and listing their repositories.
 - The application assumes an internet connection is available to fetch data from the GitHub API.
-- The application uses Angular as the framework for the front-end development.
 
 ## External Packages Used
 
@@ -87,7 +88,7 @@ The assignment uses the following external packages to enhance functionality and
 
 Please make sure to install these packages during the installation process, as mentioned above.
 
-For more information or any assistance, please contact [Your Name or Contact Information].
-```
+For more information or any assistance, please contact: \
+Mail: mishrachandan.dd@gmail.com \
+Website: https://mchandan.me/
 
-You can use this Markdown code as the content of your README.md file in your project.
