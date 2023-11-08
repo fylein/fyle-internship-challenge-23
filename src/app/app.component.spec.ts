@@ -30,5 +30,13 @@ describe('AppComponent', () => {
     expect(app.page).toEqual(1);
   });
 
+  it('should have <div> with id "app"', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    const bannerElement: HTMLElement = fixture.nativeElement;
+    const h2 = bannerElement.querySelector('div')!;
+    expect(h2.id).toEqual('app');
+  });
+
   
 });
