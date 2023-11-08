@@ -1,19 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, throwError } from 'rxjs';
+import { Observable, tap, throwError } from 'rxjs';
+
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-
-  constructor(
-    private httpClient: HttpClient
-  ) { }
+  constructor(private httpClient: HttpClient) {}
 
   getUser(githubUsername: string) {
-    return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
+    return this.httpClient.get(
+      `https://api.github.com/users/${githubUsername}`
+    );
+  }
+  getRepo(githubUsername: string):Observable<unknown> {
+    return this.httpClient.get(
+      `https://api.github.com/users/${githubUsername}/repos`
+    );
   }
 
-  // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
+  // implement getRepos method by referring to the documentation. Add proper types for the return type and params
 }
