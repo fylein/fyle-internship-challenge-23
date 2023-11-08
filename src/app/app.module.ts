@@ -30,3 +30,5 @@ import { PaginationComponent } from './pagination/pagination.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
