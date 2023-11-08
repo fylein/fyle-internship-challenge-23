@@ -1,43 +1,93 @@
-# Fyle Frontend Challenge
+# Fyle Frontend development challenge
+Challenge outline: Github Repositories listing page
 
-## Who is this for?
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Running Unit Tests](#running-unit-tests)
+- [Assumptions](#assumptions)
+- [External Packages Used](#external-packages-used)
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+## Prerequisites
 
-## Why work at Fyle?
+Before running the application and unit tests, make sure you have the following prerequisites installed on your system:
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
-
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
-
-## Challenge outline
-
-This challenge involves implementing application using github api. 
-
-The services that you need to use are already implemented - check out ApiService.
-
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
-
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
-
-## What happens next?
-
-You will hear back within 48 hours from us via email.
+- [Node.js](https://nodejs.org/): The runtime environment for running Angular applications.
+- [Angular CLI](https://angular.io/cli): The command-line interface for Angular applications.
 
 ## Installation
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+1. Clone the GitHub repository to your local machine:
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+   ```
+   git clone https://github.com/dontdude/fyle-internship-challenge-23.git
+   ```
 
-## Development server
+2. Navigate to the project's root directory:
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+   ```
+   cd fyle-internship-challenge-23
+   ```
 
-## Further help
+3. Install the project dependencies using npm:
 
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+   ```
+   npm install
+   ```
+
+## Running the Application
+
+To run the GitHub User Search Application, follow these steps:
+
+1. Ensure you have completed the installation steps as mentioned above.
+
+2. Open a terminal and navigate to the project's root directory if you're not already there.
+
+3. Run the following command to start the application:
+
+   ```
+   ng serve
+   ```
+
+4. The application should now be running locally. Open your web browser and access the app at `http://localhost:4200/`.
+
+## Running Unit Tests
+
+The assignment requires unit tests with 100% code coverage for at least one component and one service. To run the unit tests, use the following commands:
+
+1. For the component unit test:
+
+   ```
+   ng test --include=**/app.component.spec.ts
+   ```
+
+2. For the service unit test:
+
+   ```
+   ng test --include=**/api.service.spec.ts
+   ```
+
+Ensure that your unit tests achieve 100% code coverage, and you can view the code coverage report after running the tests.
+
+## Assumptions
+
+Please note the following assumptions made during the development of this assignment:
+
+- The assignment focuses on searching for GitHub users, displaying user details, and listing their repositories.
+- The application assumes an internet connection is available to fetch data from the GitHub API.
+- The application uses Angular as the framework for the front-end development.
+
+## External Packages Used
+
+The assignment uses the following external packages to enhance functionality and development:
+
+- [NgxPaginationModule](https://www.npmjs.com/package/ngx-pagination): Used for implementing pagination in the user repositories list.
+- [NgxSkeletonLoaderModule](https://www.npmjs.com/package/ngx-skeleton-loader): Used for providing skeleton loading animations to improve the user experience.
+
+Please make sure to install these packages during the installation process, as mentioned above.
+
+For more information or any assistance, please contact [Your Name or Contact Information].
+```
+
+You can use this Markdown code as the content of your README.md file in your project.
