@@ -8,14 +8,14 @@ import { ApiService } from './services/api.service';
 })
 
 export class AppComponent implements OnInit {
-  totalItems: number = 0;
-  currentPage: number = 1;
   userDetails: any;
   userRepos: any[] = [];
   userName: string = '';
   itemsPerPage: number = 10;
   totalPages: number = 0;
   selectedPage: number = 1;
+  totalItems: number = 0;
+  currentPage: number = 1;
 
   constructor(private apiService: ApiService) {}
 
@@ -37,7 +37,16 @@ export class AppComponent implements OnInit {
     const apiUrl = `${reposUrl}?page=${page}&per_page=${itemsPerPage}`;
     this.apiService.getRepos(apiUrl).subscribe((repos: any[]) => {
       this.userRepos = repos;
+      this.loadLanguagesForRepos();
     });
+  }
+
+  loadLanguagesForRepos() {
+    for (const repo of this.userRepos) {
+      this.apiService.getRepoLanguages(this.userName, repo.name).subscribe((languages: any) => {
+        repo.languages = Object.keys(languages);
+      });
+    }
   }
 
   handlePageChange(action: string | number) {
@@ -65,6 +74,11 @@ export class AppComponent implements OnInit {
     this.currentPage = 1;
     this.selectedPage = 1;
     this.fetchUserDetails(this.userName);
+  }
+
+  changeNameAndFetchData(newName: string) {
+    this.userName = newName;
+    this.updateUserName();
   }
 
   @HostListener('window:keydown', ['$event'])

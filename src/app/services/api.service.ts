@@ -19,4 +19,8 @@ export class ApiService {
   getRepos(reposUrl: string): Observable<any[]> {
     return this.httpClient.get<any[]>(reposUrl);
   }
+
+  getRepoLanguages(username: string, repoName: string): Observable<any> {
+    return this.httpClient.get(`https://api.github.com/repos/${username}/${repoName}/languages`);
+  }
 }
