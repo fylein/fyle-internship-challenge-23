@@ -1,0 +1,24 @@
+<div class="flex flex-col justify-between mx-2 md:mx-0 p-4 w-[25rem] h-[8rem] bg-white rounded-lg border border-gray-200 shadow ">
+    <div>
+        <div class="flex justify-between mb-2 relative">
+            <h5 class="text-lg font-medium text-blue-600 ">{{ repo.name }}</h5>
+            <p
+                class="absolute right-0 top-0 text-[10px] px-3 border border-neutral-300 text-neutral-500 font-medium rounded-full">
+                Public</p>
+        </div>
+        <p class="mb-3 text-xs text-neutral-600">{{ repo.description }}</p>
+    </div>
+    <div class="flex justify-between">
+        <app-repo-tag [languages_url]="repo.languages_url" />
+        <div class="flex gap-2 items-center text-[12px] text-neutral-700">
+            <div class="flex gap-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <p class="mt-[3px]">{{repo.stargazers_count}}</p>
+            </div>
+            <div class="flex  gap-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-fork w-3"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></svg>
+                <p class="mt-[3px]">{{repo.forks_count}}</p>
+            </div>
+        </div>
+    </div>
+</div>

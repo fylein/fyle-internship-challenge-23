@@ -1,0 +1,21 @@
+<div *ngIf="totalPages != 0; else noData" class="">
+    <div class="flex justify-center items-center gap-2 my-4">
+        <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1" class="px-3 border rounded-md shadow-sm">
+            Previous
+        </button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" class="px-3 border rounded-md shadow-sm">
+            Next
+        </button>
+
+        <!-- <select name="numbers" id="number-select" class="px-3 border rounded-md shadow-sm">
+            <option value="6">6</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+        </select> -->
+    </div>
+</div>
+<ng-template #noData>
+   
+</ng-template>
+  
