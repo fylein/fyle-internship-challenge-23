@@ -35,14 +35,14 @@ export class AppComponent implements OnInit {
       this.totalItems = data.public_repos;
       this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
       this.fetchUserRepos(data.repos_url, this.currentPage, this.itemsPerPage);
-      //setTimeout(()=> {
+      setTimeout(()=> {
         this.isLoading = false;
-      //}, 1000);
+      }, 1000);
     });
   }
 
   fetchUserRepos(reposUrl: string, page: number, itemsPerPage: number) {
-    this.isLoading = true;
+    //this.isLoading = true;
     const startIndex = (page - 1) * itemsPerPage;
     const apiUrl = `${reposUrl}?page=${page}&per_page=${itemsPerPage}`;
     this.apiService.getRepos(apiUrl).subscribe((repos: any[]) => {
