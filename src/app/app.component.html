@@ -3,96 +3,110 @@
     <div class="flex flex-col md:flex-row items-center justify-center mb-4">
       <input
         type="text"
-        class="border p-2 rounded-md w-full md:w-64 placeholder-gray-500 bg-gray-100"
+        class="border p-2 rounded-md w-full md:w-64 placeholder-gray-500 bg-gray-100 shadow-md"
         placeholder="Enter GitHub username..."
         [(ngModel)]="userName"
       >
-      <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2 md:mt-0 ml-2" (click)="updateUserName()">Search</button>
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2 md:mt-0 ml-2 shadow-md" (click)="updateUserName()">Search</button>
     </div>
 
-    <!-- User Info -->
-    <div class="flex flex-col md:flex-row items-center mb-4 justify-center gap-8">
-      <div class="md:mr-4 rounded-full shadow-2xl p-2">
-        <img *ngIf="userDetails.avatar_url" class="w-52 h-52 rounded-full shadow-xl" [src]="userDetails?.avatar_url" alt="Avatar" />
+    <!-- skeleton loader -->
+    <div class="item" *ngIf="isLoading">
+      <div class="flex gap-10 mb-2 justify-center">
+        <ngx-skeleton-loader animation="pulse" [theme]="{height: '13rem', width: '13rem'}" count="1" appearance="circle"></ngx-skeleton-loader>
+        <div class="w-2/3 flex flex-col justify-center">
+          <ngx-skeleton-loader animation="pulse" [theme]="{height: '5rem'}" count="1" appearance="line"></ngx-skeleton-loader>
+          <ngx-skeleton-loader animation="pulse" count="2" appearance="line"></ngx-skeleton-loader>
+        </div>
       </div>
-      <div>
-        <div *ngIf="userDetails.name" class="mb-2">
-          <p class="text-2xl font-semibold">{{ userDetails?.name }}</p>
-          <p class="text-slate-800"><a [href]="userDetails?.html_url">{{ userDetails?.login }}</a></p>
-          <p>{{ userDetails.email }}</p>
-        </div>
-        <div *ngIf="!userDetails.name" class="mb-2">
-          <p class="text-2xl font-semibold"><a [href]="userDetails?.html_url">{{ userDetails?.login }}</a></p>
-          <p>{{ userDetails.email }}</p>
-        </div>
-        <p class="text-gray-800 text-base">{{ userDetails?.bio }}</p>
-        <div class="flex gap-4 mb-1">
-          <p class="font-semibold" *ngIf="userDetails.followers">Followers: {{ userDetails?.followers }}</p>
-          <p class="font-semibold" *ngIf="userDetails.following">Following: {{ userDetails?.following }}</p>
-        </div>
-        <p *ngIf="userDetails.blog"><span class="font-semibold">Website: </span><a [href]="userDetails.blog" target="_blank" class="text-blue-500">{{ userDetails.blog }}</a></p>
-        <p *ngIf="userDetails.twitter_username"><span class="font-semibold">Twitter: </span><a [href]="userDetails.twitter_username" target="_blank" class="text-blue-500">{{ userDetails.twitter_username }}</a></p>
-        <p *ngIf="userDetails.location">{{ userDetails.location }}</p>
-      </div>
+      <ngx-skeleton-loader animation="pulse" [theme]="{height: '6rem'}" count="10" class="w-full" appearance="line"></ngx-skeleton-loader>
     </div>
 
-    <!-- User Repositories -->
-    <div *ngIf="userRepos.length > 0" class="mt-8">
-      <h2 class="text-2xl font-semibold">User Repositories</h2>
-      <p class="font-semibold" *ngIf="userDetails?.public_repos">Public Repos: {{ userDetails?.public_repos }}</p>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        <div *ngFor="let repo of userRepos" class="bg-gray-100 border shadow-lg rounded-xl p-4 text-xs flex flex-col justify-between hover:bg-gray-200 transition duration-300 ease-in-out">
-          <div class="flex justify-between">
-            <h3 class="text-lg font-semibold">{{ repo.name }}</h3>
-            <p class="text-gray-500 mt-1 ml-2">{{ repo.updated_at | date: 'mediumDate' }}</p>
+    <div *ngIf="!isLoading">
+      <!-- User Info -->
+      <div class="flex flex-col md:flex-row items-center mb-4 justify-center gap-8">
+        <div class="md:mr-4 rounded-full shadow-2xl p-2">
+          <img *ngIf="userDetails.avatar_url" class="w-52 h-52 rounded-full shadow-xl" [src]="userDetails?.avatar_url" alt="Avatar" />
+        </div>
+        <div>
+          <div *ngIf="userDetails.name" class="mb-2">
+            <p class="text-2xl font-semibold">{{ userDetails?.name }}</p>
+            <p class="text-slate-800"><a [href]="userDetails?.html_url">{{ userDetails?.login }}</a></p>
+            <p>{{ userDetails.email }}</p>
           </div>
-          <p class="text-gray-700 mb-1">{{ repo.description }}</p>
-          <div>
-            <p *ngIf="repo.html_url">Repo: <a class="text-blue-500" [href]="repo.html_url" target="_blank">{{ repo.html_url }}</a></p>
-            <p *ngIf="repo.homepage">Live: <a class="text-blue-500" [href]="repo.homepage" target="_blank">{{ repo.homepage }}</a></p>
+          <div *ngIf="!userDetails.name" class="mb-2">
+            <p class="text-2xl font-semibold"><a [href]="userDetails?.html_url">{{ userDetails?.login }}</a></p>
+            <p>{{ userDetails.email }}</p>
           </div>
-          <div class="flex justify-between mt-1 mb-1">
-            <p class="font-semibold" *ngIf="repo.forks_count !== null">Forks: {{ repo.forks_count }}</p>
-            <p class="font-semibold" *ngIf="repo.stargazers_count !== null">Stars: {{ repo.stargazers_count }}</p>
+          <p class="text-gray-800 text-base">{{ userDetails?.bio }}</p>
+          <div class="flex gap-4 mb-1">
+            <p class="font-semibold" *ngIf="userDetails.followers">Followers: {{ userDetails?.followers }}</p>
+            <p class="font-semibold" *ngIf="userDetails.following">Following: {{ userDetails?.following }}</p>
           </div>
-          <div *ngIf="repo.languages">
-            <div class="flex flex-wrap">
-              <div *ngFor="let lang of repo.languages" class="bg-blue-500 text-white px-2 py-1 rounded-md m-1">{{ lang }}</div>
+          <p *ngIf="userDetails.blog"><span class="font-semibold">Website: </span><a [href]="userDetails.blog" target="_blank" class="text-blue-500">{{ userDetails.blog }}</a></p>
+          <p *ngIf="userDetails.twitter_username"><span class="font-semibold">Twitter: </span><a [href]="userDetails.twitter_username" target="_blank" class="text-blue-500">{{ userDetails.twitter_username }}</a></p>
+          <p *ngIf="userDetails.location">{{ userDetails.location }}</p>
+        </div>
+      </div>
+
+      <!-- User Repositories -->
+      <div *ngIf="userRepos.length > 0" class="mt-8">
+        <h2 class="text-2xl font-semibold">User Repositories</h2>
+        <p class="font-semibold" *ngIf="userDetails?.public_repos">Public Repos: {{ userDetails?.public_repos }}</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+          <div *ngFor="let repo of userRepos" class="bg-gray-100 border shadow-lg rounded-xl p-4 text-xs flex flex-col justify-between hover:bg-gray-200 transition duration-300 ease-in-out">
+            <div class="flex justify-between">
+              <h3 class="text-lg font-semibold">{{ repo.name }}</h3>
+              <p class="text-gray-500 mt-1 ml-2">{{ repo.updated_at | date: 'mediumDate' }}</p>
+            </div>
+            <p class="text-gray-700 mb-1">{{ repo.description }}</p>
+            <div>
+              <p *ngIf="repo.html_url">Repo: <a class="text-blue-500" [href]="repo.html_url" target="_blank">{{ repo.html_url }}</a></p>
+              <p *ngIf="repo.homepage">Live: <a class="text-blue-500" [href]="repo.homepage" target="_blank">{{ repo.homepage }}</a></p>
+            </div>
+            <div class="flex justify-between mt-1 mb-1">
+              <p class="font-semibold" *ngIf="repo.forks_count !== null">Forks: {{ repo.forks_count }}</p>
+              <p class="font-semibold" *ngIf="repo.stargazers_count !== null">Stars: {{ repo.stargazers_count }}</p>
+            </div>
+            <div *ngIf="repo.languages">
+              <div class="flex flex-wrap">
+                <div *ngFor="let lang of repo.languages" class="bg-blue-500 text-white px-2 py-1 rounded-md m-1">{{ lang }}</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Pagination -->
-    <div class="mt-8">
-      <ul class="flex justify-center space-x-2">
-        <li *ngIf="selectedPage > 1">
-          <a class="bg-blue-500 text-white px-3 py-2 rounded-md" (click)="handlePageChange('prev')">Older</a>
-        </li>
-        <ng-container *ngFor="let page of calculateTotalPages(totalItems, itemsPerPage); let i = index">
-          <li [ngClass]="{'disabled': i + 1 !== selectedPage }">
-            <a class="bg-blue-100 text-blue-500 px-3 py-2 rounded-md" (click)="handlePageChange(i + 1)">{{ i + 1 }}</a>
+      <!-- Pagination -->
+      <div class="mt-8">
+        <ul class="flex justify-center space-x-2">
+          <li *ngIf="selectedPage > 1">
+            <a class="bg-blue-500 text-white px-3 py-2 rounded-md" (click)="handlePageChange('prev')">Older</a>
           </li>
-        </ng-container>
-        <li *ngIf="selectedPage < totalPages">
-          <a class="bg-blue-500 text-white px-3 py-2 rounded-md" (click)="handlePageChange('next')">Newer</a>
-        </li>
-      </ul>
-    </div>
+          <ng-container *ngFor="let page of calculateTotalPages(totalItems, itemsPerPage); let i = index">
+            <li [ngClass]="{'disabled': i + 1 !== selectedPage }">
+              <a class="bg-blue-100 text-blue-500 px-3 py-2 rounded-md" (click)="handlePageChange(i + 1)">{{ i + 1 }}</a>
+            </li>
+          </ng-container>
+          <li *ngIf="selectedPage < totalPages">
+            <a class="bg-blue-500 text-white px-3 py-2 rounded-md" (click)="handlePageChange('next')">Newer</a>
+          </li>
+        </ul>
+      </div>
 
-    <!-- Items per page selection -->
-    <div *ngIf="userRepos.length > 0" class="flex items-center justify-between mb-4">
-      <span class="text-gray-600">Showing {{currentPage}} of {{totalPages}} pages</span>
-      <div>
-        <label for="itemsPerPage" class="text-gray-600 mr-2">Items per page:</label>
-        <select id="itemsPerPage" [(ngModel)]="itemsPerPage" name="itemsPerPage" class="border p-2 rounded-md" (change)="updateUserName()">
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-        </select>
+      <!-- Items per page selection -->
+      <div *ngIf="userRepos.length > 0" class="flex items-center justify-between mb-4">
+        <span class="text-gray-600">Showing {{currentPage}} of {{totalPages}} pages</span>
+        <div>
+          <label for="itemsPerPage" class="text-gray-600 mr-2">Items per page:</label>
+          <select id="itemsPerPage" [(ngModel)]="itemsPerPage" name="itemsPerPage" class="border p-2 rounded-md" (change)="updateUserName()">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>

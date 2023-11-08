@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   selectedPage: number = 1;
   totalItems: number = 0;
   currentPage: number = 1;
+  isLoading: boolean = false;
 
   constructor(private apiService: ApiService) {}
 
@@ -24,15 +25,24 @@ export class AppComponent implements OnInit {
   }
 
   fetchUserDetails(name: string) {
+    if(name === '') {
+      return;
+    }
+
+    this.isLoading = true;
     this.apiService.getUser(this.userName).subscribe((data: any) => {
       this.userDetails = data;
       this.totalItems = data.public_repos;
       this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
       this.fetchUserRepos(data.repos_url, this.currentPage, this.itemsPerPage);
+      setTimeout(()=> {
+        this.isLoading = false;
+      }, 1000);
     });
   }
 
   fetchUserRepos(reposUrl: string, page: number, itemsPerPage: number) {
+    this.isLoading = true;
     const startIndex = (page - 1) * itemsPerPage;
     const apiUrl = `${reposUrl}?page=${page}&per_page=${itemsPerPage}`;
     this.apiService.getRepos(apiUrl).subscribe((repos: any[]) => {

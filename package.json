@@ -1,6 +1,6 @@
 {
   "name": "fyle-frontend-challenge",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
     "ngx-pagination": "^6.0.3",
+    "ngx-skeleton-loader": "^8.1.0",
     "octokit": "^3.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
