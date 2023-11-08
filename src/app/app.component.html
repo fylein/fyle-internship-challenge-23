@@ -1,5 +1,59 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
-  </div>
+<div class="flex justify-center my-16">
+    <div class="flex-col w-6/12">
+  
+    <h1 class="text-center font-bold text-blue-500 my-4 text-4xl">Find Github Repositories</h1>
+    <div *ngIf="showSearch">
+        <div class="text-center">
+            <h2 class="text-center font-bold">Search for GitHub Repositories</h2>
+            <div class="my-4">
+              <label for="githubUsername">GitHub Username: </label>
+              <input type="text" id="githubUsername" [(ngModel)]="githubUsername" class="p-1 rounded-md border-black border-solid border-2">
+              <button class="bg-blue-500 mx-2 text-white py-1 px-2 rounded-lg" (click)="search()">Search</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div *ngIf="showUser">
+        <app-user [user]="user"></app-user>
+    </div>
+
+    <div *ngIf="showRepositories">
+        
+
+        <div class="grid grid-cols-2 gap-4 mx-2 my-4">
+        <div *ngFor="let repo of repos">
+            <app-repository [repo]="repo" [user]="user" [isLoading]="isLoading"></app-repository>
+        </div>
+        </div>
+
+    </div>
+
+    <div class="flex justify-center" *ngIf="showRepositories">
+
+        <div class="my-2 flex flex-col w-[75%]">
+            <div class="text-center">Total Repositories Per Page<div>
+            <div class="text-center">
+                <input type="number" id="rep" class="text-center text-black p-2 border-solid border-2 my-2" max="100" min="1" [(ngModel)]="per_page" placeholder={{per_page}}>
+            </div>
+            <button class="px-2 py-1 bg-blue-500 text-white text-center rounded-lg" (click)="change_per_page()">Change</button>
+        </div>
+        
+        
+        <div class="flex mx-2 my-4 flex-wrap justify-center">
+        
+            <div *ngFor="let item of createRange();" class="flex flex-wrap">
+                
+                <div *ngIf="page==item" class="p-1 border-2 bg-blue-500 text-white border-black border-solid mx-1 my-1 cursor-pointer" (click)="changePage(item)">{{item}}</div>
+                <div *ngIf="page!=item" class="p-1 border-2 border-black border-solid mx-1 my-1 cursor-pointer" (click)="changePage(item)">{{item}}</div>
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>
+
+    
+  
 </div>

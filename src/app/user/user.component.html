@@ -1,0 +1,12 @@
+<div class="flex flex-col">
+    <div class="flex mb-10">
+        <div><img class="h-40 w-40 rouded-full" src="{{user?.avatar_url}}" /></div>
+        <div class="ms-10">
+            <div class="font-bold text-2xl my-2">{{user?.name}}</div>
+            <div class="my-2" *ngIf="user?.bio">{{user.bio}}</div>
+            <div class="my-2" *ngIf="user?.location">{{user.location}}</div>
+            <div *ngIf="user?.twitter_username">Twitter: https://twitter.com/{{user?.twitter_username}}</div>
+        </div>
+        </div>
+    <div class="ms-4 text-blue-500"><a href="{{user?.html_url}}">{{user?.html_url}}</a></div>
+</div>
