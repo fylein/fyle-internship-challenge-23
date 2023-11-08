@@ -35,9 +35,9 @@ export class AppComponent implements OnInit {
       this.totalItems = data.public_repos;
       this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
       this.fetchUserRepos(data.repos_url, this.currentPage, this.itemsPerPage);
-      setTimeout(()=> {
+      //setTimeout(()=> {
         this.isLoading = false;
-      }, 1000);
+      //}, 1000);
     });
   }
 
