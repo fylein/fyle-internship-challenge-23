@@ -68,7 +68,7 @@ export class ApiService {
 
   // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
   getRepos(): Observable<Repository[]> {
-    return this.httpClient.get<any[]>(`https://api.github.com/users/${this.searchSubject.value}/repos?page=${this.curr_page.value}&per_page=6`);
+    return this.httpClient.get<any[]>(`https://api.github.com/users/${this.searchSubject.value}/repos?page=${this.curr_page.value}&per_page=8`);
   }
 
   getLanguages(url: string): Observable<Tag[]> {
