@@ -13,12 +13,17 @@ export class AppComponent implements OnInit {
   userName: string = '';
   itemsPerPage: number = 10;
   totalPages: number = 0;
-  selectedPage: number = 1;
   totalItems: number = 0;
   currentPage: number = 1;
   isLoading: boolean = false;
 
   constructor(private apiService: ApiService) {}
+
+  searchUser(userName: string) {
+    this.userName = userName;
+    this.currentPage = 1;
+    this.fetchUserDetails(this.userName);
+  }
 
   ngOnInit() {
     this.fetchUserDetails(this.userName);
@@ -61,15 +66,12 @@ export class AppComponent implements OnInit {
 
   handlePageChange(action: string | number) {
     if (action === 'prev' && this.currentPage > 1) {
-      this.selectedPage--;
       this.currentPage--;
       this.fetchUserRepos(this.userDetails.repos_url, this.currentPage, this.itemsPerPage);
     } else if (action === 'next' && this.currentPage < this.totalPages) {
-      this.selectedPage++;
       this.currentPage++;
       this.fetchUserRepos(this.userDetails.repos_url, this.currentPage, this.itemsPerPage);
     } else if (typeof action === 'number' && action >= 1 && action <= this.totalPages) {
-      this.selectedPage = action;
       this.currentPage = action;
       this.fetchUserRepos(this.userDetails.repos_url, this.currentPage, this.itemsPerPage);
     }
@@ -80,9 +82,14 @@ export class AppComponent implements OnInit {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 
+  updateItemsPerPage(itemsPerPage: number) {
+    this.currentPage = 1;
+    this.itemsPerPage = itemsPerPage;
+    this.fetchUserDetails(this.userName);
+  }
+
   updateUserName() {
     this.currentPage = 1;
-    this.selectedPage = 1;
     this.fetchUserDetails(this.userName);
   }
 

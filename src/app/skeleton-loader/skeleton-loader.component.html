@@ -1,0 +1,21 @@
+<div class="skeleton-loader" *ngIf="isLoading; else content">
+  <ng-container *ngIf="skeletonType === 'user-details';">
+    <div class="flex gap-10 mb-6 justify-center">
+      <div class="skeleton-avatar rounded-full h-52 w-52 bg-gray-200"></div>
+      <div class="skeleton-details text-center w-1/2 flex flex-col justify-center">
+        <div class="skeleton-rect skeleton-text h-12 bg-gray-200 mb-2"></div>
+        <div class="skeleton-rect skeleton-text h-4 bg-gray-200 mb-2"></div>
+        <div class="skeleton-rect skeleton-text h-4 bg-gray-200"></div>
+        <div class="skeleton-rect skeleton-text h-4 bg-gray-200"></div>
+      </div>
+    </div>
+    <div *ngFor="let _ of [1, 2, 3, 4, 5]">
+      <div class="skeleton-repo p-4 bg-gray-200 rounded-lg shadow-lg flex items-center mb-4">
+        <div class="skeleton-rect skeleton-text h-12 bg-gray-200 w-3/4"></div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

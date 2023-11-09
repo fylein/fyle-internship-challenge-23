@@ -34,7 +34,6 @@ describe('AppComponent', () => {
     expect(component.userName).toEqual('');
     expect(component.itemsPerPage).toEqual(10);
     expect(component.totalPages).toEqual(0);
-    expect(component.selectedPage).toEqual(1);
     expect(component.totalItems).toEqual(0);
     expect(component.currentPage).toEqual(1);
     expect(component.isLoading).toEqual(false);
@@ -85,7 +84,6 @@ describe('AppComponent', () => {
 
     component.handlePageChange('next');
 
-    expect(component.selectedPage).toEqual(2);
     expect(component.currentPage).toEqual(2);
     expect(component.fetchUserRepos).toHaveBeenCalledWith(component.userDetails.repos_url, 2, component.itemsPerPage);
   });
@@ -102,7 +100,6 @@ describe('AppComponent', () => {
 
     component.handlePageChange(2);
 
-    expect(component.selectedPage).toEqual(2);
     expect(component.currentPage).toEqual(2);
     expect(component.fetchUserRepos).toHaveBeenCalledWith(userDetails.repos_url, 2, component.itemsPerPage);
   });
@@ -119,7 +116,6 @@ describe('AppComponent', () => {
 
     component.handlePageChange(2);
 
-    expect(component.selectedPage).toEqual(2);
     expect(component.currentPage).toEqual(2);
     expect(component.fetchUserRepos).toHaveBeenCalledWith(userDetails.repos_url, 2, component.itemsPerPage);
   });
