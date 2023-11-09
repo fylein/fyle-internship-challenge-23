@@ -1,4 +1,4 @@
-<div class="flex flex-col md:flex-row items-center mb-4 justify-center gap-8">
+<div *ngIf="userDetails" class="flex flex-col md:flex-row items-center mb-4 justify-center gap-8">
   <div class="md:mr-4 rounded-full shadow-2xl p-2">
     <img *ngIf="userDetails.avatar_url" class="w-52 h-52 rounded-full shadow-xl" [src]="userDetails?.avatar_url" alt="Avatar" />
   </div>
