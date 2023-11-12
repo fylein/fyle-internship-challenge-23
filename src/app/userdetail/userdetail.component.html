@@ -1,0 +1,22 @@
+<div id="user-detail" class="p-4 flex text-black" *ngIf="user">
+    <div id="profile" class="justify-center ml-5">
+      <div id="pic"><img class="flex justify-center bg-slate-900 w-40 h-40 rounded-full" src="{{user.avatar_url}}" width="200px" alt=""></div>
+      <div id="github-url" class="mt-2 font-medium">
+          <a class="text-blue-700 font-medium" href="{{user.html_url}}" target="_blank">
+              {{user.html_url}}
+          </a>
+      </div>
+    </div>
+    <div id="details" class="ml-10 ">
+      <div id="name">
+        <h2 class="font-bold text-3xl">{{user.name}}</h2>
+      </div>
+      <div id="bio" class="mt-3 font-semibold  ">{{user.bio}}</div>
+      <div id="location" class="mt-3 font-semibold  ">{{user.location}}</div>
+      <div id="twitter" class="mt-3 font-semibold" *ngIf="user.twitter_username">
+          Twitter: <a class="text-blue-700 font-medium" href="https://www.twitter.com/{{user.twitter_username}}">
+              https://www.twitter.com/{{user.twitter_username}}
+          </a>
+      </div>
+    </div>
+  </div>

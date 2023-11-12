@@ -1,0 +1,11 @@
+<mat-grid-list cols="2" rowHeight="285">
+    <mat-grid-tile class="h-56 -z-10" *ngFor="let repo of repos">
+        <div class="content p-5 bg-slate-200 w-11/12 h-56">
+            <div class="name text-3xl font-bold">{{repo.name}}</div>
+            <div class="description h-16 mt-3 font-medium overflow-y-hidden">{{repo.description}}</div>
+            <div id="topics" class="m-2 overflow-x-hidden">
+                <app-topics [topics]="repo.topics" class="flex "></app-topics>
+            </div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

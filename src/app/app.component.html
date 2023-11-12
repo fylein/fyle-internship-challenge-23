@@ -1,5 +1,27 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<!-- {{githubUser | json}} -->
+<div class="flex justify-evenly items-center bg-violet-700">
+  <div class="font-medium text-2xl p-3 text-white">
+    {{title}}
+  </div>
+  <div class="flex">
+    <input id="username" name="username" class="pt-1 pb-1 pl-2 pr-2 h-10 rounded-l-lg" type="search" [(ngModel)]="input" placeholder="Search GitHub User">
+    <button type="submit" (click)="renderDetails()" class="bg-white rounded-r-lg"><img src="../assets/search.png" class="" alt=""></button>
   </div>
 </div>
+
+<div class="h-full bg-violet-300" *ngIf="!gitHubUsername">
+  <!-- Enter Username -->
+  <div class="h-4/5 flex justify-center items-center">
+    <h1 class="font-bold p-20 rounded-xl bg-violet-700 text-white">Enter Valid GitHub Username</h1>
+  </div>
+</div>
+
+<ngx-ui-loader></ngx-ui-loader>
+
+<app-userdetail [user]="user"></app-userdetail>
+
+<div class="sticky-container">
+  <app-paginator *ngIf="user" [pages]="user.public_repos" (pageEvent)="handlePageEvent($event)"></app-paginator>
+</div>
+
+<app-reposgrid *ngIf="repos" [repos]="repos"></app-reposgrid>
