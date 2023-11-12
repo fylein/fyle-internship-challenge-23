@@ -16,6 +16,10 @@ List all repositories of a GitHub user
 * **Libraries:** Angular Material, ngx-ui-loader
 
 
+## App Frontend Structure
+![App Screenshot](https://repo-lister.s3.ap-south-1.amazonaws.com/frontend+structure.png)
+
+
 
 ## Run Locally
 
