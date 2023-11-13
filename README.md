@@ -1,43 +1,33 @@
-# Fyle Frontend Challenge
+# Fyle Frontend Challenge - My Successful Solution
 
-## Who is this for?
+## Overview
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+I have successfully completed the Fyle Frontend Challenge, implementing a responsive web application using the GitHub API. The project meets all the requirements outlined in the assignment, and I'm excited to share my solution.
 
-## Why work at Fyle?
+## Live Deployment
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+You can access the live deployment of my solution at [https://neon-tartufo-182600.netlify.app/].
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
 
-## Challenge outline
+## Challenge Details
 
-This challenge involves implementing application using github api. 
+The challenge involved building an application using the GitHub API, and I chose to implement it using Angular. The provided ApiService was utilized to interact with the required services.
 
-The services that you need to use are already implemented - check out ApiService.
-
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
-
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
-
-## What happens next?
-
-You will hear back within 48 hours from us via email.
+For a detailed overview of the challenge, please refer to the [challenge description](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa).
 
 ## Installation
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+1. Fork this repository to your GitHub account.
+2. Clone the forked repository to your local machine.
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+### Prerequisites
 
-## Development server
+Ensure that you have Angular CLI installed. If not, refer to the [Angular CLI documentation](https://angular.io/cli) for installation instructions.
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Navigate to the cloned repository and run:
 
-## Further help
+```bash
+npm install
 
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+ng serve
+
