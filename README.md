@@ -1,5 +1,8 @@
 # Fyle Frontend Challenge
 
+#### My Description:
+  This Application I build only one component and one service file, because the company rule is: `The assignment must contain unit tests for 1 component and 1 service with 100% code coverage` for more details [check here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa).If you check my file structure in my repository: [visit Repository](https://github.com/Tagore9930/Pets-Safety-App).
+
 ## Who is this for?
 
 This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
