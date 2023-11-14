@@ -5,7 +5,7 @@
 
 ## What i do in this Application:
 
-* I Build attractive And responsive for user interface using Angular Material and Bootstrap.
+* I Build interactive and responsive user interface using Angular Material and Bootstrap.
 
 ### Install requirements
 * Install angular cli [Ref](https://angular.io/cli)
