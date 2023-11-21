@@ -1,3 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.toast-container .ngx-toastr {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 6px;
+  padding: 20px 20px 20px 50px !important;
+  width: 300px;
+  border-radius: 15px !important;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  background-size: 24px;
+  box-shadow: 0 0 12px #999999;
+  color: #FFFFFF;
+}
+
+.toast-success{
+  background-color: #1cc88a !important;
+}
+
+.toast-error{
+  background-color: #e74a3b !important;
+  /* box-shadow: 1px 0px 2px -1px !important; */
+}
+
+.toast-warning{
+  background-color: #f6c23e !important;
+}
+
+.toast-info{
+  background-color: #4e73df !important;
+}
