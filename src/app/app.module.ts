@@ -8,6 +8,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserPersonalComponent } from './user-profile/user-personal/user-personal.component';
 import { UserRepositoriesComponent } from './user-profile/user-repositories/user-repositories.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { UserRepositoriesComponent } from './user-profile/user-repositories/user
     UserProfileComponent,
     NotFoundComponent,
     UserPersonalComponent,
-    UserRepositoriesComponent
+    UserRepositoriesComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
