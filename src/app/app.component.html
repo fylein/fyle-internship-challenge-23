@@ -1,5 +1,208 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="h-100 bg-black overflow-auto">
+  <div class="container">
+    <div *ngIf="!checkUserDetails" class="search-user py-5">
+      <div class="row input">
+        <div class="col-12">
+          <form (submit)="searchUser(userName, 5)">
+            <div class="input-group my-5">
+              <input type="text" [(ngModel)]="userName" class="form-control bg-dark py-3" name="name"
+                placeholder="Search a Github username" />
+              <button type="submit" for="name" class="input-group-text text-white px-5">
+                Search
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row userDetailsCard">
+        <div class="col-12">
+          <div *ngIf="!skeletonLoader && userVaild" (click)="checkUserDetailsMethod()"
+            class="card bg-dark rounded-5 p-2 pe-auto">
+            <div class="overlay d-flex fs-4 fw-bold w-100 h-100">
+              See Detials
+            </div>
+            <div class="row text-white g-0">
+              <div class="col-sm-4">
+                <img src="{{ userDetails?.avatar_url }}" class="avatar bg-dark rounded-circle p-3 my-auto" alt="..." />
+              </div>
+              <div class="col-sm-8">
+                <div class="card-body">
+                  <h1 class="card-title fs-3 fw-bold">
+                    {{ userDetails?.name == null ? "null" : userDetails?.name }}
+                  </h1>
+                  <p class="my-3">
+                    {{ userDetails?.bio == null ? "null" : userDetails?.bio }}
+                  </p>
+                  <p class="card-text d-flex justify-content-around">
+                    <a class="followers text-decoration-none text-white">
+                      <mat-icon class="py-1">group</mat-icon>
+                      <b class="px-2">{{
+                        userDetails?.followers == null
+                        ? 0
+                        : userDetails?.followers
+                        }}</b>
+                      <small>Followers</small>
+                    </a>
+                    <a class="following text-decoration-none text-white">
+                      <mat-icon class="py-1">group_add</mat-icon>
+                      <b class="px-2">{{
+                        userDetails?.following == null
+                        ? 0
+                        : userDetails?.following
+                        }}</b>
+                      <small>Following</small>
+                    </a>
+                    <a class="repos text-decoration-none text-white">
+                      <mat-icon class="py-1">move_to_inbox</mat-icon>
+                      <b class="px-2">{{
+                        userDetails?.public_repos == null
+                        ? 0
+                        : userDetails?.public_repos
+                        }}</b>
+                      <small>Repos</small>
+                    </a>
+                  </p>
+                  <div class="reposList my-2">
+                    <a *ngFor="let item of userReposShowcase" class="text-white m-1 repo">{{ item.name }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="userVaild == false && !skeletonLoader" class="userDetailsCardError">
+            <div class="card bg-dark rounded-5 p-2 avatar w-100 d-flex justify-content-center align-items-center">
+              <h1 class="text-white fs-3">{{ userErrorMsg }}</h1>
+            </div>
+          </div>
+
+          <div *ngIf="skeletonLoader && !userVaild && !checkUserDetails"
+            class="card bg-dark rounded-5 p-2 userDetailsCardSkeletonLoader">
+            <div class="row text-white g-0">
+              <div class="col-sm-4">
+                <div class="avatar rounded-circle p-3 my-auto bg-black-subtle"></div>
+              </div>
+              <div class="col-sm-8">
+                <div class="card-body">
+                  <h1 class="card-title fs-3 fw-bold py-4 bg-black-subtle"></h1>
+                  <p class="my-3 py-2 bg-black-subtle"></p>
+                  <p class="card-text d-flex justify-content-around">
+                    <span class="py-3 bg-black-subtle w-25"></span>
+                    <span class="py-3 bg-black-subtle w-25"></span>
+                    <span class="py-3 bg-black-subtle w-25"></span>
+                  </p>
+                  <div class="reposList my-3">
+                    <div class="d-flex justify-content-between">
+                      <div class="col-6 mx-2 py-3 bg-black-subtle"></div>
+                      <div class="col-5 mx-2 py-3 bg-black-subtle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="checkUserDetails && !skeletonLoader" class="bg-dark py-4 userFullDetails">
+      <div class="row py-2">
+        <div class="col-sm-4">
+          <img src="{{ userDetails?.avatar_url }}" class="avatar bg-dark rounded-circle p-3 my-auto" />
+        </div>
+        <div class="col-sm-8 text-white">
+          <i class="closeIcon float-end pe-auto m-2 px-2 py-1">
+            <mat-icon (click)="checkUserDetailsMethod()">close</mat-icon>
+          </i>
+          <h1 class="fs-3 fw-bold ms-3 mt-5">
+            {{ userDetails?.name == null ? "null" : userDetails?.name }}
+          </h1>
+          <p class="my-3 ms-3">
+            {{ userDetails?.bio == null ? "null" : userDetails?.bio }}
+          </p>
+          <p class="card-text d-flex justify-content-around">
+            <a class="followers text-decoration-none text-white">
+              <mat-icon class="py-1">group</mat-icon>
+              <b class="px-2">{{
+                userDetails?.followers == null ? 0 : userDetails?.followers
+                }}</b>
+              <small>Followers</small>
+            </a>
+            <a class="following text-decoration-none text-white">
+              <mat-icon class="py-1">group_add</mat-icon>
+              <b class="px-2">{{
+                userDetails?.following == null ? 0 : userDetails?.following
+                }}</b>
+              <small>Following</small>
+            </a>
+            <a class="repos text-decoration-none text-white">
+              <mat-icon class="py-1">move_to_inbox</mat-icon>
+              <b class="px-2">{{
+                userDetails?.public_repos == null
+                ? 0
+                : userDetails?.public_repos
+                }}</b>
+              <small>Repos</small>
+            </a>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div *ngFor="let item of userRepos" class="col-sm-6">
+          <div class="card shadow bg-transparent text-white p-2 my-2">
+            <h3 class="mb-1">{{ item?.name }}</h3>
+            <p class="repo-description">{{ item.description }}</p>
+            <span class="repo-language px-1">{{ item.language }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-12">
+          <mat-paginator class="shadow" [length]="userDetails?.public_repos" [pageSizeOptions]="[10, 25, 50, 75, 100]"
+            (page)="getRepos($event, false)" aria-label="Select page">
+          </mat-paginator>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="checkUserDetails && skeletonLoader" class="bg-dark py-4 userFullDetailsLoader">
+      <div class="card bg-dark rounded-5 p-2">
+        <div class="row text-white g-0">
+          <div class="col-sm-4">
+            <div class="avatar bg-dark rounded-circle p-3 my-auto"></div>
+          </div>
+          <div class="col-sm-8">
+            <div class="card-body">
+              <h1 class="card-title fs-3 fw-bold py-4 bg-black-subtle"></h1>
+              <p class="my-3 py-2 bg-black-subtle"></p>
+              <p class="card-text d-flex justify-content-around">
+                <span class="py-3 bg-black-subtle w-25"></span>
+                <span class="py-3 bg-black-subtle w-25"></span>
+                <span class="py-3 bg-black-subtle w-25"></span>
+              </p>
+              <div class="reposList my-3">
+                <div class="d-flex justify-content-between">
+                  <div class="col-6 mx-2 py-3 bg-black-subtle"></div>
+                  <div class="col-5 mx-2 py-3 bg-black-subtle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row px-2">
+        <div class="col-sm-6">
+          <div class="card bg-transparent bg-black-subtle p-5 my-2"></div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card bg-black-subtle bg-transparent p-5 my-2"></div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card bg-black-subtle bg-transparent p-5 my-2"></div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card bg-black-subtle bg-transparent p-5 my-2"></div>
+        </div>
+      </div>
+      <div class="my-3 py-4 bg-black-subtle mx-4"></div>
+    </div>
   </div>
 </div>

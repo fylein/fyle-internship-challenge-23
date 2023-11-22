@@ -1,0 +1,105 @@
+.container { width: 768px; }
+
+.overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-radius: inherit;
+  color: transparent;
+
+  &:hover {
+    color: white !important;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(110, 64, 201, 0.7)) !important;
+  }
+}
+
+.input-group-text {
+  background: linear-gradient(180deg, rgba(183, 52, 179, 0.15) 0%, rgba(164, 46, 156, 0) 100%), #6e40c9 !important;
+
+  &:hover {
+    background: linear-gradient(180deg, rgba(189, 69, 185, 0.15) 0%, rgba(168, 57, 161, 0) 100%), #744cc6 !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
+
+input,
+input:focus,
+.input-group-text {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: white;
+  border: silver;
+
+  &::placeholder {
+    color: white !important;
+  }
+}
+
+.avatar {
+  width: 234.13px;
+  height: 234.13px !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.repo {
+  text-decoration: none;
+  background-color: #212a72;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  display: inline-block;
+
+  &:hover { text-decoration: underline !important; }
+}
+
+.closeIcon:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.repo-description {
+  font-size: 10px;
+}
+
+.repo-language:not(:empty) {
+  width: fit-content;
+  border: 1px solid white;
+  font-size: 10px;
+  border-radius: 5px;
+}
+
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+::ng-deep .mat-mdc-paginator-container {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+::ng-deep .mat-mdc-paginator {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+::ng-deep .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__trailing {
+  border-color: white !important;
+}
+
+::ng-deep svg,
+::ng-deep .mat-mdc-paginator .mat-mdc-select-value {
+  fill: white !important;
+  color: white;
+}
+
+@media screen and (max-width: 765px) {
+  .container {
+    max-width: 100% !important;
+  }
+
+  .avatar {
+    margin: auto !important;
+  }
+}
