@@ -1,1 +1,6 @@
-<p>user-repositories works!</p>
+<div class="grid grid-cols-2 justify-around">
+    <div class="m-5" *ngFor="let repoData of userRepositoryData">
+        <app-repoitory-card repoName={{repoData.name}} repoDescription={{repoData.description}}
+            repoTopics={{repoData.topics}}></app-repoitory-card>
+    </div>
+</div>

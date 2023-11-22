@@ -14,7 +14,7 @@ export class ApiService {
     );
   }
 
-  getRepos(githubUsername: string, page: number, perPage: string) {
+  getRepos(githubUsername: string, page: number, perPage: number) {
     return this.httpClient.get(
       `https://api.github.com/users/${githubUsername}/repos?page=${page}&per_page=${perPage}`
     );
