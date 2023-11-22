@@ -14,5 +14,6 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.githubUsername = this.router.snapshot.params['githubUsername'];
+    console.log(this.router.snapshot.queryParams);
   }
 }
