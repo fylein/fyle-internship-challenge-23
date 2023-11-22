@@ -1,5 +1,14 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="flex justify-evenly items-center bg-black">
+  <div class="font-medium text-2xl p-3 text-white">
+    {{title}}
   </div>
+  <div class="flex">
+    <input id="username" name="username" class="pt-1 pb-3 pl-2 pr-2 h-10 rounded-l-lg" type="search" placeholder="Search for GitHub User">
+    <button type="submit" (click)="renderDetails()" class="bg-white rounded-r-lg"></button>
+  </div>
+</div>
+
+<div class="h-full" *ngIf="!gitHubUsername">
+  <!-- Enter Username -->
+
 </div>
