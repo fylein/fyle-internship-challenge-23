@@ -9,9 +9,10 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./user-repositories.component.scss'],
 })
 export class UserRepositoriesComponent implements OnInit {
-  @Input() reposPerPage: number = 0;
-  @Input() reposCurrentPage: number = 0;
   @Input() githubUsername: string = '';
+  @Input() totalRepositories: number = 10;
+  reposPerPage: number = 10;
+  reposCurrentPage: number = 1;
 
   userRepositoryData: any;
   dataLoaded: boolean = false;
@@ -21,6 +22,8 @@ export class UserRepositoriesComponent implements OnInit {
   constructor(private router: ActivatedRoute, private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.reposCurrentPage = this.router.snapshot.queryParams['page'];
+    this.reposPerPage = this.router.snapshot.queryParams['per_page'];
     this.subscription = this.apiService
       .getRepos(this.githubUsername, this.reposCurrentPage, this.reposPerPage)
       .subscribe((data) => {

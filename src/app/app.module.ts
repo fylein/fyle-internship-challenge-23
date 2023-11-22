@@ -10,6 +10,7 @@ import { UserPersonalComponent } from './user-profile/user-personal/user-persona
 import { UserRepositoriesComponent } from './user-profile/user-repositories/user-repositories.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RepoitoryCardComponent } from './user-profile/user-repositories/repoitory-card/repoitory-card.component';
+import { RepositoriesPaginationComponent } from './user-profile/user-repositories/repositories-pagination/repositories-pagination.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RepoitoryCardComponent } from './user-profile/user-repositories/repoito
     UserPersonalComponent,
     UserRepositoriesComponent,
     NavbarComponent,
-    RepoitoryCardComponent
+    RepoitoryCardComponent,
+    RepositoriesPaginationComponent
   ],
   imports: [
     BrowserModule,

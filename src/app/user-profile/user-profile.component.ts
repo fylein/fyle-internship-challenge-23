@@ -11,10 +11,9 @@ import { ApiService } from '../services/api.service';
 export class UserProfileComponent implements OnInit {
   // githubUsername$ = this.router.paramMap.pipe(map((params) => params.get("githubUsername")));
   githubUsername: string = 'jayshil-n-b';
-  reposPerPage: number = 10;
-  reposCurrentPage: number = 1;
+  totalRepositories = 0;
 
-  userPersonalData = {};
+  userPersonalData: any = {};
   dataLoaded: boolean = false;
 
   subscription!: Subscription;
@@ -23,12 +22,11 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.githubUsername = this.router.snapshot.params['githubUsername'];
-    this.reposCurrentPage = this.router.snapshot.queryParams['page'];
-    this.reposPerPage = this.router.snapshot.queryParams['per_page'];
     this.subscription = this.apiService
       .getUser(this.githubUsername)
       .subscribe((data) => {
         this.userPersonalData = data;
+        this.totalRepositories = this.userPersonalData.public_repos;
         this.dataLoaded = true;
       });
   }

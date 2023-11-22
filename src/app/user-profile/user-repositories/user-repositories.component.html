@@ -1,6 +1,8 @@
-<div class="grid grid-cols-2 justify-around">
+<div class="font-semibold text-2xl text-center mb-5">Total Repos: {{totalRepositories}}</div>
+<div class="grid grid-cols-1 justify-around md:grid-cols-2">
     <div class="m-5" *ngFor="let repoData of userRepositoryData">
         <app-repoitory-card repoName={{repoData.name}} repoDescription={{repoData.description}}
             repoTopics={{repoData.topics}}></app-repoitory-card>
     </div>
 </div>
+<app-repositories-pagination [totalRepositories]="totalRepositories"></app-repositories-pagination>

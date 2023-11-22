@@ -9,14 +9,8 @@
     </div>
 
     <div class="mt-5">
-        <app-user-repositories [githubUsername]="githubUsername" [reposCurrentPage]="reposCurrentPage"
-            [reposPerPage]="reposPerPage"></app-user-repositories>
+        <app-user-repositories [totalRepositories]="totalRepositories"
+            [githubUsername]="githubUsername"></app-user-repositories>
     </div>
 
 </div>
-
-<!-- <div style="height: 100%;" class="h-full flex flex-col justify-between ...">
-    <div class="order-last">01</div>
-    <div>02</div>
-    <div>03</div>
-</div> -->
