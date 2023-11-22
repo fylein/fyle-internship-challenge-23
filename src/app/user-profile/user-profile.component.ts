@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,12 +10,33 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserProfileComponent implements OnInit {
   // githubUsername$ = this.router.paramMap.pipe(map((params) => params.get("githubUsername")));
-  githubUsername: string = '';
+  githubUsername: string = 'jayshil-n-b';
+  reposPerPage: number = 10;
+  reposCurrentPage: number = 1;
 
-  constructor(private router: ActivatedRoute) {}
+  userPersonalData = {};
+  dataLoaded: boolean = false;
+
+  subscription!: Subscription;
+
+  constructor(private router: ActivatedRoute, private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.githubUsername = this.router.snapshot.params['githubUsername'];
-    console.log(this.router.snapshot.queryParams);
+    this.reposCurrentPage = this.router.snapshot.queryParams['page'];
+    this.reposPerPage = this.router.snapshot.queryParams['per_page'];
+    this.subscription = this.apiService
+      .getUser(this.githubUsername)
+      .subscribe((data) => {
+        this.userPersonalData = data;
+        this.dataLoaded = true;
+      });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe;
+    }
+    this.dataLoaded = false;
   }
 }

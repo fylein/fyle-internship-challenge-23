@@ -1,3 +1,22 @@
-<p>Username here is {{ githubUsername }}</p>
-<app-user-personal></app-user-personal>
-<app-user-repositories></app-user-repositories>
+<div class="h-full flex flex-col justify-between">
+
+    <div>
+        <p>Username here is {{ githubUsername }}</p>
+    </div>
+
+    <div class="mt-4">
+        <app-user-personal [userPersonalData]="userPersonalData"></app-user-personal>
+    </div>
+
+    <div class="mt-5">
+        <app-user-repositories [githubUsername]="githubUsername" [reposCurrentPage]="reposCurrentPage"
+            [reposPerPage]="reposPerPage"></app-user-repositories>
+    </div>
+
+</div>
+
+<!-- <div style="height: 100%;" class="h-full flex flex-col justify-between ...">
+    <div class="order-last">01</div>
+    <div>02</div>
+    <div>03</div>
+</div> -->

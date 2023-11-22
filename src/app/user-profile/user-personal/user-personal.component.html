@@ -1,1 +1,19 @@
-<p>user-personal works!</p>
+<div class="w-full flex flex-col justify-around items-center md:flex-row md:items-start md:pl-10 md:pr-10">
+    <div class=" flex-col justify-center text-center w-fit flex-none pb-5">
+        <img width="200px" height="200px" src="{{userPersonalData.avatar_url}}" alt="" class="rounded-full p-5">
+        <div *ngIf="userPersonalData.login">
+            <span class="font-semibold">Github: </span> <a
+                href="https://api.api-ninjas.com/v1/randomimage?category=bird"
+                class="underline">{{userPersonalData.login}}</a>
+        </div>
+        <div class="" *ngIf="userPersonalData.twitter_username">
+            <span class="font-semibold">Twitter: </span> <a
+                href="https://www.twitter.com/{{userPersonalData.twitter_username}}"
+                class="underline">{{userPersonalData.twitter_username}}</a>
+        </div>
+    </div>
+    <div class=" flex-col w-10/12 p-5 top-0">
+        <div class="font-semibold mb-5 text-3xl">{{userPersonalData.name}}</div>
+        <div>{{userPersonalData.bio}}</div>
+    </div>
+</div>
