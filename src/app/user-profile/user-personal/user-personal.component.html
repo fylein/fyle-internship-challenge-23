@@ -1,4 +1,5 @@
-<div class="mt-5 w-full flex flex-col justify-around items-center md:flex-row md:items-start md:pl-10 md:pr-10">
+<div
+    class="shadow-[inset_-12px_-8px_40px_#46464620] rounded-xl w-full flex flex-col justify-around items-center md:flex-row md:items-start md:pl-10 md:pr-10">
     <div class=" flex-col justify-center text-center w-fit flex-none pb-5">
         <img width="150px" height="150px" src="{{userPersonalData.avatar_url}}" alt=""
             class="rounded-full m-5 border-4 border-black">
@@ -14,7 +15,10 @@
         </div>
     </div>
     <div class=" flex-col w-10/12 p-5 top-0">
-        <div class="font-semibold mb-5 text-3xl">{{userPersonalData.name}}</div>
-        <div>{{userPersonalData.bio}}</div>
+        <div class="mb-4" class="font-semibold mb-5 text-3xl">{{userPersonalData.name}}</div>
+        <div class="mb-4"><span class="font-semibold">Bio</span> - {{userPersonalData.bio}}</div>
+        <div class="mb-4"><span class="font-semibold">Followers</span> - {{userPersonalData.followers}}</div>
+
+        <div><span class="font-semibold">Following</span> - {{userPersonalData.following}}</div>
     </div>
 </div>

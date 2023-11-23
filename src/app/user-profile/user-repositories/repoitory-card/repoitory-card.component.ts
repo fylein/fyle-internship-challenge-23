@@ -9,4 +9,5 @@ export class RepoitoryCardComponent {
   @Input() repoName: string = '';
   @Input() repoDescription: string = '';
   @Input() repoTopics: any = [];
+  @Input() repoLink: string = '';
 }
