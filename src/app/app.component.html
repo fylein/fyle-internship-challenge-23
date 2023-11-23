@@ -1,16 +1,26 @@
-<div class="grid h-screen place-items-center background-container">
-    <div class="text-3xl">
-      <div>
-        <form (ngSubmit)="onSubmit()" class="max-w-md mx-auto bg-white p-2 rounded-lg">
-          <div class="flex items-center justify-between border-b-2 border-blue-500 py-2">
-            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" class="h-12 w-12 mr-4">
-            <input type="text" name="username" placeholder="Enter GitHub username"
-              class="appearance-none bg-transparent border-none w-full  mr-4 py-2 leading-tight focus:outline-none">
-            <button type="submit"
-              class="flex-shrink-0 bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded">View Profile</button>
-          </div>
-        </form>
-      </div>
+<div class="grid h-screen place-items-center background-container"
+  style="background-image: url(https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);"
+  *ngIf="!gitHubUsername">
+
+  <!-- Enter Username -->
+  <div class="h-4/5 flex justify-center items-center">
+    <div class="flex items-center justify-between border-b-4 border-blue-500 py-2">
+      <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="" class="h-12 w-12 mr-4">
+      <input type="text" name="username" [(ngModel)]="input" placeholder="Enter GitHub username"
+        class="pt-1 pb-1 pl-2 pr-2 h-10 rounded-l-2xl">
+      <button type="submit" (click)="renderDetails()"
+        class="flex-shrink rounded-r-2xl bg-blue-500 hover:bg-blue-700 border-blue-500 hover:border-blue-700 text-sm border-y-8 text-white py-1 px-2">View Profile</button>
     </div>
   </div>
-  
+
+</div>
+
+<ngx-ui-loader></ngx-ui-loader>
+
+<app-userdetail [user]="user"></app-userdetail>
+
+<div>
+  <app-paginator *ngIf="user" [pages]="user.public_repos" (pageEvent)="handlePageEvent($event)"></app-paginator>
+</div>
+
+<app-reposgrid *ngIf="repos" [repos]="repos"></app-reposgrid>
