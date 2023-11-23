@@ -1,10 +1,15 @@
-<div class="font-semibold text-2xl text-center mb-5">Total Repos: {{totalRepositories}}</div>
-<div class="grid grid-cols-1 justify-around md:grid-cols-2">
-    <div class="m-5" *ngFor="let repoData of userRepositoryData">
-        <app-repoitory-card repoName={{repoData.name}} repoDescription={{repoData.description}}
-            repoTopics={{repoData.topics}}></app-repoitory-card>
+<div *ngIf="totalRepositories>0">
+    <div class="font-semibold text-2xl text-center mb-5">Total Repos: {{totalRepositories}}</div>
+    <div class="grid grid-cols-1 justify-around md:grid-cols-2">
+        <div class="m-5" *ngFor="let repoData of userRepositoryData">
+            <app-repoitory-card repoName={{repoData.name}} repoDescription={{repoData.description}}
+                repoTopics={{repoData.topics}}></app-repoitory-card>
+        </div>
     </div>
+    <app-repositories-pagination (selectedPage)="setPage($event)" (selectedPerPage)="setPerPage($event)"
+        [totalRepositories]="totalRepositories" [reposCurrentPage]="reposCurrentPage"
+        [reposPerPage]="reposPerPage"></app-repositories-pagination>
 </div>
-<app-repositories-pagination (selectedPage)="setPage($event)" (selectedPerPage)="setPerPage($event)"
-    [totalRepositories]="totalRepositories" [reposCurrentPage]="reposCurrentPage"
-    [reposPerPage]="reposPerPage"></app-repositories-pagination>
+<div *ngIf="totalRepositories===0" class="font-semibold text-2xl text-center mb-5">
+    No Repositories to show.
+</div>
