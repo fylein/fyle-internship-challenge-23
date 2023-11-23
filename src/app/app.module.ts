@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -15,6 +15,7 @@ import { RepoitoryCardComponent } from './user-profile/user-repositories/repoito
 import { RepositoriesPaginationComponent } from './user-profile/user-repositories/repositories-pagination/repositories-pagination.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
+import { GlobalErrorHandler } from './errorhandler.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { HomeComponent } from './home/home.component';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
