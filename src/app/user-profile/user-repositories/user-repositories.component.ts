@@ -1,12 +1,11 @@
 import {
-  ChangeDetectionStrategy,
   Component,
   Input,
   OnChanges,
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -26,11 +25,17 @@ export class UserRepositoriesComponent implements OnInit, OnChanges {
 
   subscription!: Subscription;
 
-  constructor(private router: ActivatedRoute, private apiService: ApiService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.reposCurrentPage = this.router.snapshot.queryParams['page'];
-    this.reposPerPage = this.router.snapshot.queryParams['per_page'];
+    this.reposCurrentPage = this.route.snapshot.queryParams['page'];
+    this.reposPerPage = this.route.snapshot.queryParams['per_page'];
+    console.log(this.reposCurrentPage, this.reposPerPage);
+    this.fetchRepos();
   }
 
   ngOnDestroy(): void {
@@ -50,8 +55,21 @@ export class UserRepositoriesComponent implements OnInit, OnChanges {
       });
   }
 
+  setPerPage(newPerPage: number) {
+    this.reposPerPage = newPerPage;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { per_page: newPerPage },
+      queryParamsHandling: 'merge',
+    });
+    this.fetchRepos();
+    this.dataLoaded = false;
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['githubUsername']) {
+    if (changes['githubUsername'] && changes['githubUsername'].previousValue) {
+      this.reposCurrentPage = 1;
+      this.reposPerPage = 10;
       this.fetchRepos();
       this.dataLoaded = false;
     }

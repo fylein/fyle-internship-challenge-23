@@ -15,6 +15,8 @@ export class NavbarComponent {
 
   processQuery() {
     this.typedUsername.emit(this.searchQuery);
-    this.route.navigate(['/users', this.searchQuery]);
+    this.route.navigate(['/users', this.searchQuery], {
+      queryParams: { page: 1, per_page: 10 },
+    });
   }
 }

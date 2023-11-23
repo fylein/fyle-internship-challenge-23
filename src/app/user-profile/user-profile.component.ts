@@ -1,7 +1,8 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,10 +19,15 @@ export class UserProfileComponent implements OnInit {
 
   subscription!: Subscription;
 
-  constructor(private router: ActivatedRoute, private apiService: ApiService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
-    this.githubUsername = this.router.snapshot.params['githubUsername'];
+    this.githubUsername = this.route.snapshot.params['githubUsername'];
     this.fetchUser();
   }
 
@@ -34,17 +40,27 @@ export class UserProfileComponent implements OnInit {
 
   setUsername(githubUsername: string) {
     this.githubUsername = githubUsername;
-    this.dataLoaded = false;
     this.fetchUser();
   }
 
   fetchUser() {
-    this.subscription = this.apiService
-      .getUser(this.githubUsername)
-      .subscribe((data) => {
+    this.dataLoaded = false;
+    this.subscription = this.apiService.getUser(this.githubUsername).subscribe(
+      (data) => {
         this.userPersonalData = data;
         this.totalRepositories = this.userPersonalData.public_repos;
         this.dataLoaded = true;
-      });
+      },
+      (error) => {
+        this.toastr.error(
+          'Cannot find user or rate limited! Please try again',
+          '',
+          {
+            positionClass: 'toast-bottom-right',
+          }
+        );
+        this.router.navigate(['']);
+      }
+    );
   }
 }

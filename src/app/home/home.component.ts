@@ -12,6 +12,8 @@ export class HomeComponent {
   constructor(private route: Router) {}
 
   processQuery() {
-    this.route.navigate(['/users', this.searchQuery]);
+    this.route.navigate(['/users', this.searchQuery], {
+      queryParams: { page: 1, per_page: 10 },
+    });
   }
 }
