@@ -11,6 +11,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+username: any;
+onSubmit() {
+throw new Error('Method not implemented.');
+}
 title: any;
 renderDetails: any;
 input: any;
