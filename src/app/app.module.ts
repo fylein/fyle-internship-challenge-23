@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RepoitoryCardComponent } from './user-profile/user-repositories/repoitory-card/repoitory-card.component';
 import { RepositoriesPaginationComponent } from './user-profile/user-repositories/repositories-pagination/repositories-pagination.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
     NavbarComponent,
     RepoitoryCardComponent,
     RepositoriesPaginationComponent,
+    HomeComponent,
   ],
   imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],

@@ -1,5 +1,5 @@
 <div class="bg-gray-100 h-full flex flex-col justify-between">
-    <app-navbar (typedUsername)="setUsername($event)" [githubUsername]="githubUsername"></app-navbar>
+    <app-navbar [showSearch]="true" (typedUsername)="setUsername($event)"></app-navbar>
 
     <div class="mt-4">
         <app-user-personal [userPersonalData]="userPersonalData"></app-user-personal>

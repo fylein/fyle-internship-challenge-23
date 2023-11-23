@@ -31,7 +31,6 @@ export class UserRepositoriesComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.reposCurrentPage = this.router.snapshot.queryParams['page'];
     this.reposPerPage = this.router.snapshot.queryParams['per_page'];
-    this.fetchRepos();
   }
 
   ngOnDestroy(): void {
