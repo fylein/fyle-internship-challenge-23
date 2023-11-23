@@ -6,6 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -28,13 +29,42 @@ export class UserRepositoriesComponent implements OnInit, OnChanges {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.reposCurrentPage = this.route.snapshot.queryParams['page'];
     this.reposPerPage = this.route.snapshot.queryParams['per_page'];
-    console.log(this.reposCurrentPage, this.reposPerPage);
+
+    if (!this.reposCurrentPage || !this.reposPerPage) {
+      this.reposCurrentPage = 1;
+      this.reposPerPage = 10;
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { per_page: 10, page: 1 },
+        queryParamsHandling: 'merge',
+      });
+    }
+
+    if (
+      Number.isNaN(Number(this.reposCurrentPage)) ||
+      Number.isNaN(Number(this.reposPerPage)) ||
+      Number(this.reposPerPage) <= 0 ||
+      Number(this.reposCurrentPage) <= 0
+    ) {
+      this.reposCurrentPage = 1;
+      this.reposPerPage = 10;
+      this.toastr.error('Invalid query params. Resetting to default!', '', {
+        positionClass: 'toast-bottom-right',
+      });
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { per_page: 10, page: 1 },
+        queryParamsHandling: 'merge',
+      });
+    }
+
     this.fetchRepos();
   }
 
@@ -46,12 +76,12 @@ export class UserRepositoriesComponent implements OnInit, OnChanges {
   }
 
   fetchRepos() {
+    this.dataLoaded = false;
     this.subscription = this.apiService
       .getRepos(this.githubUsername, this.reposCurrentPage, this.reposPerPage)
       .subscribe((data) => {
         this.userRepositoryData = data;
         this.dataLoaded = true;
-        console.log(data);
       });
   }
 

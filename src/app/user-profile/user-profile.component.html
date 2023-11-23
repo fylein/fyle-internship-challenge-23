@@ -2,7 +2,7 @@
     <app-navbar [showSearch]="true" (typedUsername)="setUsername($event)"></app-navbar>
 
     <div class="mt-1">
-        <app-user-personal [userPersonalData]="userPersonalData"></app-user-personal>
+        <app-user-personal [dataLoading]="!dataLoaded" [userPersonalData]="userPersonalData"></app-user-personal>
     </div>
 
     <div class="mt-5">

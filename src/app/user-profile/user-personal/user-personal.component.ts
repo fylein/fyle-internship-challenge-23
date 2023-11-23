@@ -9,4 +9,5 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class UserPersonalComponent {
   @Input() userPersonalData: any = {};
+  @Input() dataLoading: boolean = true;
 }
