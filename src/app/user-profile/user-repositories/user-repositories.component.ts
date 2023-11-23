@@ -66,6 +66,17 @@ export class UserRepositoriesComponent implements OnInit, OnChanges {
     this.dataLoaded = false;
   }
 
+  setPage(newPage: number) {
+    this.reposCurrentPage = newPage;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page: newPage },
+      queryParamsHandling: 'merge',
+    });
+    this.fetchRepos();
+    this.dataLoaded = false;
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['githubUsername'] && changes['githubUsername'].previousValue) {
       this.reposCurrentPage = 1;

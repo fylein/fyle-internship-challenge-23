@@ -1,7 +1,7 @@
 <nav
     class="relative flex w-full flex-wrap items-center justify-between bg-white border-gray-200 dark:bg-gray-900 py-2 text-neutral-500 shadow-lg hover:text-neutral-700 focus:text-neutral-300 lg:py-4">
     <div class="py-1 flex w-full flex-wrap items-center justify-between px-3">
-        <a class="ml-2 text-xl text-neutral-400 dark:text-neutral-200" routerLink="">Github Viewer</a>
+        <a class="font-bold ml-2 text-2xl text-neutral-400 dark:text-neutral-200" routerLink="">Github Viewer</a>
         <form *ngIf="showSearch" (ngSubmit)="processQuery()" class="ml-5 flex w-[30%] items-center justify-between">
             <input [(ngModel)]="searchQuery" name="search-query" type="text" id="search-navbar"
                 class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

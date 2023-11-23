@@ -5,5 +5,6 @@
             repoTopics={{repoData.topics}}></app-repoitory-card>
     </div>
 </div>
-<app-repositories-pagination (selectedPerPage)="setPerPage($event)" [totalRepositories]="totalRepositories"
-    [reposCurrentPage]="reposCurrentPage" [reposPerPage]="reposPerPage"></app-repositories-pagination>
+<app-repositories-pagination (selectedPage)="setPage($event)" (selectedPerPage)="setPerPage($event)"
+    [totalRepositories]="totalRepositories" [reposCurrentPage]="reposCurrentPage"
+    [reposPerPage]="reposPerPage"></app-repositories-pagination>

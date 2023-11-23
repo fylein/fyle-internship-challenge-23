@@ -13,24 +13,72 @@
         </p>
     </div>
     <nav aria-label="Pagination" class="flex justify-center items-center text-gray-600 mt-8 lg:mt-0">
-        <a href="#" class="p-2 mr-4 rounded hover:bg-gray-100">
+        <!-- <a *ngIf="reposCurrentPage>1" class="p-2 mr-4 rounded hover:bg-gray-100">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
         </a>
-        <a href="#" class="px-4 py-2 rounded hover:bg-gray-100"> 1 </a>
-        <a href="#" class="px-4 py-2 rounded bg-gray-200 text-gray-900 font-medium hover:bg-gray-100">
+        <a class="px-4 py-2 rounded hover:bg-gray-100"> 1 </a>
+        <a class="px-4 py-2 rounded hover:bg-gray-100">
             2
         </a>
-        <a href="#" class="px-4 py-2 rounded hover:bg-gray-100"> 3 </a>
-        <a href="#" class="px-4 py-2 rounded hover:bg-gray-100"> ... </a>
-        <a href="#" class="px-4 py-2 rounded hover:bg-gray-100"> 9 </a>
-        <a href="#" class="p-2 ml-4 rounded hover:bg-gray-100">
+        <a class="px-4 py-2 rounded hover:bg-gray-100"> ... </a>
+        <a class="px-4 py-2 rounded hover:bg-gray-100"> 4 </a>
+        <a class="px-4 py-2 rounded bg-gray-200 text-gray-900 font-medium hover:bg-gray-100"> 5 </a>
+        <a class="px-4 py-2 rounded hover:bg-gray-100"> 6 </a>
+        <a class="px-4 py-2 rounded hover:bg-gray-100"> ... </a>
+        <a class="px-4 py-2 rounded hover:bg-gray-100"> {{totalPages}} </a>
+        <a class="p-2 ml-4 rounded hover:bg-gray-100">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
-        </a>
+        </a> -->
+        <button title="prev-icon" (click)="selectRepoPage(previousPageNumber)" *ngIf="reposCurrentPage>1"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <button (click)="selectRepoPage(1)" *ngIf="previousPreviousPageNumber===1"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            {{1}}
+        </button>
+        <button (click)="selectRepoPage(1)" *ngIf="previousPreviousPageNumber>1"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            {{1}}
+        </button>
+        <button *ngIf="previousPreviousPageNumber>1" class="px-4 py-2 rounded hover:bg-gray-100">
+            ...
+        </button>
+        <button (click)="selectRepoPage(1)" *ngIf="reposCurrentPage>1" class="px-4 py-2 rounded hover:bg-gray-100">
+            {{previousPageNumber}}
+        </button>
+        <button class="px-4 py-2 rounded bg-gray-200 text-gray-900 font-medium hover:bg-gray-100">
+            {{reposCurrentPage}} </button>
+        <button (click)="selectRepoPage(nextPageNumber)" *ngIf="reposCurrentPage<totalPages"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            {{nextPageNumber}}
+        </button>
+        <button *ngIf="nextNextPageNumber<totalPages" class="px-4 py-2 rounded hover:bg-gray-100">
+            ...
+        </button>
+        <button (click)="selectRepoPage(totalPages)" *ngIf="nextNextPageNumber<totalPages"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            {{totalPages}}
+        </button>
+        <button (click)="selectRepoPage(nextNextPageNumber)" *ngIf="nextNextPageNumber===totalPages"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            {{nextNextPageNumber}}
+        </button>
+        <button title="next-icon" (click)="selectRepoPage(nextPageNumber)" *ngIf="reposCurrentPage<totalPages"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
     </nav>
 </div>
