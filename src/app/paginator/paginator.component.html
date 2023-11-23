@@ -1,0 +1,11 @@
+<div id="page" *ngIf="pages">
+  <mat-paginator
+    class="bg-black"
+    [length]="pages"
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 20, 30, 50, 70, 100]"
+    aria-label="Select page"
+    (page)="handlePageEvent($event)"
+  >
+  </mat-paginator>
+</div>
