@@ -1,6 +1,7 @@
 # Fyle Frontend Development Assignment 
 
 Assignment: Make a working SPA for users to search the GitHub repository and necessary information.
+<img width="1668" alt="Screenshot 2023-11-23 at 11 36 05 PM" src="https://github.com/harshit078/fyle-internship-challenge-23/assets/73997189/590a5a31-352e-4ad1-9bc7-81552e49847e">
 
 ## Table of Contents
 - [Installation](#installation)
