@@ -11,6 +11,7 @@ import { UserRepositoriesComponent } from './user-profile/user-repositories/user
 import { NavbarComponent } from './navbar/navbar.component';
 import { RepoitoryCardComponent } from './user-profile/user-repositories/repoitory-card/repoitory-card.component';
 import { RepositoriesPaginationComponent } from './user-profile/user-repositories/repositories-pagination/repositories-pagination.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,14 +22,10 @@ import { RepositoriesPaginationComponent } from './user-profile/user-repositorie
     UserRepositoriesComponent,
     NavbarComponent,
     RepoitoryCardComponent,
-    RepositoriesPaginationComponent
+    RepositoriesPaginationComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

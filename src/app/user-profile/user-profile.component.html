@@ -1,8 +1,5 @@
 <div class="bg-gray-100 h-full flex flex-col justify-between">
-
-    <!-- <div>
-        <p>Username here is {{ githubUsername }}</p>
-    </div> -->
+    <app-navbar (typedUsername)="setUsername($event)" [githubUsername]="githubUsername"></app-navbar>
 
     <div class="mt-4">
         <app-user-personal [userPersonalData]="userPersonalData"></app-user-personal>

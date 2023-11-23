@@ -22,13 +22,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.githubUsername = this.router.snapshot.params['githubUsername'];
-    this.subscription = this.apiService
-      .getUser(this.githubUsername)
-      .subscribe((data) => {
-        this.userPersonalData = data;
-        this.totalRepositories = this.userPersonalData.public_repos;
-        this.dataLoaded = true;
-      });
+    this.fetchUser();
   }
 
   ngOnDestroy(): void {
@@ -36,5 +30,21 @@ export class UserProfileComponent implements OnInit {
       this.subscription.unsubscribe;
     }
     this.dataLoaded = false;
+  }
+
+  setUsername(githubUsername: string) {
+    this.githubUsername = githubUsername;
+    this.dataLoaded = false;
+    this.fetchUser();
+  }
+
+  fetchUser() {
+    this.subscription = this.apiService
+      .getUser(this.githubUsername)
+      .subscribe((data) => {
+        this.userPersonalData = data;
+        this.totalRepositories = this.userPersonalData.public_repos;
+        this.dataLoaded = true;
+      });
   }
 }
