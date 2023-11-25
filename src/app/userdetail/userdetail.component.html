@@ -1,0 +1,20 @@
+<div id="user-detail" class="p-4 flex text-black" *ngIf="user">
+  <div id="profile" class="justify-center ml-5">
+    <div id="pic">
+      <img class="flex justify-center w-60 h-60 rounded-full" [src]="user.avatar_url" width="200px" alt="Profile Picture">
+    </div>
+  </div>
+  <div id="details" class="ml-10">
+    <div id="name">
+      <h1 class="font-bold text-2xl">{{user.name}}</h1>
+    </div>
+    <div id="bio" class="mt-5">{{user.bio}}</div>
+    <div id="location" class="mt-5">{{user.location}}</div>
+    <div id="twitter" class="mt-5" *ngIf="user.twitter_username">
+      Twitter: 
+      <a class="text-blue-700 font-medium" [href]="'https://www.twitter.com/' + user.twitter_username">
+        {{'https://www.twitter.com/' + user.twitter_username}}
+      </a>
+    </div>
+  </div>
+</div>
