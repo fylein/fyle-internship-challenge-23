@@ -1,0 +1,67 @@
+<div *ngIf="isLoading">
+    <!-- Repeat the skeleton loader to match the number of cards you expect -->
+    <div class="grid md:grid-cols-repos grid-cols-1 gap-3 ">
+        <div *ngFor="let loader of [].constructor(8)"
+            class="animate-pulse bg-gray-100 p-4 w-[25rem] h-[8rem] rounded-lg border border-gray-200 shadow flex flex-col justify-betwee">
+            <div>
+                <div class="flex justify-between mb-2 relative">
+                    <h5 class="animate-pulse h-5 w-1/2 bg-neutral-300 rounded"></h5>
+                    <div class="absolute right-0 top-0 h-4 w-10 animate-pulse bg-neutral-300 rounded-full"></div>
+                </div>
+                <p class="mb-1 animate-pulse h-[14px] w-full rounded bg-neutral-300"></p>
+                <p class="mb-3 animate-pulse h-[14px] w-full rounded bg-neutral-300"></p>
+            </div>
+            <div class="flex justify-between">
+                <!-- <app-repo-tag [languages_url]="repo.languages_url" /> -->
+                <div class="flex gap-2">
+                    <div class="animate-pulse h-4 w-10 bg-neutral-300 rounded"></div>
+                    <div class="animate-pulse h-4 w-10 bg-neutral-300 rounded"></div>
+                    <div class="animate-pulse h-4 w-10 bg-neutral-300 rounded"></div>
+                </div>
+                <div class="flex gap-2 items-center text-[12px] text-neutral-700">
+                    <div class="animate-pulse h-4 w-10 bg-neutral-300 rounded"></div>
+                    <div class="animate-pulse h-4 w-10 bg-neutral-300 rounded"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="!isLoading">
+    <div class="flex flex-col justify-center ">
+        <div *ngIf="repositories.length > 0; else noData"
+            class="grid md:grid-cols-repos grid-cols-1 grid-flow-row-dense gap-3">
+            <div *ngFor="let repo of repositories">
+                <app-card [repo]="repo"> </app-card>
+            </div>
+        </div>
+        <app-pagination/>
+    </div>
+    <ng-template #noData>
+        <div class="grid md:grid-cols-repos grid-cols-1 gap-3">
+            <div *ngFor="let loader of [].constructor(8)"
+                class="animate-pulse bg-gray-100 p-4 h-[8rem] w-[25rem] rounded-lg border border-gray-200 shadow flex flex-col justify-betwee">
+                <div>
+                    <div class="flex justify-between mb-2 relative">
+                        <h5 class="animate-pulse h-5 w-1/2 bg-neutral-300 rounded"></h5>
+                        <div class="absolute right-0 top-0 h-4 w-10 animate-pulse bg-neutral-300 rounded-full"></div>
+                    </div>
+                    <p class="mb-1 animate-pulse h-[14px] w-full rounded bg-neutral-300"></p>
+                    <p class="mb-3 animate-pulse h-[14px] w-full rounded bg-neutral-300"></p>
+                </div>
+                <div class="flex justify-between">
+                    <div class="flex gap-2">
+                        <div class="animate-pulse h-4 w-10 bg-neutral-300 rounded"></div>
+                        <div class="animate-pulse h-4 w-10 bg-neutral-300 rounded"></div>
+                        <div class="animate-pulse h-4 w-10 bg-neutral-300 rounded"></div>
+                    </div>
+                    <div class="flex gap-2 items-center text-[12px] text-neutral-700">
+                        <div class="animate-pulse h-4 w-10 bg-neutral-300 rounded"></div>
+                        <div class="animate-pulse h-4 w-10 bg-neutral-300 rounded"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

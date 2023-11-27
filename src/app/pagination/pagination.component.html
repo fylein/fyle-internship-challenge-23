@@ -1,0 +1,15 @@
+<div *ngIf="totalPages != 0; else noData" class="flex justify-center items-center mt-4">
+    <div class="flex justify-center items-center gap-2">
+        <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1" class="px-3 border rounded-md shadow-sm">
+            Previous
+        </button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" class="px-3 border rounded-md shadow-sm">
+            Next
+        </button>
+    </div>
+</div>
+
+<ng-template #noData>
+    <!-- Your no data content here -->
+</ng-template>
