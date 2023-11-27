@@ -11,9 +11,7 @@ Run Locally
 
   npm install
 
-  npm install --save ngx-ui-loader
-
-  ng add @angular/material
+  npm install -g @angular/cli
 
 # Development server
 
