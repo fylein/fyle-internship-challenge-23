@@ -1,0 +1,107 @@
+<div class="bg-gradient-to-r from-purple-500 to-pink-500 bg-red-400 sm">
+
+  <div class="mx-auto max-w-screen-xl">
+    <!-- Outer Container -->
+    <div class="p-2 bg-white border rounded-md  border-2 border-gray-300">
+
+      <div *ngIf="loader else content">
+
+        <app-selekton></app-selekton>
+
+      </div>
+
+      <ng-template #content>
+
+        <div class="p-4 bg-gray-100">
+
+          <div class="flex-auto flex grid-cols-2 lg:grid-2 sm:grid-1">
+            <div class="w-40 h-40">
+              <img src="{{users.avatar_url}}" alt="Profile Picture"
+                class="w-full h-full border-4 border-gray-300 rounded-full object-cover">
+            </div>
+            <div class="flex flex-col p-8">
+              <h2 class="text-2xl font-bold mb-2">{{users.name}}</h2>
+              <p class="text-gray-600">{{users.bio}}</p>
+              <div class="flex-auto flex-row">
+                
+                <div *ngIf="users.location else detailLocation">
+                  <p class="text-gray-600 flex" >
+                  
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                    </svg> {{ users.location}}
+                  </p>
+                </div>
+                <ng-template #detailLocation>
+                </ng-template>
+
+              </div>
+              <div *ngIf="users.twitter_username else soicalMedia">
+                <p class="text-gray-600">Twitter : http://twitter.com/{{users.twitter_username}}</p>
+              </div>
+              <ng-template #soicalMedia></ng-template>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 bg-gray-100">
+          <div class="flex flex-auto flex-row">
+            <p><a href="#" class="flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                </svg>{{ users.html_url}}</a></p>
+          </div>
+
+        </div>
+
+        <div class="bg-gray-100">
+
+          <div class="grid lg:grid-cols-2 sm:grid-1 2xl:grid-cols-2 gap-1">
+
+            <div class="flex items-center p-6 m-5 border-2 border-gray-300 rounded-md shadow-lg hover:bg-stone-200 "
+              *ngFor="let repo of repos | paginate:{itemsPerPage: pageSize, currentPage : currentPages}">
+              <div>
+                <h2 class="text-xl font-bold">{{repo.name}}</h2>
+                <p class="text-gray-600">{{repo.description}}</p>
+
+                <div class="flex flex-row py-5">
+                  <div *ngIf="repo.language !== null && repo.language.length > 0 else elseBlock">
+                    <div class="bg-sky-500 rounded-md p-2 m-1 text-white text-center hover:bg-sky-700">{{repo.language}}
+                    </div>
+                    
+                  </div>
+                  <ng-template #elseBlock></ng-template>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- page navigation numbers -->
+
+        <div class="p-4 bg-gray-100 ">
+
+          <div class="mx-auto">
+
+            <pagination-controls class="flex items-center justify-center"
+              (pageChange)="pageChanges($event)"></pagination-controls>
+          </div>
+
+        </div>
+
+      </ng-template>
+
+      <!-- Inner Container -->
+
+
+
+    </div>
+
+  </div>
