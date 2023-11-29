@@ -1,4 +1,8 @@
-# Fyle Frontend Challenge
+# Fyle Frontend Challenge [(Live)](https://fyle2023.netlify.app/)
+
+![Example Image](./src/assets/SS1.png)
+![Example Image](./src/assets/SS2.png)
+
 
 ## Who is this for?
 
@@ -40,4 +44,3 @@ Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app wil
 ## Further help
 
 Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
