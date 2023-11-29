@@ -1,8 +1,8 @@
-// Import other necessary modules/interfaces if needed
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProfileService } from '../../services/api.service';
-
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 interface UserProfile {
   name: string;
   login: string;
@@ -30,10 +30,14 @@ export class ProfileComponent implements OnInit {
   loading: boolean = false;
   profile: UserProfile | null = null;
   repos: any[] = [];
+  pageNumbers: number[] = [];
   username: string = '';
   currentPage = 1;
   pageSize = 10;
   maxPageSize = 100;
+  pageSizeOptions = [10, 25, 50, 100];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private profileService: ProfileService) {}
 
@@ -41,23 +45,39 @@ export class ProfileComponent implements OnInit {
     this.loading = true;
     this.profileService.updateProfile(this.username);
 
-    this.profileService.getProfileInfo().subscribe((profile: UserProfile) => {
-      this.profile = profile;
-      this.loading = false;
-    });
+    this.profileService.getProfileInfo()
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching profile:', error);
+          this.loading = false;
+          return throwError('An error occurred while fetching the profile.');
+        })
+      )
+      .subscribe((profile: UserProfile) => {
+        this.profile = profile;
+        this.loading = false;
+      });
 
     this.fetchRepos();
   }
 
   fetchRepos() {
     this.profileService.getProfileRepos(this.currentPage, this.pageSize)
+      .pipe(
+        catchError((error) => {
+          console.error('Error fetching repos:', error);
+          return throwError('An error occurred while fetching repositories.');
+        })
+      )
       .subscribe((repos) => {
         this.repos = repos;
+        this.paginator.length = this.repos.length;
       });
   }
 
-  onPageChange(newPage: number) {
-    this.currentPage = newPage;
+  onPageChange(event: PageEvent) {
+    this.currentPage = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
     this.fetchRepos();
   }
 
@@ -67,7 +87,28 @@ export class ProfileComponent implements OnInit {
     this.currentPage = 1;
     this.fetchRepos();
   }
-  
+
+  goToPreviousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.fetchRepos();
+    }
+  }
+
+  goToNextPage() {
+    const nextPage = this.currentPage + 1;
+    const totalPages = Math.ceil(this.repos.length / this.pageSize);
+
+    if (nextPage <= totalPages) {
+      this.currentPage = nextPage;
+      this.fetchRepos();
+    }
+  }
+
+  goToPage(pageNumber: number) {
+    this.currentPage = pageNumber;
+    this.fetchRepos();
+  }
 
   ngOnInit() {}
 }

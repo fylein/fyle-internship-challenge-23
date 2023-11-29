@@ -35,7 +35,7 @@
 			<ul class="list-group">
 			  <li class="list-group-item" *ngIf="profile.name"> {{profile.name}}</li>
 			  <li class="list-group-item" *ngIf="profile.bio"> {{profile.bio}}</li>
-			  <li class="list-group-item" *ngIf="profile.location">🗺 {{profile.location}}</li>
+			  <li class="list-group-item" *ngIf="profile.location">🗺 🏡 {{profile.location}}</li>
 			  <li class="list-group-item" *ngIf="profile.twitter_username">
 				✖(Twitter): <a href="https://twitter.com/{{profile.twitter_username}}" target="_blank">
 				  {{profile.twitter_username}}
@@ -86,16 +86,36 @@
 		</div>
 	  </div>
 	  <div class="panel-footer">
-		<div class="page-size-control">
-		  <label for="pageSizeSelect">Repos per page:</label>
-		  <select id="pageSizeSelect" class="form-control" [(ngModel)]="pageSize" (change)="onPageSizeChange($event)">
-			<option *ngFor="let size of [10, 25, 50, 100]" [value]="size">{{size}}</option>
-		  </select>
-		</div>
-	</div>
-	</div>
-  </div>
-
-
+		<div class="pagination">
+			<div class="panel-footer">
+				<div class="pagination-container">
+				  <div class="page-size-control">
+					<mat-form-field>
+					  <mat-label>Items per page</mat-label>
+					  <mat-select [(value)]="pageSize" (selectionChange)="onPageSizeChange($event)">
+						<mat-option *ngFor="let option of pageSizeOptions" [value]="option">
+						  {{ option }}
+						</mat-option>
+					  </mat-select>
+					</mat-form-field>
+				  </div>
 		
+				  <div class="page-numbers">
+					<button mat-icon-button (click)="goToPreviousPage()" [disabled]="currentPage === 1">
+					  <mat-icon>keyboard_arrow_left</mat-icon>
+					</button>
+		
+					<div *ngFor="let pageNumber of pageNumbers" class="page-number">
+					  <button mat-button (click)="goToPage(pageNumber)" [disabled]="pageNumber === currentPage">
+						{{ pageNumber }}
+					  </button>
+					</div>
+		
+					<button mat-icon-button (click)="goToNextPage()" [disabled]="currentPage * pageSize >= repos.length">
+					  <mat-icon>keyboard_arrow_right</mat-icon>
+					</button>
+				  </div>
+				</div>
+	  </div>
+  </div>
 </div>

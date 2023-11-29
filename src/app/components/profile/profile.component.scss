@@ -94,22 +94,30 @@
   }
   
 
-  /* Add this to your styles.css or styles.scss file */
-.page-size-control {
+  .panel-footer {
 	display: flex;
+	justify-content: space-between;
 	align-items: center;
-	justify-content: flex-end; /* Align to the right */
-	margin-top: 20px; /* Adjust as needed */
-  }
   
-  .page-size-control label {
-	margin-right: 10px; /* Adjust as needed */
-  }
+	.pagination-container {
+	  display: flex;
+	  align-items: center;
   
-  .page-size-control select {
-	width: 70px; /* Adjust as needed */
-  }
+	  .page-size-control {
+		margin-right: 20px; // Adjust margin as needed
+	  }
   
+	  .page-numbers {
+		display: flex;
+		align-items: center;
+  
+		button {
+		  margin: 0 5px; // Adjust margin as needed
+		}
+	  }
+	}
+  }
+
   #myVideo {
 	position: absolute;
 	top: 50%;
