@@ -1,0 +1,23 @@
+<div *ngIf="fetchingRepos" class="mt-4">
+  <app-loading-component [text]="'Searching repositories'"></app-loading-component>
+</div>
+
+<div *ngIf="userRepos && userRepos.total_count > 0">
+
+  <div class="flex flex-col md:grid md:grid-cols-6 gap-6">
+    <app-single-repo *ngFor="let repo of userRepos.items" [repo]="repo"></app-single-repo>
+  </div>
+
+  <div class="mt-5 flex justify-center">
+    <ul>
+      <li *ngFor="let repo of userRepos.items | paginate: { itemsPerPage: maxPerPage, currentPage: currentPage, totalItems: maxRepoLimiter() }"></li>
+    </ul>
+
+    <pagination-controls (pageChange)="handlePageChange($event)" previousLabel="Previous" nextLabel="Next" [responsive]="true"></pagination-controls>
+  </div>
+
+</div>
+
+<div *ngIf="!userRepos?.total_count && !fetchingRepos">
+  <app-error-component [error]="'No Repository available'"></app-error-component>
+</div>

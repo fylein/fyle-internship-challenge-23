@@ -1,0 +1,60 @@
+<div *ngIf="fetchingInfo">
+  <app-loading-component [text]="'Loading Details'"></app-loading-component>
+</div>
+
+<div *ngIf="userInfo" class="flex flex-col gap-8">
+
+  <mat-card class="card flex flex-col gap-6">
+
+    <div class="flex flex-col ">
+
+      <img class="h-[150px] w-[150px] rounded-[50%] mb-3" mat-card-lg-image [src]="userInfo.avatar_url">
+
+      <mat-card-title class="text-xl font-medium">{{userInfo.name}}</mat-card-title>
+
+      <div class=" sm:max-w-[50%]" *ngIf="userInfo.bio">
+        <mat-card-subtitle class="text-lg text-gray-700">{{userInfo.bio}}</mat-card-subtitle>
+      </div>
+
+      <div *ngIf="userInfo.location">
+        <mat-card-content class="text-lg content">
+          <fa-icon [icon]="locationIcon"></fa-icon>
+          <i class="text-gray-600">
+            {{userInfo.location}}
+          </i>
+        </mat-card-content>
+      </div>
+
+      <mat-card-actions class="social-links">
+        <div class="flex flex-row justify-center gap-8">
+          <a [href]="userInfo.html_url">
+            <fa-icon size="2x" [icon]="ghIcon"></fa-icon>
+          </a>
+          <div *ngIf="userInfo.email">
+            <a [href]="mailUrl + userInfo.email">
+              <fa-icon size="2x" [icon]="emailIcon"></fa-icon>
+            </a>
+          </div>
+          <div *ngIf="userInfo.blog">
+            <a [href]="userInfo.blog">
+              <fa-icon size="2x" [icon]="blogIcon"></fa-icon>
+            </a>
+          </div>
+          <div *ngIf="userInfo.twitter_username">
+            <a [href]="twtUrl + userInfo.twitter_username">
+              <fa-icon size="2x" [icon]="twtIcon"></fa-icon>
+            </a>
+          </div>
+        </div>
+      </mat-card-actions>
+
+    </div>
+  </mat-card>
+
+  <app-person-repositories [totalRepos]="userInfo.public_repos" [username]="username"></app-person-repositories>
+
+</div>
+
+<div *ngIf="!userInfo && !fetchingInfo">
+  <app-error-component [error]="'User not available'"></app-error-component>
+</div>
