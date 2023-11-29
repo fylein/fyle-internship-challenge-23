@@ -5,7 +5,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 @Component({
   selector: 'app-front-searching',
   templateUrl: './front-searching.component.html',
-  styleUrls: ['./front-searching.component.css']
+  styleUrls: ['./front-searching.component.scss']
 })
 export class FrontSearchingComponent implements OnInit {
   @Output() onUserSearch: EventEmitter<any> = new EventEmitter();

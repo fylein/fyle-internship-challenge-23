@@ -4,7 +4,7 @@ import { Component, OnChanges, Input } from '@angular/core';
 @Component({
   selector: 'app-person-repositories',
   templateUrl: './person-repositories.component.html',
-  styleUrls: ['./person-repositories.component.css']
+  styleUrls: ['./person-repositories.component.scss']
 })
 export class PersonRepositoriesComponent implements OnChanges {
   @Input() totalRepos!: number;

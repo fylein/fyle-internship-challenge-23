@@ -3,7 +3,7 @@ import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-error-component',
   templateUrl: './error-component.component.html',
-  styleUrls: ['./error-component.component.css']
+  styleUrls: ['./error-component.component.scss']
 })
 export class ErrorComponentComponent implements OnInit {
 
