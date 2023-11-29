@@ -1,0 +1,15 @@
+<mat-card class="card h-full w-full p-2 border border-red-200">
+  <mat-card-title>
+    <a class="text-red-400 text-lg font-medium" [href]="repo.html_url">
+      {{repo.name}}
+    </a>
+  </mat-card-title>
+  <mat-card-content class="content text-gray-700">
+    <p>{{repo.description}}</p>
+  </mat-card-content>
+  <div class="flex flex-wrap items-center gap-2 ">
+    <div *ngFor="let topic of repo.topics" class="rounded-xl bg-blue-400 text-white p-1">
+      <span class="">{{topic}}</span>
+    </div>
+  </div>
+</mat-card>

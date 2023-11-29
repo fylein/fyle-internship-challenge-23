@@ -1,0 +1,16 @@
+
+<form [formGroup]="userSeacrhForm" (ngSubmit)="onUserSubmit()" class="flex flex-grow flex-col gap-8 md:gap-10 sm:flex-row">
+
+  <div class="flex flex-grow flex-row gap-20">
+
+    <fa-icon size="2x" [icon]="faGithub" class="mt-4 "></fa-icon>
+
+    <input type="text" placeholder="Username Search" formControlName="username" required class="p-6 border border-red-800 outline-none grow" />
+
+  </div>
+
+  <button type="submit" [disabled]="userSeacrhForm.invalid" class="p-2 bg-sky-600 hover:bg-sky-700 text-black disabled:bg-red-400">
+    Search
+  </button>
+
+</form>
