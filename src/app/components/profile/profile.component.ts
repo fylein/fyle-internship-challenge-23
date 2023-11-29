@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
   pageSize = 10;
   maxPageSize = 100;
   pageSizeOptions = [10, 25, 50, 100];
+  totalRepos: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -71,8 +72,14 @@ export class ProfileComponent implements OnInit {
       )
       .subscribe((repos) => {
         this.repos = repos;
-        this.paginator.length = this.repos.length;
+        this.totalRepos = this.repos.length;
+        this.updatePagination();
       });
+  }
+
+  updatePagination() {
+    const totalPages = Math.ceil(this.totalRepos / this.pageSize);
+    this.pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
   }
 
   onPageChange(event: PageEvent) {
@@ -97,7 +104,7 @@ export class ProfileComponent implements OnInit {
 
   goToNextPage() {
     const nextPage = this.currentPage + 1;
-    const totalPages = Math.ceil(this.repos.length / this.pageSize);
+    const totalPages = Math.ceil(this.totalRepos / this.pageSize);
 
     if (nextPage <= totalPages) {
       this.currentPage = nextPage;
@@ -110,5 +117,8 @@ export class ProfileComponent implements OnInit {
     this.fetchRepos();
   }
 
-  ngOnInit() {}
+
+  ngOnInit() {
+    this.updatePagination();
+  }
 }

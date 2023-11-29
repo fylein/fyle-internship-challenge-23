@@ -85,37 +85,17 @@
 		  </ng-template>
 		</div>
 	  </div>
-	  <div class="panel-footer">
-		<div class="pagination">
-			<div class="panel-footer">
-				<div class="pagination-container">
-				  <div class="page-size-control">
-					<mat-form-field>
-					  <mat-label>Items per page</mat-label>
-					  <mat-select [(value)]="pageSize" (selectionChange)="onPageSizeChange($event)">
-						<mat-option *ngFor="let option of pageSizeOptions" [value]="option">
-						  {{ option }}
-						</mat-option>
-					  </mat-select>
-					</mat-form-field>
-				  </div>
-		
-				  <div class="page-numbers">
-					<button mat-icon-button (click)="goToPreviousPage()" [disabled]="currentPage === 1">
-					  <mat-icon>keyboard_arrow_left</mat-icon>
-					</button>
-		
-					<div *ngFor="let pageNumber of pageNumbers" class="page-number">
-					  <button mat-button (click)="goToPage(pageNumber)" [disabled]="pageNumber === currentPage">
-						{{ pageNumber }}
-					  </button>
-					</div>
-		
-					<button mat-icon-button (click)="goToNextPage()" [disabled]="currentPage * pageSize >= repos.length">
-					  <mat-icon>keyboard_arrow_right</mat-icon>
-					</button>
-				  </div>
-				</div>
+	  <div class="custom-panel-footer">
+		<div class="custom-pagination">
+		  <mat-paginator
+			[length]="totalRepos"
+			[pageSize]="pageSize"
+			[pageSizeOptions]="pageSizeOptions"
+			(page)="onPageChange($event)"
+			(pageSize)="onPageSizeChange($event)"
+		  ></mat-paginator>
+		</div>
 	  </div>
+	  
   </div>
 </div>

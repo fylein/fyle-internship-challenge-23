@@ -40,7 +40,7 @@
 	.row {
 	  .col-xs-9 {
 		.form-group {
-		  margin-bottom: 0; // Remove default margin
+		  margin-bottom: 0; 
 		}
 	  }
   
@@ -61,7 +61,7 @@
   
 	&:hover {
 	  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	  transform: scale(1.1); 
+	  transform: scale(1.0.8); 
 	  border-radius: 5px;
 	}
   
@@ -94,29 +94,56 @@
   }
   
 
-  .panel-footer {
+  .custom-panel-footer {
+	background-color: #f4f4f4;
+	padding: 15px;
+	border-top: 1px solid #ddd;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 	align-items: center;
+	box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1);
   
-	.pagination-container {
-	  display: flex;
-	  align-items: center;
+	.custom-pagination {
+	  margin-right: 20px;
   
-	  .page-size-control {
-		margin-right: 20px; // Adjust margin as needed
-	  }
-  
-	  .page-numbers {
+	  .mat-paginator {
 		display: flex;
 		align-items: center;
   
-		button {
-		  margin: 0 5px; // Adjust margin as needed
+		.mat-paginator-range-label {
+		  font-size: 14px;
+		  color: #555;
+		}
+  
+		.mat-select-trigger {
+		  background-color: #fff;
+		  border: 1px solid #ddd;
+		  border-radius: 4px;
+  
+		  &:hover {
+			background-color: #f9f9f9;
+		  }
+		}
+  
+		.mat-paginator-navigation {
+		  button {
+			background-color: #fff;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+  
+			&:hover {
+			  background-color: #f9f9f9;
+			}
+  
+			&:disabled {
+			  color: #aaa;
+			}
+		  }
 		}
 	  }
 	}
   }
+  
 
   #myVideo {
 	position: absolute;
