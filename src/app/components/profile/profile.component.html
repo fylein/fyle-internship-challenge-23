@@ -1,0 +1,95 @@
+
+<div class="content"> 
+<div class="page-header">
+		<h1>GitHub User Search</h1>
+		<p class="lead">Explore GitHub profiles by searching for usernames. Get information about users and their repositories.</p>
+		<div class="made-by">
+			<p>Made with ❤️ by <a href="mailto:egulrezalam@gmail.com">Gulrez Alam</a> in <a href='https://www.fylehq.com/'> Fyle </a> Frontend development challenge </p>
+		</div>
+</div>
+	
+<form action="" class="search-form">
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Search git users with username" [(ngModel)]="username" name="username" (keyup)="findProfile()">
+		</div>
+</form>
+
+<div *ngIf="profile" class="user-profile">
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+		<h2> <small> Result is showing for the user name </small>{{profile.login}}</h2>
+	  </div>
+	  <div class="panel-body">
+		<div class="row">
+		  <div class="col-sm-3">
+			<img src="{{profile.avatar_url}}" class="img-circle img-responsive" alt="Profile Image">
+			<p><a href="{{profile.html_url}}" target="_blank" class="btn btn-success btn-sm">🔗 View profile on GitHub</a></p>
+		  </div>
+		  <div class="col-sm-5">
+			<ul class="list-group">
+			  <li class="list-group-item" *ngIf="profile.name"> {{profile.name}}</li>
+			  <li class="list-group-item" *ngIf="profile.bio"> {{profile.bio}}</li>
+			  <li class="list-group-item" *ngIf="profile.location">🗺 {{profile.location}}</li>
+			  <li class="list-group-item" *ngIf="profile.twitter_username">
+				✖(Twitter): <a href="https://twitter.com/{{profile.twitter_username}}" target="_blank">
+				  {{profile.twitter_username}}
+				</a>
+			  </li>
+			  <li class="list-group-item" *ngIf="profile.email">
+				Email: <a href="mailto:{{profile.email}}">{{profile.email}}</a>
+			  </li>
+			</ul>
+		  </div>
+		  <div class="col-sm-4">
+			<div class="user-stats">
+			  <p><span class="label label-default">{{profile.followers}} Followers</span></p>
+			  <p><span class="label label-primary">Following {{profile.following}}</span></p>
+			  <p><span class="label label-success">{{profile.public_gists}} Public gists</span></p>
+			  <p><span class="label label-info">{{profile.public_repos}} Public Repos</span></p>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  
+	<!-- Repositories section -->
+	<div class="panel panel-default">
+	  <div class="panel-body">
+		<div class="row">
+		  <ng-container *ngIf="repos.length > 0; else skeleton">
+			<div *ngFor="let repo of repos" class="col-sm-6">
+			  <div class="repo-card">
+				<h4><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></h4>
+				<p>{{repo.description}}</p>
+				<div class="repo-meta">
+					
+				  <span class="label label-default">Stars: {{repo.stargazers_count}}</span>
+				  <span class="label label-primary">Forks: {{repo.forks_count}}</span>
+				</div>
+			  </div>
+			</div>
+		  </ng-container>
+		  <ng-template #skeleton>
+			<div class="repo-card skeleton-loader"></div>
+			<div class="repo-card skeleton-loader"></div>
+			<div class="repo-card skeleton-loader"></div>
+			<div class="repo-card skeleton-loader"></div>
+			<div class="repo-card skeleton-loader"></div>
+			<div class="repo-card skeleton-loader"></div>
+		  </ng-template>
+		</div>
+	  </div>
+	  <div class="panel-footer">
+		<div class="page-size-control">
+		  <label for="pageSizeSelect">Repos per page:</label>
+		  <select id="pageSizeSelect" class="form-control" [(ngModel)]="pageSize" (change)="onPageSizeChange($event)">
+			<option *ngFor="let size of [10, 25, 50, 100]" [value]="size">{{size}}</option>
+		  </select>
+		</div>
+	</div>
+	</div>
+  </div>
+
+
+		
+</div>

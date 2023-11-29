@@ -1,16 +1,15 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
-import { ApiService } from './api.service';
+import { ProfileService } from './api.service';
 
-describe('ApiService', () => {
-  let service: ApiService;
-
+describe('ProfileService', () => {
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ApiService);
+    TestBed.configureTestingModule({
+      providers: [ProfileService]
+    });
   });
 
-  it('should be created', () => {
+  it('should be created', inject([ProfileService], (service: ProfileService) => {
     expect(service).toBeTruthy();
-  });
+  }));
 });
