@@ -110,3 +110,18 @@
 	width: 70px; /* Adjust as needed */
   }
   
+  #myVideo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: auto;
+	z-index: -1;
+  }
+  
+  /* Additional styles for content on top of the video */
+  .content {
+	position: relative;
+	z-index: 1;
+}
