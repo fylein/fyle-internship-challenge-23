@@ -78,6 +78,8 @@ Please note the following assumptions made during the development of this assign
 
 - The assignment focuses on searching for GitHub users, displaying user details, and listing their repositories.
 - The application assumes an internet connection is available to fetch data from the GitHub API.
+- The application currently lacks a specific error handling mechanism, incase Github API returns throws an error. 
+
 
 ## External Packages Used
 

@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   totalItems: number = 0;
   currentPage: number = 1;
   isLoading: boolean = false;
+  errorMessage: string | null = null;
 
   constructor(private apiService: ApiService) {}
 
@@ -34,33 +35,49 @@ export class AppComponent implements OnInit {
       return;
     }
 
+    this.resetState(); // Reset state on every new search
+
     this.isLoading = true;
-    this.apiService.getUser(this.userName).subscribe((data: any) => {
-      this.userDetails = data;
-      this.totalItems = data.public_repos;
-      this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
-      this.fetchUserRepos(data.repos_url, this.currentPage, this.itemsPerPage);
-      setTimeout(()=> {
+    this.apiService.getUser(this.userName).subscribe(
+      (data: any) => {
+        this.userDetails = data;
+        this.totalItems = data.public_repos;
+        this.totalPages = Math.ceil(this.totalItems / this.itemsPerPage);
+        this.fetchUserRepos(data.repos_url, this.currentPage, this.itemsPerPage);
+      },
+      (error: any) => {
+        this.handleError(error);
+      },
+      () => {
         this.isLoading = false;
-      }, 1000);
-    });
+      }
+    );
   }
 
   fetchUserRepos(reposUrl: string, page: number, itemsPerPage: number) {
-    //this.isLoading = true;
     const startIndex = (page - 1) * itemsPerPage;
     const apiUrl = `${reposUrl}?page=${page}&per_page=${itemsPerPage}`;
-    this.apiService.getRepos(apiUrl).subscribe((repos: any[]) => {
-      this.userRepos = repos;
-      this.loadLanguagesForRepos();
-    });
+    this.apiService.getRepos(apiUrl).subscribe(
+      (repos: any[]) => {
+        this.userRepos = repos;
+        this.loadLanguagesForRepos();
+      },
+      (error: any) => {
+        this.handleError(error);
+      }
+    );
   }
 
   loadLanguagesForRepos() {
     for (const repo of this.userRepos) {
-      this.apiService.getRepoLanguages(this.userName, repo.name).subscribe((languages: any) => {
-        repo.languages = Object.keys(languages);
-      });
+      this.apiService.getRepoLanguages(this.userName, repo.name).subscribe(
+        (languages: any) => {
+          repo.languages = Object.keys(languages);
+        },
+        (error: any) => {
+          this.handleError(error);
+        }
+      );
     }
   }
 
@@ -96,6 +113,30 @@ export class AppComponent implements OnInit {
   changeNameAndFetchData(newName: string) {
     this.userName = newName;
     this.updateUserName();
+  }
+
+  resetState() {
+    this.errorMessage = null;
+    this.userDetails = null;
+    this.userRepos = [];
+    this.totalPages = 0;
+    this.totalItems = 0;
+    this.currentPage = 1;
+  }
+
+  handleError(error: any) {
+    console.log({error});
+
+    if(error.error.message === 'Not Found') {
+      this.errorMessage = 'Please enter the correct Github Username.';
+    } else {
+      this.errorMessage = error.message;
+    }
+
+    alert(this.errorMessage);
+    this.isLoading = false;
+    this.userName = '';
+    this.resetState();
   }
 
   @HostListener('window:keydown', ['$event'])
