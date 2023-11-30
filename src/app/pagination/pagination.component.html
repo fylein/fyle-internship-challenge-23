@@ -1,17 +1,17 @@
 <!-- pagination.component.html -->
-
-<div class="pagination">
+<div class="pagination flex items-center justify-center mt-4">
   <button
     mat-icon-button
     *ngIf="currentPage > 1"
     (click)="onPageChange(currentPage - 1)"
+    class="mr-2 md:mr-4"
   >
     <mat-icon>keyboard_arrow_left</mat-icon>
   </button>
 
   <div
     *ngFor="let page of getPages()"
-    class="page"
+    class="page mx-1 md:mx-2"
     [class.active]="page === currentPage"
   >
     <button mat-button (click)="onPageChange(page)">{{ page }}</button>
@@ -21,6 +21,7 @@
     mat-icon-button
     *ngIf="currentPage < totalPages"
     (click)="onPageChange(currentPage + 1)"
+    class="ml-2 md:ml-4"
   >
     <mat-icon>keyboard_arrow_right</mat-icon>
   </button>

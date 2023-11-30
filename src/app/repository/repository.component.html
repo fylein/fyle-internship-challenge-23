@@ -1,0 +1,23 @@
+<div class="border border-violet-400 p-3 rounded-md flex flex-col gap-2">
+  <div class="flex justify-between">
+    <span class="text-l md:text-2xl hover:opacity-80 text-blue-400"
+      ><a
+        href="https://github.com/{{ username }}/{{ reponame }}"
+        target="_blank"
+        >{{ reponame }}</a
+      ></span
+    >
+    <span
+      class="border border-sky-500 px-2 w-50 h-6 rounded-xl text-xs md:text-sm flex items-center"
+      >public</span
+    >
+  </div>
+  <div class="block text-xs md:text-sm text-slate-500">
+    <p>{{ truncateText(repobio, 200) }}</p>
+  </div>
+  <div>
+    <span class="border border-white p-1 rounded-xl text-xs md:text-sm">{{
+      language
+    }}</span>
+  </div>
+</div>
