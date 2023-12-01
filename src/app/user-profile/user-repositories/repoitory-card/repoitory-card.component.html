@@ -1,0 +1,11 @@
+<div class="border border-black  p-4 h-full rounded-sm overflow-hidden">
+    <div class="px-6 py-3">
+        <a href="{{ repoLink }}" class="text-blue-500 font-bold text-xl mb-2">{{ repoName }}</a>
+        <p class="text-gray-700 text-base">
+            {{ repoDescription }}
+        </p>
+    </div>
+    <div *ngIf="repoTopics" class="px-6 pt-2">
+        <span *ngFor="let d of repoTopics.split(',')" class="inline-block bg-blue-600 rounded px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">{{ d }}</span>
+    </div>
+</div>

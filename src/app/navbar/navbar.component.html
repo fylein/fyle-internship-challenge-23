@@ -1,0 +1,18 @@
+<nav class="relative flex w-full flex-wrap items-center justify-between bg-white border-gray-200 dark:bg-white-100 py-2 text-black shadow-lg hover:text-black focus:text-black lg:py-4">
+    <div class="py-1 flex w-full flex-wrap items-center justify-between px-3">
+        <a class="font-bold ml-2 text-2xl text-black dark:text-black" routerLink="">Code Explorer</a>
+        <form (ngSubmit)="processQuery()" class="ml-5 flex w-[30%] items-center justify-between relative">
+            <span
+                class="absolute inset-y-0 left-0 pl-3 flex items-center text-black dark:text-white pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                    <path fill-rule="evenodd"
+                        d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                        clip-rule="evenodd" />
+                </svg>
+            </span>
+            <input [(ngModel)]="searchQuery" name="search-query" type="text" id="search-navbar"
+                class="block w-full p-2 pl-10 text-black border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Search Github username...">
+        </form>
+    </div>
+</nav>

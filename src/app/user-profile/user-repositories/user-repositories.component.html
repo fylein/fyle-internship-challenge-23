@@ -1,0 +1,38 @@
+<div *ngIf="totalRepositories>0">
+    <div class="mt-4 ml-6 font-semibold text-2xl text-left mb-5">Repositories</div>
+    
+    <div class="grid grid-cols-1 justify-around md:grid-cols-2">
+        <div class="m-5" *ngFor="let repoData of userRepositoryData">
+            <app-repoitory-card repoLink={{repoData.html_url}} repoName={{repoData.name}}
+                repoDescription={{repoData.description}} repoTopics={{repoData.topics}}></app-repoitory-card>
+        </div>
+    </div>
+
+    <!-- Loader Start -->
+    <div class="animate-pulse" *ngIf="totalRepositories>0 && !dataLoaded">
+        <div class="grid grid-cols-1 justify-around md:grid-cols-2">
+            <div class="m-5" *ngFor="let i of [1,2,3,4]">
+                <div class="shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] p-2 h-full rounded-sm overflow-hidden">
+                    <div class="px-4 py-2">
+                        <div class="ml-4 items-center mt-4 bg-gray-200 rounded-full dark:bg-gray-500 h-4 max-w-[360px]">
+                        </div>
+                        <div class="ml-4 items-center mt-4 bg-gray-200 rounded-full dark:bg-gray-500 h-2">
+                        </div>
+                        <div class="ml-4 items-center mt-4 bg-gray-200 rounded-full dark:bg-gray-500 h-2">
+                        </div>
+                    </div>
+                    <div
+                        class="mb-2 ml-8 py-1 items-center mt-4 bg-gray-200 rounded-full dark:bg-gray-500 h-4 max-w-[240px]">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Loader End -->
+    <app-repositories-pagination (selectedPage)="setPage($event)" (selectedPerPage)="setPerPage($event)"
+        [totalRepositories]="totalRepositories" [reposCurrentPage]="reposCurrentPage"
+        [reposPerPage]="reposPerPage"></app-repositories-pagination>
+</div>
+<div *ngIf="totalRepositories===0" class="font-semibold text-2xl text-center mb-5">
+    No Repositories to show.
+</div>
