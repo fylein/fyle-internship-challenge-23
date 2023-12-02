@@ -1,5 +1,32 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="container mx-auto p-4">
+  <div class="bg-white rounded-lg shadow-lg p-4">
+    <!-- Search bar -->
+    <app-search
+     (searchUserEvent)="searchUser($event)"
+    ></app-search>
+
+    <!-- skeleton loader -->
+    <app-skeleton-loader
+     [isLoading]="isLoading"
+     skeletonType="user-details"
+    >
+      <!-- User Profile -->
+      <app-profile
+       [userDetails]="userDetails"
+      ></app-profile>
+
+      <!-- User Repositories -->
+      <app-repositories
+       [userRepos]="userRepos"
+       (updateItemsPerPageChange)="updateItemsPerPage($event)"
+      ></app-repositories>
+
+      <!-- Pagination -->
+      <app-pagination
+       [currentPage]="currentPage"
+       [totalPages]="totalPages"
+       (pageChange)="handlePageChange($event)"
+      ></app-pagination>
+    </app-skeleton-loader>
   </div>
 </div>

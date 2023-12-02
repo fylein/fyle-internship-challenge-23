@@ -1,0 +1,31 @@
+<div *ngIf="userRepos.length > 0" class="mt-8">
+  <div class="flex justify-between">
+    <h2 class="text-2xl font-semibold">User Repositories</h2>
+    <!-- ItemsPerPageComponent -->
+    <app-items-per-page
+      (itemsPerPageChange)="setItemsPerPageChange($event)"
+    ></app-items-per-page>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+    <div *ngFor="let repo of userRepos" class="bg-gray-100 border shadow-lg rounded-xl p-4 text-xs flex flex-col justify-between hover:bg-gray-200 transition duration-300 ease-in-out">
+      <div class="flex justify-between">
+        <h3 class="text-lg font-semibold">{{ repo.name }}</h3>
+        <p class="text-gray-500 mt-1 ml-2">{{ repo.updated_at | date: 'mediumDate' }}</p>
+      </div>
+      <p class="text-gray-700 mb-1">{{ repo.description }}</p>
+      <div>
+        <p *ngIf="repo.html_url">Repo: <a class="text-blue-500" [href]="repo.html_url" target="_blank">{{ repo.html_url }}</a></p>
+        <p *ngIf="repo.homepage">Live: <a class="text-blue-500" [href]="repo.homepage" target="_blank">{{ repo.homepage }}</a></p>
+      </div>
+      <div class="flex justify-between mt-1 mb-1">
+        <p class="font-semibold" *ngIf="repo.forks_count !== null">Forks: {{ repo.forks_count }}</p>
+        <p class="font-semibold" *ngIf="repo.stargazers_count !== null">Stars: {{ repo.stargazers_count }}</p>
+      </div>
+      <div *ngIf="repo.languages">
+        <div class="flex flex-wrap">
+          <div *ngFor="let lang of repo.languages" class="bg-blue-500 text-white px-2 py-1 rounded-md m-1">{{ lang }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

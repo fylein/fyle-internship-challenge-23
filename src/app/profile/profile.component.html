@@ -1,0 +1,24 @@
+<div *ngIf="userDetails" class="flex flex-col md:flex-row items-center mb-4 justify-center gap-8">
+  <div class="md:mr-4 rounded-full shadow-2xl p-2">
+    <img *ngIf="userDetails.avatar_url" class="w-52 h-52 rounded-full shadow-xl" [src]="userDetails?.avatar_url" alt="Avatar" />
+  </div>
+  <div>
+    <div *ngIf="userDetails.name" class="mb-2">
+      <p class="text-2xl font-semibold">{{ userDetails?.name }}</p>
+      <p class="text-slate-800"><a [href]="userDetails?.html_url">{{ userDetails?.login }}</a></p>
+      <p>{{ userDetails.email }}</p>
+    </div>
+    <div *ngIf="!userDetails.name" class="mb-2">
+      <p class="text-2xl font-semibold"><a [href]="userDetails?.html_url">{{ userDetails?.login }}</a></p>
+      <p>{{ userDetails.email }}</p>
+    </div>
+    <p class="text-gray-800 text-base">{{ userDetails?.bio }}</p>
+    <div class="flex gap-4 mb-1">
+      <p class="font-semibold" *ngIf="userDetails.followers">Followers: {{ userDetails?.followers }}</p>
+      <p class="font-semibold" *ngIf="userDetails.following">Following: {{ userDetails?.following }}</p>
+    </div>
+    <p *ngIf="userDetails.blog"><span class="font-semibold">Website: </span><a [href]="userDetails.blog" target="_blank" class="text-blue-500">{{ userDetails.blog }}</a></p>
+    <p *ngIf="userDetails.twitter_username"><span class="font-semibold">Twitter: </span><a [href]="userDetails.twitter_username" target="_blank" class="text-blue-500">{{ userDetails.twitter_username }}</a></p>
+    <p *ngIf="userDetails.location">{{ userDetails.location }}</p>
+  </div>
+</div>
