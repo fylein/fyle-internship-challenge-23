@@ -1,5 +1,62 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="container mx-auto p-8">
+  <div class="text-center mb-8">
+    <h1 class="text-3xl font-bold">GitHub Repositories Data</h1>
+  </div>
+
+  <div class="flex items-center m-6">
+    <label for="username" class="ml-2">
+      <h1>GitHub Username: </h1>
+    </label>
+    <input type="text" id="username" [(ngModel)]="githubUsername" class="p-2 border rounded"
+      placeholder="Enter github repository">
+    <button (click)="getUserData()" class="bg-blue-500 text-white py-2 px-4 rounded ml-2">Get Repos</button>
+  </div>
+
+  <div *ngIf="profileData" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
+    <div class="bg-white p-4 shadow-md rounded-md ml-4" style="background-color:powderblue">
+      <h2 class="text-xl font-bold mb-2">{{ profileData.name }}</h2>
+      <img src={{profileData.avatar_url}} alt="not found" width="100px" height="100px">
+      <h2 class="text-m font-bold mb-2">UserName : {{ profileData.login }}</h2>
+      <p class="text-sm mb-2"><strong>Bio: </strong> {{ profileData.bio }}</p>
+      <h2 class="text-xl font-bold mb-2">{{ profileData.location }}</h2>
+      <h2 class="text-xl font-bold mb-2">Public Repo: {{ profileData.public_repos }}</h2>
+      <h2 class="text-xl font-italic mb-2">Twitter Username: {{ profileData.twitter_username }}</h2>
+
+      <a [href]="profileData.html_url" target="_blank" class="text-blue-500 hover:underline block mt-2">View on
+        GitHub</a>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center">
+    <h1>...Loading</h1>
+  </div>
+
+  <div *ngIf="repositories.length > 0">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div *ngFor="let repo of repositories" class="bg-white p-4 shadow-md rounded-md"
+        style="background-color:powderblue">
+        <h2 class="text-xl font-bold mb-2">{{ repo.name }}</h2>
+        <p class="text-gray-600">{{ repo.language }}</p>
+        <a [href]="repo.html_url" target="_blank" class="text-blue-500 hover:underline block mt-2">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="flex justify-between items-center mt-4">
+      <label for="itemsPerPage" class="mr-2">Items per Page:</label>
+      <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange($event)"
+        class="p-2 border rounded">
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+
+      <div class="flex items-center">
+        <button [disabled]="currentPage === 1" (click)="onPageChange(currentPage - 1)"
+          class="bg-blue-500 text-white py-2 px-4 rounded">Older</button>
+        <span class="mx-4">{{ currentPage }}</span>
+        <button (click)="onPageChange(currentPage + 1)" class="bg-blue-500 text-white py-2 px-4 rounded">Newer</button>
+      </div>
+    </div>
   </div>
 </div>
