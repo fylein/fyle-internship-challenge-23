@@ -43,6 +43,7 @@ export class ApiService {
 
   setUserData(user: GitHubUser): void {
     this.userData.next(user);
+    this.reposCount = user.public_repos;
   }
 
   getUserData(): Observable<GitHubUser> {
@@ -50,10 +51,6 @@ export class ApiService {
   }
 
   getReposCount(): number {
-    const storedReposCount = localStorage.getItem('reposCount');
-    if (storedReposCount) {
-      this.reposCount = parseInt(storedReposCount, 10);
-    }
     return this.reposCount;
   }
 }
