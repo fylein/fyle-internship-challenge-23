@@ -57,7 +57,7 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       this.reposPerPage = Number(selectedPerPage);
       this.router.navigate([], {
         relativeTo: this.route,
-        queryParams: { page: this.currentPage, per_page: this.reposPerPage },
+        queryParams: { page: 1, per_page: this.reposPerPage },
         queryParamsHandling: 'merge',
       });
       this.fetchRepos();
