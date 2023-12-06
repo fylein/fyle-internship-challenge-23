@@ -29,6 +29,7 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
   response: any;
   newCurrentPage: number = 0;
   githubSubscription!: Subscription;
+  reposCountSubscription!: Subscription;
   paginationPerPageSubscription!: Subscription;
   paginationCurrentPageSubscription!: Subscription;
 
@@ -43,14 +44,16 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
     this.route.queryParams.subscribe((params: Params) => {
       this.currentPage = Number(params['page']);
       this.reposPerPage = Number(params['per_page']);
-      console.log("REPO ", this.currentPage, this.reposPerPage);
     });
-    this.reposCount = this.apiService.getReposCount();
-    this.fetchRepos();
+    this.reposCountSubscription = this.apiService.getReposCount().subscribe((reposCount) => {
+      this.reposCount = reposCount;
+      console.log(reposCount)
+      console.log(this.reposCount)
+      this.fetchRepos();
+    });
 
     this.paginationPerPageSubscription = this.paginationService.getSelectedPerPage().subscribe(selectedPerPage => {
       this.loadingPageChange = true;
-      console.log(this.loadingPageChange)
       this.reposPerPage = Number(selectedPerPage);
       this.router.navigate([], {
         relativeTo: this.route,
@@ -81,6 +84,9 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
     }
     if (this.paginationCurrentPageSubscription) {
       this.paginationCurrentPageSubscription.unsubscribe();
+    }
+    if (this.reposCountSubscription) {
+      this.reposCountSubscription.unsubscribe();
     }
   }
   

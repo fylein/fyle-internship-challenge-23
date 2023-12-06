@@ -25,7 +25,7 @@ export interface GitHubRepository {
 })
 export class ApiService {
   private userData: Subject<GitHubUser> = new Subject<GitHubUser>();
-  private reposCount: number = 0;
+  private reposCount: Subject<number> = new Subject<number>();
 
   constructor(
     private httpClient: HttpClient
@@ -43,14 +43,14 @@ export class ApiService {
 
   setUserData(user: GitHubUser): void {
     this.userData.next(user);
-    this.reposCount = user.public_repos;
+    this.reposCount.next(user.public_repos);
   }
 
   getUserData(): Observable<GitHubUser> {
     return this.userData.asObservable();
   }
 
-  getReposCount(): number {
-    return this.reposCount;
+  getReposCount(): Observable<number> {
+    return this.reposCount.asObservable();
   }
 }
