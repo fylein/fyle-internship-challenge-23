@@ -44,6 +44,7 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
     this.route.queryParams.subscribe((params: Params) => {
       this.currentPage = Number(params['page']);
       this.reposPerPage = Number(params['per_page']);
+      this.fetchRepos();
     });
     this.reposCountSubscription = this.apiService.getReposCount().subscribe((reposCount) => {
       this.reposCount = reposCount;
