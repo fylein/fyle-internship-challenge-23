@@ -1,0 +1,25 @@
+<div *ngIf="reposCount===0 && !loading" class="font-semibold text-2xl text-center mb-5">
+    No Repositories to show.
+</div>
+<div *ngIf="reposCount>0">
+    <h1 class="m-6 font-semibold text-2xl">Repositories</h1>
+    <div class="justify-around grid grid-cols-1 md:grid-cols-2" *ngIf="loadingPageChange === false">
+        <div class="m-6" *ngFor="let repoData of reposData">
+            <card url={{repoData.url}} name={{repoData.name}}
+                desc={{repoData.description}} topics={{repoData.topics}}></card>
+        </div>
+    </div>
+    <div class="animate-pulse" *ngIf="loading || loadingPageChange">
+        <div class="grid grid-cols-1 justify-around md:grid-cols-2">
+            <div class="m-5" *ngFor="let _ of [].constructor(4)">
+                <div class="border-2 rounded-sm h-full">
+                    <div class="flex flex-col p-10 w-full justify-start">
+                        <div class="w-5/6 h-8 bg-gray-200 mt-5"></div>
+                        <div class="w-6/6 h-8 bg-gray-200 mt-5"></div>
+                        <div class="w-4/6 h-8 bg-gray-200 mt-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

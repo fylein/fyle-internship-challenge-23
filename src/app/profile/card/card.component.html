@@ -1,0 +1,11 @@
+<div class="border-2 rounded-sm h-full">
+    <div class="p-6">
+        <a href="{{url}}" class="text-blue-500 font-semibold text-xl ">{{ name }}</a>
+        <p class="text-gray-800 mt-2">
+            {{desc}}
+        </p>
+    </div>
+    <div *ngIf="topics.length>0" class="px-6 pt-2 ">
+        <span *ngFor="let topic of topics.split(',')" class="inline-block text-center align-middle bg-blue-500 rounded-sm py-3 px-1 leading-3 text-sm font-semibold text-white mr-2 mb-2">{{ topic }}</span>
+    </div>
+</div>

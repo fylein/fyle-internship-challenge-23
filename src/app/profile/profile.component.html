@@ -1,0 +1,12 @@
+<navbar (username)="navSearch($event)"></navbar>
+<div>
+    <basic-info [username]="username" [loading]="loading"></basic-info>
+</div>
+<div class="mt-6">
+    <repositories
+        [username]="username"
+        [loading]="loading"></repositories>
+</div>
+<div class="m-6">
+    <pagination></pagination>
+</div>
