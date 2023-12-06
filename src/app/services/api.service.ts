@@ -32,7 +32,6 @@ export class ApiService {
   ) { }
 
   getUser(githubUsername: string): Observable<GitHubUser> {
-    console.log("GU")
     return this.httpClient.get<GitHubUser>(`https://api.github.com/users/${githubUsername}`);
   }
 

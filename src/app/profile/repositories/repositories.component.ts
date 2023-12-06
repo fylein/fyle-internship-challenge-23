@@ -117,24 +117,4 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       this.loadingPageChange = false;
     })
   }
-
-  changePage(newPage: number): void {
-    this.currentPage = newPage;
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { page: newPage },
-      queryParamsHandling: 'merge',
-    });
-    this.fetchRepos();
-  }
-
-  changePerPage(newPerPage: number): void {
-    this.reposPerPage = newPerPage;
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { per_page: newPerPage },
-      queryParamsHandling: 'merge',
-    });
-    this.fetchRepos();
-  }
 }
