@@ -47,13 +47,12 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
     });
     this.reposCountSubscription = this.apiService.getReposCount().subscribe((reposCount) => {
       this.reposCount = reposCount;
-      console.log(reposCount)
-      console.log(this.reposCount)
       this.fetchRepos();
     });
-
-    this.paginationPerPageSubscription = this.paginationService.getSelectedPerPage().subscribe(selectedPerPage => {
+    
+    this.paginationPerPageSubscription = this.paginationService.getSelectedPerPage().subscribe((selectedPerPage) => {
       this.loadingPageChange = true;
+      this.currentPage = 1;
       this.reposPerPage = Number(selectedPerPage);
       this.router.navigate([], {
         relativeTo: this.route,
@@ -110,15 +109,16 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       });
     }
 
-    // else if (((this.currentPage * this.reposPerPage) > this.reposCount) && (((this.currentPage - 1) * this.reposPerPage + 1) > this.reposCount)) {
-    //   this.newCurrentPage = this.reposCount % this.reposPerPage === 0 ? this.reposCount/this.reposPerPage : (this.reposCount/this.reposPerPage) + 1;
+    // else if (((this.currentPage * this.reposPerPage) > this.reposCount) && ((((this.currentPage - 1) * this.reposPerPage) + 1) > this.reposCount)) {
+    //   this.currentPage = 1;
     //   this.router.navigate([], {
     //     relativeTo: this.route,
-    //     queryParams: { page: this.newCurrentPage, per_page: this.reposPerPage },
+    //     queryParams: { page: this.currentPage, per_page: this.reposPerPage },
     //     queryParamsHandling: 'merge',
     //   });
     // }
 
+      // console.log(this.currentPage, this.reposPerPage)
     this.loading = true;
     this.githubSubscription = this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)
     .subscribe((data) => {
