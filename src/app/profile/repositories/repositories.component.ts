@@ -43,6 +43,7 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
     this.route.queryParams.subscribe((params: Params) => {
       this.currentPage = Number(params['page']);
       this.reposPerPage = Number(params['per_page']);
+      console.log("REPO ", this.currentPage, this.reposPerPage);
     });
     this.reposCount = this.apiService.getReposCount();
     this.fetchRepos();
@@ -78,6 +79,9 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
     if (this.paginationPerPageSubscription) {
       this.paginationPerPageSubscription.unsubscribe();
     }
+    if (this.paginationCurrentPageSubscription) {
+      this.paginationCurrentPageSubscription.unsubscribe();
+    }
   }
   
   ngOnChanges(changes: SimpleChanges): void {
@@ -100,14 +104,14 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       });
     }
 
-    else if (((this.currentPage * this.reposPerPage) > this.reposCount) && (((this.currentPage - 1) * this.reposPerPage + 1) > this.reposCount)) {
-      this.newCurrentPage = this.reposCount % this.reposPerPage === 0 ? this.reposCount/this.reposPerPage : (this.reposCount/this.reposPerPage) + 1;
-      this.router.navigate([], {
-        relativeTo: this.route,
-        queryParams: { page: this.newCurrentPage, per_page: this.reposPerPage },
-        queryParamsHandling: 'merge',
-      });
-    }
+    // else if (((this.currentPage * this.reposPerPage) > this.reposCount) && (((this.currentPage - 1) * this.reposPerPage + 1) > this.reposCount)) {
+    //   this.newCurrentPage = this.reposCount % this.reposPerPage === 0 ? this.reposCount/this.reposPerPage : (this.reposCount/this.reposPerPage) + 1;
+    //   this.router.navigate([], {
+    //     relativeTo: this.route,
+    //     queryParams: { page: this.newCurrentPage, per_page: this.reposPerPage },
+    //     queryParamsHandling: 'merge',
+    //   });
+    // }
 
     this.loading = true;
     this.githubSubscription = this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)
