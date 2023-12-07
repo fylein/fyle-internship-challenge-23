@@ -31,13 +31,11 @@ export class BasicInfoComponent implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.username = params['username'];
-      // Call subscribeToUserData here to ensure it's called during component initialization
       this.subscribeToUserData();
     });
   }
 
   private subscribeToUserData(): void {
-    // Check if there's an existing subscription and unsubscribe to prevent memory leaks
     if (this.userSubscription) {
       this.userSubscription.unsubscribe();
     }
@@ -45,7 +43,6 @@ export class BasicInfoComponent implements OnInit, OnDestroy, OnChanges {
       this.userDataSubscription.unsubscribe();
     }
 
-    // Subscribe to the API service
     this.userSubscription = this.apiService.getUser(this.username)
       .subscribe((data) => {
         this.apiService.setUserData(data);

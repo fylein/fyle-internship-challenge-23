@@ -11,7 +11,6 @@ import { ApiService } from '../services/api.service';
 export class ProfileComponent implements OnInit, OnDestroy, OnChanges {
   username: string = "";
   loading: boolean = true;
-
   githubSubscription!: Subscription;
 
   constructor(
@@ -45,12 +44,7 @@ export class ProfileComponent implements OnInit, OnDestroy, OnChanges {
     this.fetchUserData();
   }
 
-  fetchUserData() {
-    // if (this.username==='') {
-    //   console.error('Username is undefined');
-    //   return;
-    // }
-    
+  fetchUserData() {    
     if (this.username !== '' && this.apiService.getUser(this.username)) {
       this.loading = true;
   
@@ -60,7 +54,6 @@ export class ProfileComponent implements OnInit, OnDestroy, OnChanges {
         this.loading = false;
       },
       (error) => {
-        console.log(error)
       })
     }
   };

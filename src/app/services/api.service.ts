@@ -42,22 +42,14 @@ export class ApiService {
     );
   }
 
+  getUserData(): Observable<GitHubUser> {
+    return this.userData.asObservable();
+  }
+  
   setUserData(user: GitHubUser): void {
     this.userData.next(user);
     this.reposCount.next(user.public_repos);
   }
-
-  getUserData(): Observable<GitHubUser> {
-    return this.userData.asObservable();
-  }
-
-  // setUsername(username: string): void {
-  //   this.username.next(username);
-  // }
-
-  // getUsername(): Observable<string> {
-  //   return this.username.asObservable();
-  // }
 
   getReposCount(): Observable<number> {
     return this.reposCount.asObservable();

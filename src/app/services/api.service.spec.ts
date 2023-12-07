@@ -25,15 +25,15 @@ describe('ApiService', () => {
   });
 
   it('should get user data', () => {
-    const username = 'testUser';
+    const username = 'lklivingstone';
     const mockUser: GitHubUser = {
-      name: 'John Doe',
-      bio: 'Some bio',
-      location: 'Some location',
-      twitter_username: 'twitterHandle',
-      html_url: 'https://github.com/johndoe',
-      avatar_url: 'https://github.com/johndoe/avatar',
-      public_repos: 10,
+      name: 'L K Livingstone',
+      bio: 'Learning Rust, oof... ',
+      location: 'India',
+      twitter_username: 'unclelkk',
+      html_url: 'https://github.com/lklivingstone',
+      avatar_url: 'https://avatars.githubusercontent.com/u/74340009?v=4',
+      public_repos: 37,
     };
 
     service.getUser(username).subscribe((user) => {

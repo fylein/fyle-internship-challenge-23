@@ -47,7 +47,9 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       this.fetchRepos();
     });
 
-    this.paginationPerPageSubscription = this.paginationService.getSelectedPerPage().subscribe((selectedPerPage) => {
+    this.paginationPerPageSubscription = this.paginationService
+    .getSelectedPerPage()
+    .subscribe((selectedPerPage) => {
       this.loadingPageChange = true;
       this.currentPage = 1;
       this.reposPerPage = Number(selectedPerPage);
@@ -59,7 +61,9 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       this.fetchRepos();
     });
 
-    this.paginationCurrentPageSubscription = this.paginationService.getSelectedCurrentPage().subscribe(selectedCurrentPage => {
+    this.paginationCurrentPageSubscription = this.paginationService
+    .getSelectedCurrentPage()
+    .subscribe(selectedCurrentPage => {
       this.loadingPageChange = true;
       this.currentPage = Number(selectedCurrentPage);
       this.router.navigate([], {
@@ -87,7 +91,10 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
   }
   
   ngOnChanges(changes: SimpleChanges): void {
-    if ((changes['username'] && changes['username'].previousValue) || (changes['reposPerPage'] && changes['reposPerPage'].previousValue)) {
+    if ((changes['username'] &&
+    changes['username'].previousValue) ||
+    (changes['reposPerPage'] &&
+    changes['reposPerPage'].previousValue)) {
       this.fetchRepos();
     }
   }
@@ -109,14 +116,6 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
     if (this.username !== '' && this.currentPage !== 0 && this.reposPerPage !== 0 && this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)) {
       this.loading = true;
       this.githubSubscription = this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)
-        .pipe(
-          catchError(error => {
-            console.error('Error fetching repositories:', error);
-            this.loading = false;
-            this.loadingPageChange = false;
-            return of([]); // Return an empty array to prevent 'undefined'
-          })
-        )
         .subscribe(
           (data) => {
             this.reposData = data;

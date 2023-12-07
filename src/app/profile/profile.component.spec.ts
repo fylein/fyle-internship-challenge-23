@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
-import { of, throwError } from 'rxjs';
-import { SimpleChange } from '@angular/core';
+import { of } from 'rxjs';
 import { waitForAsync } from '@angular/core/testing';
 import { ProfileComponent } from './profile.component';
 import { ApiService, GitHubUser, GitHubRepository } from '../services/api.service';
@@ -9,14 +8,11 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { BasicInfoComponent } from './basic-info/basic-info.component';
 import { RepositoriesComponent } from './repositories/repositories.component';
 import { PaginationComponent } from './pagination/pagination.component';
-import { FormsModule } from '@angular/forms'; // Import the FormsModule
-
+import { FormsModule } from '@angular/forms';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
   let fixture: ComponentFixture<ProfileComponent>;
-  let apiService: jasmine.SpyObj<ApiService>;
-  const mockUsername = "lklivingstone";
   let mockApiService: jasmine.SpyObj<ApiService>;
   const mockActivatedRoute = {
     params: of({ username: 'lklivingstone' }),
@@ -26,7 +22,8 @@ describe('ProfileComponent', () => {
   };
 
   beforeEach(waitForAsync(() => {
-    mockApiService = jasmine.createSpyObj('ApiService', ['getUser', 'setUserData', 'getUserData', 'getRepos', 'getReposCount']);
+    mockApiService = jasmine.createSpyObj('ApiService', 
+    ['getUser', 'setUserData', 'getUserData', 'getRepos', 'getReposCount']);
 
     TestBed.configureTestingModule({
       declarations: [ProfileComponent, NavbarComponent, BasicInfoComponent, RepositoriesComponent, PaginationComponent],
@@ -60,16 +57,13 @@ describe('ProfileComponent', () => {
     mockApiService.getUser.and.returnValue(of(mockUser));
     const mockRepos: GitHubRepository[] = [
       { id: 1, name: 'Repo1', description: 'Description1', topics: ['Topic1'], url: 'Repo1Url' },
-      // Add more mock repositories if needed
     ];
     mockApiService.getRepos.and.returnValue(of(mockRepos));
-
     
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
-      // Now you can make assertions
       expect(component).toBeTruthy();
-      // Add more assertions if needed
-    });  });
+    });  
+  });
 });
