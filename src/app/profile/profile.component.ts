@@ -17,12 +17,13 @@ export class ProfileComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-  ) { }
-
-  ngOnInit(): void {
+  ) {
     this.route.params.subscribe(params => {
       this.username = params['username'];
     });
+  }
+
+  ngOnInit(): void {
     this.fetchUserData();
   }
 
@@ -45,20 +46,22 @@ export class ProfileComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   fetchUserData() {
-    if (!this.username) {
-      console.error('Username is undefined');
-      return;
-    }
+    // if (this.username==='') {
+    //   console.error('Username is undefined');
+    //   return;
+    // }
     
-    this.loading = true;
-
-    this.githubSubscription = this.apiService.getUser(this.username)
-    .subscribe((data) => {
-      this.apiService.setUserData(data);
-      this.loading = false;
-    },
-    (error) => {
-      console.log(error)
-    })
+    if (this.username && this.apiService.getUser(this.username)) {
+      this.loading = true;
+  
+      this.githubSubscription = this.apiService.getUser(this.username)
+      .subscribe((data) => {
+        this.apiService.setUserData(data);
+        this.loading = false;
+      },
+      (error) => {
+        console.log(error)
+      })
+    }
   };
 }

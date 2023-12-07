@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RepositoriesComponent } from './repositories.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing'; // Import HttpClientTestingModule
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ApiService } from 'src/app/services/api.service';
 
 describe('RepositoriesComponent', () => {
@@ -11,7 +11,7 @@ describe('RepositoriesComponent', () => {
   beforeEach(() => {
     const activatedRouteStub = {
       queryParams: {
-        subscribe: (fn: (value: any) => void) => fn({ page: 1, per_page: 10 }), // Provide default values if needed
+        subscribe: (fn: (value: any) => void) => fn({ page: 1, per_page: 10 }), 
       },
     };
 

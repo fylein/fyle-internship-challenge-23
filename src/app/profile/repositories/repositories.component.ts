@@ -15,8 +15,8 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
   @Input() loading: boolean = true;
   loadingPageChange: boolean = false;
   reposCount: number = 0;
-  reposPerPage: number = 10;
-  currentPage: number = 1;
+  reposPerPage: number = 0;
+  currentPage: number = 0;
   userData: GitHubUser = {
     name: '',
     bio: '',
@@ -106,7 +106,7 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       });
     }
 
-    if (this.username && this.currentPage && this.reposPerPage) {
+    if (this.username !== '' && this.currentPage !== 0 && this.reposPerPage !== 0 && this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)) {
       this.loading = true;
       this.githubSubscription = this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)
         .pipe(

@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent implements OnInit, OnDestroy {
-  selectedPerPage: number = 10;
+  selectedPerPage: number = 0;
   reposCount: number = 0;
   startPageNumber: number = 0;
   endPageNumber: number = 0;
@@ -21,13 +21,16 @@ export class PaginationComponent implements OnInit, OnDestroy {
     private apiService: ApiService,) {}
 
   ngOnInit(): void {
-    this.reposCountSubscription = this.apiService.getReposCount().subscribe((reposCount) => {
-      this.reposCount = reposCount;
-      this.startPageNumber = 1;
-      this.endPageNumber = this.reposCount % this.selectedPerPage === 0 ? Math.floor(this.reposCount / this.selectedPerPage) : Math.floor(this.reposCount / this.selectedPerPage) + 1;
-      this.currentPageNumber = 1; 
-    });
-    
+    if (this.selectedPerPage !== 0 && this.reposCount !== 0 &&
+      this.startPageNumber !== 0 && this.endPageNumber !== 0 &&
+      this.currentPageNumber !== 0 && this.apiService.getReposCount()) {
+        this.reposCountSubscription = this.apiService.getReposCount().subscribe((reposCount) => {
+          this.reposCount = reposCount;
+          this.startPageNumber = 1;
+          this.endPageNumber = this.reposCount % this.selectedPerPage === 0 ? Math.floor(this.reposCount / this.selectedPerPage) : Math.floor(this.reposCount / this.selectedPerPage) + 1;
+          this.currentPageNumber = 1; 
+        });
+      }
   }
 
   ngOnDestroy(): void {

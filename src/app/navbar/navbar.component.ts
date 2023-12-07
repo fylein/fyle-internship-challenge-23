@@ -1,5 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+// import { ApiService } from 'src/app/services/api.service';
+// import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'navbar',
@@ -7,13 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router
+    ) { }
 
+    @Output() username = new EventEmitter<string>();
   searchQuery: string = '';
-  @Output() username = new EventEmitter<string>();
 
   onSubmit() {
-    this.username.emit(this.searchQuery);
+    this.username.emit(this.searchQuery);    
     this.router.navigate(['/user', this.searchQuery], {
       queryParams: { page: 1, per_page: 10 },
     });
