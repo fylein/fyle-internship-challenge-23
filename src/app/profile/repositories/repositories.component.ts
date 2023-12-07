@@ -1,9 +1,8 @@
 import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { Subscription, of } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ApiService, GitHubUser, GitHubRepository } from 'src/app/services/api.service';
 import { PaginationService } from 'src/app/services/pagination-services.service';
-import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'repositories',

@@ -54,6 +54,7 @@ export class ProfileComponent implements OnInit, OnDestroy, OnChanges {
         this.loading = false;
       },
       (error) => {
+        console.log(error)
       })
     }
   };
