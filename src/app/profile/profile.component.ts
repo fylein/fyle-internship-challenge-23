@@ -45,7 +45,13 @@ export class ProfileComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   fetchUserData() {
+    if (!this.username) {
+      console.error('Username is undefined');
+      return;
+    }
+    
     this.loading = true;
+
     this.githubSubscription = this.apiService.getUser(this.username)
     .subscribe((data) => {
       this.apiService.setUserData(data);

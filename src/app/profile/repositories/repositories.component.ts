@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, of } from 'rxjs';
 import { ApiService, GitHubUser, GitHubRepository } from 'src/app/services/api.service';
 import { PaginationService } from 'src/app/services/pagination-services.service';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'repositories',
@@ -26,7 +27,6 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
     public_repos: 0
   };  
   reposData: GitHubRepository[] = [];
-  response: any;
   newCurrentPage: number = 0;
   githubSubscription!: Subscription;
   reposCountSubscription!: Subscription;
@@ -46,11 +46,7 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       this.reposPerPage = Number(params['per_page']);
       this.fetchRepos();
     });
-    this.reposCountSubscription = this.apiService.getReposCount().subscribe((reposCount) => {
-      this.reposCount = reposCount;
-      this.fetchRepos();
-    });
-    
+
     this.paginationPerPageSubscription = this.paginationService.getSelectedPerPage().subscribe((selectedPerPage) => {
       this.loadingPageChange = true;
       this.currentPage = 1;
@@ -72,7 +68,7 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
         queryParamsHandling: 'merge',
       });
       this.fetchRepos();
-    })
+    });
   }
 
   ngOnDestroy(): void {
@@ -110,22 +106,36 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       });
     }
 
-    // else if (((this.currentPage * this.reposPerPage) > this.reposCount) && ((((this.currentPage - 1) * this.reposPerPage) + 1) > this.reposCount)) {
-    //   this.currentPage = 1;
-    //   this.router.navigate([], {
-    //     relativeTo: this.route,
-    //     queryParams: { page: this.currentPage, per_page: this.reposPerPage },
-    //     queryParamsHandling: 'merge',
-    //   });
-    // }
+    if (this.username && this.currentPage && this.reposPerPage) {
+      this.loading = true;
+      this.githubSubscription = this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)
+        .pipe(
+          catchError(error => {
+            console.error('Error fetching repositories:', error);
+            this.loading = false;
+            this.loadingPageChange = false;
+            return of([]); // Return an empty array to prevent 'undefined'
+          })
+        )
+        .subscribe(
+          (data) => {
+            this.reposData = data;
+            this.fetchReposCount();
+            this.loading = false;
+            this.loadingPageChange = false;
+          },
+          (error) => {
+            console.error('Error fetching repositories:', error);
+            this.loading = false;
+            this.loadingPageChange = false;
+          }
+        );
+    }  
+  }
 
-      // console.log(this.currentPage, this.reposPerPage)
-    this.loading = true;
-    this.githubSubscription = this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)
-    .subscribe((data) => {
-      this.reposData = data;
-      this.loading = false;
-      this.loadingPageChange = false;
-    })
+  fetchReposCount(): void {
+    this.reposCountSubscription = this.apiService.getReposCount().subscribe((reposCount) => {
+      this.reposCount = reposCount;
+    });
   }
 }

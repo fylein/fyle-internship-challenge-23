@@ -25,22 +25,33 @@ export class BasicInfoComponent implements OnInit, OnDestroy, OnChanges {
 
   constructor(
     private route: ActivatedRoute,
-    private apiService: ApiService) {}
+    private apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.username = params['username'];
+      // Call subscribeToUserData here to ensure it's called during component initialization
+      this.subscribeToUserData();
     });
-    this.subscribeToUserData();
   }
 
   private subscribeToUserData(): void {
-    this.userSubscription = this.apiService.getUser(this.username)
-    .subscribe((data) => {
-      this.apiService.setUserData(data);
-      this.loading = false;
+    // Check if there's an existing subscription and unsubscribe to prevent memory leaks
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
+    if (this.userDataSubscription) {
+      this.userDataSubscription.unsubscribe();
+    }
 
-    })
+    // Subscribe to the API service
+    this.userSubscription = this.apiService.getUser(this.username)
+      .subscribe((data) => {
+        this.apiService.setUserData(data);
+        this.loading = false;
+      });
+
     this.userDataSubscription = this.apiService.getUserData().subscribe((userData) => {
       this.userData = userData;
     });
