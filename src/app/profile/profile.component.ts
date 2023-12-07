@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit, OnDestroy, OnChanges {
     //   return;
     // }
     
-    if (this.username && this.apiService.getUser(this.username)) {
+    if (this.username !== '' && this.apiService.getUser(this.username)) {
       this.loading = true;
   
       this.githubSubscription = this.apiService.getUser(this.username)
