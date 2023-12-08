@@ -21,17 +21,7 @@ export class PaginationComponent implements OnInit, OnDestroy {
     private apiService: ApiService,) {}
 
   ngOnInit(): void {
-    if (this.apiService.getReposCount()) {
-      this.reposCountSubscription = this.apiService.getReposCount().subscribe((reposCount) => {
-        this.reposCount = reposCount;
-        this.startPageNumber = 1;
-        this.endPageNumber = (this.reposCount % this.selectedPerPage === 0) ?
-        Math.floor(this.reposCount / this.selectedPerPage) :
-        Math.floor(this.reposCount / this.selectedPerPage) + 1;
-        this.currentPageNumber = 1; 
-      });
-    }
-    
+    this.fetchReposCount();    
   }
 
   ngOnDestroy(): void {
@@ -52,5 +42,18 @@ export class PaginationComponent implements OnInit, OnDestroy {
   onSelectPage(pageNumber: number): void {
     this.paginationService.setSelectedCurrentPage(pageNumber);
     this.currentPageNumber = pageNumber;
+  }
+
+  fetchReposCount(): void {
+    if (this.apiService.getReposCount()) {
+      this.reposCountSubscription = this.apiService.getReposCount().subscribe((reposCount) => {
+        this.reposCount = reposCount;
+        this.startPageNumber = 1;
+        this.endPageNumber = (this.reposCount % this.selectedPerPage === 0) ?
+        Math.floor(this.reposCount / this.selectedPerPage) :
+        Math.floor(this.reposCount / this.selectedPerPage) + 1;
+        this.currentPageNumber = 1; 
+      });
+    }
   }
 }
