@@ -1,6 +1,6 @@
-<div class="width-full flex justify-center items-center relative mb-16">
+<div class="width-full flex justify-center items-center relative mb-16 border-t-2 border-blue-200 pt-5">
     <div *ngIf="reposCount>1" aria-label="Pagination"
-        class="flex justify-center items-center text-black-600 mt-8 lg:mt-0">
+        class="flex justify-center items-center text-black-600 mt-8 lg:mt-4">
         <button title="prev-icon" (click)="onSelectPage(currentPageNumber - 1)" *ngIf="currentPageNumber>1"
             class="p-4 rounded hover:bg-blue-100">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
@@ -47,8 +47,8 @@
             </svg>
         </button>
     </div>
-    <div class="absolute right-0 top-0 w-1/6">
-        <label for="perPage" class="block text-gray-700 text-sm font-bold mb-2">Items Per Page:</label>
+    <div class="absolute right-0 top-20 flex items-center justify-center mt-8 lg:top-0 lg:mt-4">
+        <label for="perPage" class="block text-gray-700 text-sm font-bold mr-2 whitespace-nowrap">Items Per Page:</label>
         <select id="perPage" [(ngModel)]="selectedPerPage" (change)="onSelectedPerPageChange()" class="w-full p-2 border rounded-md">
             <option value="10">10</option>
             <option value="20">20</option>

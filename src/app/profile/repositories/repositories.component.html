@@ -5,7 +5,7 @@
     <h1 class="m-6 font-semibold text-2xl">Repositories</h1>
     <div class="justify-around grid grid-cols-1 md:grid-cols-2" *ngIf="!loading && !loadingPageChange">
         <div class="m-6" *ngFor="let repoData of reposData">
-            <card url={{repoData.url}} name={{repoData.name}}
+            <card url={{repoData.html_url}} name={{repoData.name}}
                 desc={{repoData.description}} topics={{repoData.topics}}></card>
         </div>
     </div>

@@ -17,7 +17,7 @@ export interface GitHubRepository {
   name: string;
   description: string;
   topics: string[];
-  url: string;
+  html_url: string;
 }
 
 @Injectable({
@@ -26,7 +26,6 @@ export interface GitHubRepository {
 export class ApiService {
   private userData: Subject<GitHubUser> = new Subject<GitHubUser>();
   private reposCount: Subject<number> = new Subject<number>();
-  // private username: Subject<string> = new Subject<string>();
 
   constructor(
     private httpClient: HttpClient

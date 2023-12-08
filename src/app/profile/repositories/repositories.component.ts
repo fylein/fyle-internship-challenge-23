@@ -112,7 +112,10 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       });
     }
 
-    if (this.username !== '' && this.currentPage !== 0 && this.reposPerPage !== 0 && this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)) {
+    if (this.username !== '' &&
+    this.currentPage !== 0 &&
+    this.reposPerPage !== 0 &&
+    this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)) {
       this.loading = true;
       this.githubSubscription = this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)
         .subscribe(
