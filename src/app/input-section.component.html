@@ -1,0 +1,16 @@
+<div class="container mx-auto pt-20">
+  <div class="flex flex-col items-center space-y-4">
+    <input
+      class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-500 shadow-sm w-72 text-center"
+      type="text"
+      placeholder="Enter GitHub Username"
+      [(ngModel)]="username"
+    />
+    <button
+      class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-2 rounded-md focus:outline-none focus:ring focus:border-blue-500 shadow-md"
+      (click)="getRepositories()"
+    >
+      Get Repositories
+    </button>
+  </div>
+</div>
