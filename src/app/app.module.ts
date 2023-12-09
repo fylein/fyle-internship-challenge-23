@@ -34,7 +34,7 @@ import { GlobalErrorHandler } from './errorhandler.service';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    BrowserAnimationsModule, // required animations module
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
   providers: [{ provide: ErrorHandler, useClass: GlobalErrorHandler }],
