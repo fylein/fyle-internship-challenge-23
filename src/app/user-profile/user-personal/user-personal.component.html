@@ -1,0 +1,46 @@
+<div *ngIf="!dataLoading"
+    class="rounded-xl w-full flex flex-col justify-around items-center md:flex-row md:items-start md:pl-10 md:pr-10">
+    <div class=" flex-col justify-center text-center w-fit flex-none pb-5">
+        <img width="150px" height="150px" src="{{userPersonalData.avatar_url}}" alt=""
+            class="rounded-full m-5 border-4 border-gray-100">
+        <div *ngIf="userPersonalData.login">
+            <span class="font-semibold">Github: </span> <a
+                href="https://github.com/{{userPersonalData.login}}"
+                ><span>https://github.com/</span>{{userPersonalData.login}}</a>
+        </div>
+    </div>
+    <div class=" flex-col w-10/12 p-5 top-0">
+        <div class="mb-4" class="font-semibold mb-5 text-3xl">{{userPersonalData.name}}</div>
+        <div class="mb-4">{{userPersonalData.bio}}</div>
+       
+         <div  class="font-semibold" *ngIf="userPersonalData.twitter_username">
+            <span class="font-semibold">Twitter: </span> <a
+                href="https://www.twitter.com/{{userPersonalData.twitter_username}}"
+                >https://www.twitter.com/{{userPersonalData.twitter_username}}</a>
+        </div>
+    </div>
+</div>
+<div *ngIf="dataLoading"
+    class="shadow-[inset_-12px_-8px_40px_#46464620] animate-pulse rounded-xl w-full flex flex-col justify-around items-center md:flex-row md:items-start md:pl-5 md:pr-10">
+    <div class=" flex-col justify-center text-center w-fit flex-none pb-5">
+        <div class="flex justify-center items-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-500">
+            <svg class="w-12 h-12 text-gray-200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+                fill="currentColor" viewBox="0 0 640 512">
+                <path
+                    d="M480 80C480 35.82 515.8 0 560 0C604.2 0 640 35.82 640 80C640 124.2 604.2 160 560 160C515.8 160 480 124.2 480 80zM0 456.1C0 445.6 2.964 435.3 8.551 426.4L225.3 81.01C231.9 70.42 243.5 64 256 64C268.5 64 280.1 70.42 286.8 81.01L412.7 281.7L460.9 202.7C464.1 196.1 472.2 192 480 192C487.8 192 495 196.1 499.1 202.7L631.1 419.1C636.9 428.6 640 439.7 640 450.9C640 484.6 612.6 512 578.9 512H55.91C25.03 512 .0006 486.1 .0006 456.1L0 456.1z">
+                </path>
+            </svg>
+        </div>
+        <div class="ml-4">
+            <div class="items-center mt-2 h-2 bg-gray-200 rounded-full dark:bg-gray-500 max-w-[360px]"></div>
+            <div class="items-center mt-2 h-2 bg-gray-200 rounded-full dark:bg-gray-500 max-w-[360px]"></div>
+        </div>
+    </div>
+    <div class=" flex-col w-10/12 p-5 top-0">
+        <div class="h-4.5 bg-gray-200 rounded-full dark:bg-gray-500 w-48 mb-4"></div>
+        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-500 max-w-[480px] mb-2.5"></div>
+        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-500 mb-2.5"></div>
+        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-500 mb-2.5"></div>
+        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-500 mb-2.5"></div>
+    </div>
+</div>

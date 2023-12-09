@@ -1,0 +1,13 @@
+<div class="bg-gray-50 h-full flex flex-col justify-between">
+    <app-navbar [showSearch]="true" (typedUsername)="setUsername($event)"></app-navbar>
+
+    <div class="mt-1">
+        <app-user-personal [dataLoading]="!dataLoaded" [userPersonalData]="userPersonalData"></app-user-personal>
+    </div>
+
+    <div class="mt-5">
+        <app-user-repositories [totalRepositories]="totalRepositories"
+            [githubUsername]="githubUsername"></app-user-repositories>
+    </div>
+
+</div>

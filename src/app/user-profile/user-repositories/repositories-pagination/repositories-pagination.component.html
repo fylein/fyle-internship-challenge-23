@@ -1,0 +1,66 @@
+<div class="p-4 flex flex-col lg:flex-row justify-between mt-10 mb-5 mx-5">
+    <div class="flex flex-col lg:flex-row items-center space-x-2 text-l">
+        <form (ngSubmit)="setPerPage()" class="w-full md:w-1/2 mb-6 md:mb-0">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-semibold  mb-2"
+                for="grid-first-name">
+                repositories per page
+            </label>
+            <input [(ngModel)]="reposPerPage" name="inputPerPage"
+                class="appearance-none block w-6/12 p-1 bg-gray-200 text-gray-700 border border-red-500 rounded px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                id="grid-first-name" type="number" min=1 placeholder="10" value={{reposPerPage}}>
+        </form>
+        <p *ngIf="totalPages>0" class="text-gray-500 mt-4 lg:mt-0">Showing {{entryStart}} to {{entryEnd}} of
+            {{totalRepositories}} entires
+        </p>
+        <p *ngIf="totalPages==0" class="text-gray-500 mt-4 lg:mt-0">No repositories to explore.
+        </p>
+    </div>
+    <nav *ngIf="totalPages>0" aria-label="Pagination"
+        class="flex justify-center items-center text-gray-600 mt-8 lg:mt-0">
+        <button title="prev-icon" (click)="selectRepoPage(previousPageNumber)" *ngIf="reposCurrentPage>1"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <button (click)="selectRepoPage(1)" *ngIf="previousPreviousPageNumber===1"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            {{1}}
+        </button>
+        <button (click)="selectRepoPage(1)" *ngIf="previousPreviousPageNumber>1"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            {{1}}
+        </button>
+        <button *ngIf="previousPreviousPageNumber>1" class="px-4 py-2 rounded hover:bg-gray-100">
+            ...
+        </button>
+        <button (click)="selectRepoPage(1)" *ngIf="reposCurrentPage>1" class="px-4 py-2 rounded hover:bg-gray-100">
+            {{previousPageNumber}}
+        </button>
+        <button *ngIf="totalPages>0" class="px-4 py-2 rounded bg-gray-200 text-gray-900 font-medium hover:bg-gray-100">
+            {{reposCurrentPage}} </button>
+        <button (click)="selectRepoPage(nextPageNumber)" *ngIf="reposCurrentPage<totalPages"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            {{nextPageNumber}}
+        </button>
+        <button *ngIf="nextNextPageNumber<totalPages" class="px-4 py-2 rounded hover:bg-gray-100">
+            ...
+        </button>
+        <button (click)="selectRepoPage(totalPages)" *ngIf="nextNextPageNumber<totalPages"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            {{totalPages}}
+        </button>
+        <button (click)="selectRepoPage(nextNextPageNumber)" *ngIf="nextNextPageNumber===totalPages"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            {{nextNextPageNumber}}
+        </button>
+        <button title="next-icon" (click)="selectRepoPage(nextPageNumber)" *ngIf="reposCurrentPage<totalPages"
+            class="px-4 py-2 rounded hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+    </nav>
+</div>
