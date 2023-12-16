@@ -32,25 +32,23 @@ export class ApiService {
     private httpClient: HttpClient
   ) { }
 
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      'Authorization': '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'
-    });
-  }
+  // private getHeaders(): HttpHeaders {
+  //   return new HttpHeaders({
+  //     'Authorization': ''
+  //   });
+  // }
 
   getUser(githubUsername: string): Observable<GitHubUser> {
-    const headers = this.getHeaders();
+    // const headers = this.getHeaders();
     return this.httpClient.get<GitHubUser>(
-      `https://api.github.com/users/${githubUsername}`,
-      { headers }
+      `https://api.github.com/users/${githubUsername}`
     );
   }
 
   getRepos(username: string, currentPage: number, reposPerPage: number): Observable<GitHubRepository[]> {
-    const headers = this.getHeaders();
+    // const headers = this.getHeaders();
     return this.httpClient.get<GitHubRepository[]>(
-      `https://api.github.com/users/${username}/repos?page=${currentPage}&per_page=${reposPerPage}`,
-      { headers }
+      `https://api.github.com/users/${username}/repos?page=${currentPage}&per_page=${reposPerPage}`
     );
   }
 
