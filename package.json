@@ -4,9 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --sourceMap=false --base-href /fyle-internship-challenge-23/",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox",
+    "test": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox --source-map true",
     "lint": "ng lint"
   },
   "private": true,
