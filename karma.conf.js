@@ -21,11 +21,11 @@ module.exports = function (config) {
       colors: true,
       logLevel: config.LOG_INFO,
       autoWatch: true,
-      browsers: ['ChromiumHeadless'],
+      browsers: ['ChromeHeadlessNoSandbox'],
       customLaunchers: {
-        ChromiumHeadless: {
-          base: 'Chromium',
-          flags: ['--headless', '--disable-gpu', '--no-sandbox', '--disable-software-rasterizer'],
+        ChromeHeadlessNoSandbox: {
+          base: 'ChromeHeadless',
+          flags: ['--no-sandbox'],
         },
       },
       singleRun: false,
