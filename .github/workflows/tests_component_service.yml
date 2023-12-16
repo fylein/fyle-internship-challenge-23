@@ -1,0 +1,32 @@
+name: Unit Tests on Component and Service
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  unit-tests-component-service:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run tests with code coverage
+        run: |
+          npm run test --include src/app/services/api.service.ts --include src/app/home/home.component.spec.ts --code-coverage
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: ./coverage
