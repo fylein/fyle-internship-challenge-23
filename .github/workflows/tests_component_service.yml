@@ -21,23 +21,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build
-
       - name: Run tests with code coverage
         run: |
           npm run test --include src/app/services/api.service.ts --include src/app/home/home.component.spec.ts --code-coverage
-
-      - name: Archive build
-        if: success()
-        uses: actions/upload-artifact@v1
-        with:
-          name: deploy_dist
-          path: dist
-
-      - name: Archive code coverage result
-        if: success()
-        uses: actions/upload-artifact@v1
-        with:
-          name: deploy_coverage
-          path: coverage
