@@ -15,18 +15,29 @@ export class PaginationComponent implements OnInit, OnDestroy {
   endPageNumber: number = 0;
   currentPageNumber: number = 0;
   reposCountSubscription!: Subscription;
+  error404Subscription!: Subscription;
+  error404: boolean = false;
 
   constructor(
     private paginationService: PaginationService,
     private apiService: ApiService,) {}
 
   ngOnInit(): void {
-    this.fetchReposCount();    
+    this.fetchReposCount();
+    if (this.apiService.getError404Status()) {
+      this.error404Subscription = this.apiService.getError404Status().subscribe((error404) => {
+        console.log(this.error404)
+        this.error404 = error404;
+      });
+    }
   }
 
   ngOnDestroy(): void {
     if (this.reposCountSubscription) {
       this.reposCountSubscription.unsubscribe();
+    }
+    if (this.error404Subscription) {
+      this.error404Subscription.unsubscribe();
     }
   }
 

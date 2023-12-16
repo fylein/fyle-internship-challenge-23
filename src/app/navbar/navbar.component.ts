@@ -13,9 +13,25 @@ export class NavbarComponent {
 
     @Output() username = new EventEmitter<string>();
   searchQuery: string = '';
+  isInputError: boolean = false;
+  inputErrorMessage: string = '';
 
-  onSubmit() {
-    this.username.emit(this.searchQuery);    
+  onSubmit(event: Event) {
+    if (this.searchQuery.trim() === '') {
+      this.isInputError = true;
+      this.inputErrorMessage = 'Username cannot be empty.';
+      return;
+    }
+
+    if (this.searchQuery.trim().includes(' ')) {
+      this.isInputError = true;
+      this.inputErrorMessage = 'Username contains space.';
+      return;
+    }
+
+    this.isInputError = false;
+    this.inputErrorMessage = '';
+    this.username.emit(this.searchQuery);
     this.router.navigate(['/user', this.searchQuery], {
       queryParams: { page: 1, per_page: 10 },
     });

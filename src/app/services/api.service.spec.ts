@@ -50,7 +50,7 @@ describe('ApiService', () => {
     const currentPage = 1;
     const reposPerPage = 10;
     const mockRepos: GitHubRepository[] = [
-      { id: 1, name: 'Repo1', description: 'Description1', topics: ['Topic1'], url: 'Repo1Url' },
+      { id: 1, name: 'Repo1', description: 'Description1', topics: ['Topic1'], html_url: 'Repo1Url' },
     ];
 
     service.getRepos(username, currentPage, reposPerPage).subscribe((repos) => {
@@ -101,5 +101,21 @@ describe('ApiService', () => {
     });
   
     service.setUserData(mockUser);
+  });
+
+  it('should get error404 status with default', () => {
+    service.getError404Status().subscribe((status) => {
+      expect(status).toEqual(false);
+    });
+  });
+  
+  it('should set and get error404 status', () => {
+    const mockStatus = true;
+  
+    service.setError404Status(mockStatus);
+  
+    service.getError404Status().subscribe((status) => {
+      expect(status).toEqual(mockStatus);
+    });
   });
 });

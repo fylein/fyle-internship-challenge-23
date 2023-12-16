@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges, Output, EventEmitter  } from '@angular/core';
 import { ApiService, GitHubUser } from 'src/app/services/api.service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class BasicInfoComponent implements OnInit, OnDestroy, OnChanges {
   @Input() username: string = '';
   @Input() loading: boolean = true;
+
   userData: GitHubUser = {
     name: '',
     bio: '',
@@ -22,17 +23,23 @@ export class BasicInfoComponent implements OnInit, OnDestroy, OnChanges {
   };  
   userSubscription!: Subscription;
   userDataSubscription!: Subscription;
+  initialized: boolean = true;
+  error404: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.username = params['username'];
-      this.subscribeToUserData();
+      if (this.initialized) {
+        this.subscribeToUserData();
+      }
     });
+    this.initialized = false;
   }
 
   private subscribeToUserData(): void {
@@ -42,12 +49,21 @@ export class BasicInfoComponent implements OnInit, OnDestroy, OnChanges {
     if (this.userDataSubscription) {
       this.userDataSubscription.unsubscribe();
     }
-
+    this.loading = true;
     this.userSubscription = this.apiService.getUser(this.username)
       .subscribe((data) => {
+        this.apiService.setError404Status(false);
+        this.error404 = false;
         this.apiService.setUserData(data);
         this.loading = false;
-      });
+      },
+      (error) => {
+        console.log(error)
+        this.loading = false;
+        this.apiService.setError404Status(true);
+        this.error404 = true;
+      }
+    );
 
     this.userDataSubscription = this.apiService.getUserData().subscribe((userData) => {
       this.userData = userData;

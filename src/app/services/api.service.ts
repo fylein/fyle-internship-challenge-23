@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 export interface GitHubUser {
   name: string;
@@ -26,18 +26,31 @@ export interface GitHubRepository {
 export class ApiService {
   private userData: Subject<GitHubUser> = new Subject<GitHubUser>();
   private reposCount: Subject<number> = new Subject<number>();
+  private error404Subject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private httpClient: HttpClient
   ) { }
 
+  private getHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Authorization': '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'
+    });
+  }
+
   getUser(githubUsername: string): Observable<GitHubUser> {
-    return this.httpClient.get<GitHubUser>(`https://api.github.com/users/${githubUsername}`);
+    const headers = this.getHeaders();
+    return this.httpClient.get<GitHubUser>(
+      `https://api.github.com/users/${githubUsername}`,
+      { headers }
+    );
   }
 
   getRepos(username: string, currentPage: number, reposPerPage: number): Observable<GitHubRepository[]> {
+    const headers = this.getHeaders();
     return this.httpClient.get<GitHubRepository[]>(
-      `https://api.github.com/users/${username}/repos?page=${currentPage}&per_page=${reposPerPage}`
+      `https://api.github.com/users/${username}/repos?page=${currentPage}&per_page=${reposPerPage}`,
+      { headers }
     );
   }
 
@@ -52,5 +65,13 @@ export class ApiService {
 
   getReposCount(): Observable<number> {
     return this.reposCount.asObservable();
+  }
+
+  getError404Status(): Observable<boolean> {
+    return this.error404Subject.asObservable();
+  }
+
+  setError404Status(status: boolean): void {
+    this.error404Subject.next(status);
   }
 }

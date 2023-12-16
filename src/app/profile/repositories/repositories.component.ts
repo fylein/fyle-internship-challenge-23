@@ -31,6 +31,8 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
   reposCountSubscription!: Subscription;
   paginationPerPageSubscription!: Subscription;
   paginationCurrentPageSubscription!: Subscription;
+  error404Subscription!: Subscription;
+  error404: boolean = false;
 
   constructor(
     private router: Router,
@@ -43,6 +45,7 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
     this.route.queryParams.subscribe((params: Params) => {
       this.currentPage = Number(params['page']);
       this.reposPerPage = Number(params['per_page']);
+      console.log("params")
       this.fetchRepos();
     });
 
@@ -57,7 +60,6 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
         queryParams: { page: 1, per_page: this.reposPerPage },
         queryParamsHandling: 'merge',
       });
-      this.fetchRepos();
     });
 
     this.paginationCurrentPageSubscription = this.paginationService
@@ -70,7 +72,13 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
         queryParams: { page: this.currentPage, per_page: this.reposPerPage},
         queryParamsHandling: 'merge',
       });
-      this.fetchRepos();
+    });
+
+    this.error404Subscription = this.apiService
+    .getError404Status()
+    .subscribe((error404) => {
+      this.error404 = error404;
+      console.log(this.error404)
     });
   }
 
@@ -87,6 +95,9 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
     if (this.reposCountSubscription) {
       this.reposCountSubscription.unsubscribe();
     }
+    if (this.error404Subscription) {
+      this.error404Subscription.unsubscribe();
+    }
   }
   
   ngOnChanges(changes: SimpleChanges): void {
@@ -97,8 +108,9 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       this.fetchRepos();
     }
   }
-
+  
   fetchRepos(): void {
+    console.log("changed")
     if (!this.currentPage || 
       !this.reposPerPage || 
       this.currentPage <= 0 ||
@@ -120,6 +132,7 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
       this.githubSubscription = this.apiService.getRepos(this.username, this.currentPage, this.reposPerPage)
         .subscribe(
           (data) => {
+
             this.reposData = data;
             this.fetchReposCount();
             this.loading = false;
@@ -131,7 +144,7 @@ export class RepositoriesComponent implements OnInit, OnDestroy, OnChanges {
             this.loadingPageChange = false;
           }
         );
-    }  
+    }
   }
 
   fetchReposCount(): void {
