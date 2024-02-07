@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fyle-frontend-challenge",
+            "outputPath": "dist/fyle-frontend-challenge/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -97,6 +97,61 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/fyle-frontend-challenge/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "fyle-frontend-challenge:build:development",
+              "serverTarget": "fyle-frontend-challenge:server:development"
+            },
+            "production": {
+              "browserTarget": "fyle-frontend-challenge:build:production",
+              "serverTarget": "fyle-frontend-challenge:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "fyle-frontend-challenge:build:production",
+              "serverTarget": "fyle-frontend-challenge:server:production"
+            },
+            "development": {
+              "browserTarget": "fyle-frontend-challenge:build:development",
+              "serverTarget": "fyle-frontend-challenge:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
