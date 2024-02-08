@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class SearchUserComponent {
   public username: string = '';
+  public get(username: string) {
+    console.log(username);
+  }
 }

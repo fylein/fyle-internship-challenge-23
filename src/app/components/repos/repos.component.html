@@ -1,6 +1,27 @@
-<div class="w-4/5 grid grid-cols-5">
+<div *ngIf="!isSm; else smContent" class="w-full grid grid-cols-10 gap-10">
   <!-- <div class="border-3 col-start-2">A</div> -->
   <ng-container *ngFor="let char of grids; let i = index">
-    <div [ngClass]="{ 'border-3 col-start-2': i % 4 == 0 }">{{ char }}</div>
+    <div
+      [ngClass]="{ 'col-start-2': i % 2 == 0 }"
+      class="border-4 col-span-4 border-violet-500 text-center"
+    >
+      <div>{{ i }}</div>
+      <div>{{ char }}</div>
+      <div>{{ char }}</div>
+      <div>{{ char }}</div>
+      <div>{{ char }}</div>
+    </div>
   </ng-container>
 </div>
+<ng-template #smContent>
+  <div class="w-full grid grid-cols-12 gap-4">
+    <ng-container *ngFor="let char of grids">
+      <div
+        class="col-start-2 col-end-12 border-2 border-violet-500 text-center"
+      >
+        {{ char }}
+        <div>{{ char }}</div>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>
