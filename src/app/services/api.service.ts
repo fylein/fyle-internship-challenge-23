@@ -1,19 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, throwError } from 'rxjs';
+import { tap, throwError, from } from 'rxjs';
+import { Octokit } from 'octokit';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-
-  constructor(
-    private httpClient: HttpClient
-  ) { }
-
-  getUser(githubUsername: string) {
-    return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
+  private octokit: Octokit;
+  constructor() {
+    const token = environment.token;
+    this.octokit = new Octokit({
+      auth: token,
+    });
   }
 
-  // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
+  getUserEvents(githubUsername: string) {
+    return from(
+      this.octokit.request(`GET /users/${githubUsername}/events`, {
+        username: githubUsername,
+        headers: {
+          'X-GitHub-Api-Version': '2022-11-28',
+        },
+      })
+    ).pipe(tap((data) => console.log(data)));
+  }
+
+  getUserBio(githubUsername: string) {
+    return from(this.octokit.request(`GET /users/${githubUsername}`)).pipe(
+      tap((data) => console.log(data))
+    );
+  }
+
+  // implement getRepos method by referring to the documentation. Add proper types for the return type and params
 }
