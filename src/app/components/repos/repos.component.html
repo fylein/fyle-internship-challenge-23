@@ -1,0 +1,6 @@
+<div class="w-4/5 grid grid-cols-5">
+  <!-- <div class="border-3 col-start-2">A</div> -->
+  <ng-container *ngFor="let char of grids; let i = index">
+    <div [ngClass]="{ 'border-3 col-start-2': i % 4 == 0 }">{{ char }}</div>
+  </ng-container>
+</div>
