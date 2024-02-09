@@ -1,0 +1,23 @@
+<body class="bg-gray-200 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <h1 class="text-2xl font-bold mb-4">Search GitHub User</h1>
+      <form (ngSubmit)="onSubmit($event)" class="flex">
+        <input 
+          type="text" 
+          class="p-2 border rounded-l-md focus:outline-none focus:border-cyan-700" 
+          placeholder="GitHub Username"
+          name="username" 
+          [(ngModel)]="searchQuery"
+        >
+        <button 
+          (click)="onSubmit($event)" 
+          type="submit"
+          class="bg-cyan-700 text-white p-2 rounded-r-md hover:bg-cyan-600 focus:outline-none focus:shadow-outline-cyan"
+        >
+          Go
+        </button>
+      </form>
+      <div *ngIf="isInputError" class="text-red-500 mt-2">{{inputErrorMessage}}</div>
+    </div>
+  </body>
+  
