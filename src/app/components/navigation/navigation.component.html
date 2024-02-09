@@ -1,15 +1,34 @@
-<div class="w-full flex flex-row justify-center gap-3">
-  <button>Prev</button>
-  <button>Next</button>
-</div>
-<div class="w-1/6 ml-auto flex flex-row justify-around gap-2">
-  <label class="">Showing</label>
+<div class="w-fit ml-auto flex flex-row justify-around align-base gap-2 pr-5">
+  <div>Showing</div>
   <select
-    class="bg-white border rounded shadow-lg mb-1 text-gray-800 hover:bg-blue-500 hover:text-white"
+    class="bg-white border rounded shadow-lg text-gray-800 hover:bg-blue-500 hover:text-white"
   >
-    <option>10 per page</option>
-    <option>25 per page</option>
-    <option>50 per page</option>
-    <option>100 per page</option>
+    <option>10</option>
+    <option>25</option>
+    <option>50</option>
+    <option>100</option>
   </select>
+  <div>per page</div>
+</div>
+<div class="w-full flex flex-row justify-center gap-3 mb-3 text-xs">
+  <button
+    class="border-2 rounded-sm border-blue-200 p-2 focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600"
+  >
+    First
+  </button>
+  <button
+    class="border-2 rounded-sm border-blue-200 p-2 focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600"
+  >
+    Prev
+  </button>
+  <button
+    class="border-2 rounded-sm border-blue-200 p-2 focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600"
+  >
+    Next
+  </button>
+  <button
+    class="border-2 rounded-sm border-blue-200 p-2 focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600"
+  >
+    Last
+  </button>
 </div>

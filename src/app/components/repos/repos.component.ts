@@ -1,4 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { userReposType } from 'src/app/store/state';
+import { getUserRepos } from 'src/app/store/selectors';
 
 @Component({
   selector: 'app-repos',
@@ -6,7 +10,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./repos.component.scss'],
 })
 export class ReposComponent implements OnInit {
-  public grids: string[] = 'netwothree'.split('');
+  constructor(private store: Store) {}
+  public repos!: userReposType[];
   public isSm: boolean = false;
 
   @HostListener('window:resize', ['$evt'])
@@ -19,5 +24,6 @@ export class ReposComponent implements OnInit {
   }
   ngOnInit() {
     this.checkScreenSize();
+    this.store.select(getUserRepos).subscribe((data) => (this.repos = data));
   }
 }

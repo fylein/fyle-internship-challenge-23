@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, throwError, from } from 'rxjs';
+import { tap, throwError, from, of } from 'rxjs';
 import { Octokit } from 'octokit';
 import { environment } from 'src/environments/environment';
 
@@ -24,13 +24,18 @@ export class ApiService {
           'X-GitHub-Api-Version': '2022-11-28',
         },
       })
-    ).pipe(tap((data) => console.log(data)));
+    );
   }
 
   getUserBio(githubUsername: string) {
-    return from(this.octokit.request(`GET /users/${githubUsername}`)).pipe(
-      tap((data) => console.log(data))
-    );
+    return from(this.octokit.request(`GET /users/${githubUsername}`));
+  }
+  getUserRepos(githubUserName: string) {
+    return from(
+      this.octokit.request(`GET /users/${githubUserName}/repos`, {
+        per_page: 10,
+      })
+    ).pipe(tap((data) => console.log(data)));
   }
 
   // implement getRepos method by referring to the documentation. Add proper types for the return type and params

@@ -1,23 +1,22 @@
 <div *ngIf="!isSm; else smContent" class="w-full grid grid-cols-10 gap-10">
   <!-- <div class="border-3 col-start-2">A</div> -->
-  <ng-container *ngFor="let char of grids; let i = index">
+  <ng-container *ngFor="let repo of repos; let i = index">
     <div
       [ngClass]="{ 'col-start-2': i % 2 == 0 }"
-      class="border-4 col-span-4 border-violet-500 text-center"
+      class="border-l-2 border-b-2 col-span-4 border-violet-500 text-left p-2"
     >
-      <div>{{ i }}</div>
-      <div>{{ char }}</div>
-      <div>{{ char }}</div>
-      <div>{{ char }}</div>
-      <div>{{ char }}</div>
+      <div class="text-xl font-bold">{{ repo.name }}</div>
+      <div class="text-sm">{{ repo.description }}</div>
+      <div>{{ repo.topics }}</div>
+      <div>{{ repo.html_url }}</div>
     </div>
   </ng-container>
 </div>
 <ng-template #smContent>
   <div class="w-full grid grid-cols-12 gap-4">
-    <ng-container *ngFor="let char of grids">
+    <ng-container *ngFor="let char of repos">
       <div
-        class="col-start-2 col-end-12 border-2 border-violet-500 text-center"
+        class="col-start-2 col-end-12 border-t-2 border-violet-500 text-center"
       >
         {{ char }}
         <div>{{ char }}</div>

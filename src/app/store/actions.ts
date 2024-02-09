@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { githubData, userReposType, userType } from './state';
 
-export const getUserData = createAction(
+export const fetchUserData = createAction(
   '[GitHub State] Request',
   props<{ username: string }>()
 );

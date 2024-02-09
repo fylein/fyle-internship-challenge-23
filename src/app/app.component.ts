@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './services/api.service';
+import { fetchUserData } from './store/actions';
+import { Store } from '@ngrx/store';
+import { selectState } from './store/selectors';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +10,12 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private store: Store) {}
+  public responseLength!: number;
 
   ngOnInit() {
-    // this.apiService.getUserBio('DeeTomPanda').subscribe(res=>console.log(res));
+    this.store
+      .select(selectState)
+      .subscribe((data) => (this.responseLength = data.repos.length));
   }
 }

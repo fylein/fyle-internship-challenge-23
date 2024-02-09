@@ -1,5 +1,8 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    <app-search-user />
-  </div>
+<div class="w-full mt-5 md:mt-10 flex flex-col gap-6 text-sm md:text-base">
+  <app-search-user />
+  <ng-container *ngIf="responseLength > 0">
+    <app-user-bio />
+    <app-repos />
+    <app-navigation />
+  </ng-container>
 </div>

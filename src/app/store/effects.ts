@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getUserData, setUserData } from './actions';
+import { fetchUserData, setUserData } from './actions';
 import { ApiService } from '../services/api.service';
 import { switchMap, map, exhaustMap, of, forkJoin } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
@@ -11,7 +11,7 @@ export class Effects {
   constructor(private action$: Actions, private apiService: ApiService) {}
   loadData$ = createEffect(() =>
     this.action$.pipe(
-      ofType(getUserData),
+      ofType(fetchUserData),
       switchMap((action) =>
         forkJoin([
           this.apiService.getUserBio(action.username),

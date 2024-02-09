@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { fetchUserData } from 'src/app/store/actions';
 
 @Component({
   selector: 'app-search-user',
@@ -6,8 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-user.component.scss'],
 })
 export class SearchUserComponent {
+  constructor(private store: Store) {}
   public username: string = '';
   public get(username: string) {
-    console.log(username);
+    this.store.dispatch(fetchUserData({ username }));
   }
 }
