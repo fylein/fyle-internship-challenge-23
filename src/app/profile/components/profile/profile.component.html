@@ -1,0 +1,12 @@
+<navbar></navbar>
+<div>
+    <basic-info-component [username]="username" [loading]="loading"></basic-info-component>
+</div>
+<div class="mt-6">
+    <repositories-component
+        [username]="username"
+        [loading]="loading"></repositories-component>
+</div>
+<div class="m-6">
+    <pagination-component></pagination-component>
+</div>
