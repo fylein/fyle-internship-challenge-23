@@ -8,5 +8,12 @@ export const appReducer = createReducer(
     console.log(username);
     return { ...AppState };
   }),
-  on(setUserData, (state, { data }) => ({ ...state, ...data }))
+  on(setUserData, (state, { userData, reposData }) => {
+    console.log(userData, reposData);
+    return {
+      ...state,
+      users: userData,
+      repos: [...reposData],
+    };
+  })
 );

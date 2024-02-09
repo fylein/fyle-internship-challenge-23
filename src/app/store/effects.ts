@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { getUserData, setUserData } from './actions';
 import { ApiService } from '../services/api.service';
-import { mergeMap, map, exhaustMap, of } from 'rxjs';
+import { switchMap, map, exhaustMap, of, forkJoin } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AppState, githubData } from './state';
 import { catchError } from 'rxjs';
@@ -12,14 +12,22 @@ export class Effects {
   loadData$ = createEffect(() =>
     this.action$.pipe(
       ofType(getUserData),
-      exhaustMap((action) =>
-        this.apiService.getUserBio(action.username).pipe(
-          map((response) => {
-            console.log(response);
-            const githubData = response.data as githubData;
-            return setUserData({ data: githubData });
+      switchMap((action) =>
+        forkJoin([
+          this.apiService.getUserBio(action.username),
+          this.apiService.getUserRepos(action.username),
+        ]).pipe(
+          map(([userDataRes, reposDataRes]) => {
+            console.log((userDataRes.data, reposDataRes.data));
+
+            return setUserData({
+              userData: userDataRes.data,
+              reposData: reposDataRes.data,
+            });
+          }),
+          catchError((error) => {
+            throw error;
           })
-          //   catchError((error) => of(setUserDataFailure({ error })))
         )
       )
     )
