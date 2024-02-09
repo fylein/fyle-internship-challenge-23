@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox --source-map true",
-    "test-coverage": "ng test --watch=false --include src/app/services/api.service.spec.ts --include src/app/search/components/search-component.component.spec.ts --code-coverage"
+    "test-coverage": "ng test --watch=false --browsers=ChromeHeadlessNoSandbox --include src/app/services/api.service.spec.ts --include src/app/search/components/search-component.component.spec.ts --code-coverage"
   },
   "private": true,
   "dependencies": {
