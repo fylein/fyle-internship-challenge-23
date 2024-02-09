@@ -32,45 +32,43 @@ export class ApiService {
     private httpClient: HttpClient
   ) { }
 
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      'Authorization': ''
-    });
-  }
-
-  getUser(githubUsername: string): Observable<GitHubUser> {
-    const headers = this.getHeaders();
-    return this.httpClient.get<GitHubUser>(
-      `https://api.github.com/users/${githubUsername}`,
-      {
-        headers: headers
-      }
-    );
-  }
-
-  getRepos(username: string, currentPage: number, reposPerPage: number): Observable<GitHubRepository[]> {
-    const headers = this.getHeaders();
-    return this.httpClient.get<GitHubRepository[]>(
-      `https://api.github.com/users/${username}/repos?page=${currentPage}&per_page=${reposPerPage}`,
-      {
-        headers: headers
-      }
-    );
-  }
+  // private getHeaders(): HttpHeaders {
+  //   return new HttpHeaders({
+  //     'Authorization': ''
+  //   });
+  // }
 
   // getUser(githubUsername: string): Observable<GitHubUser> {
-  //   // const headers = this.getHeaders();
+  //   const headers = this.getHeaders();
   //   return this.httpClient.get<GitHubUser>(
-  //     `https://api.github.com/users/${githubUsername}`
+  //     `https://api.github.com/users/${githubUsername}`,
+  //     {
+  //       headers: headers
+  //     }
   //   );
   // }
 
   // getRepos(username: string, currentPage: number, reposPerPage: number): Observable<GitHubRepository[]> {
-  //   // const headers = this.getHeaders();
+  //   const headers = this.getHeaders();
   //   return this.httpClient.get<GitHubRepository[]>(
-  //     `https://api.github.com/users/${username}/repos?page=${currentPage}&per_page=${reposPerPage}`
+  //     `https://api.github.com/users/${username}/repos?page=${currentPage}&per_page=${reposPerPage}`,
+  //     {
+  //       headers: headers
+  //     }
   //   );
   // }
+
+  getUser(githubUsername: string): Observable<GitHubUser> {
+    return this.httpClient.get<GitHubUser>(
+      `https://api.github.com/users/${githubUsername}`
+    );
+  }
+
+  getRepos(username: string, currentPage: number, reposPerPage: number): Observable<GitHubRepository[]> {
+    return this.httpClient.get<GitHubRepository[]>(
+      `https://api.github.com/users/${username}/repos?page=${currentPage}&per_page=${reposPerPage}`
+    );
+  }
 
   getUserData(): Observable<GitHubUser> {
     return this.userData.asObservable();
