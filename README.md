@@ -1,43 +1,55 @@
-# Fyle Frontend Challenge
+### Link for the Website: https://lk-github-finder.netlify.app/
 
-## Who is this for?
+# Steps to check locally:
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
 
-## Why work at Fyle?
+```Install angular cli Ref```
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+#### Go to root directory 
 
-## Challenge outline
+```npm install```
 
-This challenge involves implementing application using github api. 
 
-The services that you need to use are already implemented - check out ApiService.
+#### To run the app:
+```ng serve```
 
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
 
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
+#### To test the complete application:
+```ng test```
 
-## What happens next?
 
-You will hear back within 48 hours from us via email.
+#### To test the component and service with 100% coverage:
+```ng test --watch=false --browsers=ChromeHeadlessNoSandbox --include src/app/services/api.service.spec.ts --include src/app/search/components/search-component.component.spec.ts --code-coverage```
 
-## Installation
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+#### After the test, you can view the coverage as well in the ```/coverage/index.html``` directory
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+# Coverage for the SearchComponent and ApiService
+#### Search Component
+![Screenshot (237)](https://github.com/lklivingstone/fyle-internship-challenge-23/assets/74340009/fb2d8ff1-b4f9-4ce3-87b4-76b304674a49)
 
-## Further help
 
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+#### API Service
+![Screenshot (236)](https://github.com/lklivingstone/fyle-internship-challenge-23/assets/74340009/feb45fca-493d-45ad-909c-a6001decaab6)
+
+
+#### Caching
+![Screenshot (238)](https://github.com/lklivingstone/fyle-internship-challenge-23/assets/74340009/6daae45b-c87b-4d5e-977e-2e866398bab2)
+
+
+# Additional Task
+* Added GitHub Workflow for Testing and Code Coverage Report
+* Full Unit Test
+* Download Code Coverage Report for the SearchComponent and ApiService as GitHub Artifacts
+
+#### Full Unit Test
+![Screenshot (242)](https://github.com/lklivingstone/fyle-internship-challenge-23/assets/74340009/e8288906-18d8-493b-835a-7eef75cbba2b)
+
+#### Code Coverage as Github Artifacts for SearchComponent and ApiService
+![Screenshot (241)](https://github.com/lklivingstone/fyle-internship-challenge-23/assets/74340009/fd6716f2-e110-4b59-bcd1-95c156f90308)
+
+
+
