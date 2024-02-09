@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { InvalidUser } from './invalid-user.component';
+import { NavbarComponent } from 'src/app/shared/navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
 
 describe('InvalidUserComponent', () => {
   let component: InvalidUser;
@@ -8,7 +9,8 @@ describe('InvalidUserComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [InvalidUser]
+      declarations: [InvalidUser, NavbarComponent],
+      imports: [FormsModule]
     });
     fixture = TestBed.createComponent(InvalidUser);
     component = fixture.componentInstance;

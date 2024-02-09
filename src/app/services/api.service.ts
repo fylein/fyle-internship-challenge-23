@@ -34,7 +34,7 @@ export class ApiService {
 
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
-      'Authorization': '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'
+      'Authorization': ''
     });
   }
 
