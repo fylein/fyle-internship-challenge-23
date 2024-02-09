@@ -23,7 +23,7 @@ jobs:
 
       - name: Run tests with code coverage
         run: |
-          ng test --watch=false --browsers=ChromeHeadlessNoSandbox --include src/app/services/api.service.spec.ts --include src/app/search/components/search-component.component.spec.ts --code-coverage
+          ng test --watch=false --include src/app/services/api.service.spec.ts --include src/app/search/components/search-component.component.spec.ts --code-coverage
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v2
