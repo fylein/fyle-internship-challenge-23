@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "fyle-frontend-challenge:build:production"
+              "buildTarget": "fyle-frontend-challenge:build:production"
             },
             "development": {
-              "browserTarget": "fyle-frontend-challenge:build:development"
+              "buildTarget": "fyle-frontend-challenge:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fyle-frontend-challenge:build"
+            "buildTarget": "fyle-frontend-challenge:build"
           }
         },
         "test": {
