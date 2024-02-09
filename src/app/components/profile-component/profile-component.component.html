@@ -1,0 +1,30 @@
+<div class="flex flex-col border border-gray-300 rounded-lg shadow-md p-4 gap-3">
+    <div class="flex items-center gap-5 mb-4">
+        <div class="min-w-max">
+            <div *ngIf="!fetched">
+                <ngx-skeleton-loader appearance="circle"></ngx-skeleton-loader>
+            </div>
+            <img *ngIf="avatarUrl" src="{{avatarUrl}}" class="h-24 w-24 border-2 border-gray-300 rounded-full">
+        </div>
+        <div class="overflow-y-auto h-24 border-b pb-1">
+            <p class="text-lg font-semibold">{{ name }}</p>
+            <p class="text-sm text-gray-600 mt-1" *ngIf="bio">{{ bio }}</p>
+            <div class="flex items-center mt-1" *ngIf="location">
+                <img src="../../../assets/icons/LocationIcon.svg" class="h-4 w-4 mr-1">
+                <p class="text-xs text-gray-500">{{ location }}</p>
+            </div>
+            <div class="flex items-center mt-1" *ngIf="twitterProfile">
+                <p class="text-xs text-gray-500">Twitter:&nbsp;</p>
+                <a href="{{ twitterProfile }}" class="text-xs text-blue-500">{{ twitterProfile }}</a>
+            </div>
+        </div>
+        <ngx-skeleton-loader *ngIf="!fetched" appearance="line" count="3" class="w-full"></ngx-skeleton-loader>
+    </div>
+    <div class="flex items-center gap-1" *ngIf="githubLink">
+        <a href="{{ githubLink }}" class="text-blue-500">
+            <img src="../../../assets/icons/LinkIcon.svg" class="h-5 w-5">
+        </a>
+        <a href="{{ githubLink }}" class="text-xs text-gray-500">{{ githubLink }}</a>
+    </div>
+    <ngx-skeleton-loader appearance="line" count="1" *ngIf="!fetched"></ngx-skeleton-loader>
+</div>
