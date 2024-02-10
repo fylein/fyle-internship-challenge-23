@@ -1,0 +1,24 @@
+<div *ngIf="repos.length > 0 then repolist else noData">
+    <p>{{ userName }}</p>
+</div>
+
+<ng-template #repolist>
+    <h2>Repositories for {{ userName }}</h2>
+    <ul>
+        <li *ngFor="let repo of repos">{{repo.name}}</li>
+    </ul>
+    <app-pagination 
+        [currentPage]="currPage"
+        [pageSize]="pageSize" 
+        [totalItems]="totalRepos"
+        (pageChange)="onPageChange($event)" 
+        (sizeChange)="onPageSizeChange($event)">
+    </app-pagination>
+</ng-template>
+
+<ng-template #noData>
+    <div>
+        <p>No repositories found for {{ userName }}</p>
+    </div>
+</ng-template>
+

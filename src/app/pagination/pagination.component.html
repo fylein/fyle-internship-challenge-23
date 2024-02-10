@@ -1,0 +1,15 @@
+<div class="pagination">
+    <div>
+      Page: {{ currentPage }} / {{ calculateTotalPages() }}
+    </div>
+    <div>
+      Page Size:
+      <select [(ngModel)]="pageSize" (change)="onPageSizeChange($event)">
+        <option *ngFor="let size of [10, 25, 50, 100]">{{ size }}</option>
+      </select>
+    </div>
+    <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+    <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === calculateTotalPages()">Next</button>
+
+</div>
+<!-- <p>{{pageChange | json}}</p> -->
