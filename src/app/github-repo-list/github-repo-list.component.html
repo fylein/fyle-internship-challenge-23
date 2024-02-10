@@ -1,6 +1,6 @@
 <div class="component">
-    <div class="SearchBar" *ngIf="!searchPerformed || username !== ''">
-        <input type="text" [(ngModel)]="username" placeholder="Enter GitHub username">
+    <div class="SearchBar" *ngIf="(!searchPerformed || username !== '') && !userDetails">
+        <input type="text" [(ngModel)]="username" placeholder="Enter GitHub username" (keyup.enter)="searchRepos()">
         <button (click)="searchRepos()">Search</button>
     </div>
   
