@@ -26,7 +26,7 @@
         <div class="user-profile">
             <img [src]="userDetails.avatar_url" alt="Profile Picture">
             <div class="user-details">
-                <h2>{{ userDetails.name }}</h2>
+                <h2><strong>{{ userDetails.name }}</strong></h2>
                 <p>{{ userDetails.bio }}</p>
                 <div class="follower-following">
                     <p>Followers: {{ userDetails.followers }}</p>
@@ -40,13 +40,13 @@
 
     <!-- Repositories -->
     <div *ngIf="repos.length">
-        <h2>Repositories for {{ username }}:</h2>
+        <h2><strong>{{ username }}</strong>:</h2>
         <div class="repo-cards">
             <div *ngFor="let repo of repos" class="repo-card">
                 <div class="repo-details">
-                    <h3>{{ repo.name }}</h3>
+                    <h3><strong>{{ repo.name }}</strong></h3>
                     <p>{{ repo.description }}</p>
-                    <p class="Languages">Languages: {{ repo.language }}</p>
+                    <p class="Languages">Languages:<strong> {{ repo.language }}</strong></p>
                     <a [href]="repo.html_url" target="_blank">View on GitHub</a>
                 </div>
             </div>
