@@ -30,14 +30,28 @@ export class RepoListComponent implements OnChanges {
     }
   }
 
-  extractTotalRepos(linkHeader: string | null):number{
-    if(!linkHeader) return 0;
-    const matches = linkHeader.match(/&page=(\d+)&per_page=(\d+)>; rel="last"/); 
-    if (matches && matches.length==3){
-      return parseInt(matches[1]) * parseInt(matches[2]);
+  extractTotalRepos(linkHeader: string | null): number {
+    // debugger;
+    if (!linkHeader) return 0;
+    const matches = linkHeader.match(/page=(\d+)&per_page=(\d+)>; rel="last"/);
+    if (matches && matches.length == 3) {
+      const lastPage = parseInt(matches[1]);
+      const perPage = parseInt(matches[2]);
+      const totalItems = (lastPage - 1) * perPage;
+    console.log('lp',lastPage);
+  
+      // Check if the last page has fewer items than the page size
+      const lastPageSize = lastPage % this.pageSize;
+      if (lastPageSize > 0) {
+        return totalItems + lastPageSize;
+      } else {
+        return totalItems + this.pageSize;
+      }
     }
     return 0;
   }
+  
+  
 
   onPageChange(page:number){
     this.currPage = page;
