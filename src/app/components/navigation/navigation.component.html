@@ -1,5 +1,5 @@
 <div class="w-fit ml-auto flex flex-row justify-around align-base gap-2 pr-5">
-  <div>Showing</div>
+  <div class="font-bold text-xs md:text-sm">Currently Showing</div>
   <select
     class="bg-white border rounded shadow-lg text-gray-800 hover:bg-blue-500 hover:text-white"
     (change)="handleChange($event)"
@@ -13,7 +13,7 @@
       {{ no }}
     </option>
   </select>
-  <div>per page</div>
+  <div class="font-bold text-xs md:text-sm">records</div>
 </div>
 <div class="w-full flex flex-row justify-center gap-3 mb-3 text-xs">
   <button

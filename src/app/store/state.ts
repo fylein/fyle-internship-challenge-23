@@ -10,7 +10,7 @@ export interface userType {
   login: string;
   id: string;
   avatar_url: string;
-  url: string;
+  html_url: string;
   name: string;
   company: string;
   blog: string;
@@ -40,7 +40,7 @@ export function returnBlankUser() {
     login: '',
     id: '',
     avatar_url: '',
-    url: '',
+    html_url: '',
     name: '',
     company: '',
     blog: '',

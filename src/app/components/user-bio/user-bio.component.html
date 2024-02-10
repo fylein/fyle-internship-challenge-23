@@ -12,9 +12,13 @@
     <div class="float-center md:float-none text-2xl md:text-3xl">
       {{ userBio.name }}
     </div>
-    <div class="float-center md:float-none text-xs md:text-sm antialiased">
-      {{ userBio.login }}
-    </div>
+    <a [href]="userBio.html_url" target="_blank">
+      <div
+        class="float-center md:float-none text-xs md:text-sm antialiased hover:scale-125 hover:cursor-pointer"
+      >
+        {{ userBio.login }}
+      </div>
+    </a>
     <div>{{ userBio.bio }}</div>
     <div>{{ userBio.blog }}</div>
     <div>{{ userBio.location }}</div>
