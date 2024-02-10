@@ -1,21 +1,27 @@
 import { Injectable } from '@angular/core';
-import { fetchUserData, setUserData } from './actions';
+import {
+  fetchUserData,
+  setNoRecords,
+  setUserData,
+  updateNoOfRecords,
+} from './actions';
 import { ApiService } from '../services/api.service';
 import { switchMap, map, exhaustMap, of, forkJoin } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { AppState, githubData } from './state';
+
 import { catchError } from 'rxjs';
 
 @Injectable()
 export class Effects {
   constructor(private action$: Actions, private apiService: ApiService) {}
+
   loadData$ = createEffect(() =>
     this.action$.pipe(
       ofType(fetchUserData),
       switchMap((action) =>
         forkJoin([
           this.apiService.getUserBio(action.username),
-          this.apiService.getUserRepos(action.username),
+          this.apiService.getUserRepos(action.username, action.noOfRepos),
         ]).pipe(
           map(([userDataRes, reposDataRes]) => {
             console.log((userDataRes.data, reposDataRes.data));
@@ -23,10 +29,28 @@ export class Effects {
             return setUserData({
               userData: userDataRes.data,
               reposData: reposDataRes.data,
+              noOfRecords: action.noOfRepos,
             });
           }),
           catchError((error) => {
             throw error;
+          })
+        )
+      )
+    )
+  );
+
+  updateNoRecords$ = createEffect(() =>
+    this.action$.pipe(
+      ofType(updateNoOfRecords),
+      switchMap((action) =>
+        this.apiService.getUserRepos(action.username, action.noOfRecords).pipe(
+          map((updatedRecords) => {
+            console.log(updatedRecords);
+            return setNoRecords({
+              reposData: updatedRecords.data,
+              noOfRecords: action.noOfRecords,
+            });
           })
         )
       )

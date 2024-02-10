@@ -26,11 +26,17 @@ export interface userType {
 export interface githubData {
   users: userType;
   repos: userReposType[];
+  showRecords: number;
 }
 
 export const AppState: githubData = {
   repos: [],
-  users: {
+  users: returnBlankUser(),
+  showRecords: 10,
+};
+
+export function returnBlankUser() {
+  return {
     login: '',
     id: '',
     avatar_url: '',
@@ -45,5 +51,5 @@ export const AppState: githubData = {
     public_repos: '',
     followers: '',
     following: '',
-  },
-};
+  };
+}

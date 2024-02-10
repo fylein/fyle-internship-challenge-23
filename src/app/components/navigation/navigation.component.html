@@ -2,11 +2,16 @@
   <div>Showing</div>
   <select
     class="bg-white border rounded shadow-lg text-gray-800 hover:bg-blue-500 hover:text-white"
+    (change)="handleChange($event)"
+    [(ngModel)]="noRepos"
   >
-    <option>10</option>
-    <option>25</option>
-    <option>50</option>
-    <option>100</option>
+    <option
+      *ngFor="let no of showRecordsArr"
+      [value]="no"
+      [attr.selected]="no == noRepos ? true : false"
+    >
+      {{ no }}
+    </option>
   </select>
   <div>per page</div>
 </div>

@@ -3,7 +3,7 @@
   <ng-container *ngFor="let repo of repos; let i = index">
     <div
       [ngClass]="{ 'col-start-2': i % 2 == 0 }"
-      class="border-l-2 border-b-2 col-span-4 border-violet-500 text-left p-2"
+      class="border-l-2 rounded-lg border-b-2 col-span-4 border-violet-500 text-left p-2"
     >
       <div class="text-xl font-bold">{{ repo.name }}</div>
       <div class="text-sm">{{ repo.description }}</div>
@@ -12,14 +12,17 @@
     </div>
   </ng-container>
 </div>
+
 <ng-template #smContent>
   <div class="w-full grid grid-cols-12 gap-4">
-    <ng-container *ngFor="let char of repos">
+    <ng-container *ngFor="let repo of repos">
       <div
-        class="col-start-2 col-end-12 border-t-2 border-violet-500 text-center"
+        class="col-start-2 col-end-12 border-t-2 border-violet-500 text-center pt-3 rounded-lg"
       >
-        {{ char }}
-        <div>{{ char }}</div>
+        <div class="text-lg font-bold">{{ repo.name }}</div>
+        <div class="text-xs">{{ repo.description }}</div>
+        <div class="text-sm">{{ repo.topics }}</div>
+        <div class="text-sm">{{ repo.html_url }}</div>
       </div>
     </ng-container>
   </div>

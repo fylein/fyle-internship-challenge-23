@@ -6,9 +6,15 @@
     />
   </div>
 
-  <div class="w-6/12">
-    <div class="text-3xl">{{ userBio.name }}</div>
-    <div class="text-sm antialiased">{{ userBio.login }}</div>
+  <div
+    class="w-full flex flex-col items-center md:w-6/12 md:flex-none md:items-start"
+  >
+    <div class="float-center md:float-none text-2xl md:text-3xl">
+      {{ userBio.name }}
+    </div>
+    <div class="float-center md:float-none text-xs md:text-sm antialiased">
+      {{ userBio.login }}
+    </div>
     <div>{{ userBio.bio }}</div>
     <div>{{ userBio.blog }}</div>
     <div>{{ userBio.location }}</div>

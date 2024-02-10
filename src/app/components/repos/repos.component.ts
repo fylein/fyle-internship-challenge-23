@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { userReposType } from 'src/app/store/state';
-import { getUserRepos } from 'src/app/store/selectors';
+import { getUserRepos, selectState } from 'src/app/store/selectors';
 
 @Component({
   selector: 'app-repos',
@@ -24,6 +24,12 @@ export class ReposComponent implements OnInit {
   }
   ngOnInit() {
     this.checkScreenSize();
-    this.store.select(getUserRepos).subscribe((data) => (this.repos = data));
+    this.store.select(getUserRepos).subscribe((data) => {
+      console.log(data);
+      this.repos = data;
+    });
+    this.store.select(selectState).subscribe((data) => {
+      console.log(data);
+    });
   }
 }
