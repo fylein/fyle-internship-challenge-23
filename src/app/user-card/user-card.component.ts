@@ -3,7 +3,6 @@ import { User } from '../Model/user';
 
 @Component({
   selector: 'app-user-card',
-  // standalone: true,
   templateUrl: './user-card.component.html',
   styleUrls: ['./user-card.component.scss']
 })

@@ -10,7 +10,8 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { CacheInterceptor } from './interceptors/cache.interceptor';
 import { UserCardComponent } from './user-card/user-card.component';
 import { RepoCardComponent } from './repo-card/repo-card.component';
-import { RepoCardSkeletonComponent } from './repo-card-skeleton/repo-card-skeleton.component'; // Import the interceptor
+import { RepoCardSkeletonComponent } from './repo-card-skeleton/repo-card-skeleton.component';
+import { UserCardSkeletonComponent } from './user-card-skeleton/user-card-skeleton.component'; // Import the interceptor
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RepoCardSkeletonComponent } from './repo-card-skeleton/repo-card-skelet
     PaginationComponent,
     UserCardComponent,
     RepoCardComponent,
-    RepoCardSkeletonComponent
+    RepoCardSkeletonComponent,
+    UserCardSkeletonComponent
   ],
   imports: [
     BrowserModule,

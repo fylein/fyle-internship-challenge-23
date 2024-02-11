@@ -2,12 +2,8 @@ import { Component, Input, OnChanges } from '@angular/core';
 import { GithubService } from '../services/github.service';
 import { User } from '../Model/user';
 import { Repo } from '../Model/repo';
-import { ActivatedRoute } from '@angular/router';
-import { UserCardComponent } from '../user-card/user-card.component';
 @Component({
   selector: 'app-repo-list',
-  // imports: [UserCardComponent],
-  // standalone: true,
   templateUrl: './repo-list.component.html',
   styleUrls: ['./repo-list.component.scss']
 })
@@ -22,10 +18,12 @@ export class RepoListComponent implements OnChanges {
   totalPages: number = 1;
   totalPagesArray: number[] = [];
   @Input() isLoading: boolean = true;
+  @Input() isUserLoading: boolean = true;
 
   ngOnInit(): void {
     setTimeout(() => {
       this.isLoading = false;
+      this.isUserLoading = false;
     }, 6000);
   }
 
@@ -38,11 +36,6 @@ export class RepoListComponent implements OnChanges {
     this.getUserProfile(this.userName);
     if(this.userName){
       this.repos = []
-      // this.githubService.getUserRepos(this.userName, this.currPage, this.pageSize).subscribe((response) => {
-      //   this.repos = response.body || [];
-      //   const linkHeader = response.headers.get('Link');
-      //   this.totalRepos = this.extractTotalRepos(linkHeader);
-      // })
       this.githubService
         .getUserRepos(this.userName, this.currPage, this.pageSize)
         .subscribe({

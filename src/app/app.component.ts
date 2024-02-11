@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './services/api.service';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +8,12 @@ import { ApiService } from './services/api.service';
 export class AppComponent implements OnInit{
   searchedUserName!:string;
   constructor(
-    private apiService: ApiService
   ) {}
 
   ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
   }
   getUser(userName: string) {
     this.searchedUserName = userName;
-    // console.log(this.searchedUserName);
 
   }
 }

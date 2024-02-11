@@ -1,22 +1,16 @@
-<div *ngIf="user">
-    <!-- <app-user-card [user] = "user" ></app-user-card> -->
-    <div *ngIf="!error">
-        <app-user-card [user]="user"></app-user-card>
-    </div>
+<div *ngIf="user && !error">
     <div *ngIf="repos.length > 0 then repolist else noData">
     </div>
 </div>
 
 <ng-template #repolist>
-    <div class="flex justify-center">
-        <h2 class="text-center">Repositories of {{ user.name }}</h2>
-    </div>
     <div *ngIf="isLoading; else loadedContent">
-        <div *ngFor="let _ of [].constructor(10)">
-            <app-repo-card-skeleton></app-repo-card-skeleton>
-        </div>
+        <app-user-card-skeleton [user]="user" ></app-user-card-skeleton>
+        <app-repo-card-skeleton [repos]="repos" ></app-repo-card-skeleton>
     </div>
     <ng-template #loadedContent>
+        <app-user-card [user]="user"></app-user-card>
+        <h2 class="text-center">Repositories of {{ user.name }}</h2>
         <app-repo-card [repos]="repos"></app-repo-card>
     </ng-template>
 
@@ -25,11 +19,11 @@
     </app-pagination>
 </ng-template>
 <ng-template #noData>
-    <div>
+    <div class="flex justify-center items-center h-full">
         <p>No repositories found for {{ userName }}</p>
     </div>
 </ng-template>
 
-<div *ngIf="error">
+<div *ngIf="error" class="flex justify-center items-center h-full">
     <p>user not found</p>
 </div>
