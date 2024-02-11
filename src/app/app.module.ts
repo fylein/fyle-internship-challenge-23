@@ -7,14 +7,20 @@ import { UserInputComponent } from './user-input/user-input.component';
 import { FormsModule } from '@angular/forms';
 import { RepoListComponent } from './repo-list/repo-list.component';
 import { PaginationComponent } from './pagination/pagination.component';
-import { CacheInterceptor } from './interceptors/cache.interceptor'; // Import the interceptor
+import { CacheInterceptor } from './interceptors/cache.interceptor';
+import { UserCardComponent } from './user-card/user-card.component';
+import { RepoCardComponent } from './repo-card/repo-card.component';
+import { RepoCardSkeletonComponent } from './repo-card-skeleton/repo-card-skeleton.component'; // Import the interceptor
 
 @NgModule({
   declarations: [
     AppComponent,
     UserInputComponent,
     RepoListComponent,
-    PaginationComponent
+    PaginationComponent,
+    UserCardComponent,
+    RepoCardComponent,
+    RepoCardSkeletonComponent
   ],
   imports: [
     BrowserModule,

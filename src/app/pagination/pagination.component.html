@@ -1,16 +1,25 @@
-<div class="pagination">
-    <div>
-      Page: {{ currentPage }} / {{ calculateTotalPages() }}
-    </div>
+<div class="flex justify-center">
+  <div class="pagination flex items-center justify-between space-x-2">
     <div>
       Page Size:
-      <select [(ngModel)]="pageSize" (change)="onPageSizeChange($event)">
+      <select [(ngModel)]="pageSize" (change)="onPageSizeChange($event)" class="px-2 py-1 border rounded">
         <option *ngFor="let size of [10, 25, 50, 100]">{{ size }}</option>
       </select>
     </div>
-    <button *ngFor="let pageNumber of getPageNumbers()" (click)="onPageChange(pageNumber)" [disabled]="currentPage === pageNumber">{{ pageNumber }}</button>
-    <br>
-    <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
-    <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage == calculateTotalPages()">Next</button>
+    
+    <div class="flex space-x-2">
+      <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300">Previous</button>
+
+      <ng-container *ngFor="let pageNumber of getPageNumbers()">
+        <ng-container *ngIf="pageNumber <= currentPage + 4 && pageNumber >= currentPage - 4">
+          <button (click)="onPageChange(pageNumber)" [disabled]="currentPage === pageNumber" [ngClass]="{'px-3 py-1 rounded bg-blue-500 text-white hover:bg-blue-600': currentPage === pageNumber, 'px-3 py-1 rounded bg-gray-200 hover:bg-gray-300': currentPage !== pageNumber}">{{ pageNumber }}</button>
+        </ng-container>
+        <ng-container *ngIf="pageNumber === currentPage + 5 && calculateTotalPages() > currentPage + 5">
+          <button (click)="onPageChange(pageNumber)" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300">...</button>
+        </ng-container>
+      </ng-container>
+
+      <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage == calculateTotalPages()" class="px-3 py-1 rounded bg-gray-200 hover:bg-gray-300">Next</button>
+    </div>
   </div>
-  
+</div>

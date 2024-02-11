@@ -1,4 +1,4 @@
-<div>
-    <input [(ngModel)] = "userName" type="text" placeholder="Enter Github Username" >
-    <button (click)="getUser()" >Search</button>
+<div class="flex items-center justify-center mt-10">
+    <input [(ngModel)]="userName" type="text" placeholder="Enter GitHub Username" class="border border-gray-300 rounded-md py-2 px-4 mr-2 focus:outline-none focus:ring focus:border-blue-300">
+    <button (click)="getUser()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300">Search</button>
 </div>

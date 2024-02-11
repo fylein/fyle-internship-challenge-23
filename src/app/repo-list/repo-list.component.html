@@ -1,21 +1,27 @@
 <div *ngIf="user">
-    <div *ngIf="repos.length > 0 then repolist else noData">
-        <p>{{ userName }}</p>
+    <!-- <app-user-card [user] = "user" ></app-user-card> -->
+    <div *ngIf="!error">
+        <app-user-card [user]="user"></app-user-card>
     </div>
-    <p>user name : {{ user.name}}</p>
+    <div *ngIf="repos.length > 0 then repolist else noData">
+    </div>
 </div>
 
 <ng-template #repolist>
-    <h2>Repositories for {{ user.name }}</h2>
-    <ul>
-    <li *ngFor="let repo of repos">{{ repo.name }}</li>
-    </ul>
-    <app-pagination 
-        [currentPage]="currPage"
-        [pageSize]="pageSize" 
-        [totalItems]="totalRepos"
-        (pageChange)="onPageChange($event)" 
-        (sizeChange)="onPageSizeChange($event)">
+    <div class="flex justify-center">
+        <h2 class="text-center">Repositories of {{ user.name }}</h2>
+    </div>
+    <div *ngIf="isLoading; else loadedContent">
+        <div *ngFor="let _ of [].constructor(10)">
+            <app-repo-card-skeleton></app-repo-card-skeleton>
+        </div>
+    </div>
+    <ng-template #loadedContent>
+        <app-repo-card [repos]="repos"></app-repo-card>
+    </ng-template>
+
+    <app-pagination [currentPage]="currPage" [pageSize]="pageSize" [totalItems]="totalRepos"
+        (pageChange)="onPageChange($event)" (sizeChange)="onPageSizeChange($event)">
     </app-pagination>
 </ng-template>
 <ng-template #noData>
@@ -24,6 +30,6 @@
     </div>
 </ng-template>
 
-<div *ngIf="!user">
-    <p>Loading...</p>
+<div *ngIf="error">
+    <p>user not found</p>
 </div>

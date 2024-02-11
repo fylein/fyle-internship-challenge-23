@@ -1,0 +1,68 @@
+<div *ngIf="user" class="max-w-3xl mx-auto mt-8">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col sm:flex-row">
+      <div class="p-4">
+        <img
+          [src]="user.avatar_url"
+          alt="Avatar"
+          class="w-32 h-32 object-cover rounded-full border-4 border-gray-200"
+        />
+        <h2 class="text-3xl font-semibold text-gray-800 mt-4">{{ user.name }}</h2>
+        <p class="text-gray-600">{{ user.login }}</p>
+        <p class="text-gray-700 mt-2">{{ user.bio || "No bio available" }}</p>
+      </div>
+      <div class="p-4">
+        <div class="flex justify-between mt-4">
+          <div class="text-gray-700 flex flex-col items-center">
+            <p class="font-semibold">{{ user.followers }}</p>
+            <p class="text-sm mt-2">Followers</p>
+          </div>
+          <div class="text-gray-700 flex flex-col items-center ml-4">
+            <p class="font-semibold">{{ user.following }}</p>
+            <p class="text-sm mt-2">Following</p>
+          </div>
+          <div class="text-gray-700 flex flex-col items-center ml-4">
+            <p class="font-semibold">{{ user.public_repos }}</p>
+            <p class="text-sm mt-2">Repos</p>
+          </div>
+        </div>
+        <div class="mt-4">
+          <p class="text-gray-700">Twitter:</p>
+          <p class="text-blue-500 hover:underline">
+            <a
+              [href]="'https://twitter.com/' + user.twitter_username"
+              *ngIf="user.twitter_username"
+              class="hover:text-blue-600"
+            >@{{ user.twitter_username }}</a
+            >
+            <span *ngIf="!user.twitter_username" class="text-gray-500">N/A</span>
+          </p>
+        </div>
+        <div class="mt-1">
+          <p class="text-gray-700">Blog:</p>
+          <p class="text-blue-500 hover:underline">
+            <a
+              [href]="user.blog"
+              *ngIf="user.blog"
+              class="hover:text-blue-600"
+            >{{ user.blog }}</a
+            >
+            <span *ngIf="!user.blog" class="text-gray-500">N/A</span>
+          </p>
+        </div>
+        <div class="mt-4">
+          <p class="text-gray-700">GitHub:</p>
+          <div>
+            <a
+              [href]="'https://github.com/' + user.login"
+              class="text-blue-500 hover:underline"
+              title="GitHub"
+            >
+              {{ user.login }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+  

@@ -3,8 +3,11 @@ import { GithubService } from '../services/github.service';
 import { User } from '../Model/user';
 import { Repo } from '../Model/repo';
 import { ActivatedRoute } from '@angular/router';
+import { UserCardComponent } from '../user-card/user-card.component';
 @Component({
   selector: 'app-repo-list',
+  // imports: [UserCardComponent],
+  // standalone: true,
   templateUrl: './repo-list.component.html',
   styleUrls: ['./repo-list.component.scss']
 })
@@ -18,6 +21,13 @@ export class RepoListComponent implements OnChanges {
   error: any;
   totalPages: number = 1;
   totalPagesArray: number[] = [];
+  @Input() isLoading: boolean = true;
+
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 6000);
+  }
 
   constructor(private githubService: GithubService) {}
 
