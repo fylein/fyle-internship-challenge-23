@@ -1,0 +1,21 @@
+<app-form (searchUser)="getUserProfile($event)" />
+<div *ngIf="error" class="text-red-500">{{ error }}</div>
+<div *ngIf="isProfileLoading; else loadedContent">
+  <app-loading-user-card />
+</div>
+<ng-template #loadedContent>
+  <div *ngIf="!error">
+    <app-card [user]="user" />
+  </div>
+</ng-template>
+
+<div *ngIf="repos.length > 0 && !error" class="mt-5 mb-5">
+  <app-list [repos]="repos" [isLoading]="isLoading" />
+  <app-pagination
+    [currentPage]="currentPage"
+    [totalPages]="totalPages"
+    (pageChange)="changePage($event)"
+    [itemsPerPage]="itemsPerPage"
+    (itemsPerPageChange)="onItemsPerPageChange($event)"
+  ></app-pagination>
+</div>

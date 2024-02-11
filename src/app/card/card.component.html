@@ -1,0 +1,15 @@
+<div class="bg-gray-100 rounded-lg shadow-md overflow-hidden">
+  <div class="p-4">
+    <div class="font-semibold text-lg mb-2">{{ repo.name }}</div>
+    <p class="text-gray-700">{{ repo.description }}</p>
+  </div>
+  <div class="px-4 py-2 bg-gray-200">
+    <div *ngIf="repo.topics.length > 0">
+      <span
+        *ngFor="let topic of repo.topics.slice(0, 2)"
+        class="inline-block bg-blue-300 rounded-full px-3 py-1 text-sm font-semibold text-white-700 mr-2 mb-2"
+        >{{ topic }}</span
+      >
+    </div>
+  </div>
+</div>
