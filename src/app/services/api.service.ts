@@ -19,9 +19,5 @@ export class ApiService {
     return this.http.get<any[]>(url); // Return the observable directly
   }
 
-  getUserRepositories(page: number, perPage: number): Observable<any> {
-    const url = `https://api.github.com/user/repos?page=${page}&per_page=${perPage}`;
-    return this.http.get<any>(url);
-  }
 }
 
