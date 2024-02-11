@@ -1,0 +1,23 @@
+<form
+  #formDetail="ngForm"
+  (ngSubmit)="getFormData.emit(formDetail.value)"
+  class="p-5 flex justify-center">
+  <div class="px-3 w-1/2">
+    <input
+      input
+      type="text"
+      id="first_name"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Enter Username"
+      required
+      name="username"
+      ngModel
+    />
+  </div>
+
+  <button
+    class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+  >
+    Search
+  </button>
+</form>

@@ -1,0 +1,14 @@
+<div class="mx-5 p-5 border-2 border-black-800 border-solid max-w-full flex flex-col">
+  <div class="flex p-10 items-center">
+    <img
+      src="{{ data[0].owner.avatar_url }}"
+      alt=""
+      class="rounded-full h-20 w-20 flex items-center justify-center"
+    />
+    <h1 class="text-gray-700 text-2xl ml-10">
+      {{ data[0].owner.login }}
+    </h1>
+  </div>
+
+  <app-repo-list [data]="data"></app-repo-list>
+</div>
