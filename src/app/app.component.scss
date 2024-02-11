@@ -1,0 +1,109 @@
+/* profile.component.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+.left-section {
+  width: 100%;
+  padding: 20px;
+}
+
+.main-img{
+  max-width: 100%;
+  height: 260px;
+  border-radius: 50%;
+}
+
+.description {
+  margin-top: 20px;
+  margin-left: 40px;
+  display: flex;
+}
+
+.right-section {
+  width: 100%;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center cards horizontally */
+}
+
+.column {
+  width: 30%; /* Adjust width as needed */
+  margin: 10px;
+}
+
+.card {
+  position: relative;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+  width: 380px;
+  height: 220px;
+}
+
+.card-bottom{
+  position: absolute;
+  justify-content: end;
+}
+
+.card h3{
+  color: blueviolet;
+}
+
+.card h3:hover{
+  padding: 5px;
+  width: auto;
+  border: 1px solid black;
+  background-color: #065306;
+  color: #ffff;
+  font-weight: 900;
+}
+
+.card:hover{
+  transition: 0.5s ease-out;
+  background: #017201;
+  padding: 5px;
+  color: #fff;
+}
+
+.card:hover p{
+  font-size: 15px;
+  font-weight: 800;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.card:hover h3{
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 5px;
+  font-weight: 800;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #fff;
+  color: #045cdf;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 12px; /* Adjust as needed */
+  transform: translateY(-50%);
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transition: transform 0.3s; /* Add transition for smooth effect */
+}
+
+.card:hover::after {
+  transform: translateY(-50%) rotate(-45deg); /* Rotate arrow on hover */
+}
