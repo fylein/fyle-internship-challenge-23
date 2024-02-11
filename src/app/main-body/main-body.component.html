@@ -36,11 +36,15 @@
 <div class="grid md:grid-cols-2 grid-flow-row gap-4 place-items-center my-10 repoOuterContainer" >
   <div class="p-5 w-96 rounded-2xl bg-indigo-500/60 shadow-lg shadow-indigo-500/50" *ngFor="let repo of slicedRepo; index as i">
     <p class="text-xl font-bold mb-1" #gettingName>{{ repo.name }}</p>
-    <p class="text-lg mb-1"><span class="font-bold">Description :</span> {{ descFunc(repo.description) }}</p>
+    <p class="text-lg mb-1"><span class="font-bold">Description :</span> <span *ngIf="repo.description !== null; else notAv">{{ repo.description }}</span>
+      <ng-template #notAv>
+        <span>Not available</span>
+      </ng-template>
+     </p>
     <ng-container *ngIf="arr2[i]">
       <span class="font-bold">Languages : </span>
       <span *ngFor="let x of objectKeys(arr2[i])">
-        <span>{{ langFunc(x) }} | </span>
+        <span>{{ x }} | </span>
       </span>
     </ng-container>
   </div>
@@ -49,8 +53,8 @@
 <!-- Pagination -->
 <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
   <div class="flex flex-1 justify-between sm:hidden">
-    <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" (click)="prev()">Previous</a>
-    <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50" (click)="next()">Next</a>
+    <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 prevBtn" (click)="prev()">Previous</a>
+    <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 nextBtn" (click)="next()">Next</a>
   </div>
   <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
     <div>
@@ -62,7 +66,7 @@
           </svg>
         </a>
         <a href="#" aria-current="page" class="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" #pageNo>{{ currPage }}</a>
-        <a href="#" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0" (click)="next()">
+        <a href="#" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 nextBtn" (click)="next()">
           <span class="sr-only">Next</span>
           <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
