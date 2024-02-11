@@ -14,13 +14,16 @@ export class AppComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
-    this.getUserRepo("johnpapa");
+    // this.apiService.getUser('johnpapa').subscribe(console.log);
+    // this.getUserRepo("johnpapa");
   }
 
   onSubmit() {
     this.getUserData(this.username);
+    this.getUserRepo(this.username);
   }
+  
+  
 
   getUserData(username: string) {
     this.apiService.getUser(username).subscribe(
@@ -44,4 +47,5 @@ export class AppComponent implements OnInit {
       }
     );
   }
-}
+  
+} 

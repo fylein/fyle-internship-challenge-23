@@ -15,13 +15,14 @@
         <div class="ml-4 mb-8">
           <p>{{ userData.url }}</p>
         </div>
-        <div class="float-left ml-4 mt-2 mr-4 grid grid-cols-2 gap-4"> 
-          <div *ngFor="let repo of userRepos" class="border-2 mb-4"> 
-            <div class="border-2  mb-4"> 
-            <h2>{{ repo.name }}</h2>
-            <p>Language: {{ repo.language }}</p>
-            </div>
-           </div>
+        <div class=" mt-2 grid grid-cols-2 gap-x-52 mx-12 max-w-screen-2xl"> 
+          <div *ngFor="let repo of userRepos" class="container"> 
+            <h2 class="text-blue-600 mb-2">{{ repo.name }}</h2>
+            <p>description: {{ repo.description }}</p>
+            <p> Language:
+              <span class="language">{{ repo.language }}</span>
+            </p>
+          </div>
         </div>
       </div>
     </ng-container>

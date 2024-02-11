@@ -18,4 +18,10 @@ export class ApiService {
     const url = `${this.apiUrl}/users/${username}/repos`; // Endpoint to fetch user repositories
     return this.http.get<any[]>(url); // Return the observable directly
   }
+
+  getUserRepositories(page: number, perPage: number): Observable<any> {
+    const url = `https://api.github.com/user/repos?page=${page}&per_page=${perPage}`;
+    return this.http.get<any>(url);
+  }
 }
+
