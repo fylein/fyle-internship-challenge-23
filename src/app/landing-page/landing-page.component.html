@@ -1,0 +1,21 @@
+<div class="text-center">
+  <h1 class="text-6xl text-emerald-800 font-sans">
+    <span class="">Github Finder</span>!
+  </h1>
+  <p class="mt-9 text-3xl text-emerald-900 font-sans">
+    Enter the username
+  </p>
+  <form (submit)="searchUser($event, username.value)">
+    <input class="mt-7 rounded-xl p-2 m-2 shadow-md" type="text" placeholder="GitHub username" #username />
+    <button class="bg-teal-800-500 rounded-xl p-2 m-2 shadow-md" type="submit">
+      Search
+    </button>
+  </form>
+
+  <span *ngIf="isLoading"
+    class="mt-5 rounded-lg bg-emeral-500/75 border-emerald-900 text-emerald-800 p-3">Loading...</span>
+
+  <span *ngIf="errorMessage" class="mt-24 rounded-lg bg-red-300/75 border-red-900 text-red-700 p-3 place-items-center">
+    {{ errorMessage }}
+  </span>
+</div>

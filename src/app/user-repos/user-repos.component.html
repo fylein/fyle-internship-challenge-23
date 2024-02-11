@@ -1,0 +1,29 @@
+<div class="grid grid-cols-1 justify-around mx-14 lg:grid-cols-2 gap-7">
+  <ng-container *ngFor="let repo of repositories" class="animate-pulse">
+    <a
+      href="{{ repo.html_url }}"
+      target="_blank"
+      class="mx-3 bg-white bg-opacity-70 backdrop-blur-md rounded-xl drop-shadow-md text-emerald-800 p-5 flex flex-col"
+    >
+      <h1 class="m-2 text-xl font-bold">
+        {{ repo.name }}
+      </h1>
+      <p>{{ repo.description }}</p>
+      <div class="flex flex-wrap gap-2 mt-2">
+        <div
+          *ngFor="let topic of repo.topics"
+          class="bg-emerald-500 text-black p-1 rounded-lg mt-2 shadow-md"
+        >
+          {{ topic }}
+        </div>
+      </div>
+    </a>
+  </ng-container>
+</div>
+<app-pagination
+  [currentPage]="currentPage"
+  [totalItems]="totalItems"
+  [pageSize]="pageSize"
+  (pageChange)="onPageChange($event)"
+  (pageSizeChange)="onPageSizeChange($event)"
+></app-pagination>

@@ -1,0 +1,28 @@
+<div class="flex items-center justify-around my-4">
+  <div class="mr-2">
+    <label for="{{ pageSize }}" class="mr-2">Items per page</label>
+    <select
+      name="pageSize"
+      id="pageSize"
+      ngModel="{{ pageSize }}"
+      (change)="onPageSizeChange($event)"
+      class="p-1 rounded-md"
+    >
+      <option *ngFor="let option of pageSizeOptions" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
+  <div>
+    <span class="mr-2"
+      >Page {{ currentPage }} of {{ calculateTotalPages() }}
+    </span>
+    <button
+      (click)="onPageChange(page)"
+      *ngFor="let page of getPageNumbers()"
+      class="cursor-pointer px-2 py-1 bg-emerald-500 text-white rounded-md hover:bg-green-600 mr-1"
+    >
+      {{ page }}
+    </button>
+  </div>
+</div>
