@@ -16,30 +16,12 @@
           <p>{{ userData.url }}</p>
         </div>
         <div class="float-left ml-4 mt-2 mr-4 grid grid-cols-2 gap-4"> 
-          <div class="border-2  mb-4"> 
-            <h2>Heros</h2>
-            <p>Heros description goes here</p>
-          </div>
-          <div class="border-2 mb-4"> 
-            <h2>Heros</h2>
-            <p>Heros description goes here</p>
-          </div>
-          <div class="border-2 mb-4"> 
-            <h2>Heros</h2>
-            <p>Heros description goes here</p>
-          </div>
-          <div class="border-2 mb-4"> 
-            <h2>Heros</h2>
-            <p>Heros description goes here</p>
-          </div>
-          <div class="border-2 mb-4"> 
-            <h2>Heros</h2>
-            <p>Heros description goes here</p>
-          </div>
-          <div class="border-2 mb-4"> 
-            <h2>Heros</h2>
-            <p>Heros description goes here</p>
-          </div>
+          <div *ngFor="let repo of userRepos" class="border-2 mb-4"> 
+            <div class="border-2  mb-4"> 
+            <h2>{{ repo.name }}</h2>
+            <p>Language: {{ repo.language }}</p>
+            </div>
+           </div>
         </div>
       </div>
     </ng-container>
