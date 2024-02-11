@@ -1,5 +1,30 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="container">
+  <div class="left-section">
+    <img class="main-img" src="{{userDetails.avatar_url}}" alt="Profile Image">
+    <div class="description">
+      <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/link--v1.png" alt="link--v1"/>
+      &nbsp;
+      <a>{{userDetails.html_url}}</a>
+    </div>
   </div>
+  <!-- *ngFor="let repo of userAllRepo" -->
+  <div class="right-section">
+    <div class="row">
+      <div class="column" *ngFor="let repo of userAllRepo | paginate: { itemsPerPage: 6, currentPage: p }">
+        <div class="card">
+          <h3 style="font-size: 15px; font-weight: 700; cursor: pointer;" (click)="repoDetails(repo.clone_url)">{{repo.name}}</h3>
+          <p style="margin-top: 30px;">{{repo.description}}</p>
+          <p style="margin-top: 60px; background-color: #171777; color: #ffff; width: 20%;
+          border: 1px solid #ffff;
+          border-radius: 10px;
+          padding: 5px;
+          text-align: center; font-size: 12px;">{{repo.language}}</p>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center;">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+
 </div>
