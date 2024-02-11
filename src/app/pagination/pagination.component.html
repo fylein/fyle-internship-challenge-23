@@ -11,6 +11,6 @@
     <button *ngFor="let pageNumber of getPageNumbers()" (click)="onPageChange(pageNumber)" [disabled]="currentPage === pageNumber">{{ pageNumber }}</button>
     <br>
     <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
-    <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage > calculateTotalPages()">Next</button>
+    <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage == calculateTotalPages()">Next</button>
   </div>
   

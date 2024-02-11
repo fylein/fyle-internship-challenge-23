@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from  '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from  '@angular/common/http';
 import { UserInputComponent } from './user-input/user-input.component';
 import { FormsModule } from '@angular/forms';
 import { RepoListComponent } from './repo-list/repo-list.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { CacheInterceptor } from './interceptors/cache.interceptor'; // Import the interceptor
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { PaginationComponent } from './pagination/pagination.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true } // Register the interceptor
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
