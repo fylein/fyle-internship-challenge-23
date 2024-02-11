@@ -1,0 +1,15 @@
+$form-bg-color: #fff;
+$form-input-border-color: #999;
+$form-input-padding: 8px;
+
+form {
+  background-color: $form-bg-color;
+  input[type="text"] {
+    width: 100%;
+    padding: $form-input-padding;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    outline: none;
+    border: 0.5px solid #000;
+  }
+}

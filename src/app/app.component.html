@@ -1,5 +1,54 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<div class="h-screen w-screen flex flex-col">
+  <div class="h-full w-full flex items-center justify-center">
+    <ng-container *ngIf="userData; else loginForm">
+      <div class="flex h-full w-full flex-col">
+        <div class="flex items-start ml-12 mt-6">
+          <img [src]="userData.avatar_url" alt="User Avatar" class="h-32 w-32 mr-4 rounded-full">
+          <div class="text-left ml-4 mt-2"> 
+            <h2 class="font-bold pb-1">{{ userData.name }}</h2>
+            <p class="pb-1">{{ userData.bio }}</p>
+            <p class="pb-1">📍{{ userData.location}}</p>
+            <p class="pb-2">Twitter: {{ userData.twitter_username }}</p>
+          </div>
+        </div>
+        <div class="ml-4 mb-8">
+          <p>{{ userData.url }}</p>
+        </div>
+        <div class="float-left ml-4 mt-2 mr-4 grid grid-cols-2 gap-4"> 
+          <div class="border-2  mb-4"> 
+            <h2>Heros</h2>
+            <p>Heros description goes here</p>
+          </div>
+          <div class="border-2 mb-4"> 
+            <h2>Heros</h2>
+            <p>Heros description goes here</p>
+          </div>
+          <div class="border-2 mb-4"> 
+            <h2>Heros</h2>
+            <p>Heros description goes here</p>
+          </div>
+          <div class="border-2 mb-4"> 
+            <h2>Heros</h2>
+            <p>Heros description goes here</p>
+          </div>
+          <div class="border-2 mb-4"> 
+            <h2>Heros</h2>
+            <p>Heros description goes here</p>
+          </div>
+          <div class="border-2 mb-4"> 
+            <h2>Heros</h2>
+            <p>Heros description goes here</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #loginForm>
+      <form class="flex flex-col w-80 rounded border-2 p-5" (ngSubmit)="onSubmit()">
+        <label class="p-2 text-sm" for="inputField">Github Login </label>
+        <input class="border-none" type="text" id="inputField" name="inputField" [(ngModel)]="username">
+        <button class="text-sm w-full text-center text-blue-500" type="submit">Check</button>
+      </form>
+    </ng-template>
   </div>
 </div>
