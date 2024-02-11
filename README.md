@@ -56,6 +56,11 @@ after getting username successfully i am calling api. with the condition of user
 
 For paggination part i am using angular duild in module called NgxPaginationModule.
 
+## Skeleton Loading
+
+For skeleton loading i am using tailwind for design, and i am showing skeleton loading when api fetching data from server.
+
 ## Responsive
 
 For styling i am using tailwind css. This project is 100% responsive.
+
