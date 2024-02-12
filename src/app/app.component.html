@@ -1,5 +1,20 @@
-<div class="flex h-screen bg-[#131313]">
-  <div class="h-full w-[350px]">
-    <app-profile></app-profile>
+<div class="flex h-[150vh] flex-col bg-[#131313]">
+  <div><app-header></app-header></div>
+  <div class="flex">
+    <div class="h-full w-[350px] overflow-hidden">
+      <div *ngIf="!user" class="absolute mx-4 w-[340px]">
+        <app-skeleton [loader]="loader"></app-skeleton>
+      </div>
+
+      <div class="h-[87vh] w-full flex-col">
+        <app-profile [user]="user"></app-profile>
+      </div>
+    </div>
+    <div>
+      <div *ngIf="loader && !user" class="ml-[120px]">
+        <app-reposkeleton></app-reposkeleton>
+      </div>
+      <app-repos [repos]="repoDetails"></app-repos>
+    </div>
   </div>
 </div>

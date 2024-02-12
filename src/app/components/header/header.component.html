@@ -1,0 +1,22 @@
+<div class="mx-32 flex justify-between p-2">
+  <div class="flex h-10 text-gray-600">
+    <input
+      type="search"
+      #user
+      name="serch"
+      placeholder="Search"
+      class="rounded-l-md bg-white px-5 text-sm focus:outline-none"
+    />
+    <div
+      type="submit"
+      (click)="searchUser(user.value)"
+      class="flex h-10 cursor-pointer items-center rounded-r-md bg-[#393939] px-4 text-[#dcdcdc] hover:bg-[#292929]"
+    >
+      search
+    </div>
+  </div>
+  <div class="my-4 flex text-[1.4rem] uppercase text-[#fefefe]">
+    Github Repository Listing
+  </div>
+  <div class="my-4 flex text-[1.4rem] text-[#fefefe]">By-- Atman Mishra</div>
+</div>

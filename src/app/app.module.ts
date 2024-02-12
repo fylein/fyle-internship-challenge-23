@@ -10,6 +10,11 @@ import { DescriptionComponent } from './components/description/description.compo
 
 import { ApiService } from './services/api.service';
 import { ReposComponent } from './components/repos/repos.component';
+import { HeaderComponent } from './components/header/header.component';
+import { SkeletonComponent } from './components/skeleton/skeleton.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ReposkeletonComponent } from './components/reposkeleton/reposkeleton.component';
 
 @NgModule({
   declarations: [
@@ -17,9 +22,17 @@ import { ReposComponent } from './components/repos/repos.component';
     ProfileComponent,
     DescriptionComponent,
     ReposComponent,
+    HeaderComponent,
+    SkeletonComponent,
+    ReposkeletonComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, NgxSkeletonLoaderModule],
-  providers: [ApiService],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    NgxSkeletonLoaderModule,
+    MatPaginatorModule,
+  ],
+  providers: [ApiService, provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
