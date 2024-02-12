@@ -7,7 +7,16 @@ Angular 17 single-page application (SPA) that takes a GitHub username as input a
 
 ## Tech Stack
 
-**Client:** Angular, TailwindCSS
+**Client:** Angular, TypeScript, TailwindCSS
+
+
+## Deployment
+
+See Deployed Site
+
+```bash
+  https://fyle-internship-atul.netlify.app/
+```
 
 
 ## API Reference
@@ -20,7 +29,7 @@ Angular 17 single-page application (SPA) that takes a GitHub username as input a
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
+| `username` | `string` | **GitHub**. username |
 
 Takes username and get the Github public repository of the user
 
@@ -33,7 +42,7 @@ Takes username and get the Github public repository of the user
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
+| `username`      | `string` | **GitHub**. username |
 
 #### 
 
@@ -90,6 +99,9 @@ To run tests, run the following command
 ```bash
   ng test
 ```
+Above command will execute the following
+  -> GithubService test
+  -> Repo-list Component tests
 
 
 ## Author
@@ -97,13 +109,13 @@ To run tests, run the following command
 - [@Atmalviya1](https://github.com/Atmalviya1)
 
 
-# Hi, I'm Atul! 👋
+
 
 
 ## 🚀 About Me
-I'm a full stack developer.
 
-Hey! I'm Atul Malviya, a software developer and Computer Science graduate from Jabalpur Engineering College. Currently, I'm gaining valuable experience as a Software Developer Trainee at Opensense Labs. Apart from coding, I've served as the TPO of my college and have a passion for karate, having represented India and won three national gold medals. Let's connect and code together! 🚀
+# Hey! I'm Atul Malviya 👋
+A software developer and Computer Science Engineering graduate from Jabalpur Engineering College. Currently, I'm gaining valuable experience as a Software Developer Trainee at Opensense Labs. Apart from coding, I've served as the TPO of my college and have a passion for karate, having represented India and won three national gold medals. Let's connect and code together! 🚀
 
 Reach me at [email](mailto:atulmalviyawork@gmail.com) or find me on [LinkedIn](https://www.linkedin.com/in/atul-malviya/).
 
@@ -116,23 +128,23 @@ Reach me at [email](mailto:atulmalviyawork@gmail.com) or find me on [LinkedIn](h
 
 ## FAQ
 
-#### Question 1 Am, i Available to join.?
+#### Question :-  Am, i Available to join.?
 
 Yes, i'm Available for next 6 Months to join
 
 
 
-## Other Common Github Profile Sections
+## 🛠 Skills
+Javascript, TypeScript, SQL, MERN/MEAN, GIt, Bit Bucket, PHP
+
+
+## 
 👩‍💻 I'm currently working on MERN & MEAN Stack
 
 🧠 I'm currently learning Node.js
 
 📫 How to reach me...-> https://www.linkedin.com/in/atul-malviya/
 
-
-
-## 🛠 Skills
-Javascript, TypeScript, SQL, MERN/MEAN, GIt, Bit Bucket, PHP
 
 
 ## Feedback

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserInputComponent } from './user-input/user-input.component';
 
 @Component({
   selector: 'app-root',
@@ -6,14 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  searchedUserName!:string;
-  constructor(
-  ) {}
-
-  ngOnInit() {
-  }
+  searchedUserName!: string;
+  title:string = "fyle-frontend-challenge";
+  constructor() {}
+  
   getUser(userName: string) {
     this.searchedUserName = userName;
 
+  }
+  ngOnInit() {
+    
   }
 }

@@ -33,9 +33,9 @@ export class RepoListComponent implements OnChanges {
     this.loadRepos();
   }
   loadRepos(){
-    this.getUserProfile(this.userName);
-    if(this.userName){
-      this.repos = []
+    if (!this.error && this.userName) { // Check if there is no error and userName is not empty
+      this.getUserProfile(this.userName);
+      this.repos = []; // Reset repos array
       this.githubService
         .getUserRepos(this.userName, this.currPage, this.pageSize)
         .subscribe({
@@ -43,13 +43,13 @@ export class RepoListComponent implements OnChanges {
             this.repos = repos;
           },
           error: (error) => {
-            this.error = 'Error fetching user profile';
-            console.log(error); // Log the error for debugging
+            this.error = 'Error fetching user repos';
+            console.log(error); 
           }
         });
-
     }
   }
+  
 
   getUserProfile(userName: string){
     if(userName){
@@ -67,7 +67,7 @@ export class RepoListComponent implements OnChanges {
         },
         error: (error) => {
           this.error = 'Error fetching user profile', error;
-          console.log(this.error); // Log the error for debugging
+          console.log(this.error); 
         }
       })
     }
