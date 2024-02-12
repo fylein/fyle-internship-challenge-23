@@ -26,7 +26,6 @@ export class SearchComponent {
       for (let i = 1; i <= this.data.totalPages; i++) {
         this.data.pageNumbers.push(i);
       }
-      this.data.isSearched = true;
 
       this.data.repos = res.repos;
       const { si, ei } = this.data.reposPerPage(this.currPage, this.data.noOfRepos);
