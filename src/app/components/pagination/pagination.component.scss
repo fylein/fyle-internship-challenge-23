@@ -1,0 +1,10 @@
+.page-item.active {
+  background-color: blue;
+  color: #ffffff;
+}
+
+.page-link.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

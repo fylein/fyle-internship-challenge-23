@@ -1,0 +1,39 @@
+<nav (click)="log()">
+  <ul class="pagination flex">
+    <li
+      class="page-item border border-blue-500 p-4"
+      [class.disabled]="currentPage === 1"
+    >
+      <a
+        class="page-link {{ currentPage === 1 ? 'disabled' : '' }}"
+        href="#"
+        aria-label="Previous"
+        (click)="prevPage()"
+      >
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li
+      class="page-item border border-blue-500 p-4"
+      [class.active]="page === currentPage"
+      *ngFor="let page of pages; let i = index"
+    >
+      <a class="page-link" href="#" (click)="goToPage(page)">{{ page }}</a>
+    </li>
+    <li
+      class="page-item border border-blue-500 p-4"
+      [class.disabled]="currentPage === totalPages"
+    >
+      <a
+        class="page-link {{ currentPage === totalPages ? 'disabled' : '' }}"
+        href="#"
+        aria-label="Next"
+        (click)="nextPage()"
+      >
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
