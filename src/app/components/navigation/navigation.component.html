@@ -16,12 +16,12 @@
   <div class="font-bold text-xs md:text-sm">records</div>
 </div>
 <div class="w-fullmy-2 font-bold pr-15">
-  <div class="float-right text-xs pr-5">Page -> 3</div>
+  <div class="float-right text-xs pr-5">Page -> {{ currentPage }}</div>
 </div>
 <div class="flex flex-row gap-2 w-full justify-center text-xs">
   <button
-    *ngFor="let pg of pagesList"
-    (click)="setPage(pg)"
+    *ngFor="let pg of pagesList; let i = index"
+    (click)="setPage(pg, i)"
     class="py-1 px-2 mb-2 border-1 rounded-sm border-blue-200 focus:ring focus:outline-none focus:ring-sky-300 delay-125 rounded-md my-2"
   >
     {{ pg }}

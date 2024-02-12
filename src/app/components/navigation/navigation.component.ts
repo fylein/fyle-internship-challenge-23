@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
+  getCurrentPage,
   getNoRecords,
+  getTotalNoRepos,
   getUserDetails,
   selectState,
 } from 'src/app/store/selectors';
@@ -13,24 +15,32 @@ import { updateNoOfRecords, updatePageNo } from 'src/app/store/actions';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
+  constructor(private store: Store) {}
+
   public noRepos!: number;
   public username!: string;
+  public currentPage!: number;
+  public totalRepos!: number;
   public showRecordsArr: number[] = [10, 25, 50, 100];
-  public pagesList: number[] = new Array(10).fill(0).map((v, i) => i + 1);
+  public pagesList: number[] = new Array(3).fill(0).map((v, i) => i + 1);
   public navBy: string[] = ['First', 'Prev', 'Next', 'Last'];
-  constructor(private store: Store) {}
+
   ngOnInit() {
-    console.log(this.pagesList);
     this.store
       .select(getNoRecords)
       .subscribe((data: number) => (this.noRepos = data));
     this.store
       .select(getUserDetails)
       .subscribe((user) => (this.username = user.login));
+    this.store
+      .select(getCurrentPage)
+      .subscribe((data) => (this.currentPage = data));
+    this.store
+      .select(getTotalNoRepos)
+      .subscribe((data) => (this.totalRepos = data));
   }
 
   setNoRecords(evt: any) {
-    console.log(this.noRepos);
     this.store.dispatch(
       updateNoOfRecords({
         noOfRecords: this.noRepos,
@@ -40,7 +50,19 @@ export class NavigationComponent implements OnInit {
     );
   }
 
-  setPage(page: number) {
+  setPage(page: number, i: number) {
+    let size = this.pagesList.length - 1;
+    if (i == 0 && this.pagesList[0] != 1) {
+      this.pagesList.unshift(this.pagesList[0] - 1);
+      this.pagesList.pop();
+    } else if (
+      i == size &&
+      this.totalRepos > (this.currentPage - 1) * this.noRepos
+    ) {
+      this.pagesList.push(this.pagesList[size] + 1);
+      this.pagesList.shift();
+      console.log(this.pagesList);
+    }
     this.store.dispatch(
       updatePageNo({
         page: page,
