@@ -7,16 +7,16 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./description.component.scss'],
 })
 export class DescriptionComponent {
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   user: any = null;
-  repo: any = null;
-  constructor(private apiService: ApiService) {
-    this.apiService.getUser('johnpapa').subscribe((user: any) => {
-      console.log(user);
-      this.user = user;
-    });
+  loader = true;
 
-    this.apiService.getRepos('johnpapa').subscribe((repos: any) => {
-      this.repo = repos;
+  constructor(private apiService: ApiService) {}
+  ngOnInit(): void {
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    this.apiService.getUser('johnpapa').subscribe((user: any) => {
+      this.user = user;
+      this.loader = false;
     });
   }
 }

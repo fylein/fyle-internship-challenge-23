@@ -10,8 +10,26 @@
     <div
       class="text- absolute inset-0 z-10 flex cursor-pointer items-center justify-center rounded-[50%] border-[2px] border-[#444950] bg-[#121212a4] font-semibold text-[#eafeea] opacity-0 duration-500 hover:opacity-100"
     >
-      <a class="transition-all duration-500 hover:text-[#5f8df0]" href="{{ user.html_url }}" target="_blank"> View Profile </a>
+      <a
+        class="transition-all duration-500 hover:text-[#5f8df0]"
+        href="{{ user.html_url }}"
+        target="_blank"
+      >
+        View Profile
+      </a>
     </div>
+    <ngx-skeleton-loader
+      *ngIf="loader"
+      [theme]="{
+        height: '300px',
+        width: '300px',
+        'border-radius': '50%',
+        'background-color': '#303030'
+      }"
+      appearance="circle"
+      count="1"
+      animation="progress-dark"
+    ></ngx-skeleton-loader>
   </div>
   <!-- <div class="">
     <img
@@ -25,8 +43,31 @@
       <span class="text-[2rem] leading-8">{{ user.name }}</span>
       <span class="text-[1.4rem] text-[#eafeea8f]">{{ user.login }}</span>
     </div>
-    <div class="flex w-[26vw] font-[400]">
-      <span>{{ user.bio }}</span>
+
+    <ngx-skeleton-loader
+      *ngIf="loader"
+      [theme]="{
+        height: '30px',
+        width: '300px',
+        'background-color': '#303030'
+      }"
+      appearance="line"
+      count="2"
+      animation="progress-dark"
+    ></ngx-skeleton-loader>
+
+    <div class="flex w-[26vw] flex-col font-[400]">
+      <div>{{ user.bio }}</div>
+      <ngx-skeleton-loader
+        *ngIf="loader"
+        [theme]="{
+          width: '300px',
+          'background-color': '#303030'
+        }"
+        appearance="line"
+        count="1"
+        animation="progress-dark"
+      ></ngx-skeleton-loader>
     </div>
     <div class="my-4 flex flex-col gap-1">
       <div class="flex">
@@ -54,6 +95,16 @@
           >
         </a>
       </div>
+      <ngx-skeleton-loader
+        *ngIf="loader"
+        [theme]="{
+          width: '300px',
+          'background-color': '#303030'
+        }"
+        appearance="line"
+        count="1"
+        animation="progress-dark"
+      ></ngx-skeleton-loader>
       <div class="flex">
         <span
           class="icon-[octicon--flame-16] mr-1 text-[1.2em] text-[#eafeea8f]"
@@ -70,6 +121,16 @@
           ><span class="text-[#eafeea8f]">public repos</span></span
         >
       </div>
+      <ngx-skeleton-loader
+        *ngIf="loader"
+        [theme]="{
+          width: '300px',
+          'background-color': '#303030'
+        }"
+        appearance="line"
+        count="1"
+        animation="progress-dark"
+      ></ngx-skeleton-loader>
     </div>
 
     <app-description></app-description>

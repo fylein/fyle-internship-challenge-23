@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-// import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { AppComponent } from './app.component';
 
@@ -18,7 +18,7 @@ import { ReposComponent } from './components/repos/repos.component';
     DescriptionComponent,
     ReposComponent,
   ],
-  imports: [BrowserModule, HttpClientModule,],
+  imports: [BrowserModule, HttpClientModule, NgxSkeletonLoaderModule],
   providers: [ApiService],
   bootstrap: [AppComponent],
 })
