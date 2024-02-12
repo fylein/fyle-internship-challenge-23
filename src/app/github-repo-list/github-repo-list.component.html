@@ -1,0 +1,60 @@
+<div class="component">
+    <div class="SearchBar" *ngIf="(!searchPerformed || username !== '') && !userDetails">
+        <input type="text" [(ngModel)]="username" placeholder="Enter GitHub username" (keyup.enter)="searchRepos()">
+        <button (click)="searchRepos()">Search</button>
+    </div>
+
+    <!-- Loading indicator -->
+    <div *ngIf="loading">
+        <!-- Skeleton Loader -->
+        <div class="skeleton-loader">
+            <!-- Skeleton profile picture -->
+            <div class="skeleton-profile-picture"></div>
+            <!-- Skeleton name -->
+            <div class="skeleton-name"></div>
+            <!-- Skeleton bio -->
+            <div class="skeleton-bio"></div>
+            <!-- Skeleton followers -->
+            <div class="skeleton-followers"></div>
+            <!-- Skeleton following -->
+            <div class="skeleton-following"></div>
+        </div>
+    </div>
+    <div *ngIf="searchPerformed && !userDetails">
+        <p>Invalid GitHub username. Please enter a valid username.</p>
+    </div>
+    <!-- UserDetails -->
+    <div *ngIf="userDetails">
+        <div class="user-profile">
+            <img [src]="userDetails.avatar_url" alt="Profile Picture">
+            <div class="user-details">
+                <h2><strong>{{ userDetails.name }}</strong></h2>
+                <p>{{ userDetails.bio }}</p>
+                <div class="follower-following">
+                    <p>Followers: {{ userDetails.followers }}</p>
+                    <p>Following: {{ userDetails.following }}</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Repositories -->
+    <div *ngIf="repos.length">
+        <h2><strong>{{ username }}</strong>:</h2>
+        <div class="repo-cards">
+            <div *ngFor="let repo of repos" class="repo-card">
+                <div class="repo-details">
+                    <h3><strong>{{ repo.name }}</strong></h3>
+                    <p>{{ repo.description }}</p>
+                    <p class="Languages">Languages:<strong> {{ repo.language }}</strong></p>
+                    <a [href]="repo.html_url" target="_blank">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div *ngIf="searchPerformed && !userDetails">
+        <p>Invalid GitHub username. Please enter a valid username.</p>
+    </div> -->
+</div>
