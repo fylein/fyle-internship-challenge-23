@@ -8,12 +8,12 @@
           <div class="text-left ml-4 mt-2"> 
             <h2 class="font-bold pb-1">{{ userData.name }}</h2>
             <p class="pb-1">{{ userData.bio }}</p>
-            <p class="pb-1">📍{{ userData.location}}</p>
+            <p class="pb-1">📌 {{ userData.location}}</p>
             <p class="pb-2">Twitter: {{ userData.twitter_username }}</p>
           </div>
         </div>
         <div class="ml-4 mb-8">
-          <p>{{ userData.url }}</p>
+          <p> 🔗 {{ userData.url }}</p>
         </div>
         <div class=" mt-2 grid grid-cols-2 gap-x-52 mx-12 max-w-screen-2xl"> 
           <div *ngFor="let repo of userRepos" class="container"> 
