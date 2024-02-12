@@ -8,7 +8,9 @@ import { ApiService } from './services/api.service';
 })
 export class AppComponent implements OnInit{
 
+  title:string = 'fyle-frontend-challenge'
   userName:string='Kasraf20';
+  errorMessage:string ='Post not available'
   data:any=[]
   loading:boolean = true
   error:boolean  = false

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeroComponent } from './hero.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('HeroComponent', () => {
   let component: HeroComponent;
@@ -8,7 +9,9 @@ describe('HeroComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [HeroComponent]
+      declarations: [HeroComponent],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+      
     });
     fixture = TestBed.createComponent(HeroComponent);
     component = fixture.componentInstance;

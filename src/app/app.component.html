@@ -1,4 +1,5 @@
-<div>
+<div class="content span mt-2 mb-2 text-wrap text-center text-2xl text-orange-500"> 
+  fyle-frontend-challenge app is running!
   <app-input-box (getFormData) = 'getUserName($event)'></app-input-box>
     <ng-container *ngIf="error === false; else errorContent">
       <ng-container *ngIf="loading; else showListData">
@@ -9,7 +10,7 @@
       </ng-template>
     </ng-container>
     <ng-template #errorContent>
-      <h1 class="mt-10 text-red-600 text-center text-2xl">Post not available </h1>
+      <h1 class="mt-10 text-red-600 text-center text-2xl">{{errorMessage}}</h1>
     </ng-template>
 </div>
 
