@@ -1,0 +1,120 @@
+<h1 class="text-5xl font-bold mt-8"> Github Profile<span class="text-blue-500">Finder</span></h1>
+
+<div class="mt-8">
+  <div class="flex bg-blue-100 items-center mx-auto gap-10 p-4 search-bar-section">
+    <div class="icon">
+      <svg width="98" height="96" xmlns="http://www.w3.org/2000/svg">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+          fill="#24292f"
+        />
+      </svg>
+    </div>
+    <div class="search-bar">
+      <input
+        type="text"
+        class="p-2 border-none outline-none border-blue-500"
+        [formControl]="inputSearch"
+        placeholder="Search GitHub user"
+      />
+    </div>
+  </div>
+</div>
+
+
+  <div class="skeleton-loader" *ngIf="loading">
+    <!-- Add your skeleton loader design here -->
+    <div class="skeleton-item"></div>
+    <div class="skeleton-item"></div>
+    <div class="skeleton-item"></div>
+    <!-- Add more items as needed -->
+  </div>
+
+
+<div class="user-details mt-8 m-4" *ngIf="githubUserDetails">
+  <section class="bg-gray-100 p-4 rounded-md">
+    <div class="flex items-center">
+      <img
+        [src]="githubUserDetails.avatar_url"
+        alt="The Octocat"
+        class="w-16 h-16 rounded-full mr-4"
+      />
+      <div>
+        <strong class="text-xl font-bold">{{ githubUserDetails.name }}</strong>
+        <span class="block text-gray-500"
+          >Joined {{ githubUserDetails.created_at | date : "mediumDate" }}</span
+        >
+      </div>
+    </div>
+    <div class="mt-4">
+      <ul class="flex space-x-4">
+        <li class="flex gap-2">
+          <span class="font-bold">Repos</span>
+          <strong>{{ githubUserDetails.public_repos }}</strong>
+        </li>
+        <li class="flex gap-2">
+          <span class="font-bold">Followers</span>
+          <strong>{{ githubUserDetails.followers }}</strong>
+        </li>
+        <li class="flex gap-2">
+          <span class="font-bold">Following</span>
+          <strong>{{ githubUserDetails.following }}</strong>
+        </li>
+      </ul>
+    </div>
+    <ul class="flex space-x-4 mt-4 items-center">
+      <li *ngIf="githubUserDetails.location" class="flex gap-2 items-center">
+
+        <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+           width="24px" height="24px" viewBox="0 0 395.71 395.71"
+           xml:space="preserve">
+        <g>
+          <path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738
+            c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388
+            C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191
+            c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"/>
+        </g>
+        </svg>
+        <span class="text-gray-500">{{ githubUserDetails.location }}</span>
+      </li>
+      <li *ngIf="githubUserDetails.blog">
+        <a
+          [href]="githubUserDetails.blog"
+          class="flex items-center text-blue-500"
+        >
+          <svg
+            height="20"
+            width="20"
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4"
+          >
+            <!-- Blog icon SVG path -->
+          </svg>
+          <span class="ml-1">{{ githubUserDetails.blog }}</span>
+        </a>
+      </li>
+      <!-- Add other list items based on your data -->
+    </ul>
+  </section>
+</div>
+
+<div class="error" *ngIf="notFound">
+    <div class="bg-red-100 p-4 rounded-md">
+        <p class="text-red-700">User not found. Please try again.</p>
+    </div>
+</div>
+
+<div  *ngIf="hasData">
+  <app-github-user-repos  [repoData]="repoData"></app-github-user-repos>
+</div>
+
+
+<div class="pagination m-4" *ngIf="hasData"> 
+  <button class="pagination-btn button" (click)="loadPage(currentPage - 1)" [disabled]="currentPage === 1">Previous Page</button>
+  <ng-container *ngFor="let page of getPageNumbers()">
+    <button class="pagination-btn"  style="padding:0.5rem ;margin-left:0.5rem" (click)="loadPage(page)" [class.active]="page === currentPage">{{ page }}</button>
+  </ng-container>
+  <button class="pagination-btn button ml-4" (click)="loadPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next Page</button>
+</div>

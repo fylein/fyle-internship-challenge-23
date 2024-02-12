@@ -1,0 +1,90 @@
+/* Add this style to your component's SCSS file */
+
+.skeleton-loader {
+    display: flex;
+    // justify-content: space-between;
+  }
+  
+  .skeleton-item {
+    width: 20px;
+    height: 20px;
+    background-color: #ddd; /* Adjust the background color as needed */
+    border-radius: 50%;
+    animation: pulsate 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes pulsate {
+    0% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0.8);
+    }
+  }
+  
+
+  .button{
+    background-color: rgb(59 130 246);
+
+    color:#fafafa;
+    border-radius: 0.5rem;
+    padding:0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .active{
+    background-color:rgb(59 130 246);
+    color:white;
+    border-radius: 0.5rem;
+  }
+
+  button:disabled{
+    opacity: 0.5;
+  }
+
+  .user-details {
+
+    section {
+
+      background-color: #24292E;
+      // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      // margin: auto;
+    width: max-content;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    // box-shadow: rgba(46, 46, 48, 0.2) 0px 7px 29px 0px;
+
+    svg {
+      path {
+        fill:#e0e0e0;
+      }
+    }
+
+    }
+  }
+
+
+  input {
+    // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .search-bar-section{
+    background-color: #24292E;
+
+    svg {
+
+      path {
+        fill:white;
+      }
+    }
+  }
+
+input {
+  color:#121212;
+}
