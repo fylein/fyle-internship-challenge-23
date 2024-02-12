@@ -44,13 +44,13 @@ export class GithubService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred';
+    let errorMessage = `Error: ${error.status}`;
     if (error.error instanceof ErrorEvent) {
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      errorMessage = `Error: ${error.status}, ${error.error.message}`;
+      errorMessage = `Error: ${error.message}`;
     }
     console.error(errorMessage);
     return throwError(errorMessage);
   }
+  
+  
 }

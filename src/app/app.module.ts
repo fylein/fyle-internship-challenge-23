@@ -12,6 +12,7 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { RepoCardComponent } from './repo-card/repo-card.component';
 import { RepoCardSkeletonComponent } from './repo-card-skeleton/repo-card-skeleton.component';
 import { UserCardSkeletonComponent } from './user-card-skeleton/user-card-skeleton.component'; // Import the interceptor
+import { GithubService } from './services/github.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UserCardSkeletonComponent } from './user-card-skeleton/user-card-skelet
     FormsModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true } // Register the interceptor
+    { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
+    GithubService
   ],
   bootstrap: [AppComponent]
 })
