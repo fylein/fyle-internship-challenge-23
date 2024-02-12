@@ -2,7 +2,7 @@
   <ng-container *ngFor="let repo of repos; let i = index">
     <div
       [ngClass]="{ 'col-start-2': i % 2 == 0 }"
-      class="border-l-2 rounded-lg border-b-2 col-span-4 border-violet-500 text-left p-2"
+      class="border-l-2 rounded-lg border-b-2 col-span-4 border-violet-500 text-left p-2 shadow-xl shadow-cyan-500/50"
     >
       <div class="text-xl font-bold">{{ repo.name }}</div>
       <div class="text-sm">{{ repo.description }}</div>
@@ -28,14 +28,16 @@
   <div class="w-full grid grid-cols-12 gap-4">
     <ng-container *ngFor="let repo of repos">
       <div
-        class="col-start-2 col-end-12 border-t-2 border-violet-500 text-center pt-3 rounded-lg"
+        class="col-start-2 col-end-12 border-t-2 border-violet-500 text-center pt-3 rounded-lg shadow-md shadow-cyan-500/50 pb-2"
       >
         <div class="text-lg font-bold">{{ repo.name }}</div>
-        <div class="text-xs">{{ repo.description }}</div>
-        <div class="w-fit flex flex-row gap-3 my-1">
+        <div class="text-xs mb-1">{{ repo.description }}</div>
+        <div
+          class="w-fit flex flex-row gap-x-2 gap-y-1 p-1 items-end flex-wrap"
+        >
           <div
             *ngFor="let topic of repo.topics"
-            class="p-1 text-xs text-white bg-sky-400 rounded-sm font-bold h-fit"
+            class="p-1 text-xs text-white bg-sky-400 rounded-md font-bold h-fit"
           >
             {{ topic }}
           </div>
