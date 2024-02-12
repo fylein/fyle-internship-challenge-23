@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LoadingUserCardComponent } from './loading-user-card.component';
 
 describe('LoadingUserCardComponent', () => {

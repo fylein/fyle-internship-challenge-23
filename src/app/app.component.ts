@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ApiService } from './services/api.service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -9,8 +8,11 @@ import { Title } from '@angular/platform-browser';
 })
 
 export class AppComponent {
+  title: string = 'Fyle Frontend'; 
+
   constructor(
-    private apiService: ApiService
+    private titleService: Title
   ) {
+    this.titleService.setTitle(this.title); 
   }
 }

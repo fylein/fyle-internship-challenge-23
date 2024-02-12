@@ -34,14 +34,10 @@
           </div>
           <div>
             <p class="font-semibold">
-              Hireable: 
-              <ng-container *ngIf="user.hireable; else notHireable">
-                <i class="fas fa-check"></i>
-              </ng-container>
-              <ng-template #notHireable>
-                <i class="fas fa-times"></i>
-              </ng-template>
-            </p>            
+              Hireable:
+              <span class="text-green" *ngIf="user.hireable"><i class="fas fa-check"></i></span>
+              <span class="text-red-500" *ngIf="!user.hireable"><i class="fas fa-times"></i></span>
+            </p>
           </div>
         </div>
         <div class="mt-3">
