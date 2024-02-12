@@ -8,7 +8,7 @@ import { ApiService } from './services/api.service';
 })
 export class AppComponent implements OnInit {
   constructor(private apiService: ApiService) {}
-
+  title: string = 'fyle-frontend-challenge';
   repos: any;
   username: string = '';
   userData: any = {
