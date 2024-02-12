@@ -20,7 +20,9 @@
             <div class="skeleton-following"></div>
         </div>
     </div>
-
+    <div *ngIf="searchPerformed && !userDetails">
+        <p>Invalid GitHub username. Please enter a valid username.</p>
+    </div>
     <!-- UserDetails -->
     <div *ngIf="userDetails">
         <div class="user-profile">
@@ -52,7 +54,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="searchPerformed && !userDetails">
+    <!-- <div *ngIf="searchPerformed && !userDetails">
         <p>Invalid GitHub username. Please enter a valid username.</p>
-    </div>
+    </div> -->
 </div>
