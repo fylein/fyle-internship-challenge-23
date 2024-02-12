@@ -1,5 +1,103 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="border border-black m-4">
+  <div class="content">
+    <span class="font-semibold text-xl flex justify-center mt-2">
+      {{ title }} app is running!
+    </span>
+  </div>
+  <div class="p-4 flex space-x-4 justify-center items-center">
+    <label for="input-field" class="text-sm font-medium text-gray-900"
+      >Enter Username</label
+    >
+    <input
+      type="text"
+      id="input-field"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+      [(ngModel)]="username"
+    />
+    <div>
+      <label for="pageSize" class="text-sm font-medium text-gray-900"
+        >No of Repos</label
+      >
+      <select
+        id="pageSize"
+        [(ngModel)]="reposPerPage"
+        class="bg-gray-50 ml-2 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5"
+      >
+        <option
+          *ngFor="let option of numberOfReposOptions"
+          [value]="option"
+          (change)="onChangeNumberOfRepos(option)"
+        >
+          {{ option }}
+        </option>
+      </select>
+    </div>
+    <button
+      type="button"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+      (click)="onSubmit()"
+    >
+      submit
+    </button>
+  </div>
+  <div>
+    <div>
+      <div
+        *ngIf="userData.id"
+        class="flex justify-start items-center space-x-7 mb-4 mx-10"
+      >
+        <img
+          [src]="userData.avatar_url"
+          class="h-52 w-52 rounded-full"
+          alt="Avatar"
+        />
+        <div class="flex flex-col font-semibold mr-4">
+          <h1 class="text-4xl">{{ userData.name }}</h1>
+          <p>{{ userData.bio }}</p>
+          <p>
+            <i class="fa-solid fa-location-dot"></i> {{ userData.location }}
+          </p>
+          <p>Twitter: {{ userData.twitter_username || "no url found" }}</p>
+        </div>
+      </div>
+      <a
+        class="block mb-2 mx-10 underline"
+        *ngIf="username.length > 0"
+        [href]="'https://github.com/' + username"
+        ><i class="fa-solid fa-link"></i
+        >{{ "https://github.com/" + username }}</a
+      >
+    </div>
+
+    <div class="grid grid-cols-1 mx-2 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div
+        class="border border-black space-x-2 space-y-2 p-5"
+        *ngFor="let repo of repos"
+      >
+        <h2 class="text-2xl font-bold">{{ repo.name }}</h2>
+        <p class="text-gray-700">
+          {{ repo.description || "description not available" }}
+        </p>
+        <div
+          class="flex flex-wrap justify-start items-baseline space-x-2 space-y-2"
+        >
+          <div
+            class="bg-blue-500 text-white text-center font-bold py-1 px-3 rounded-full m-1"
+            *ngFor="let language of repo.topics"
+          >
+            {{ language }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="repos?.length" class="flex justify-center my-2">
+    <app-pagination
+      [totalRepos]="totalRepos"
+      [reposPerPage]="reposPerPage"
+      [currentPage]="currentPage"
+      (pageChanged)="onPageChanged($event)"
+    ></app-pagination>
   </div>
 </div>
