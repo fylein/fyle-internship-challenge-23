@@ -1,0 +1,29 @@
+<div *ngIf="user && !error">
+    <div *ngIf="repos.length > 0 then repolist else noData">
+    </div>
+</div>
+
+<ng-template #repolist>
+    <div *ngIf="isLoading; else loadedContent">
+        <app-user-card-skeleton [user]="user" ></app-user-card-skeleton>
+        <app-repo-card-skeleton [repos]="repos" ></app-repo-card-skeleton>
+    </div>
+    <ng-template #loadedContent>
+        <app-user-card [user]="user"></app-user-card>
+        <h2 class="text-center">Repositories of {{ user.name }}</h2>
+        <app-repo-card [repos]="repos"></app-repo-card>
+    </ng-template>
+
+    <app-pagination [currentPage]="currPage" [pageSize]="pageSize" [totalItems]="totalRepos"
+        (pageChange)="onPageChange($event)" (sizeChange)="onPageSizeChange($event)">
+    </app-pagination>
+</ng-template>
+<ng-template #noData>
+    <div class="flex justify-center items-center h-full">
+        <p>No repositories found for {{ userName }}</p>
+    </div>
+</ng-template>
+
+<div *ngIf="error" class="flex justify-center items-center h-full">
+    <p>user not found</p>
+</div>

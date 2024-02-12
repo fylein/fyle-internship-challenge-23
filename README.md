@@ -1,43 +1,153 @@
-# Fyle Frontend Challenge
 
-## Who is this for?
+# Github Repositories listing page
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
 
-## Why work at Fyle?
+Angular 17 single-page application (SPA) that takes a GitHub username as input and displays the public Github repositories belonging to the user.
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+## Tech Stack
 
-## Challenge outline
+**Client:** Angular, TypeScript, TailwindCSS
 
-This challenge involves implementing application using github api. 
 
-The services that you need to use are already implemented - check out ApiService.
+## Deployment
 
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
+See Deployed Site
 
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
+```bash
+  https://fyle-internship-atul.netlify.app/
+```
 
-## What happens next?
 
-You will hear back within 48 hours from us via email.
+## API Reference
+
+#### Get all Repos
+
+```http
+  GET /api.github.com/users/${username}/Repos
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `username` | `string` | **GitHub**. username |
+
+Takes username and get the Github public repository of the user
+
+#### Get User Profile
+
+```http
+  GET /api.github.com/users/${username}
+
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `username`      | `string` | **GitHub**. username |
+
+#### 
+
+Takes username and get the user Github Profile
+
+
+## Environment Variables
+
+To run this project, you don not need any environment variables
+
+
 
 ## Installation
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+Install  with npm
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+```bash
+  npm install 
+  npm install @angular/cli
+```
+    
+## Run Locally
 
-## Development server
+Clone the project
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+```bash
+  git clone https://github.com/Atmalviya1/fyle-internship-Atul.git
+```
 
-## Further help
+Go to the project directory
 
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+```bash
+  cd fyle-internship-Atul
+```
+
+Install dependencies
+
+```bash
+  npm install
+  npm install @angular/cli
+```
+
+Start the server
+
+```bash
+  ng serve
+```
+
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  ng test
+```
+Above command will execute the following
+  -> GithubService test
+  -> Repo-list Component tests
+
+
+## Author
+
+- [@Atmalviya1](https://github.com/Atmalviya1)
+
+
+
+
+
+## 🚀 About Me
+
+# Hey! I'm Atul Malviya 👋
+A software developer and Computer Science Engineering graduate from Jabalpur Engineering College. Currently, I'm gaining valuable experience as a Software Developer Trainee at Opensense Labs. Apart from coding, I've served as the TPO of my college and have a passion for karate, having represented India and won three national gold medals. Let's connect and code together! 🚀
+
+Reach me at [email](mailto:atulmalviyawork@gmail.com) or find me on [LinkedIn](https://www.linkedin.com/in/atul-malviya/).
+
+
+## 🔗 Links
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/atul-malviya/)
+
+
+
+## FAQ
+
+#### Question :-  Am, i Available to join.?
+
+Yes, i'm Available for next 6 Months to join
+
+
+
+## 🛠 Skills
+Javascript, TypeScript, SQL, MERN/MEAN, GIt, Bit Bucket, PHP
+
+
+## 
+👩‍💻 I'm currently working on MERN & MEAN Stack
+
+🧠 I'm currently learning Node.js
+
+📫 How to reach me...-> https://www.linkedin.com/in/atul-malviya/
+
+
+
+## Feedback
+
+If you have any feedback, please reach out to us at atulmalviyawork@gmail.com
+

@@ -1,0 +1,23 @@
+<div class="flex flex-wrap">
+  <div class="w-1/4 p-4" style="height: 250px;" *ngFor="let repo of repos">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 h-full">
+      <div class="p-4">
+        <div class="font-bold text-lg mb-2 text-gray-800">{{ repo.name }}</div>
+        <p class="text-gray-600 truncate max-w-full">{{ repo.description }}</p>
+      </div>
+      <div >
+        <div class="px-4 py-2 ">
+          <ng-container *ngFor="let topic of repo.topics.slice(0, 3); let i = index">
+            <span class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2">{{ topic }}</span>
+          </ng-container>
+          <!-- <ng-container *ngIf="repo.topics.length > 3">
+            <span class="inline-block bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2">...</span>
+          </ng-container> -->
+          <div class="px-4 py-2">
+            <a href="{{ repo.html_url }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full inline-block" style="background-color: rgba(59, 130, 246, var(--tw-bg-opacity))" target="_blank">View Repo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

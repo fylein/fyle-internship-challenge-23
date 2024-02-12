@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './services/api.service';
+import { UserInputComponent } from './user-input/user-input.component';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +7,15 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  constructor(
-    private apiService: ApiService
-  ) {}
+  searchedUserName!: string;
+  title:string = "fyle-frontend-challenge";
+  constructor() {}
+  
+  getUser(userName: string) {
+    this.searchedUserName = userName;
 
+  }
   ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
+    
   }
 }
