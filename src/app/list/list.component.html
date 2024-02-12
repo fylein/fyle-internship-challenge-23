@@ -1,0 +1,15 @@
+<div class="max-w-screen-xl mx-auto mt-8 pl-5 md:pr-5 sm:pr-5">
+    <h2 class="text-2xl font-bold mb-4">Repositories</h2>
+    <div class="repo-grid">
+        <div *ngIf="isLoading; else loadedContent">
+            <div *ngFor="let _ of [].constructor(10)">
+                <app-loading-card></app-loading-card>
+            </div>
+        </div>
+        <ng-template #loadedContent>
+            <div *ngFor="let repo of repos">
+                <app-repo [repo]="repo"></app-repo>
+            </div>
+        </ng-template>
+    </div>
+</div>
