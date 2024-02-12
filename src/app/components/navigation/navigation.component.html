@@ -17,11 +17,12 @@
 </div>
 <div class="w-full flex flex-row justify-center gap-3 mb-3 text-xs">
   <button
+    *ngFor="let by of navBy"
     class="border-2 rounded-sm border-blue-200 p-2 focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600"
   >
-    First
+    {{ by }}
   </button>
-  <button
+  <!-- <button
     class="border-2 rounded-sm border-blue-200 p-2 focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600"
   >
     Prev
@@ -35,5 +36,5 @@
     class="border-2 rounded-sm border-blue-200 p-2 focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600"
   >
     Last
-  </button>
+  </button> -->
 </div>

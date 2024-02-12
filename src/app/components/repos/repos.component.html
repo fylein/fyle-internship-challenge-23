@@ -6,10 +6,10 @@
     >
       <div class="text-xl font-bold">{{ repo.name }}</div>
       <div class="text-sm">{{ repo.description }}</div>
-      <div class="w-fit flex flex-row gap-2 my-1">
+      <div class="w-fit flex flex-row gap-2 my-1 flex-wrap">
         <div
           *ngFor="let topic of repo.topics"
-          class="p-1 text-sm text-white bg-sky-400 rounded-sm font-bold"
+          class="p-1 text-sm text-white bg-sky-400 rounded-md font-bold h-fit"
         >
           {{ topic }}
         </div>
@@ -35,7 +35,7 @@
         <div class="w-fit flex flex-row gap-3 my-1">
           <div
             *ngFor="let topic of repo.topics"
-            class="p-1 text-xs text-white bg-sky-400 rounded-sm font-bold"
+            class="p-1 text-xs text-white bg-sky-400 rounded-sm font-bold h-fit"
           >
             {{ topic }}
           </div>

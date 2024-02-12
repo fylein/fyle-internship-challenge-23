@@ -12,6 +12,8 @@ export class NavigationComponent {
   public noRepos!: number;
   public username!: string;
   public showRecordsArr: number[] = [10, 25, 50, 100];
+  public pagesList: number[] = new Array().fill(0).map((v, i) => i + 1);
+  public navBy: string[] = ['First', 'Prev', 'Next', 'Last'];
   constructor(private store: Store) {
     this.store
       .select(getNoRecords)
