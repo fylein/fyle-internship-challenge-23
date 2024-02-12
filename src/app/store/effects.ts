@@ -4,6 +4,8 @@ import {
   setNoRecords,
   setUserData,
   updateNoOfRecords,
+  updatePageNo,
+  setPageNo,
 } from './actions';
 import { ApiService } from '../services/api.service';
 import { switchMap, map, exhaustMap, of, forkJoin } from 'rxjs';
@@ -34,6 +36,7 @@ export class Effects {
               userData: userDataRes.data,
               reposData: reposDataRes.data,
               noOfRecords: action.noOfRepos,
+              totalRepos: userDataRes.data.public_repos,
             });
           }),
           catchError((error) => {
@@ -55,6 +58,26 @@ export class Effects {
               console.log(updatedRecords);
               return setNoRecords({
                 reposData: updatedRecords.data,
+                noOfRecords: action.noOfRecords,
+                page: action.page,
+              });
+            })
+          )
+      )
+    )
+  );
+
+  updatePageNo = createEffect(() =>
+    this.action$.pipe(
+      ofType(updatePageNo),
+      switchMap((action) =>
+        this.apiService
+          .getUserRepos(action.username, action.noOfRecords, action.page)
+          .pipe(
+            map((updatedPage) => {
+              return setPageNo({
+                reposData: updatedPage.data,
+                page: action.page,
                 noOfRecords: action.noOfRecords,
               });
             })

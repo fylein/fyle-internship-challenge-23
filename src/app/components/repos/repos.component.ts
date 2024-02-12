@@ -28,8 +28,6 @@ export class ReposComponent implements OnInit {
       console.log(data);
       this.repos = data;
     });
-    this.store.select(selectState).subscribe((data) => {
-      console.log(data);
-    });
+    this.store.select(selectState).subscribe((data) => console.log(data));
   }
 }

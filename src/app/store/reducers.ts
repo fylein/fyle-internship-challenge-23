@@ -4,32 +4,51 @@ import {
   setUserData,
   updateNoOfRecords,
   setNoRecords,
+  updatePageNo,
+  setPageNo,
 } from './actions';
 import { githubData, AppState } from './state';
 
 export const appReducer = createReducer(
   AppState,
-  on(fetchUserData, (state, { username, noOfRepos }) => {
+  on(fetchUserData, (state, { username }) => {
     console.log(username);
     return { ...AppState };
   }),
-  on(setUserData, (state, { userData, reposData, noOfRecords }) => {
-    console.log(userData, reposData);
+  on(setUserData, (state, { userData, reposData, noOfRecords, totalRepos }) => {
     return {
       ...state,
       users: userData,
       repos: [...reposData],
-      pageState: { ...state.pageState, showRecords: noOfRecords },
+      pageState: { ...state.pageState, total: totalRepos },
     };
   }),
-  on(updateNoOfRecords, (state, { noOfRecords, username }) => {
+  on(updateNoOfRecords, (state) => {
     return { ...state };
   }),
-  on(setNoRecords, (state, { reposData, noOfRecords }) => {
+  on(setNoRecords, (state, { reposData, noOfRecords, page }) => {
     return {
       ...state,
       repos: [...reposData],
-      pageState: { ...state.pageState, showRecords: noOfRecords },
+      pageState: {
+        ...state.pageState,
+        showRecords: noOfRecords,
+        current: page,
+      },
+    };
+  }),
+  on(updatePageNo, (state) => {
+    return { ...state };
+  }),
+  on(setPageNo, (state, { reposData, page, noOfRecords }) => {
+    return {
+      ...state,
+      repos: [...reposData],
+      pageState: {
+        ...state.pageState,
+        current: page,
+        showRecords: noOfRecords,
+      },
     };
   })
 );

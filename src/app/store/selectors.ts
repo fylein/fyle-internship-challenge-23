@@ -10,3 +10,7 @@ export const getNoRecords = createSelector(
   rootState,
   (data) => data.pageState.showRecords
 );
+export const getCurrentPage = createSelector(
+  rootState,
+  (data) => data.pageState.current
+);

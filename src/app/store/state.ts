@@ -54,7 +54,7 @@ export function returnBlankUser() {
   };
 }
 
-export function newPageHandler() {
+export function newPageHandler(): pageHandlers {
   return {
     total: 0,
     showRecords: 10,

@@ -28,9 +28,11 @@ export class ApiService {
   }
 
   getUserBio(githubUsername: string) {
-    return from(this.octokit.request(`GET /users/${githubUsername}`));
+    return from(this.octokit.request(`GET /users/${githubUsername}`)).pipe(
+      tap((data) => console.log(data))
+    );
   }
-  //add pagenumber
+
   getUserRepos(githubUserName: string, noOfRepos: number, page: number) {
     return from(
       this.octokit.request(`GET /users/${githubUserName}/repos`, {
