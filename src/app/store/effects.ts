@@ -66,7 +66,7 @@ export class Effects {
     )
   );
 
-  updatePageNo = createEffect(() =>
+  updatePageNo$ = createEffect(() =>
     this.action$.pipe(
       ofType(updatePageNo),
       switchMap((action) =>

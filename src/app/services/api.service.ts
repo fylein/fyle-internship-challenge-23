@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, throwError, from, of } from 'rxjs';
+import { tap, throwError, from, of, Observable } from 'rxjs';
 import { Octokit } from 'octokit';
 import { environment } from 'src/environments/environment';
+import { catchError } from 'rxjs';
+import { CacheService } from './cache.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,21 +11,18 @@ import { environment } from 'src/environments/environment';
 export class ApiService {
   private octokit: Octokit;
 
-  constructor() {
+  constructor(private cache: CacheService) {
     const token = environment.token;
     this.octokit = new Octokit({
       auth: token,
     });
   }
 
-  private apiCache: Map<string, any> = new Map();
-
-  getUserBio(githubUsername: string) {
+  getUserBio(githubUsername: string): Observable<any> {
     let cacheKey = `GET /users/${githubUsername}`;
-    let result = this.apiCache.get(cacheKey);
+    let result = this.cache.get(cacheKey);
 
     if (result) {
-      console.log(result);
       return of(result);
     }
 
@@ -32,18 +30,25 @@ export class ApiService {
       tap((data) => {
         console.log(data);
         if (data instanceof Object) {
-          this.apiCache.set(cacheKey, data);
+          this.cache.set(cacheKey, data);
         }
+      }),
+      catchError((error) => {
+        console.error('Err:', error);
+        return throwError('User bio failed');
       })
     );
   }
 
-  getUserRepos(githubUserName: string, noOfRepos: number, page: number) {
+  getUserRepos(
+    githubUserName: string,
+    noOfRepos: number,
+    page: number
+  ): Observable<any> {
     let cacheKey = `GET /users/${githubUserName}/repos&pages=${page}&perpage=${noOfRepos}`;
-    let result = this.apiCache.get(cacheKey);
+    let result = this.cache.get(cacheKey);
 
     if (result) {
-      console.log(result);
       return of(result);
     }
 
@@ -54,8 +59,13 @@ export class ApiService {
       })
     ).pipe(
       tap((data) => {
-        console.log(data);
-        this.apiCache.set(cacheKey, data);
+        if (data instanceof Object) {
+          this.cache.set(cacheKey, data);
+        }
+      }),
+      catchError((error) => {
+        console.error('Error:', error);
+        return throwError('User RepoData request failed');
       })
     );
   }
