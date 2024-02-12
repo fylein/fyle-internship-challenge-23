@@ -15,8 +15,8 @@ export class ApiService {
   }
 
   getUserRepo(username: string): Observable<any[]> {
-    const url = `${this.apiUrl}/users/${username}/repos`; // Endpoint to fetch user repositories
-    return this.http.get<any[]>(url); // Return the observable directly
+    const url = `${this.apiUrl}/users/${username}/repos`; 
+    return this.http.get<any[]>(url); 
   }
 
 }
