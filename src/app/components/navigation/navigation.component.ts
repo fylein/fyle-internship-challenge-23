@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import {
-  getCurrentPage,
-  getNoRecords,
-  getTotalNoRepos,
-  getUserDetails,
-  getPageDetails,
-} from 'src/app/store/selectors';
-import { newPageHandler, pageHandlers } from 'src/app/store/state';
+import { getUserDetails, getPageDetails } from 'src/app/store/selectors';
+import { pageHandlers } from 'src/app/store/state';
 import { updateNoOfRecords, updatePageNo } from 'src/app/store/actions';
 
 @Component({

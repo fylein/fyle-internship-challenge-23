@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { UserBioComponent } from './components/user-bio/user-bio.component';
 import { ReposComponent } from './components/repos/repos.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';
