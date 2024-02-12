@@ -41,3 +41,26 @@ Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app wil
 
 Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
 Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+
+
+## Getting Input
+
+First i am taking input from user and store it in a variable.
+
+
+## Calling Api
+
+after getting username successfully i am calling api. with the condition of username is corret or not, if its wrong i am just showing 1 message other wish i am showing all the repositry.
+
+## Paggination
+
+For paggination part i am using angular duild in module called NgxPaginationModule.
+
+## Skeleton Loading
+
+For skeleton loading i am using tailwind for design, and i am showing skeleton loading when api fetching data from server.
+
+## Responsive
+
+For styling i am using tailwind css. This project is 100% responsive.
+

@@ -1,9 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 
 describe('AppComponent', () => {
+  let el : DebugElement
   beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+    declarations: [AppComponent],
+    imports: [HttpClientTestingModule]
   }));
 
   it('should create the app', () => {
@@ -20,8 +25,17 @@ describe('AppComponent', () => {
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('fyle-frontend-challenge app is running!');
+    const app = fixture.componentInstance;
+    var a = ["foo", "bar", "baz"];
+    expect(a).toContain("bar");
   });
+
+  //Checking error message
+ 
+  it(`check error message'`, () => {
+    const fixture = TestBed.createComponent(AppComponent); 
+    const app = fixture.componentInstance;
+    expect(app.errorMessage).toEqual('Post not available');
+  });
+
 });

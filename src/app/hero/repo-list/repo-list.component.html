@@ -1,0 +1,47 @@
+<div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2 mt-3 mx-1">
+    <div
+        *ngFor="
+        let d of data
+            | paginate : { itemsPerPage: selected, currentPage: currPage }
+        "
+    >
+        <div
+        class="mt-3 max-h-fit max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+        >
+        <a
+            href="#"
+            class="mb-2 text-2xl font-bold tracking-tight text-blue-800 text-wrap"
+        >
+            {{ d.name }}
+        </a>
+        <p class="font-normal text-gray-700 dark:text-gray-400 mt-2 text-wrap">
+            {{
+            d.description === null
+                ? "Description is not provided."
+                : d.description
+            }}
+        </p>
+        <p
+            class="bottom-0 font-normal text-yellow-500 dark:text-gray-400 mt-2 text-wrap"
+        >
+            {{ d.language === null ? "Null" : d.language }}
+        </p>
+        </div>
+    </div>
+    </div>
+
+    <div class="mt-4 flex justify-center relative">
+    <pagination-controls (pageChange)="currPage = $event"></pagination-controls>
+    <select
+        class="bg-slate-400 w-13 text-center"
+        #selectVal
+        (change)="selectOption(selectVal.value)"
+        [(ngModel)]="selected"
+    >
+        <option [value]="dropDownVal.id" *ngFor="let dropDownVal of dropDowns">
+        {{ dropDownVal.id }}
+        </option>
+    </select>
+    </div>
+</div>

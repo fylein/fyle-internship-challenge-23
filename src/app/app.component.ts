@@ -7,11 +7,38 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  constructor(
-    private apiService: ApiService
-  ) {}
 
-  ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
+  title:string = 'fyle-frontend-challenge'
+  userName:string='Kasraf20';
+  errorMessage:string ='Post not available'
+  data:any=[]
+  loading:boolean = true
+  error:boolean  = false
+
+  constructor(
+    private apiService:ApiService
+  ) {}
+  
+
+  ngOnInit(){
+    this.getUserData()
   }
+
+  getUserName(username: any){
+    this.userName = username.username
+    this.getUserData()
+  }
+
+  getUserData(){
+    this.error = false
+    this.loading = true;
+    this.apiService.getUser(this.userName).subscribe((res)=>{   
+    this.data = res
+    this.loading = false
+    },(err) =>{
+      this.error = true
+    });
+  }
+  
+  
 }

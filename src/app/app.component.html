@@ -1,5 +1,19 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
-  </div>
+<div class="content span mt-2 mb-2 text-wrap text-center text-2xl text-orange-500"> 
+  fyle-frontend-challenge app is running!
+  <app-input-box (getFormData) = 'getUserName($event)'></app-input-box>
+    <ng-container *ngIf="error === false; else errorContent">
+      <ng-container *ngIf="loading; else showListData">
+        <app-skeleton-loading></app-skeleton-loading>
+      </ng-container>
+      <ng-template #showListData>
+        <app-hero [data] = 'data'></app-hero>
+      </ng-template>
+    </ng-container>
+    <ng-template #errorContent>
+      <h1 class="mt-10 text-red-600 text-center text-2xl">{{errorMessage}}</h1>
+    </ng-template>
 </div>
+
+ 
+  
+
