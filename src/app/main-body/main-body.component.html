@@ -1,0 +1,76 @@
+<!-- Profile -->
+<div class="p-3 m-3 md:ms-20 flex profileSection">
+  <div class="ms-2">
+    <img
+      [src]="data.loader ? '' : data.avatarUrl"
+      class="rounded-full md:me-5 w-40"
+      [ngClass]="{ skeleton: data.loader, 'image-config': data.loader }"
+    />
+  </div>
+  <div
+    class="flex flex-col justify-center md:ps-6 md:pe-6 basicDetails"
+    [ngClass]="{ skeleton: data.loader, 'skeleton-details': data.loader }"
+  >
+    <p class="text-2xl font-bold" *ngIf="!data.loader">{{ data.name }}</p>
+    <p class="text-lg" *ngIf="!data.loader">
+      Total Repositories : {{ data.noOfRepos }}
+    </p>
+  </div>
+  <div class="selectOptionContainer" *ngIf="!data.loader">
+    <select
+      class="bg-grey-500 rounded-md p-2"
+      name=""
+      id=""
+      [(ngModel)]="data.selectedValue"
+      (change)="onSelectChange($event)"
+    >
+      <option selected class="bgColorChange">{{ data.selectedValue }}</option>
+      <option *ngFor="let option of data.options" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
+</div>
+
+<!-- Repositories -->
+<div
+  class="grid md:grid-cols-2 grid-flow-row gap-4 place-items-center my-10 repoOuterContainer"
+>
+  <!-- loader container for repos -->
+  <!-- <div> -->
+  <div [ngClass]="{ skeleton: data.loader, 'skeleton-repos': data.loader }">
+    <p class="text-xl font-bold mb-1"></p>
+    <p class="text-lg mb-1"><span class="font-bold"></span> <span></span></p>
+    <span class="font-bold"></span>
+  </div>
+  <div [ngClass]="{ skeleton: data.loader, 'skeleton-repos': data.loader }">
+    <p class="text-xl font-bold mb-1"></p>
+    <p class="text-lg mb-1"><span class="font-bold"></span> <span></span></p>
+    <span class="font-bold"></span>
+  </div>
+  <!-- </div> -->
+  <!-- acturl container for repos -->
+  <!-- <ng-template> -->
+  <div
+    class="p-5 w-96 rounded-2xl bg-indigo-500/60 shadow-lg shadow-indigo-500/50"
+    *ngFor="let repo of data.slicedRepo; index as i"
+  >
+    <p class="text-xl font-bold mb-1" #gettingName>{{ repo.name }}</p>
+    <p class="text-lg mb-1">
+      <span class="font-bold">Description : </span>
+      <span *ngIf="!data.loader && repo.description !== null; else notAv">{{
+        repo.description
+      }}</span>
+      <ng-template #notAv>
+        <span *ngIf="!repo.description">Not available</span>
+      </ng-template>
+    </p>
+    <ng-container *ngIf="!data.loader && data.arr2[i]">
+      <span class="font-bold">Languages : </span>
+      <span *ngFor="let x of objectKeys(data.arr2[i])">
+        <span>{{ x }} | </span>
+      </span>
+    </ng-container>
+  </div>
+  <!-- </ng-template> -->
+</div>

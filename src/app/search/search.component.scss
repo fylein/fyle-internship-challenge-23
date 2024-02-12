@@ -1,0 +1,84 @@
+*{
+    box-sizing: border-box;
+}
+@mixin dispProp(){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.searchContainer{
+    background: black;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+
+    button{
+        padding: 10px 0;
+    }
+}
+.bgColorChange{
+    background: rgb(204, 204, 204);
+}
+
+.selectOptionContainer{    
+    select{
+        position: relative;
+        border: 1px solid black;
+        top: 40%;
+        left: 30%;
+    }
+}
+
+// Media queries
+@media screen and (max-width: "768px"){
+    .selectOptionContainer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        select{
+            position: static;
+            margin-top: 20px;
+        }
+    }
+    .searchContainer{
+        input{
+            width: 40%
+        }
+        button{
+            width: 15%;
+        }
+    }
+    .profileSection{
+        @include dispProp();
+        flex-direction: column;
+
+        div{
+            margin: auto;
+        }
+        .basicDetails{
+            margin-top: 20px;
+            text-align: center;
+        }
+    }
+}
+@media screen and (max-width: "500px"){
+    .searchContainer{
+        @include dispProp();
+        flex-direction: column;
+        input, button{
+            width: 100%;
+        }
+        button{
+            margin-top: 20px;
+        }
+    }
+}
+@media screen and (max-width: "450px"){
+    .repoOuterContainer > div{
+        width: 80%;
+    }
+    p{
+        font-size: 0.9rem;
+    }
+}

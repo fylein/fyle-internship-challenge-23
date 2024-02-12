@@ -1,43 +1,53 @@
-# Fyle Frontend Challenge
+# Fyle Frontend Challenge - GitHub Repositories Listing Page
 
-## Who is this for?
+## Objective
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+The objective of this challenge is to create a GitHub repositories listing page using Angular.
 
-## Why work at Fyle?
+## Description
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+This Angular single-page application (SPA) allows users to search for a GitHub username and displays the public repositories belonging to that user. It implements pagination, server-side rendering, and error handling for a seamless user experience.
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+## Features
 
-## Challenge outline
+- **Search Functionality**: Users can enter a GitHub username in the search bar and click the search button to view the corresponding repositories.
+- **Pagination**: Pagination is implemented on the server-side, allowing users to navigate through large lists of repositories efficiently. Users can select the number of repositories to display per page.
+- **Loading Indicators**: Loading are displayed while fetching data from the GitHub API to indicate loading progress.
+- **Error Handling**: In case the user is not found or an error occurs during API requests, a zero-state message is displayed to inform the user.
+- **Caching**: GET API calls to external APIs are cached to avoid making duplicate requests, providing faster loading times.
 
-This challenge involves implementing application using github api. 
+## Project Structure
 
-The services that you need to use are already implemented - check out ApiService.
+- **src/app**: Contains the Angular application files.
+    - **app.component.ts**: Root component of the application.
+    - **app.component.html**: HTML template for the root component.
+    - **app.module.ts**: Angular module where components and services are declared.
+    - **main-body**: Directory containing the main component for displaying user repositories.
+        - **main-body.component.ts**: Component logic for displaying user repositories.
+        - **main-body.component.html**: HTML template for displaying user repositories.
+        - **main-body.component.scss**: Styling specific to the main component.
+    - **services**: Directory containing services for API communication.
+        - **api.service.ts**: Service for making API requests to fetch user data and repositories.
+        - **mock-data**: Directory containing mock data for testing.
+            - **users.ts**: Mock user data for testing API requests.
 
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
+## Usage
 
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
+1. Clone the repository: git clone <repository-url>
+2. Install dependencies: npm install
+3. Run the application: ng serve
+4. Open the application in your browser: http://localhost:4200
 
-## What happens next?
+## Testing
 
-You will hear back within 48 hours from us via email.
+Unit tests for the API service are provided to ensure the correctness of API requests and responses. The tests utilize Angular's testing utilities along with HttpClientTestingModule for mocking HTTP requests.
 
-## Installation
+To run the tests, run the following command: ng test
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+## Deployment
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+The application is hosted on [Netlify](https://www.netlify.com/) using the following URL: [GitHub Repositories Listing Page](https://65c68372a17511073086e47e--whimsical-brioche-176804.netlify.app/).
 
-## Development server
+## Credits
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Further help
-
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+This project was developed as part of the Fyle Internship Challenge on Internshala. The original challenge prompt and requirements were provided by Fyle.
