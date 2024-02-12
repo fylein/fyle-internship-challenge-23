@@ -82,28 +82,3 @@
         font-size: 0.9rem;
     }
 }
-
-.skeleton{
-    animation: skeleton-loading 1s linear infinite alternate;
-}
-.image-config{
-    height: 160px;
-    width: 160px;
-}
-.skeleton-details{
-    width: 70%;
-    border-radius: 5px;
-}
-.skeleton-repos{
-    height: 150px;
-    width: 65%;
-    border-radius: 20px;
-}
-@keyframes skeleton-loading{
-    0%{
-        background-color: hsl(200, 20%, 80%);
-    }
-    100%{
-        background-color: hsl(200, 20%, 95%);
-    }
-}

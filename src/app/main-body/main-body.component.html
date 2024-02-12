@@ -1,87 +1,76 @@
-<!-- Search -->
-<div class="p-3 searchContainer">
-  <input
-    type="text"
-    class="border-2 border-gray-300 focus:outline-none focus:border-indigo-500/100 px-4 py-2 mx-3 rounded-md w-96"
-    placeholder="Search..."
-    #searchName
-  />
-  <button
-    class="bg-indigo-500 rounded-md text-white hover:bg-indigo-800 px-3 mx-3 font-medium w-40 "
-    (click)="clickSearch(searchName.value)"
-  >
-    Search
-  </button>
-</div>
-
-<div *ngIf="!loader; else loading">
 <!-- Profile -->
 <div class="p-3 m-3 md:ms-20 flex profileSection">
   <div class="ms-2">
-      <img src="{{ userObj.avatar_url }}" class="rounded-full md:me-5 w-40" alt="profile">
+    <img
+      [src]="data.loader ? '' : data.avatarUrl"
+      class="rounded-full md:me-5 w-40"
+      [ngClass]="{ skeleton: data.loader, 'image-config': data.loader }"
+    />
   </div>
-  <div class="flex flex-col justify-center md:ps-6 md:pe-6 basicDetails">
-      <p class="text-2xl font-bold">{{ userObj.name }}</p>
-      <p class="text-lg">Total Repositories : {{ userObj.noOfRepos }}</p>
+  <div
+    class="flex flex-col justify-center md:ps-6 md:pe-6 basicDetails"
+    [ngClass]="{ skeleton: data.loader, 'skeleton-details': data.loader }"
+  >
+    <p class="text-2xl font-bold" *ngIf="!data.loader">{{ data.name }}</p>
+    <p class="text-lg" *ngIf="!data.loader">
+      Total Repositories : {{ data.noOfRepos }}
+    </p>
   </div>
-  <div class="selectOptionContainer">
-    <select class="bg-grey-500 rounded-md p-2" name="" id="" [(ngModel)]="selectedValue" (change)="onSelectChange($event)">
-      <option selected class="bgColorChange">{{ selectedValue }}</option>
-      <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+  <div class="selectOptionContainer" *ngIf="!data.loader">
+    <select
+      class="bg-grey-500 rounded-md p-2"
+      name=""
+      id=""
+      [(ngModel)]="data.selectedValue"
+      (change)="onSelectChange($event)"
+    >
+      <option selected class="bgColorChange">{{ data.selectedValue }}</option>
+      <option *ngFor="let option of data.options" [value]="option">
+        {{ option }}
+      </option>
     </select>
   </div>
 </div>
 
 <!-- Repositories -->
-<div class="grid md:grid-cols-2 grid-flow-row gap-4 place-items-center my-10 repoOuterContainer" >
-  <div class="p-5 w-96 rounded-2xl bg-indigo-500/60 shadow-lg shadow-indigo-500/50" *ngFor="let repo of slicedRepo; index as i">
+<div
+  class="grid md:grid-cols-2 grid-flow-row gap-4 place-items-center my-10 repoOuterContainer"
+>
+  <!-- loader container for repos -->
+  <!-- <div> -->
+  <div [ngClass]="{ skeleton: data.loader, 'skeleton-repos': data.loader }">
+    <p class="text-xl font-bold mb-1"></p>
+    <p class="text-lg mb-1"><span class="font-bold"></span> <span></span></p>
+    <span class="font-bold"></span>
+  </div>
+  <div [ngClass]="{ skeleton: data.loader, 'skeleton-repos': data.loader }">
+    <p class="text-xl font-bold mb-1"></p>
+    <p class="text-lg mb-1"><span class="font-bold"></span> <span></span></p>
+    <span class="font-bold"></span>
+  </div>
+  <!-- </div> -->
+  <!-- acturl container for repos -->
+  <!-- <ng-template> -->
+  <div
+    class="p-5 w-96 rounded-2xl bg-indigo-500/60 shadow-lg shadow-indigo-500/50"
+    *ngFor="let repo of data.slicedRepo; index as i"
+  >
     <p class="text-xl font-bold mb-1" #gettingName>{{ repo.name }}</p>
-    <p class="text-lg mb-1"><span class="font-bold">Description :</span> <span *ngIf="repo.description !== null; else notAv">{{ repo.description }}</span>
+    <p class="text-lg mb-1">
+      <span class="font-bold">Description : </span>
+      <span *ngIf="!data.loader && repo.description !== null; else notAv">{{
+        repo.description
+      }}</span>
       <ng-template #notAv>
-        <span>Not available</span>
+        <span *ngIf="!repo.description">Not available</span>
       </ng-template>
-     </p>
-    <ng-container *ngIf="arr2[i]">
+    </p>
+    <ng-container *ngIf="!data.loader && data.arr2[i]">
       <span class="font-bold">Languages : </span>
-      <span *ngFor="let x of objectKeys(arr2[i])">
+      <span *ngFor="let x of objectKeys(data.arr2[i])">
         <span>{{ x }} | </span>
       </span>
     </ng-container>
   </div>
+  <!-- </ng-template> -->
 </div>
-
-<!-- Pagination -->
-<div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-  <div class="flex flex-1 justify-between sm:hidden">
-    <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 prevBtn" (click)="prev()">Previous</a>
-    <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 nextBtn" (click)="next()">Next</a>
-  </div>
-  <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-    <div>
-      <nav class="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
-        <a href="#" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0" (click)="prev()">
-          <span class="sr-only">Previous</span>
-          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" >
-            <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
-          </svg>
-        </a>
-        <a href="#" aria-current="page" class="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" #pageNo>{{ currPage }}</a>
-        <a href="#" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 nextBtn" (click)="next()">
-          <span class="sr-only">Next</span>
-          <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-          </svg>
-        </a>
-      </nav>
-    </div>
-  </div>
-</div>
-</div>
-
-<ng-template #loading>
-  <div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Loading...
-  </div>
-</div>
-</ng-template>

@@ -8,132 +8,66 @@ import { ApiService } from '../services/api.service';
 })
 
 export class MainBodyComponent implements OnInit{
-  userData: any;
-  repos: any;
-  slicedRepo: any;
 
-  searchVal: string = "meghasharma0";
-  loader: boolean = true;
-  selectedValue: number = 10;
-
-  currPage: number = 1;
-
-  userObj: any = {
-    avatar_url: "",
-    name: "",
-    noOfRepos: 0
-  }
-
-  arr: any = [];  //for names of repos
-  arr2: any = [];  //for languages corresponding to repo names
-
-  // populating page size options
-  options: number[] = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-
-  constructor(private data: ApiService){}
-
-  // When user clicks on the search button
-  clickSearch(value: string){
-    this.searchVal = value;
-    this.mainFunctionality();
-    //changing selected value to default
-    this.selectedValue = 10;
-  }
+  constructor(public data: ApiService){}
 
   //When page reloads
   ngOnInit(){
-    this.mainFunctionality();
-  }
-
-  mainFunctionality(){
-    // Displaying user data (default)
-    this.data.getUser(this.searchVal).subscribe((res: any) => {
-      this.userData = res.user;
-      this.userObj.avatar_url = this.userData.avatar_url;
-      this.userObj.name = this.userData.name;
-      // Displaying user repos (default)
-      this.repos = res.repos;
-      this.userObj.noOfRepos = this.repos.length;
-      const { si, ei } = this.reposPerPage(this.currPage, this.userObj.noOfRepos);
-      this.slicedRepo = this.repos.slice(si, ei);
+    this.data.getUser('meghasharma0').subscribe(res => {
+      this.data.avatarUrl = res.user.avatar_url;
+      this.data.name = res.user.name;
+      this.data.pageNumbers = [];  //empty the array
+      this.data.noOfRepos = res.repos.length;
+      this.data.totalPages = Math.ceil(this.data.noOfRepos / 10);
+      for (let i = 1; i <= this.data.totalPages; i++) {
+        this.data.pageNumbers.push(i);
+      }
+      // getting repos
+      this.data.repos = res.repos;
+      const { si, ei } = this.data.reposPerPage(this.data.currPage, this.data.noOfRepos);
+      this.data.slicedRepo = this.data.repos.slice(si, ei);
       //getting names of repos
-      this.repos.forEach((obj: any) => {
-        this.arr.push(obj.name);
+      this.data.repos.forEach((obj: any) => {
+        this.data.arr.push(obj.name);
       });
       //for displaying languages
-      this.arr.forEach((name: any) => {
-        this.data.getLanguages(this.searchVal, name).subscribe(res => {
-          this.arr2.push(res);
+      this.data.arr.forEach((name: any) => {
+        this.data.getLanguages(this.data.searchVal, name).subscribe(res => {
+          this.data.arr2.push(res);
         });
       });
-      this.loader = false;
+      this.data.loader = false;
     });
-  }
-
-  // logic of displaying no of repositories per page.
-  reposPerPage(curr: number, no: number){
-    const si = (curr - 1) * 10;
-    const ei = Math.min(si + 10, no);
-    return {
-      si, ei
-    }
   }
 
   // when user selects a no of repositories to show per page.
   onSelectChange(event: Event){
     const target = event.target as HTMLSelectElement;
     const sv = target.value;
-    this.selectedValue = +sv;
-    this.data.getUser(this.searchVal).subscribe(res => {
-      this.repos = res.repos;
-      this.userObj.noOfRepos = this.repos.length;
-      const si: number = (this.currPage - 1) * 10;
+    this.data.selectedValue = +sv;
+    this.data.getUser(this.data.searchVal).subscribe(res => {
+      this.data.repos = res.repos;
+      this.data.noOfRepos = this.data.repos.length;
+      const si: number = (this.data.currPage - 1) * 10;
       let ei: number;
-      if (this.selectedValue < this.userObj.noOfRepos){
-        ei = Math.min(si + 10, this.selectedValue);
-        this.slicedRepo = this.repos.slice(si, ei);
+      if (this.data.selectedValue < this.data.noOfRepos){
+        ei = Math.min(si + 10, this.data.selectedValue);
+        this.data.slicedRepo = this.data.repos.slice(si, ei);
       }else{
-        this.slicedRepo = this.repos;
+        this.data.slicedRepo = this.data.repos;
       }
-      this.loader = false;
+      this.data.loader = false;
     });
   }
   
-  // prev page functionality
-  prev(){
-    this.data.getUser(this.searchVal).subscribe(res => {
-      this.repos = res.repos;
-      this.currPage > 1 ? this.currPage-- : this.currPage = 1;
-      const { si, ei } = this.reposPerPage(this.currPage, this.userObj.noOfRepos);
-      this.slicedRepo = this.repos.slice(si, ei);
-    });
-    //changing selected value to default
-    this.selectedValue = 10;
-  }
-
-  // next page functionality
-  next() {
-    // Check if there are more items available for the next page
-    if ((this.currPage * 10) < this.userObj.noOfRepos) {
-      this.data.getUser(this.searchVal).subscribe(res => {
-        this.repos = res.repos;
-        this.currPage++;
-        this.userObj.noOfRepos = this.repos.length;
-        const { si, ei } = this.reposPerPage(this.currPage, this.userObj.noOfRepos);
-        this.slicedRepo = this.repos.slice(si, ei);
-      });
-    }
-    //changing selected value to default
-    this.selectedValue = 10;
-  }
 
   // to display pages below
-  getStartRepoIndex(val: any){
-    return (val - 1) * 10;
-  }
-  getEndRepoIndex(val: any, val2: any){
-    return Math.min((val - 1) * 10 + 10, val2)
-  }
+  // getStartRepoIndex(val: any){
+  //   return (val - 1) * 10;
+  // }
+  // getEndRepoIndex(val: any, val2: any){
+  //   return Math.min((val - 1) * 10 + 10, val2)
+  // }
   
   // description function
   // descFunc(val: string){

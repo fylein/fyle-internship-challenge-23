@@ -12,6 +12,7 @@ describe('AppComponent', () => {
   }).compileComponents().then(() =>{
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   })
   );
 
@@ -19,9 +20,18 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should render the SearchComponent', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('app-search')).toBeTruthy(); 
+  })
+
   it('should render the MainBodyComponent', () => {
-    fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('app-main-body')).toBeTruthy(); 
   });
+
+  it('should render the PaginationComponent', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('app-pagination')).toBeTruthy(); 
+  })
 });

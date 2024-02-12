@@ -1,0 +1,15 @@
+
+<div class="p-3 searchContainer">
+    <input
+      type="text"
+      class="border-2 border-gray-300 focus:outline-none focus:border-indigo-500/100 px-4 py-2 mx-3 rounded-md w-96"
+      placeholder="Search..."
+      #searchName
+    />
+    <button
+      class="bg-indigo-500 rounded-md text-white hover:bg-indigo-800 px-3 mx-3 font-medium w-40 "
+      (click)="clickSearch(searchName.value)"
+    >
+      Search
+    </button>
+  </div>
