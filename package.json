@@ -18,6 +18,8 @@
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
+    "@iconify-json/octicon": "^1.1.52",
+    "ngx-skeleton-loader": "^9.0.0",
     "octokit": "^3.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -27,6 +29,7 @@
     "@angular-devkit/build-angular": "^16.1.8",
     "@angular/cli": "~16.1.8",
     "@angular/compiler-cli": "^16.1.0",
+    "@iconify/tailwind": "^0.1.4",
     "@types/jasmine": "~4.3.0",
     "autoprefixer": "^10.4.16",
     "jasmine-core": "~4.6.0",
@@ -36,6 +39,8 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "postcss": "^8.4.31",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.3.5",
     "typescript": "~5.1.3"
   }

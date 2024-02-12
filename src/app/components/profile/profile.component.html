@@ -1,0 +1,77 @@
+<div
+  *ngIf="user"
+  class="flex h-full w-full flex-col bg-[#222222] px-6 pt-[2rem] text-[#eafeea]"
+>
+  <div class="relative h-[300px] w-[300px]">
+    <div
+      class="absolute inset-0 z-0 rounded-[50%] border-[2px] border-[#444950] bg-cover bg-center shadow-lg"
+      [style.background-image]="'url(' + user.avatar_url + ')'"
+    ></div>
+    <div
+      class="text- absolute inset-0 z-10 flex cursor-pointer items-center justify-center rounded-[50%] border-[2px] border-[#444950] bg-[#121212a4] font-semibold text-[#eafeea] opacity-0 duration-500 hover:opacity-100"
+    >
+      <a class="transition-all duration-500 hover:text-[#5f8df0]" href="{{ user.html_url }}" target="_blank"> View Profile </a>
+    </div>
+  </div>
+  <!-- <div class="">
+    <img
+      class="w-[26vw] rounded-full border-[2px] border-[#262b31]"
+      src="{{ user.avatar_url }}"
+      alt=""
+    />
+  </div> -->
+  <div class="flex w-[500px] flex-col overflow-hidden">
+    <div class="my-4 flex flex-col">
+      <span class="text-[2rem] leading-8">{{ user.name }}</span>
+      <span class="text-[1.4rem] text-[#eafeea8f]">{{ user.login }}</span>
+    </div>
+    <div class="flex w-[26vw] font-[400]">
+      <span>{{ user.bio }}</span>
+    </div>
+    <div class="my-4 flex flex-col gap-1">
+      <div class="flex">
+        <a
+          class="mb-1 flex items-end leading-5 text-[#eafeea8f] transition-all duration-500 hover:text-[#5f8df0]"
+          href="https://github.com/{{ user.login }}?tab=followers"
+          target="_blank"
+          ><span
+            class="icon-[octicon--people-16] mr-1 text-[1.2em] text-[#eafeea8f]"
+          ></span>
+          <span class="font-[600]">
+            <span class="text-[#eafeea]">{{ user.followers }} </span
+            ><span class="">followers</span></span
+          >
+        </a>
+        <span class="leading-4">&nbsp;.&nbsp;</span>
+        <a
+          class="mb-1 flex items-end leading-5 text-[#eafeea8f] transition-all duration-500 hover:text-[#5f8df0]"
+          href="https://github.com/{{ user.login }}?tab=following"
+          target="_blank"
+        >
+          <span class="font-[600]">
+            <span class="text-[#eafeea]">{{ user.following }} </span
+            ><span class="">following</span></span
+          >
+        </a>
+      </div>
+      <div class="flex">
+        <span
+          class="icon-[octicon--flame-16] mr-1 text-[1.2em] text-[#eafeea8f]"
+        ></span>
+        <span class="font-[600]">
+          <span class="text-[#eafeea]">{{ user.public_gists }} </span
+          ><span class="text-[#eafeea8f]">public gists</span></span
+        >
+
+        <span class="leading-4">&nbsp;.&nbsp;</span>
+
+        <span class="font-[600]">
+          <span class="text-[#eafeea]">{{ user.public_repos }} </span
+          ><span class="text-[#eafeea8f]">public repos</span></span
+        >
+      </div>
+    </div>
+
+    <app-description></app-description>
+  </div>
+</div>
