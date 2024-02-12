@@ -31,6 +31,5 @@ import { FooterComponent } from './footer/footer.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  checked: boolean = false;
-  disabled: boolean = true;
+ 
  }

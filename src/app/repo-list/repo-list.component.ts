@@ -12,11 +12,11 @@ capitalizeFirstLetter(str: string): string {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-trimDescription(str: string): string {
-  if(!str){
-    return str;
+trimDescription(str: string | null | undefined): string {
+  if (!str) {
+    return '';
   }
-  return str.slice(0,120)+".";
+  return str.slice(0, 120) + ".";
 }
 
 }
