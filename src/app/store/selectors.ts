@@ -18,3 +18,7 @@ export const getTotalNoRepos = createSelector(
   rootState,
   (data) => data.pageState.total
 );
+export const getPageDetails = createSelector(
+  rootState,
+  (data) => data.pageState
+);
