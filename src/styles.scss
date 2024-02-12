@@ -1,3 +1,54 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* styles.css or styles.scss */
+/* styles.css or styles.scss */
+
+/* Customize the color of the MatPaginator */
+// ::ng-deep .mat-paginator {
+//   background-color: white;
+//   color: black;
+// }
+
+// /* Customize the color of the paginator buttons */
+// ::ng-deep .mat-paginator-range-label,
+// ::ng-deep .mat-paginator-page-size,
+// ::ng-deep .mat-paginator-page-size-label,
+// ::ng-deep .mat-paginator-page-size-options,
+// ::ng-deep .mat-select-value,
+// ::ng-deep .mat-select-arrow-wrapper,
+// ::ng-deep .mat-paginator-navigation,
+// ::ng-deep .mat-paginator-navigation-previous,
+// ::ng-deep .mat-paginator-navigation-next {
+//   color: white; /* Set button color to white */
+//   width: 50px;
+//   height: 50px;
+// }
+
+// /* Customize the color of the paginator input */
+// ::ng-deep .mat-paginator-page-size,
+// ::ng-deep .mat-paginator-page-size-label {
+//   input {
+//     color: white;
+//     border-color: white;
+//   }
+// }
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

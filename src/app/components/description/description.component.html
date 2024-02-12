@@ -1,0 +1,70 @@
+<div class="my-4 flex flex-col gap-2">
+  <div class="flex" *ngIf="user.company; else noCompany">
+    <div
+      class="icon-[octicon--organization-16] mr-1 text-[1.4em] text-[#eafeea8f]"
+    ></div>
+    <div class="leading-6">{{ user.company }}</div>
+  </div>
+
+  <ng-template #noCompany>
+    <div class="flex">
+      <div
+        class="icon-[octicon--organization-16] mr-1 text-[1.4em] text-[#eafeea8f]"
+      ></div>
+      <div class="leading-6">--No company--</div>
+    </div>
+  </ng-template>
+
+  <div class="flex" *ngIf="user.location; else noLocation">
+    <div
+      class="icon-[octicon--location-16] mr-1 text-[1.4em] text-[#eafeea8f]"
+    ></div>
+    <div class="leading-6">{{ user.location }}</div>
+  </div>
+
+  <ng-template #noLocation>
+    <div class="flex">
+      <div
+        class="icon-[octicon--location-16] mr-1 text-[1.4em] text-[#eafeea8f]"
+      ></div>
+      <div class="leading-6">--No location--</div>
+    </div>
+  </ng-template>
+
+  <div class="flex" *ngIf="user.email; else noEmail">
+    <div
+      class="icon-[octicon--mail-16] mr-1 text-[1.4em] text-[#eafeea8f]"
+    ></div>
+    <div class="leading-6">{{ user.email }}</div>
+  </div>
+
+  <ng-template #noEmail>
+    <div class="flex">
+      <div
+        class="icon-[octicon--mail-16] mr-1 text-[1.4em] text-[#eafeea8f]"
+      ></div>
+      <div class="italic leading-6">--No email--</div>
+    </div>
+  </ng-template>
+
+  <div class="flex" *ngIf="user.blog; else noBlog">
+    <div
+      class="icon-[octicon--link-16] mr-1 text-[1.4em] text-[#eafeea8f]"
+    ></div>
+    <div
+      class="cursor-pointer leading-6 transition-all duration-500 hover:text-[#5f8df0]"
+    >
+      <a href="{{ user.blog }}" target="_blank">{{ user.blog }}</a>
+    </div>
+  </div>
+
+  <ng-template #noBlog>
+    <div class="flex">
+      <div
+        class="icon-[octicon--link-16] mr-1 text-[1.4em] text-[#eafeea8f]"
+      ></div>
+      <div class="italic leading-6">--No Website--</div>
+    </div>
+  </ng-template>
+</div>
+
