@@ -12,7 +12,7 @@ export class ApiService {
   getUser(githubUsername: string) {
     return this.httpClient
       .get(
-        `https://api.github.com/users/${githubUsername}?client_id=Iv1.29424d7ecd01280c&client_secret=96e5ec5cb21d46f7094c9c56fec3d213f0143425`,
+        `https://api.github.com/users/${githubUsername}`,
       )
       .pipe(
         catchError((error) => {
@@ -27,7 +27,7 @@ export class ApiService {
     return this.httpClient
       .get<
         any[]
-      >(`https://api.github.com/users/${githubUsername}/repos?page=${pageNo}&per_page=${perPage}?client_id=Iv1.29424d7ecd01280c&client_secret=96e5ec5cb21d46f7094c9c56fec3d213f0143425`)
+      >(`https://api.github.com/users/${githubUsername}/repos?page=${pageNo}&per_page=${perPage}`)
       .pipe(
         catchError((error) => {
           alert('Profile not Found');
