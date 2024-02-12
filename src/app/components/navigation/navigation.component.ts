@@ -12,9 +12,10 @@ export class NavigationComponent {
   public noRepos!: number;
   public username!: string;
   public showRecordsArr: number[] = [10, 25, 50, 100];
-  public pagesList: number[] = new Array().fill(0).map((v, i) => i + 1);
+  public pagesList: number[] = new Array(10).fill(0).map((v, i) => i + 1);
   public navBy: string[] = ['First', 'Prev', 'Next', 'Last'];
   constructor(private store: Store) {
+    console.log(this.pagesList);
     this.store
       .select(getNoRecords)
       .subscribe((data: number) => (this.noRepos = data));
@@ -25,7 +26,11 @@ export class NavigationComponent {
 
   handleChange(evt: any) {
     this.store.dispatch(
-      updateNoOfRecords({ noOfRecords: this.noRepos, username: this.username })
+      updateNoOfRecords({
+        noOfRecords: this.noRepos,
+        username: this.username,
+        page: 1,
+      })
     );
   }
 }

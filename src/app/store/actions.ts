@@ -3,7 +3,7 @@ import { githubData, userReposType, userType } from './state';
 
 export const fetchUserData = createAction(
   '[GitHub State] Request',
-  props<{ username: string; noOfRepos: number }>()
+  props<{ username: string; noOfRepos: number; page: number }>()
 );
 
 export const setUserData = createAction(
@@ -17,7 +17,7 @@ export const setUserData = createAction(
 
 export const updateNoOfRecords = createAction(
   '[GitHub RecCount] Update count',
-  props<{ noOfRecords: number; username: string }>()
+  props<{ noOfRecords: number; username: string; page: number }>()
 );
 
 export const setNoRecords = createAction(

@@ -14,7 +14,7 @@ export class SearchUserComponent implements OnInit {
   public noOfRepos!: number;
 
   public get(username: string, noOfRepos: number) {
-    this.store.dispatch(fetchUserData({ username, noOfRepos }));
+    this.store.dispatch(fetchUserData({ username, noOfRepos, page: 1 }));
   }
   ngOnInit(): void {
     this.store

@@ -19,13 +19,17 @@ export const appReducer = createReducer(
       ...state,
       users: userData,
       repos: [...reposData],
-      showRecords: noOfRecords,
+      pageState: { ...state.pageState, showRecords: noOfRecords },
     };
   }),
   on(updateNoOfRecords, (state, { noOfRecords, username }) => {
     return { ...state };
   }),
   on(setNoRecords, (state, { reposData, noOfRecords }) => {
-    return { ...state, repos: [...reposData], showRecords: noOfRecords };
+    return {
+      ...state,
+      repos: [...reposData],
+      pageState: { ...state.pageState, showRecords: noOfRecords },
+    };
   })
 );

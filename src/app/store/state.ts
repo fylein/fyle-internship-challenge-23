@@ -23,17 +23,17 @@ export interface userType {
   following: string;
 }
 
+export interface pageHandlers {
+  showRecords: number;
+  total: number;
+  current: number;
+}
+
 export interface githubData {
   users: userType;
   repos: userReposType[];
-  showRecords: number;
+  pageState: pageHandlers;
 }
-
-export const AppState: githubData = {
-  repos: [],
-  users: returnBlankUser(),
-  showRecords: 10,
-};
 
 export function returnBlankUser() {
   return {
@@ -53,3 +53,17 @@ export function returnBlankUser() {
     following: '',
   };
 }
+
+export function newPageHandler() {
+  return {
+    total: 0,
+    showRecords: 10,
+    current: 1,
+  };
+}
+
+export const AppState: githubData = {
+  repos: [],
+  users: returnBlankUser(),
+  pageState: newPageHandler(),
+};

@@ -1,5 +1,5 @@
 <div class="w-fit ml-auto flex flex-row justify-around align-base gap-2 pr-5">
-  <div class="font-bold text-xs md:text-sm">Currently Showing</div>
+  <div class="font-bold text-xs md:text-sm">Displaying</div>
   <select
     class="bg-white border rounded shadow-lg text-gray-800 hover:bg-blue-500 hover:text-white"
     (change)="handleChange($event)"
@@ -15,26 +15,14 @@
   </select>
   <div class="font-bold text-xs md:text-sm">records</div>
 </div>
-<div class="w-full flex flex-row justify-center gap-3 mb-3 text-xs">
+<div class="w-fullmy-2 font-bold pr-15">
+  <div class="float-right text-xs pr-5">Page -> 3</div>
+</div>
+<div class="flex flex-row gap-2 w-full justify-center text-xs">
   <button
-    *ngFor="let by of navBy"
-    class="border-2 rounded-sm border-blue-200 p-2 focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600"
+    *ngFor="let pg of pagesList"
+    class="py-1 px-2 mb-2 border-1 rounded-sm border-blue-200 focus:ring focus:outline-none focus:ring-sky-300 delay-125 rounded-md my-2"
   >
-    {{ by }}
+    {{ pg }}
   </button>
-  <!-- <button
-    class="border-2 rounded-sm border-blue-200 p-2 focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600"
-  >
-    Prev
-  </button>
-  <button
-    class="border-2 rounded-sm border-blue-200 p-2 focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600"
-  >
-    Next
-  </button>
-  <button
-    class="border-2 rounded-sm border-blue-200 p-2 focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600"
-  >
-    Last
-  </button> -->
 </div>

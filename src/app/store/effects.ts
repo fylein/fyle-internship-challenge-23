@@ -21,7 +21,11 @@ export class Effects {
       switchMap((action) =>
         forkJoin([
           this.apiService.getUserBio(action.username),
-          this.apiService.getUserRepos(action.username, action.noOfRepos),
+          this.apiService.getUserRepos(
+            action.username,
+            action.noOfRepos,
+            action.page
+          ),
         ]).pipe(
           map(([userDataRes, reposDataRes]) => {
             console.log((userDataRes.data, reposDataRes.data));
@@ -44,15 +48,17 @@ export class Effects {
     this.action$.pipe(
       ofType(updateNoOfRecords),
       switchMap((action) =>
-        this.apiService.getUserRepos(action.username, action.noOfRecords).pipe(
-          map((updatedRecords) => {
-            console.log(updatedRecords);
-            return setNoRecords({
-              reposData: updatedRecords.data,
-              noOfRecords: action.noOfRecords,
-            });
-          })
-        )
+        this.apiService
+          .getUserRepos(action.username, action.noOfRecords, action.page)
+          .pipe(
+            map((updatedRecords) => {
+              console.log(updatedRecords);
+              return setNoRecords({
+                reposData: updatedRecords.data,
+                noOfRecords: action.noOfRecords,
+              });
+            })
+          )
       )
     )
   );

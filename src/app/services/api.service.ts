@@ -30,10 +30,12 @@ export class ApiService {
   getUserBio(githubUsername: string) {
     return from(this.octokit.request(`GET /users/${githubUsername}`));
   }
-  getUserRepos(githubUserName: string, noOfRepos: number) {
+  //add pagenumber
+  getUserRepos(githubUserName: string, noOfRepos: number, page: number) {
     return from(
       this.octokit.request(`GET /users/${githubUserName}/repos`, {
         per_page: noOfRepos,
+        page,
       })
     ).pipe(tap((data) => console.log(data)));
   }

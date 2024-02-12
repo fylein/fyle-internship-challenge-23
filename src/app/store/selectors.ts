@@ -8,5 +8,5 @@ export const getUserDetails = createSelector(rootState, (data) => data.users);
 export const getUserRepos = createSelector(rootState, (data) => data.repos);
 export const getNoRecords = createSelector(
   rootState,
-  (data) => data.showRecords
+  (data) => data.pageState.showRecords
 );
