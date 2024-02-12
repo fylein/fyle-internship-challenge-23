@@ -8,18 +8,13 @@ import { catchError } from 'rxjs/operators';
 })
 export class ApiService {
 
-  private accessToken = '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';
+ 
 
   constructor(private httpClient: HttpClient) { }
 
   getRepo(githubUsername: string, pageNo: number, perPage: number): Observable<any[]> {
 
-    const headers = new HttpHeaders({
-      'Authorization': `token ${this.accessToken}`
-    });
-
-  
-    return this.httpClient.get<any[]>(`https://api.github.com/users/${githubUsername}/repos?page=${pageNo}&per_page=${perPage}`, { headers })
+    return this.httpClient.get<any[]>(`https://api.github.com/users/${githubUsername}/repos?page=${pageNo}&per_page=${perPage}`)
       .pipe(
         catchError(error => {
           alert(`Profile not Found`);
@@ -30,11 +25,7 @@ export class ApiService {
 
   getUser(githubUsername: string): Observable<any> {
 
-    const headers = new HttpHeaders({
-      'Authorization': `token ${this.accessToken}`
-    });
-
-    return this.httpClient.get<any>(`https://api.github.com/users/${githubUsername}`, { headers })
+    return this.httpClient.get<any>(`https://api.github.com/users/${githubUsername}`)
       .pipe(
         catchError(error => {
           console.warn(`Error fetching repositories:${error}`);
