@@ -1,5 +1,14 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div >
+  <div class="bg-slate-950 sm:h-96 sm:text-xl text-center p-2 w-full">
+    <app-header></app-header>  <!-- Header Component with Search Button    -->
+    <div class="flex items-center justify-center -my-5">
+      <div class="border-t border-gray-500 w-11/12"></div>
+    </div>
+  </div>
+  <div class="bg-zinc-100 sm:h-[53vh] sm:w-full ">
+    <app-profile></app-profile>   <!-- Profile Component is Most Important Component with all Functionality    -->
+  </div>
+  <div>
+    <app-footer [title]="title"></app-footer>
   </div>
 </div>

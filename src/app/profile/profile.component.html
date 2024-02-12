@@ -1,0 +1,63 @@
+<div
+  class="md:absolute bg-white md:h-[78vh] md:w-[95vw] md:left-10 md:top-40 shadow-xl rounded-lg"
+>
+  <div
+    *ngIf="!userDetails"
+    class="my-72 mx-[43vw] absolute font-bold font-mono animate-pulse text-6xl transition delay-100"
+  >
+    <h1 class="whitespace-nowrap border-2 border-purple-600 p-4 rounded-lg">
+      Search For Profile
+    </h1>
+  </div>
+  <div class="flex justify-evenly h-[20vh] items-center">
+    <div>
+      <img
+        *ngIf="userDetails.avatar_url"
+        [src]="userDetails.avatar_url"
+        class="h-32 w-32 border-violet-600 border-4 rounded-full bg-gray-700"
+      />
+    </div>
+    <div>
+      <div class="h-24 p-1 lg:absolute left-[40vw] top-[4vh]">
+        <p class="text-xl mb-1">{{ userDetails.name }}</p>
+        <p class="font-light text-xs md:pr-80 md:mb-1">
+          {{ userDetails.bio }}
+        </p>
+        <div class="flex flex-row items-center gap-1 mb-1">
+          <p class="font-light text-xs mb-1">{{ userDetails.location }}</p>
+        </div>
+        <div class="flex flex-row items-center mb-1">
+          <p
+            *ngIf="userDetails.followers"
+            class="font-light text-sm text-blue-600"
+          >
+            Followers-
+          </p>
+          <p class="font-light text-sm">{{ userDetails.followers }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="userDetails" class="flex items-center justify-center m-5">
+    <div class="border-t border-gray-900 w-10/12"></div>
+  </div>
+  <div class="md:snap-y overflow-y-scroll">
+    <div class="h-[400px] flex flex-row flex-wrap px-[103px]">
+      <app-loading-skeleton *ngIf="loadingSkeleton"></app-loading-skeleton>
+     <div *ngFor="let repo of repoDetails">
+        <app-repo-list [repo]="repo"></app-repo-list>
+      </div>
+    </div>
+  </div>
+  <div class="md:flex md:justify-center m-10">
+    <mat-paginator
+      [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="handlePaginate($event)"
+      aria-label="Select page"
+      class="absolute bottom-2"
+    >
+    </mat-paginator>
+  </div>
+</div>
