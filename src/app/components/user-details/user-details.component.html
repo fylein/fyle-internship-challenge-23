@@ -1,0 +1,19 @@
+ <div *ngIf="user" class="border-black p-4 flex items-center">
+  <img *ngIf="user.avatar_url" [src]="user.avatar_url" alt="User Avatar" class="rounded-full object-cover h-40 w-40 mr-4" />
+
+  <div>
+      <h2 class="text-xl font-bold">{{ user.name }}</h2>
+      <p class="mb-2">Bio: {{ user.bio }}</p>
+      <p class="mb-2">Location: {{ user.location }}</p>
+
+      <p *ngIf="user.twitter_username" class="mb-2">
+          Twitter: <a href="https://twitter.com/{{ user.twitter_username }}" target="_blank">https://twitter.com/@{{ user.twitter_username }}</a>
+      </p>
+
+      <p *ngIf="user.blog" class="mb-2">
+           <a href="{{ user.html_url }}" target="_blank">{{ user.html_url }}</a>
+      </p>
+  </div>
+</div>
+
+

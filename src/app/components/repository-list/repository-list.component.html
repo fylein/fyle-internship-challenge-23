@@ -1,0 +1,34 @@
+<div class="grid grid-cols-2 gap-4 max-w-90 max-h-55">
+<div  class="border border-black p-4 bg-gray-200 max-w-70 max-h-35 overflow-hidden break-words" *ngFor="let repo of displayedRepositories">
+  <h3 class="text-blue-500">{{ repo.name }}</h3>
+  <p>{{ repo.description }}</p>
+  <p class="text-white bg-blue-500 w-20"> {{ repo.language }}</p>
+</div>
+</div>
+
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="error">Error loading repositories</div>
+
+<!-- Pagination -->
+<div class="flex justify-between items-center mt-4">
+  <button
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue"
+    (click)="previousPage()">
+    &lt; Older
+  </button>
+
+  <div class="flex space-x-2">
+    <div *ngFor="let page of pages" 
+         class="px-4 py-2 rounded"
+         [ngClass]="{'bg-blue-500': page === currentPage, 'bg-white': page !== currentPage}"
+         (click)="goToPage(page)">
+      {{ page }}
+    </div>
+  </div>
+
+  <button
+    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue"
+    (click)="nextPage()">
+    Newer &gt;
+  </button>
+</div>
