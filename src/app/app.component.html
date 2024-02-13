@@ -1,5 +1,9 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
-  </div>
+<div class="min-h-screen flex flex-col items-center justify-around">  
+  <app-search (searchUsername)="onSearch($event)"></app-search>
+  <app-user-details [user]="userDetails"></app-user-details>
+  <app-repository-list
+  [repositories]="repositories"
+  [loading]="loading"
+  [error]="error"
+  ></app-repository-list>
 </div>
