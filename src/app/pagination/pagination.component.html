@@ -1,0 +1,14 @@
+<div class="pagination flex items-center justify-between p-4 bg-gray-200 rounded-md shadow-md mb-4">
+  <div class="flex items-center">
+    <span class="mr-2 font-bold text-gray-700">Page:</span>
+    <span class="text-blue-500">{{ currentPage }} / {{ calculateTotalPages() }}</span>
+  </div>
+  <div class="flex items-center">
+    <span class="mr-2 font-bold text-gray-700">Page Size:</span>
+    <select [(ngModel)]="pageSize" (change)="onPageSizeChange($event)" class="border border-gray-300 p-2 rounded-md">
+      <option *ngFor="let size of [10, 25, 50, 100]">{{ size }}</option>
+    </select>
+  </div>
+  <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1" class="bg-blue-500 text-white px-4 py-2 rounded-md mr-2 hover:bg-blue-700 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue active:bg-blue-800 disabled:opacity-50">Previous</button>
+  <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === calculateTotalPages()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:border-blue-900 focus:shadow-outline-blue active:bg-blue-800 disabled:opacity-50">Next</button>
+</div>

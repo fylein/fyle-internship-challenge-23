@@ -1,0 +1,17 @@
+
+<div class="bg-blue-900 h-full lett">
+  <div class="p-8 rounded shadow-md w-[500px] mx-auto flex items-center justify-center h-full">
+   
+      <label class="block mb-2 text-black  font-bold text-2xl" for="username">Username:</label>
+    
+    
+      <input class="w-full px-4 py-2 border ml-3 mr-3 rounded-full focus:outline-none  font-semibold focus:border-blue-500 bg-slate-800 text-white" type="text" id="username"[(ngModel)] = "userName" type="text" placeholder="Enter Github Username" >
+
+      <button class="bg-green-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" (click)="getUser()">
+        Search
+      </button>
+      
+
+
+  </div>
+</div>
