@@ -19,12 +19,30 @@ export class GithubUserProfileComponent implements AfterViewInit, OnDestroy {
   repoData: any;
   hasData: boolean = false;
   currentPage: number = 1;
-  per_page: number = 10;
+  // per_page: number = 10;
   totalPages: number = 1;
+
+
+    selectedItem: any = 10;
+    items = [
+      { label: '10', value: '10' },
+      { label: '20', value: '20' },
+      { label: '30', value: '30' },
+      { label: '40', value: '40' },
+      { label: '50', value: '50' },
+      { label: '60', value: '60' },
+      { label: '70', value: '70' },
+      { label: '80', value: '80' },
+      { label: '90', value: '90' },
+      { label: '100', value: '100' }
+    ];
+  
 
   private destroy$: Subject<void> = new Subject<void>();
 
   constructor(private apiService:  ApiService) {}
+
+  
 
   ngAfterViewInit(): void {
     this.setupSearchInput();
@@ -79,7 +97,7 @@ export class GithubUserProfileComponent implements AfterViewInit, OnDestroy {
     } else {
       this.notFound = false;
       this.githubUserDetails = res;
-      this.totalPages = Math.ceil(Number(this.githubUserDetails.public_repos) / this.per_page);
+      this.totalPages = Math.ceil(Number(this.githubUserDetails.public_repos) / this.selectedItem);
 
       this.fetchUserRepos();
     }
@@ -89,7 +107,7 @@ export class GithubUserProfileComponent implements AfterViewInit, OnDestroy {
 
   private fetchUserRepos(): void {
     if (this.githubUserDetails) {
-      this.apiService.getUserRepos(this.githubUserDetails.repos_url, this.currentPage, this.per_page)
+      this.apiService.getUserRepos(this.githubUserDetails.repos_url, this.currentPage, this.selectedItem)
         .pipe(takeUntil(this.destroy$))
         .subscribe(
           (res) => {

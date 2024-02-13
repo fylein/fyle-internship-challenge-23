@@ -19,6 +19,18 @@
         [formControl]="inputSearch"
         placeholder="Search GitHub user"
       />
+
+      
+      <label for="repo" class="p-2 border-none outline-none border-blue-500 ml-4"> Repo </label>
+
+      <select
+      class="p-2 border-none outline-none border-blue-500 ml-1 text-black rounded-lg"
+      default="10"
+      [(ngModel)]="selectedItem">
+        <option *ngFor="let item of items" [value]="item.value">{{ item.label }}</option>
+      </select>
+      
+      
     </div>
   </div>
 </div>
