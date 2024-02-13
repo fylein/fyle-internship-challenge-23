@@ -3,7 +3,7 @@ import { tap, throwError, from, of, Observable } from 'rxjs';
 import { Octokit } from 'octokit';
 import { environment } from 'src/environments/environment';
 import { catchError } from 'rxjs';
-import { CacheService } from './cache.service';
+import { CacheService } from '../cache/cache.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './services/api.service';
+import { ApiService } from './services/api/api.service';
 import { fetchUserData } from './store/actions';
 import { Store } from '@ngrx/store';
 import { selectState } from './store/selectors';
