@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Octokit } from 'octokit';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { of } from 'rxjs';
+import { PollingService } from './polling.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +10,17 @@ import { of } from 'rxjs';
 export class CacheService {
   private octokit: Octokit;
 
-  constructor() {
+  constructor(private PS: PollingService) {
     const token = environment.token;
     this.octokit = new Octokit({
       auth: token,
+    });
+
+    // Every 120s , cache is burst
+
+    this.PS.startTimer().subscribe((data) => {
+      this.apiCache = new Map();
+      console.log(this.apiCache);
     });
   }
 

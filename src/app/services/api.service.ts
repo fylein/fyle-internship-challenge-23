@@ -59,6 +59,7 @@ export class ApiService {
       })
     ).pipe(
       tap((data) => {
+        console.log(data);
         if (data instanceof Object) {
           this.cache.set(cacheKey, data);
         }
