@@ -1,0 +1,49 @@
+<div class="container search-page">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div>
+                <form (ngSubmit)="searchGithubUserRepositories()" id="search-form" #f="ngForm">
+                    <input type="text" class="form-control search" ngModel name="search"
+                    placeholder="Enter github username to search the repositories........" required #search="ngModel">
+                    <p class="text-danger error block" *ngIf="!search.valid && search.touched"><small>Fill in field!</small></p>
+                    <div class="d-grid mt-2">
+                        <button type="submit" class="btn btn-block btn-search" [disabled]="!f.valid">
+                          Search User Repositories<i class="fa fa-arrow-right"></i>
+                        </button>
+                      </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row my-repository" *ngIf="displayUserRepositoryList">
+        <div class="col-md-12 text-center">
+            <br>
+            <h2>Repositories Found for: {{searchText}}</h2>
+            <hr>
+        </div>
+        <div class="col-md-12" *ngFor="let repository of repositories; let i=index">
+            <div class="card card-repo">
+                <span class="float-center"><i appStarRepository title="Star Repository" class="fa fa-star"></i></span>
+                <div class="card-body text-center">
+                    <h4 class="card-title heading">{{repository.name}}</h4>
+                    <p class="card-text">{{repository.description}}</p>
+                </div>
+                <div class="card-body text-center">
+                    <p class="card-text"><strong>Created on: <span class="badge rounded-pill bg-warning text-dark">{{repository.created_at | date}}</span></strong></p>
+                    <a href="{{repository.html_url}}" target="_blank" class="card-link color-primary">View repository <i
+                        class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="!displayUserRepositoryList && displayUserErrorMessage">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="alert alert-danger" role="alert">No repositories found for {{searchText}}</div>
+            </div>
+        </div>
+    </div>
+</div>

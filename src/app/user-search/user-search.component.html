@@ -1,0 +1,73 @@
+<div class="container search-page">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div>
+                <form (ngSubmit)="searchGithubUser()" id="search-form" #f="ngForm">
+                    <input type="text" class="form-control search" ngModel name="search" placeholder="Enter github username to search..." required #search="ngModel">
+                    <p class="text-danger error-block" *ngIf="!search.valid && search.touched"><small>Fill in field!</small></p>
+                    <div class="d-grid mt-2">
+                      <button type="submit" class="btn btn-block btn-search" [disabled]="!f.valid">
+                        Search User <i class="fa fa-arrow-right"></i>
+                      </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <!--user details response-->
+    <div class="row" *ngIf="displayUserDetailContainer">
+        <div class="col-md-5">
+            <div class="card">
+                <img class="card-img-top" [src]="user.avatar_url" alt="My Image">
+                <div class="card-body text-center">
+                    <p class="card-text">Name:<span> {{user.name}}</span></p>
+                    <p>Username:<span> {{user.login}}</span></p>
+                    <p>Joined on: <span class="badge rounded-pill bg-warning text-dark">{{user.created_at|date}}</span></p>
+                    <div class="follow">
+                        <p><i class="fas fa-user"></i><span>{{user.followers}}</span> Followers</p>
+                        <p><i class="fas fa-user"></i><span>{{user.following}}</span> Following</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card">
+                <ul class="list-group list-group-flush my-details">
+                    <li class="list-group-item">Name: <span>{{user.name}}</span></li>
+                    <li class="list-group-item">Address: <span>{{user.location}}</span></li>
+                    <li class="list-group-item">Public repos: <span class="badge rounded-pill bg-warning text-dark">{{user.public_repos}}</span></li>
+                </ul>
+            </div>
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">About me</li>
+                    <li class="list-group-item">
+                        <p>{{user.bio}}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="card">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Github</li>
+                    <li class="list-group-item">
+                        <div>
+                            <small><a class="btn btn-sm" href="https://github.com/{{ user.login }}"
+                                target="_blank" rel="noopener noreferrer">View Github <i class="fa fa-arrow-right"></i></a></small>
+                        </div>
+                    </li>
+                </ul>
+            </div>            
+        </div>  
+    </div>
+
+    <!--error message if github user is not found-->
+    <div class="row" *ngIf="!displayUserDetailContainer && displayGithubUserErrorNotFound">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
+        <div class="card">
+            <div class="alert alert-danger" role="alert">No Github user found</div>
+        </div>
+    </div>
+</div>
