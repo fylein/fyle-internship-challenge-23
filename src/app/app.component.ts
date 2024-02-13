@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './services/api.service';
+import { GithubService } from './services/github.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +7,17 @@ import { ApiService } from './services/api.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+  searchedUserName!:string;
   constructor(
-    private apiService: ApiService
+    private  githubService: GithubService
   ) {}
 
   ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
+    // this.githubService.getUser('johnpapa').subscribe(console.log);
+  }
+  getUser(userName: string) {
+    this.searchedUserName = userName;
+    // console.log(this.searchedUserName);
+
   }
 }
