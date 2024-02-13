@@ -50,8 +50,5 @@ export class RepositoryListComponent  {
     }
   }
 
-  
-  // Add your data fetching logic or API calls here
-  // ...
 
 }
