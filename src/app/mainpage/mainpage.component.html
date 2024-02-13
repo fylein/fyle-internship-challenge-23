@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <img class="card-img-top" [src]="user.avatar_url" alt="My Image">
+                <div class="card-body text-center">
+                  <p class="card-text">Name:<span> {{user.name}}</span></p>
+                  <p>Username:<span> {{user.login}}</span></p>
+                  <p>Joined on: <span class="badge rounded-pill bg-warning text-dark">{{user.created_at|date}}</span></p>
+                  <div class="follow">
+                    <p><i class="fas fa-user"></i><span>{{user.followers}}</span> Followers</p>
+                    <p><i class="fas fa-user"></i><span>{{user.following}}</span> Following</p>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-md-7">
+          <div class="card">
+            <ul class="list-group list-group-flush my-details">
+              <li class="list-group-item">Name: <span>{{user.name}}</span></li>
+              <li class="list-group-item">Address: <span>{{user.location}}</span></li>
+              <li class="list-group-item">Public repos: <span class="badge rounded-pill bg-warning text-dark">{{user.public_repos}}</span></li>
+            </ul>
+          </div>
+          <div class="card">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">About me</li>
+              <li class="list-group-item">
+                <p>{{user.bio}}</p>
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Github</li>
+              <li class="list-group-item">
+                <div>
+                  <small><a class="btn btn-sm" href="https://github.com/{{ user.login }}"
+                      target="_blank" rel="noopener noreferrer">View Github <i class="fa fa-arrow-right"></i></a></small>
+                </div>
+              </li>
+            </ul>
+          </div>            
+        </div>  
+    </div>
+</div>
+
+<div class="container repository" id="repository">
+  <div class="col-md-12">
+    <h2>My repositories</h2>
+  </div>
+  <div class="col-md-12" *ngFor="let repository of repositories; let i=index">
+    <div class="card card-repo">
+      <span class="float-right"><i appStarRepository title="Star Repository" class="fa fa-star"></i></span>
+      <div class="card-body text-center">
+        <h4 class="card-title heading">{{repository.name}}</h4>
+        <p class="card-text">{{repository.description}}</p>
+      </div>
+      <div class="card-body text-center">
+        <p class="card-text"><strong>Created on: <span class="badge rounded-pill bg-warning text-dark">{{
+          repository.created_at|date}}</span></strong></p>
+          <p>Language: {{repository.language}}</p>
+          <a href="{{repository.html_url }}" target="_blank" class="card-link color-primary">View repository <i class="fa fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,79 @@
+.card {
+  background: #fff none repeat scroll 0 0;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 11px 5px rgb(103 58 183 / 10%);
+  margin-bottom: 30px;
+  padding: 20px 10px;
+  transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  margin-top: 30px;
+
+  &:hover {
+    box-shadow: 0 0 11px 5px rgba(70, 41, 121, 0.25);
+    background: linear-gradient(-19deg, rgba(235, 174, 8, 0.95) 0px);
+  }
+
+  &-text a {
+    color: rgb(31, 30, 30);
+    text-align: center;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  &-img-top {
+    border-radius: 50%;
+    display: block;
+    float: none;
+    height: 215px;
+    line-height: 32px;
+    margin: 0 auto;
+    width: 215px;
+    margin-top: 6px;
+  }
+}
+
+.follow {
+  justify-content: space-evenly;
+}
+
+.card-link {
+  text-decoration: none; 
+}
+
+.card {
+  font-family: 'Poppins';
+  font-size: 18px;
+}
+
+.float-center {
+  text-align: center;
+}
+
+.search-page #search-form input {
+  height: 100%;
+  background: #fff;
+  border: 0;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  border-radius: 30px;
+  padding-left: 30px;
+  margin-top: 50px;
+  box-shadow: 4px 9px 5px -5px rgba(133, 131, 131, 0.34);
+  -webkit-box-shadow: 4px 9px 5px -5px rgba(133, 131, 131, 0.34);
+  -moz-box-shadow: 4px 9px 5px -5px rgba(133, 131, 131, 0.34);
+}
+
+.btn-search,
+.btn-search:hover {
+  background-color: rgb(10, 25, 47);
+  color: whitesmoke;
+  transition: all 0.2s ease-out, color 0.2s ease-out;
+}
+
+.btn {
+  background-color: rgb(206, 23, 23);
+  color: #fff;
+}
