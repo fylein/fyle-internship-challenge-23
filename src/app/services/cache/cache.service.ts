@@ -11,16 +11,20 @@ export class CacheService {
 
     this.PS.startTimer().subscribe((data) => {
       this.apiCache = new Map();
-      console.log(this.apiCache);
     });
   }
 
   private apiCache: Map<string, any> = new Map();
-  get(cacheKey: string): Observable<any> {
+
+  public get(cacheKey: string): any {
     let result = this.apiCache.get(cacheKey);
     return result;
   }
-  set(cacheKey: string, value: any): void {
+  public set(cacheKey: string, value: any): void {
     this.apiCache.set(cacheKey, value);
   }
+  // Never use, except for tests
+  public getCache = (): Map<string, any> => {
+    return this.apiCache;
+  };
 }

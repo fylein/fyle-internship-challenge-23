@@ -70,4 +70,10 @@ export class ApiService {
       })
     );
   }
+
+  // For TESTING only
+
+  returnOctokit() {
+    return this.octokit;
+  }
 }

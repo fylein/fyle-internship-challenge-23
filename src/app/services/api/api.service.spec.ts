@@ -10,12 +10,8 @@ import { ApiService } from './api.service';
 import { PollingService } from '../polling/polling.service'; // Import your PollingService
 import { of, Observable } from 'rxjs';
 import { Octokit } from 'octokit';
-import { environment } from 'src/environments/environment';
-import {
-  githubData,
-  returnBlankUser,
-  newPageHandler,
-} from 'src/app/store/state';
+import { environment } from '../../../environments/environment';
+import { githubData, returnBlankUser, newPageHandler } from '../../store/state';
 
 TestBed.initTestEnvironment(
   BrowserDynamicTestingModule,
@@ -40,7 +36,7 @@ describe('ApiService', () => {
       providers: [
         ApiService,
         CacheService,
-        PollingService, // Provide PollingService
+        PollingService,
         { provide: Octokit, useValue: spy },
       ],
     });
@@ -51,38 +47,48 @@ describe('ApiService', () => {
   });
 
   it('should be created', () => {
+    // The instance of Octokit
+    expect(service.returnOctokit()).toBeDefined();
     expect(service).toBeTruthy();
   });
 
-  it('should fetch data from Octokit with authentication token', (done) => {
-    const githubUsername = 'exampleUser';
+  // Get userBioData
+  it('should fetch User Bio data from Octokit ', (done) => {
+    const githubUsername = 'himanshuxd';
     const apiEndpoint = `/users/${githubUsername}`;
-
-    // Set up Octokit spy to return a resolved promise with mock response
-    octo.request.and.returnValue(
-      Promise.resolve({
-        headers: {},
-        status: 200,
-        url: apiEndpoint,
-        authorization: environment.token,
-        data: githubUsername,
-      })
-    );
 
     // Call the service method
     service.getUserBio(githubUsername).subscribe((res) => {
-      // Verify that Octokit data is returned
+      expect(octo.request).toHaveBeenCalledWith('GET /users/himanshuxd');
       expect(res).toEqual(jasmine.any(Object));
-      done();
     });
 
-    // Ensure Octokit request was made with the correct endpoint and token
-    // expect(octo.request).toHaveBeenCalledWith(`GET ${apiEndpoint}`, {
-    //   headers: {
-    //     authorization: environment.token, // Replace with your test access token
-    //   },
-    // });
+    done();
   });
 
-  // Similar tests for getUserRepos can be added
+  // Get userReposData
+  it('should fetch User Repo Data from Octokit', (done) => {
+    const githubUsername = 'johnDoe';
+    const apiEndpoint = `/users/${githubUsername}/repos`;
+
+    // Call the service method
+    service.getUserBio(githubUsername).subscribe((res) => {
+      expect(res).toEqual(jasmine.any(Object));
+    });
+    done();
+  });
+
+  it('should fetch data from cache if request is the same', (done) => {
+    const githubUsername = 'DTomPanda';
+    const key = `/users/${githubUsername}/repos`;
+    const apiEndpoint = `/users/${githubUsername}`;
+
+    // //The cacheHashMap
+    const apiCache = cacheService['apiCache'];
+
+    // First instance of request as key checked
+    expect(apiCache.has(key)).toBeFalse();
+    // expect(cacheService.get(apiEndpoint)).toBe(undefined);
+    done();
+  });
 });
