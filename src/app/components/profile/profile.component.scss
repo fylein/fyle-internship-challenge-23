@@ -1,0 +1,128 @@
+// Reusable styles for the page header
+
+.page-header {
+	background-color: #f8f9fa;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+	h1 {
+	  text-align: center;
+	  margin-bottom: 10px;
+	}
+  
+	.lead {
+	  color: #6c757d;
+	  text-align: center;
+	}
+  
+	.made-by {
+	  margin-top: 20px;
+	  font-size: 16px;
+	  color: #495057;
+	  text-align: center;
+  
+	  a {
+		color: #007bff;
+		text-decoration: none;
+  
+		&:hover {
+		  text-decoration: underline;
+		}
+	  }
+	}
+  }
+  
+  // Reusable styles for the search form
+  .search-form {
+	margin-top: 20px;
+  
+	.row {
+	  .col-xs-9 {
+		.form-group {
+		  margin-bottom: 0; // Remove default margin
+		}
+	  }
+  
+	  button {
+		margin-left: 10px;
+	  }
+	}
+  }
+
+
+  .repo-card {
+	border: 1px solid #ddd;
+	padding: 10px;
+	margin-bottom: 10px;
+	background-color: #fff;
+	transition: box-shadow 0.3s ease, transform 0.3s ease; 
+	overflow: hidden; 
+  
+	&:hover {
+	  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	  transform: scale(1.1); 
+	  border-radius: 5px;
+	}
+  
+	h4 {
+	  margin-top: 0;
+	}
+  
+	p {
+	  margin-bottom: 10px;
+	}
+  
+	.repo-meta {
+	  display: flex;
+	  justify-content: space-between;
+	}
+  }
+  
+
+
+  .skeleton-loader {
+	height: 100px; /* Adjust the height based on your design */
+	background-color: #f0f0f0; /* Light gray color for the skeleton */
+	animation: skeleton-loading 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes skeleton-loading {
+	0% { opacity: 0.7; }
+	50% { opacity: 0.5; }
+	100% { opacity: 0.7; }
+  }
+  
+
+  /* Add this to your styles.css or styles.scss file */
+.page-size-control {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end; /* Align to the right */
+	margin-top: 20px; /* Adjust as needed */
+  }
+  
+  .page-size-control label {
+	margin-right: 10px; /* Adjust as needed */
+  }
+  
+  .page-size-control select {
+	width: 70px; /* Adjust as needed */
+  }
+
+#myvideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%.-50%);
+  width: 100%;
+  heigth: auto;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+
