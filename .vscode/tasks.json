@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "start",
       "type": "npm",
       "script": "start",
       "isBackground": true,
@@ -12,15 +13,18 @@
         "background": {
           "activeOnStart": true,
           "beginsPattern": {
-            "regexp": "(.*?)"
+            "regexp": "(.*)$"
           },
-          "endsPattern": {
-            "regexp": "bundle generation complete"
+          "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Starting 'start'",
+          "endsPattern": "bundle generation complete"
           }
         }
       }
     },
     {
+      "label": "test",
       "type": "npm",
       "script": "test",
       "isBackground": true,
@@ -30,10 +34,12 @@
         "background": {
           "activeOnStart": true,
           "beginsPattern": {
-            "regexp": "(.*?)"
+            "regexp": "(.*)$"
           },
-          "endsPattern": {
-            "regexp": "bundle generation complete"
+          "background": {
+          "activeOnStart": true,
+          "beginsPattern": "Starting 'test'",
+          "endsPattern": "bundle generation complete"
           }
         }
       }
