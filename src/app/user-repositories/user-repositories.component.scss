@@ -1,0 +1,107 @@
+// /* src/app/user-repositories/user-repositories.component.scss */
+
+// .repo-list {
+//   list-style: none;
+//   padding: 0;
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid with minimum width of 300px */
+//   gap: 20px; /* Adjust the gap between items */
+// }
+
+// .repo-box { margin-left: 30px;
+//   margin-right: 20px;
+//   border: 1px solid #e1e4e8;
+//   background-color: #fff;
+//   padding: 15px;
+//   border-radius: 8px;
+//   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+//   transition: transform 0.3s;
+//   display: flex;
+//   flex-direction: column; /* Stack the content vertically within the box */
+//   justify-content: space-between; /* Distribute content evenly */
+// }
+
+// .repo-box:hover {
+//   transform: scale(1.03);
+// }
+
+// h2 {
+//   color: #0366d6;
+//   font-size: 1.5em;
+//   margin-bottom: 10px;
+  
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+//   margin-left: 30px;
+// }
+
+// img {
+//   border-radius: 50%;
+//   margin-bottom: 10px;
+ 
+// }
+
+// .repo-box a {
+//   font-size: 1.2em;
+//   color: #0366d6;
+//   text-decoration: none;
+//   transition: color 0.3s;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+  
+// }
+
+// .repo-box a:hover {
+//   color: #004080;
+// }
+
+// p {
+//   margin-top: 10px;
+//   color: #586069;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+// }
+
+// span {
+//   color: #586069;
+//   font-size: 0.9em;
+// }
+
+// /* user-info.component.css */
+
+// .user-container {
+//   display: flex;
+//   align-items: center;
+// }
+
+// .user-img {
+//   margin-right: 10px; /* Adjust the margin as needed */
+// }
+
+// .user-img img {
+//   border-radius: 50%;
+//   width: 130px;
+//   height: 130px;
+//   margin-left: 30px;
+// }
+
+// .user-detail {
+//   text-align: left; /* Align text to the left within the container */
+// }
+
+// .user-detail h2 {
+//   font-size: 1.5em;
+//   margin-bottom: 5px; /* Adjust the margin as needed */
+//   margin-left: 30px;
+
+// }
+
+// .user-detail span {
+//   display: block;
+//   margin-bottom: 5px;
+//   margin-left: 30px;
+// }
+

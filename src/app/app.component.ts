@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+// src/app/app.component.ts
+import { Component } from '@angular/core';
 import { ApiService } from './services/api.service';
 
 @Component({
@@ -6,12 +7,29 @@ import { ApiService } from './services/api.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  constructor(
-    private apiService: ApiService
-  ) {}
+export class AppComponent {
+  user: any = {};
+  repositories: any[] = [];
 
-  ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
+  constructor(private apiService: ApiService) {}
+
+  onSearch(username: string) {
+    this.apiService.getUserRepos(username).subscribe(
+      (repos) => {
+        this.repositories = repos;
+      },
+      (error) => {
+        console.error('Error fetching repositories:', error);
+      }
+    );
+
+    this.apiService.getUserDetails(username).subscribe(
+      (user) => {
+        this.user = user;
+      },
+      (error) => {
+        console.error('Error fetching user details:', error);
+      }
+    );
   }
 }

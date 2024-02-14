@@ -1,0 +1,48 @@
+<!-- src/app/user-repositories/user-repositories.component.html -->
+
+<div *ngIf="user.login" class="py-8 mx-4">
+  <div class="user-container flex items-center mb-6" *ngIf="!loading; else skeletonContainer">
+    <div class="user-img">
+      <img [src]="user.avatar_url" alt="User Avatar" width="100" height="100" class="rounded-full" />
+    </div>
+    <div class="user-detail ml-4">
+      <h2 class="text-3xl font-bold mt-2  text-gray-800">{{ user.name || user.login }}</h2>
+      <span class="block mb-2 text-gray-600">GitHub ID: {{ user.login }}</span>
+      <span class="block mb-2 text-gray-600">GitHub Profile: <a [href]="getUserGitHubUrl()" target="_blank" class="text-blue-500">{{ getUserGitHubUrl() }}</a></span>
+    </div>
+  </div>
+  <ng-template #skeletonContainer>
+    <!-- Display skeleton loader for the user container -->
+    <app-skeleton class="skeleton-container"></app-skeleton>
+  </ng-template>
+
+  <div *ngIf="loading || repositories.length === 0; else content">
+    <!-- Display skeleton loader for the repositories list -->
+    <app-skeleton class="skeleton-repo"></app-skeleton>
+  </div>
+
+  <ng-template #content>
+    <h2 class="text-2xl font-semibold mt-8 mb-4 text-gray-800">Repositories List</h2>
+    <ul class="repo-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <li *ngFor="let repo of paginatedRepositories">
+        <div class="repo-box p-4 border rounded-md shadow-md transition-transform hover:scale-103">
+          <a [href]="repo.html_url" target="_blank" class="text-blue-600 text-lg font-semibold">{{ repo.name }}</a>
+          <p *ngIf="repo.description" class="text-gray-600">{{ repo.description }}</p>
+          <p *ngIf="!repo.description" class="text-gray-600"><em>No description available</em></p>
+          <ng-container *ngIf="repo.language && languageImages[repo.language]">
+            <img [src]="languageImages[repo.language]" alt="{{ repo.language }} Logo" width="40" height="40" class="rounded-full mb-2" />
+          </ng-container>
+          <span *ngIf="!repo.language || !languageImages[repo.language]" class="text-gray-600">Language: {{ repo.language || 'Not available' }}</span>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Angular Material Paginator -->
+    <mat-paginator
+      [length]="repositories.length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="onPageChange($event)"
+    ></mat-paginator>
+  </ng-template>
+</div>

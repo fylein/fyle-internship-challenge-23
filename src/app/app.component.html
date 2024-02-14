@@ -1,5 +1,3 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
-  </div>
-</div>
+<!-- src/app/app.component.html -->
+<app-user-input (searchClicked)="onSearch($event)"></app-user-input>
+<app-user-repositories [user]="user" [repositories]="repositories"></app-user-repositories>
