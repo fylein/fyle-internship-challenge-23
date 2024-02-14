@@ -1,19 +1,28 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ApiService {
+@Injectable()
+export class ProfileService {
+  private apiUrl = 'https://api.github.com';
+  private clientid = 'Iv1.7172eb26f59d1a25';
+  private clientsecret = '201d972a3502f885fe2fd677f9ad5c2c86033741';
+  private username: string = '';
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
-
-  getUser(githubUsername: string) {
-    return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
+  constructor(private http: HttpClient) {
+    console.log("service is now ready!");
   }
 
-  // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
+  getProfileInfo(): Observable<any> {
+    return this.http.get(${this.apiUrl}/users/${this.username}?client_id=${this.clientid}&client_secret=${this.clientsecret});
+  }
+
+  getProfileRepos(page: number, pageSize: number): Observable<any> {
+    const url = ${this.apiUrl}/users/${this.username}/repos?client_id=${this.clientid}&client_secret=${this.clientsecret}&page=${page}&per_page=${pageSize};
+    return this.http.get(url);
+  }
+
+  updateProfile(username: string): void {
+    this.username = username;
+  }
 }
