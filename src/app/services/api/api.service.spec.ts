@@ -46,6 +46,12 @@ describe('ApiService', () => {
     octo = TestBed.inject(Octokit);
   });
 
+  afterEach(() => {
+    // Add cleanup logic here, e.g., clear cache
+    console.log(cacheService.getCache);
+    cacheService.clearCache();
+  });
+
   it('should be created', () => {
     // The instance of Octokit
     expect(service.returnOctokit()).toBeDefined();
@@ -59,7 +65,8 @@ describe('ApiService', () => {
 
     // Call the service method
     service.getUserBio(githubUsername).subscribe((res) => {
-      expect(octo.request).toHaveBeenCalledWith('GET /users/himanshuxd');
+      console.warn(cacheService.getCache, 'userbio');
+      expect(octo.request).toHaveBeenCalledWith(`GET ${apiEndpoint}`);
       expect(res).toEqual(jasmine.any(Object));
     });
 
@@ -70,11 +77,21 @@ describe('ApiService', () => {
   it('should fetch User Repo Data from Octokit', (done) => {
     const githubUsername = 'johnDoe';
     const apiEndpoint = `/users/${githubUsername}/repos`;
+    const noOfRecords = 10;
+    const page = 1;
 
     // Call the service method
-    service.getUserBio(githubUsername).subscribe((res) => {
-      expect(res).toEqual(jasmine.any(Object));
-    });
+    service.getUserRepos(githubUsername, noOfRecords, page).subscribe(
+      (res) => {
+        console.warn(cacheService.getCache, 'userRepo');
+        expect(octo.request).toHaveBeenCalledWith(
+          `GET ${apiEndpoint}&pages=${page}&perpage=${noOfRecords}`
+        );
+        expect(res).toEqual(jasmine.any(Object));
+        expect(res.repos).toEqual(jasmine.any(Array));
+      },
+      (err) => {}
+    );
     done();
   });
 
@@ -82,13 +99,9 @@ describe('ApiService', () => {
     const githubUsername = 'DTomPanda';
     const key = `/users/${githubUsername}/repos`;
     const apiEndpoint = `/users/${githubUsername}`;
-
-    // //The cacheHashMap
-    const apiCache = cacheService['apiCache'];
-
     // First instance of request as key checked
-    expect(apiCache.has(key)).toBeFalse();
-    // expect(cacheService.get(apiEndpoint)).toBe(undefined);
+    expect(cacheService.get(apiEndpoint)).toBeUndefined();
+
     done();
   });
 });

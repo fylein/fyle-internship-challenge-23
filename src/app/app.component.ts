@@ -1,21 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from './services/api/api.service';
 import { fetchUserData } from './store/actions';
 import { Store } from '@ngrx/store';
 import { selectState } from './store/selectors';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   constructor(private apiService: ApiService, private store: Store) {}
   public responseLength!: number;
+  public dataLengthSub!: Subscription;
 
   ngOnInit() {
-    this.store
+    this.dataLengthSub = this.store
       .select(selectState)
       .subscribe((data) => (this.responseLength = data.repos.length));
+  }
+  ngOnDestroy() {
+    if (this.dataLengthSub) {
+      this.dataLengthSub.unsubscribe();
+    }
   }
 }

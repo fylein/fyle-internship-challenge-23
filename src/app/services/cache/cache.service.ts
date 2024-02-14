@@ -10,7 +10,7 @@ export class CacheService {
     // Every 120s , cache is burst
 
     this.PS.startTimer().subscribe((data) => {
-      this.apiCache = new Map();
+      this.clearCache();
     });
   }
 
@@ -23,7 +23,10 @@ export class CacheService {
   public set(cacheKey: string, value: any): void {
     this.apiCache.set(cacheKey, value);
   }
-  // Never use, except for tests
+  public clearCache(): void {
+    this.apiCache.clear();
+  }
+  // Just for Tests
   public getCache = (): Map<string, any> => {
     return this.apiCache;
   };

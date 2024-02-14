@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { fetchUserData } from 'src/app/store/actions';
 import { getNoRecords } from 'src/app/store/selectors';
 
@@ -8,17 +9,23 @@ import { getNoRecords } from 'src/app/store/selectors';
   templateUrl: './search-user.component.html',
   styleUrls: ['./search-user.component.scss'],
 })
-export class SearchUserComponent implements OnInit {
+export class SearchUserComponent implements OnInit, OnDestroy {
   constructor(private store: Store) {}
   public username: string = '';
   public noOfRepos!: number;
+  public recordsSub!: Subscription;
 
-  public get(username: string, noOfRepos: number) {
+  public get(username: string, noOfRepos: number): void {
     this.store.dispatch(fetchUserData({ username, noOfRepos, page: 1 }));
   }
   ngOnInit(): void {
-    this.store
+    this.recordsSub = this.store
       .select(getNoRecords)
       .subscribe((count: number) => (this.noOfRepos = count));
+  }
+  ngOnDestroy(): void {
+    if (this.recordsSub) {
+      this.recordsSub.unsubscribe();
+    }
   }
 }
