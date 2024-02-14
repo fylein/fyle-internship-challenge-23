@@ -1,0 +1,28 @@
+.skeleton-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .skeleton-line {
+    height: 20px; 
+    width: 70%; 
+    background-color: #eee; 
+    margin-bottom: 10px; 
+    animation: loading-animation 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes loading-animation {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+  
+
+  

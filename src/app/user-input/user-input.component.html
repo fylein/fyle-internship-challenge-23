@@ -1,0 +1,8 @@
+<!-- src/app/user-input/user-input.component.html -->
+<div class="my-4">
+  <label for="username" class="block text-lg mb-2">Enter GitHub Username:</label>
+  <div class="flex">
+      <input type="text" id="username" [(ngModel)]="username" class="w-64 border rounded py-2 px-4 mr-2 focus:outline-none focus:border-blue-500" />
+      <button (click)="onSearchClick()" class="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none hover:bg-blue-600">Search Repositories</button>
+  </div>
+</div>
