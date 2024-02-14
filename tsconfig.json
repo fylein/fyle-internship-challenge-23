@@ -17,10 +17,10 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022",
+    "module": "EXNext", //Change to ESNext for compatibility with Angular Ivy
     "useDefineForClassFields": false,
     "lib": [
-      "ES2022",
+      "EXNext",//Change to ESNext 
       "dom"
     ]
   },
