@@ -50,7 +50,7 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should subscribe and update responseLength during ngOnInit', () => {
+  it('should subscribe and update responseLength & loadError during ngOnInit', () => {
     const mockData = {
       repos: [
         {
@@ -86,6 +86,7 @@ describe('AppComponent', () => {
           description: 'Here goes desc',
         },
       ],
+      loadError: { isLoading: false, isError: false },
     };
     storeMock.select.and.returnValue(of(mockData));
 
@@ -93,6 +94,7 @@ describe('AppComponent', () => {
     component.ngOnInit();
 
     expect(component.dataLengthSub).toBeDefined();
+    expect(component.loadErrorSub).toBeDefined();
     expect(component.responseLength).toEqual(mockData.repos.length);
     expect(storeMock.select).toHaveBeenCalled();
   });
@@ -133,13 +135,16 @@ describe('AppComponent', () => {
           description: 'Here goes desc',
         },
       ],
+      loadError: { isLoading: false, isError: false },
     };
     storeMock.select.and.returnValue(of(mockData));
     component.ngOnInit();
     expect(component.dataLengthSub).toBeDefined();
 
-    let spy = spyOn(component['dataLengthSub'], 'unsubscribe');
+    let dlSpy = spyOn(component['dataLengthSub'], 'unsubscribe');
+    let leSpy = spyOn(component['loadErrorSub'], 'unsubscribe');
     component.ngOnDestroy();
-    expect(spy).toHaveBeenCalled();
+    expect(dlSpy).toHaveBeenCalled();
+    expect(leSpy).toHaveBeenCalled();
   });
 });

@@ -33,6 +33,10 @@ export interface githubData {
   users: userType;
   repos: userReposType[];
   pageState: pageHandlers;
+  load_Error: {
+    isLoading: boolean;
+    isError: boolean;
+  };
 }
 
 export function returnBlankUser() {
@@ -66,4 +70,8 @@ export const AppState: githubData = {
   repos: [],
   users: returnBlankUser(),
   pageState: newPageHandler(),
+  load_Error: {
+    isLoading: false,
+    isError: false,
+  },
 };

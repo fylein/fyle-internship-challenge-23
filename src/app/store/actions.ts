@@ -23,7 +23,11 @@ export const updateNoOfRecords = createAction(
 
 export const setNoRecords = createAction(
   '[GitHub RecCount] Set count',
-  props<{ reposData: userReposType[]; noOfRecords: number; page: number }>()
+  props<{
+    reposData: userReposType[];
+    noOfRecords: number;
+    page: number;
+  }>()
 );
 
 export const updatePageNo = createAction(
@@ -33,5 +37,13 @@ export const updatePageNo = createAction(
 
 export const setPageNo = createAction(
   '[GitHub RecCount] Set count',
-  props<{ reposData: userReposType[]; page: number; noOfRecords: number }>()
+  props<{
+    reposData: userReposType[];
+    page: number;
+    noOfRecords: number;
+  }>()
+);
+export const setLoadError = createAction(
+  '[GitHub RecCount] Set Error',
+  props<{ isError: boolean; isLoading: boolean }>()
 );

@@ -6,6 +6,7 @@ import {
   setNoRecords,
   updatePageNo,
   setPageNo,
+  setLoadError,
 } from './actions';
 import { githubData, AppState } from './state';
 
@@ -49,5 +50,8 @@ export const appReducer = createReducer(
         showRecords: noOfRecords,
       },
     };
+  }),
+  on(setLoadError, (state, { isError, isLoading }) => {
+    return { ...state, load_Error: { isError, isLoading } };
   })
 );

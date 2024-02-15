@@ -6,9 +6,10 @@ import {
   updateNoOfRecords,
   updatePageNo,
   setPageNo,
+  setLoadError,
 } from './actions';
 import { ApiService } from '../services/api/api.service';
-import { switchMap, map, exhaustMap, of, forkJoin } from 'rxjs';
+import { switchMap, concat, map, exhaustMap, of, forkJoin } from 'rxjs';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError } from 'rxjs';
 
@@ -16,29 +17,64 @@ import { catchError } from 'rxjs';
 export class Effects {
   constructor(private action$: Actions, private apiService: ApiService) {}
 
+  // loadData$ = createEffect(() =>
+  //   this.action$.pipe(
+  //     ofType(fetchUserData),
+  //     switchMap((action) =>
+  //       forkJoin([
+  //         this.apiService.getUserBio(action.username),
+  //         this.apiService.getUserRepos(
+  //           action.username,
+  //           action.noOfRepos,
+  //           action.page
+  //         ),
+  //       ]).pipe(
+  //         switchMap(([userDataRes, reposDataRes]) => {
+  //           return [
+  //             setLoadError({ isError: false, isLoading: false }),
+  //             setUserData({
+  //               userData: userDataRes.data,
+  //               reposData: reposDataRes.data,
+  //               noOfRecords: action.noOfRepos,
+  //               totalRepos: userDataRes.data.public_repos,
+  //             }),
+  //           ];
+  //         }),
+  //         catchError((error) => {
+  //           return of(setLoadError({ isError: true, isLoading: false }));
+  //         })
+  //       )
+  //     )
+  //   )
+  // );
+
   loadData$ = createEffect(() =>
     this.action$.pipe(
       ofType(fetchUserData),
       switchMap((action) =>
-        forkJoin([
-          this.apiService.getUserBio(action.username),
-          this.apiService.getUserRepos(
-            action.username,
-            action.noOfRepos,
-            action.page
-          ),
-        ]).pipe(
-          map(([userDataRes, reposDataRes]) => {
-            return setUserData({
-              userData: userDataRes.data,
-              reposData: reposDataRes.data,
-              noOfRecords: action.noOfRepos,
-              totalRepos: userDataRes.data.public_repos,
-            });
-          }),
-          catchError((error) => {
-            throw error;
-          })
+        concat(
+          of(setLoadError({ isLoading: true, isError: false })),
+          forkJoin([
+            this.apiService.getUserBio(action.username),
+            this.apiService.getUserRepos(
+              action.username,
+              action.noOfRepos,
+              action.page
+            ),
+          ]).pipe(
+            switchMap(([userDataRes, reposDataRes]) => [
+              setLoadError({ isError: false, isLoading: false }),
+              setUserData({
+                userData: userDataRes.data,
+                reposData: reposDataRes.data,
+                noOfRecords: action.noOfRepos,
+                totalRepos: userDataRes.data.public_repos,
+              }),
+            ]),
+            catchError((error) =>
+              of(setLoadError({ isError: true, isLoading: false }))
+            )
+          )
         )
       )
     )
@@ -48,17 +84,26 @@ export class Effects {
     this.action$.pipe(
       ofType(updateNoOfRecords),
       switchMap((action) =>
-        this.apiService
-          .getUserRepos(action.username, action.noOfRecords, action.page)
-          .pipe(
-            map((updatedRecords) => {
-              return setNoRecords({
-                reposData: updatedRecords.data,
-                noOfRecords: action.noOfRecords,
-                page: action.page,
-              });
-            })
-          )
+        concat(
+          of(setLoadError({ isLoading: true, isError: false })),
+          this.apiService
+            .getUserRepos(action.username, action.noOfRecords, action.page)
+            .pipe(
+              switchMap((updatedRecords) => {
+                return [
+                  setLoadError({ isError: false, isLoading: false }),
+                  setNoRecords({
+                    reposData: updatedRecords.data,
+                    noOfRecords: action.noOfRecords,
+                    page: action.page,
+                  }),
+                ];
+              }),
+              catchError((error) => {
+                return of(setLoadError({ isError: true, isLoading: false }));
+              })
+            )
+        )
       )
     )
   );
@@ -67,17 +112,26 @@ export class Effects {
     this.action$.pipe(
       ofType(updatePageNo),
       switchMap((action) =>
-        this.apiService
-          .getUserRepos(action.username, action.noOfRecords, action.page)
-          .pipe(
-            map((updatedPage) => {
-              return setPageNo({
-                reposData: updatedPage.data,
-                page: action.page,
-                noOfRecords: action.noOfRecords,
-              });
-            })
-          )
+        concat(
+          of(setLoadError({ isLoading: true, isError: false })),
+          this.apiService
+            .getUserRepos(action.username, action.noOfRecords, action.page)
+            .pipe(
+              switchMap((updatedPage) => {
+                return [
+                  setLoadError({ isError: false, isLoading: false }),
+                  setPageNo({
+                    reposData: updatedPage.data,
+                    page: action.page,
+                    noOfRecords: action.noOfRecords,
+                  }),
+                ];
+              }),
+              catchError((error) => {
+                return of(setLoadError({ isError: true, isLoading: false }));
+              })
+            )
+        )
       )
     )
   );

@@ -1,8 +1,25 @@
 <div class="w-full mt-5 md:mt-10 flex flex-col gap-6 text-sm md:text-base">
   <app-search-user />
-  <ng-container *ngIf="responseLength > 0">
+  <ng-container
+    *ngIf="
+      responseLength > 0 && !loadError['isError'] && !loadError['isLoading'];
+      else touchedDisplay
+    "
+  >
     <app-user-bio />
     <app-repos />
     <app-navigation />
   </ng-container>
+
+  <ng-template #touchedDisplay>
+    <ng-container *ngIf="loadError['isError']; else showLoader">
+      <div>Oops, The User doesnt exist!</div>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #showLoader>
+    <ng-container *ngIf="loadError['isLoading']">
+      <div>LOADING</div>
+    </ng-container>
+  </ng-template>
 </div>
