@@ -42,8 +42,6 @@ describe('ApiService', () => {
   });
 
   afterEach(() => {
-    // Add cleanup logic here, e.g., clear cache
-    console.log(cacheService.getCache(), 'Im here');
     mockCacheService.clearCache();
   });
 

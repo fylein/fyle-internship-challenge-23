@@ -20,7 +20,6 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe((data) => (this.responseLength = data.repos.length));
   }
   ngOnDestroy() {
-    console.log('Im getting destroyed');
     if (this.dataLengthSub) {
       this.dataLengthSub.unsubscribe();
     }
