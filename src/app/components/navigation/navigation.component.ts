@@ -74,7 +74,6 @@ export class NavigationComponent implements OnInit, OnDestroy {
     ) {
       this.pagesList.push(this.pagesList[size] + 1);
       this.pagesList.shift();
-      console.log(this.pagesList);
     }
 
     this.store.dispatch(

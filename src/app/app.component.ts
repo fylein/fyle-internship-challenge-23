@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public dataLengthSub!: Subscription;
 
   ngOnInit() {
+    console.log('Hello Devs!');
     this.dataLengthSub = this.store
       .select(selectState)
       .subscribe((data) => (this.responseLength = data.repos.length));

@@ -27,7 +27,6 @@ export class ReposComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.checkScreenSize();
     this.repoSub = this.store.select(getUserRepos).subscribe((data) => {
-      console.log(data);
       this.repos = data;
     });
   }

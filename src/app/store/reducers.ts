@@ -12,7 +12,6 @@ import { githubData, AppState } from './state';
 export const appReducer = createReducer(
   AppState,
   on(fetchUserData, (state, { username }) => {
-    console.log(username);
     return { ...AppState };
   }),
   on(setUserData, (state, { userData, reposData, noOfRecords, totalRepos }) => {

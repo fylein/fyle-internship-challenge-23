@@ -29,8 +29,6 @@ export class Effects {
           ),
         ]).pipe(
           map(([userDataRes, reposDataRes]) => {
-            console.log((userDataRes.data, reposDataRes.data));
-
             return setUserData({
               userData: userDataRes.data,
               reposData: reposDataRes.data,
@@ -54,7 +52,6 @@ export class Effects {
           .getUserRepos(action.username, action.noOfRecords, action.page)
           .pipe(
             map((updatedRecords) => {
-              console.log(updatedRecords);
               return setNoRecords({
                 reposData: updatedRecords.data,
                 noOfRecords: action.noOfRecords,
