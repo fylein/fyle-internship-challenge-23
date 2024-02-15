@@ -1,0 +1,49 @@
+<!-- Display repositories if there are any, otherwise show a message -->
+<div
+  *ngIf="repos.length; else no_repo"
+>
+  <!-- Display a list of repositories in a flex container with some styling -->
+  <ul class="flex flex-wrap gap-4 list-none">
+    <!-- Iterate over each repository and display a styled card -->
+    <li *ngFor="let repo of repos" class="w-full">
+      <a
+        href="{{ repo.html_url }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:no-underline"
+      >
+        <div
+          class="p-4 cursor-pointer border border-edge-dark"
+        >
+          <h3 class="text-xl font-semibold mb-2">{{ repo.name }}</h3>
+          <p class="text-gray-500 text-sm mb-2">
+            {{ repo.created_at | date : "mediumDate" }}
+          </p>
+          <p class="mb-4"
+            [class]="
+              appTheme === 'light' ? 'text-sub-txt-light' : 'text-sub-txt-dark'
+            ">
+            {{ repo.description }}
+          </p>
+
+          <div class="flex flex-row justify-between">
+            <p>
+              {{ repo.stargazers_count }} stars
+            </p>
+            <div *ngIf="repo.language" class="flex">
+              <p class="text-gray-500 mr-2">Language:</p>
+              <span class="underline underline-offset-4 px-2">{{
+                repo.language
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<ng-template #no_repo>
+  <!-- Display a message when no repositories are found -->
+  <p>No repositories found.</p>
+</ng-template>

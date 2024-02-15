@@ -1,27 +1,45 @@
-import { TestBed } from '@angular/core/testing';
+// app.component.spec.ts
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { MainGeistComponent } from './main-geist/main-geist.component';
+import { FooterComponent } from './footer/footer.component';
+import { UserInputComponent } from './main-geist/user-input/user-input.component';
+import { NgxSkeletonLoaderComponent } from 'ngx-skeleton-loader';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
-  }));
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        AppComponent,
+        HeaderComponent,
+        MainGeistComponent,
+        FooterComponent,
+        UserInputComponent,
+        NgxSkeletonLoaderComponent,
+      ],
+      imports: [HttpClientModule, FormsModule],
+    });
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   });
 
-  it(`should have as title 'fyle-frontend-challenge'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('fyle-frontend-challenge');
+  it('should create the app component', () => {
+    expect(component).toBeTruthy();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('fyle-frontend-challenge app is running!');
+  it('should have appTitle in the template', () => {
+    component.appTitle = 'REPOFETCH';
+    fixture.detectChanges(); // Trigger change detection
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('app-header').textContent).toContain(
+      'REPOFETCH'
+    );
   });
 });

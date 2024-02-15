@@ -1,0 +1,47 @@
+<div
+  *ngIf="totalItems > 0"
+  class="flex items-center flex-col md:gap-10 md:flex-row justify-center p-4"
+>
+  <div>
+    <!-- Button to go to the previous page, disabled if on the first page -->
+    <button
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+      class="px-4 py-1 mx-2 disabled:opacity-70 disabled:cursor-not-allowed focus:outline-none"
+    >
+      Prev
+    </button>
+
+    <!-- Display current page and total pages -->
+    <span>{{ currentPage }} / {{ getTotalPages() }}</span>
+
+    <!-- Button to go to the next page, disabled if on the last page -->
+    <button
+      (click)="nextPage()"
+      [disabled]="currentPage === getTotalPages()"
+      class="px-4 py-1 mx-2 disabled:opacity-70 disabled:cursor-not-allowed focus:outline-none"
+    >
+      Next
+    </button>
+  </div>
+
+  <!-- Dropdown to select items per page, emits change event on selection -->
+  <div class="flex flex-row items-center gap-3 mt-6 md:mt-0">
+    <p>Repos Per Page</p>
+    <select
+      [(ngModel)]="itemsPerPage"
+      (change)="itemsPerPageChange.emit(itemsPerPage)"
+      class="border px-2 py-1.5 focus:outline-none"
+      [class]="
+        appTheme === 'light'
+          ? 'bg-back-dark text-txt-dark border border-edge-dark'
+          : 'bg-back-light text-txt-light border border-edge-light'
+      "
+    >
+      <!-- Iterate over items per page options and display each as an option -->
+      <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
+</div>
