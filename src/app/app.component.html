@@ -1,5 +1,27 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="max-w-screen min-h-screen h-fit flex justify-center items-center">
+  <div
+    class="w-[99%] mt-2 mb-2 flex flex-col justify-center items-center min-h-screen h-fit border-2 border-black botder-solid"
+  >
+    <div class="w-full flex gap-5 mt-5 justify-center items-center">
+      <input
+        type="text"
+        class="w-1/2 p-2 border-2 border-[#5494cc] rounded-md border-solid"
+        [(ngModel)]="username"
+        placeholder="Enter username"
+      />
+      <button class="p-3 bg-[#5494cc] rounded-md text-white" (click)="fetchUserDetails()">
+        Fetch
+      </button>
+    </div>
+    <app-userprofile class="w-full" [userData]="userData"></app-userprofile>
+    <app-userrepos
+      class="w-full p-10"
+      [userRepos]="userRepos"
+      [userData]="userData"
+      [pageNo]="page"
+      [pageSize]="pageSize"
+      (pageChange)="onPageChange($event)"
+      (pageSizeChange)="onPageSizeChange($event)"
+    ></app-userrepos>
   </div>
 </div>

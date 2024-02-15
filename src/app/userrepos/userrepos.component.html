@@ -1,0 +1,71 @@
+<div
+  class="w-full justify-center items-center flex flex-col"
+  *ngIf="userRepos.length > 0"
+>
+  <div class="grid grid-cols-2 gap-5 gap-x-12 w-full">
+    <div *ngFor="let userRepo of userRepos" class="w-full">
+      <app-userrepo class="w-full h-full" [userRepo]="userRepo"></app-userrepo>
+    </div>
+  </div>
+  <div class="pagination w-fit flex mt-10 gap-5 flex-col text-center">
+    <div class="flex w-full flex-wrap gap-y-2 justify-center">
+      <button
+        (click)="Previous()"
+        [ngClass]="{'text-gray-400': pageNo === 1 }"
+        [disabled]="pageNo === 1"
+        class="p-1 h-8 text-xs w-8 text-[#5494cc] rounded-sm border-gray-400 font-bold border-solid border-2 border-r-[1px]"
+      >
+        <<
+      </button>
+      <button
+        *ngFor="
+          let dummy of ' '.repeat(calcCeil(userData.public_repos / pageSize)).split('');
+          let x = index
+        "
+        [ngClass]="{ 'bg-[#5494cc] !text-white': x + 1 === pageNo }"
+        (click)="goToPage(x + 1)"
+        class="p-1 h-8 text-sm w-8 text-[#5494cc] rounded-sm border-gray-400 border-l-[1px] border-r-[1px] font-semibold border-solid border-2"
+      >
+        {{ x + 1 }}
+      </button>
+      <button
+        (click)="Next()"
+        [ngClass]="{ 'text-gray-400': pageNo === calcCeil(userData.public_repos / pageSize) }"
+        [disabled]="pageNo === calcCeil(userData.public_repos / pageSize)"
+        class="p-1 h-8 text-xs w-8 text-[#5494cc] rounded-sm border-gray-400 border-l-[1px] font-bold border-solid border-2"
+      >
+        >>
+      </button>
+      <select
+        class="ml-5 border-2 border-solid border-gray-400 rounded-md"
+        (change)="emitPageSizeChange($event)"
+      >
+        <option
+          *ngFor="let size of [10, 20, 50, 100]"
+          [value]="size"
+          [selected]="size === pageSize"
+        >
+          {{ size }}
+        </option>
+      </select>
+    </div>
+    <div class="w-full justify-between items-center flex">
+      <button
+        [ngClass]="{ '!text-gray-400': pageNo === 1 }"
+        [disabled]="pageNo === 1"
+        class="border-2 border-solid font-semibold border-gray-400 w-24 h-10 text-[#5494cc] rounded-3xl"
+        (click)="Previous()"
+      >
+      <span class="text-lg font-extrabold">&#8592;</span> Older 
+      </button>
+      <button
+        [ngClass]="{ '!text-gray-400': pageNo === calcCeil(userData.public_repos / pageSize) }"
+        [disabled]="pageNo === calcCeil(userData.public_repos / pageSize)"
+        class="border-2 border-solid font-semibold border-gray-400 w-24 h-10 text-[#5494cc] rounded-3xl"
+        (click)="Next()"
+      >
+        Newer <span class="text-lg font-extrabold">&#8594;</span>
+      </button>
+    </div>
+  </div>
+</div>
