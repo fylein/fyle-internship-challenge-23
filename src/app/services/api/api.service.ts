@@ -28,7 +28,6 @@ export class ApiService {
 
     return from(this.octokit.request(`GET /users/${githubUsername}`)).pipe(
       tap((data) => {
-        console.log(data);
         if (data instanceof Object) {
           this.cache.set(cacheKey, data);
         }
@@ -45,10 +44,10 @@ export class ApiService {
     noOfRepos: number,
     page: number
   ): Observable<any> {
-    let cacheKey = `GET /users/${githubUserName}/repos&pages=${page}&perpage=${noOfRepos}`;
+    let cacheKey = `GET /users/${githubUserName}/repos?per_page=${noOfRepos}&pages=${page}`;
     let result = this.cache.get(cacheKey);
 
-    if (result) {
+    if (result != undefined) {
       return of(result);
     }
 
@@ -59,7 +58,6 @@ export class ApiService {
       })
     ).pipe(
       tap((data) => {
-        console.log(data);
         if (data instanceof Object) {
           this.cache.set(cacheKey, data);
         }
@@ -73,7 +71,7 @@ export class ApiService {
 
   // For TESTING only
 
-  returnOctokit() {
+  returnOctokit(): Octokit {
     return this.octokit;
   }
 }

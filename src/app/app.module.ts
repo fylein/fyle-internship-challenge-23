@@ -2,8 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './services/api/api.service';
+import { PollingService } from './services/polling/polling.service';
 import { UserBioComponent } from './components/user-bio/user-bio.component';
+import { CacheService } from './services/cache/cache.service';
 import { ReposComponent } from './components/repos/repos.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -28,7 +31,7 @@ import { Effects } from './store/effects';
     StoreModule.forRoot({ userState: appReducer }),
     EffectsModule.forRoot([Effects]),
   ],
-  providers: [],
+  providers: [ApiService, PollingService, CacheService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

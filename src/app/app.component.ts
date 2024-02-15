@@ -1,6 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from './services/api/api.service';
-import { fetchUserData } from './store/actions';
 import { Store } from '@ngrx/store';
 import { selectState } from './store/selectors';
 import { Subscription } from 'rxjs';
@@ -11,7 +10,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(private apiService: ApiService, private store: Store) {}
+  constructor(private store: Store) {}
   public responseLength!: number;
   public dataLengthSub!: Subscription;
 
@@ -21,6 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe((data) => (this.responseLength = data.repos.length));
   }
   ngOnDestroy() {
+    console.log('Im getting destroyed');
     if (this.dataLengthSub) {
       this.dataLengthSub.unsubscribe();
     }

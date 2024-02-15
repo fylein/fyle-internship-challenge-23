@@ -57,7 +57,6 @@ export class NavigationComponent implements OnInit, OnDestroy {
   }
 
   setPage(page: number, i: number, evt: any) {
-    console.log(evt);
     let size = this.pagesList.length - 1;
     const target = evt.target as HTMLElement;
     if (this.totalRepos <= (page - 1) * this.noRepos) {

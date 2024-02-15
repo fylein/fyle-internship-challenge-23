@@ -14,7 +14,7 @@ export class CacheService {
     });
   }
 
-  private apiCache: Map<string, any> = new Map();
+  public apiCache: Map<string, any> = new Map();
 
   public get(cacheKey: string): any {
     let result = this.apiCache.get(cacheKey);

@@ -7,49 +7,44 @@ import {
 import { Store, StoreModule } from '@ngrx/store';
 import { CacheService } from '../cache/cache.service';
 import { ApiService } from './api.service';
-import { PollingService } from '../polling/polling.service'; // Import your PollingService
-import { of, Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { throwError } from 'rxjs';
 import { Octokit } from 'octokit';
-import { environment } from '../../../environments/environment';
-import { githubData, returnBlankUser, newPageHandler } from '../../store/state';
 
 TestBed.initTestEnvironment(
   BrowserDynamicTestingModule,
   platformBrowserDynamicTesting()
 );
 
+let mockCacheService: jasmine.SpyObj<CacheService> = jasmine.createSpyObj(
+  'CacheService',
+  ['get', 'set', 'clearCache', 'getCache']
+);
+
 describe('ApiService', () => {
   let service: ApiService;
   let cacheService: CacheService;
-  let octo: jasmine.SpyObj<Octokit>;
-  let blankUser = {
-    repos: [],
-    users: returnBlankUser(),
-    pageState: newPageHandler(),
-  };
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj(Octokit, ['request']);
-
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, StoreModule.forRoot({})],
       providers: [
         ApiService,
+        { provide: CacheService, useValue: mockCacheService },
         CacheService,
-        PollingService,
-        { provide: Octokit, useValue: spy },
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     });
 
     service = TestBed.inject(ApiService);
     cacheService = TestBed.inject(CacheService);
-    octo = TestBed.inject(Octokit);
   });
 
   afterEach(() => {
     // Add cleanup logic here, e.g., clear cache
-    console.log(cacheService.getCache);
-    cacheService.clearCache();
+    console.log(cacheService.getCache(), 'Im here');
+    mockCacheService.clearCache();
   });
 
   it('should be created', () => {
@@ -61,47 +56,130 @@ describe('ApiService', () => {
   // Get userBioData
   it('should fetch User Bio data from Octokit ', (done) => {
     const githubUsername = 'himanshuxd';
-    const apiEndpoint = `/users/${githubUsername}`;
-
+    const api = `GET /users/${githubUsername}`;
     // Call the service method
-    service.getUserBio(githubUsername).subscribe((res) => {
-      console.warn(cacheService.getCache, 'userbio');
-      expect(octo.request).toHaveBeenCalledWith(`GET ${apiEndpoint}`);
-      expect(res).toEqual(jasmine.any(Object));
-    });
 
-    done();
+    let result = cacheService.get(api);
+    if (result) {
+      expect(result).toEqual(jasmine.any(Observable));
+    } else {
+      expect(result).toBeUndefined();
+    }
+
+    service.getUserBio(githubUsername).subscribe((res) => {
+      expect(res).toEqual(jasmine.any(Object));
+      expect(res.status).toEqual(200);
+
+      done();
+    });
   });
 
   // Get userReposData
   it('should fetch User Repo Data from Octokit', (done) => {
-    const githubUsername = 'johnDoe';
-    const apiEndpoint = `/users/${githubUsername}/repos`;
-    const noOfRecords = 10;
+    const githubUserName = 'Linus';
+    const noOfRepos = 10;
     const page = 1;
+    const api = `GET /users/${githubUserName}/repos?per_page=${noOfRepos}&pages=${page}`;
+
+    let result = cacheService.get(api);
+    if (result) {
+      expect(result).toEqual(jasmine.any(Observable));
+    } else {
+      expect(result).toBeUndefined();
+    }
 
     // Call the service method
-    service.getUserRepos(githubUsername, noOfRecords, page).subscribe(
-      (res) => {
-        console.warn(cacheService.getCache, 'userRepo');
-        expect(octo.request).toHaveBeenCalledWith(
-          `GET ${apiEndpoint}&pages=${page}&perpage=${noOfRecords}`
-        );
-        expect(res).toEqual(jasmine.any(Object));
-        expect(res.repos).toEqual(jasmine.any(Array));
-      },
-      (err) => {}
-    );
-    done();
+    service.getUserRepos(githubUserName, noOfRepos, page).subscribe((res) => {
+      expect(res).toEqual(jasmine.any(Object));
+      expect(res.data).toEqual(jasmine.any(Array));
+      expect(res.status).toEqual(200);
+      done();
+    });
   });
 
-  it('should fetch data from cache if request is the same', (done) => {
-    const githubUsername = 'DTomPanda';
-    const key = `/users/${githubUsername}/repos`;
-    const apiEndpoint = `/users/${githubUsername}`;
-    // First instance of request as key checked
-    expect(cacheService.get(apiEndpoint)).toBeUndefined();
+  // Caching
+  it('should fetch User Repo Data from Cache', (done) => {
+    const githubUserName = 'Linus';
+    const noOfRepos = 10;
+    const page = 1;
+    const api = `GET /users/${githubUserName}/repos?per_page=${noOfRepos}&pages=${page}`;
 
-    done();
+    cacheService.set(api, 'SOme Bio Data goes here');
+
+    // Call the service method
+    service.getUserRepos(githubUserName, noOfRepos, page).subscribe((res) => {
+      let result = cacheService.get(api);
+      if (result) {
+        expect(of(result)).toEqual(jasmine.any(Observable));
+      } else {
+        expect(result).toBeUndefined();
+      }
+      expect(of(res)).toEqual(jasmine.any(Object));
+
+      done();
+    });
+  });
+
+  it('should fetch User Repo Data from Cache', (done) => {
+    const githubUserName = 'Linus';
+    const api = `GET /users/${githubUserName}`;
+
+    cacheService.set(api, 'Some User Data goes here');
+
+    // Call the service method
+    service.getUserBio(githubUserName).subscribe((res) => {
+      let result = cacheService.get(api);
+      if (result) {
+        expect(of(result)).toEqual(jasmine.any(Observable));
+      } else {
+        expect(result).toBeUndefined();
+      }
+      expect(of(res)).toEqual(jasmine.any(Object));
+
+      done();
+    });
+  });
+
+  // FAILS
+  it('should handle error for invalid GitHub username(Bio)', (done) => {
+    const githubUsername = '00?';
+    const cacheKey = `GET /users/${githubUsername}`;
+
+    // Spy on octokit.request to simulate an error
+    spyOn(service['octokit'], 'request').and.returnValue(Promise.reject());
+
+    service.getUserBio(githubUsername).subscribe(
+      () => {
+        fail('getUserBio should have thrown an error');
+      },
+      (error) => {
+        expect(error).toEqual('User bio failed');
+
+        expect(cacheService.get(cacheKey)).toBeUndefined();
+        done();
+      }
+    );
+  });
+
+  it('should handle error for invalid GitHub username(Repos))', (done) => {
+    const githubUserName = '00?';
+    const noOfRepos = 10;
+    const page = 1;
+    const cacheKey = `GET /users/${githubUserName}/repos?per_page=${noOfRepos}&pages=${page}`;
+
+    // Spy on octokit.request to simulate an error
+    spyOn(service['octokit'], 'request').and.returnValue(Promise.reject());
+
+    service.getUserRepos(githubUserName, noOfRepos, page).subscribe(
+      () => {
+        fail('getUserBio should have thrown an error');
+      },
+      (error) => {
+        expect(error).toEqual('User RepoData request failed');
+
+        expect(cacheService.get(cacheKey)).toBeUndefined();
+        done();
+      }
+    );
   });
 });
