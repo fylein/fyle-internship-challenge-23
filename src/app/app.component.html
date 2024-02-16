@@ -1,7 +1,12 @@
 <div class="w-full mt-5 md:mt-10 flex flex-col gap-6 text-sm md:text-base">
   <app-search-user />
   <ng-container
-    *ngIf="loadError['isDirty'] && !loadError['isError']; else touchedDisplay"
+    *ngIf="
+      loadError['isDirty'] === true &&
+        loadError['isLoading'] === false &&
+        loadError['isError'] === false;
+      else touchedDisplay
+    "
   >
     <app-user-bio />
     <app-repos />
@@ -9,14 +14,14 @@
   </ng-container>
 
   <ng-template #touchedDisplay>
-    <ng-container *ngIf="loadError['isError']; else showLoader">
-      <app-error />
+    <ng-container *ngIf="loadError['isLoading']; else showErr">
+      <app-loading></app-loading>
     </ng-container>
   </ng-template>
 
-  <ng-template #showLoader>
-    <ng-container *ngIf="loadError['isLoading']">
-      <app-loading></app-loading>
+  <ng-template #showErr>
+    <ng-container *ngIf="loadError['isError']">
+      <app-error />
     </ng-container>
   </ng-template>
 </div>

@@ -8,7 +8,7 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "module": "app/app.module.ts"
+          "module": "app.module.ts"
         }
       },
       "root": "",
@@ -143,6 +143,9 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

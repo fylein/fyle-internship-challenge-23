@@ -10,6 +10,7 @@ export class CacheService {
     // Every 120s , cache is burst
 
     this.PS.startTimer().subscribe((data) => {
+      console.warn('Clearing Cache, all stored data will now be cleared!');
       this.clearCache();
     });
   }

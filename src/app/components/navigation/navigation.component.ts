@@ -54,6 +54,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
         page: 1,
       })
     );
+    window.scrollTo(0, 0);
   }
 
   setPage(page: number, i: number, evt: any) {
@@ -83,5 +84,6 @@ export class NavigationComponent implements OnInit, OnDestroy {
         noOfRecords: this.noRepos,
       })
     );
+    window.scrollTo(0, 0);
   }
 }
