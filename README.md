@@ -13,7 +13,7 @@ Clone the forked repository and proceed with steps mentioned below
 ### Docs on Testing
 
 1. Make sure you have installed angular cli.
-2. After Clonng this repo, run npm i to install all packages.
+2. After Cloning this repo, run ```npm i``` to install all packages.
 3. Run the following commands(from project's root) to generate test results for "App.component.ts" & "api.service.ts"
 
 ```
