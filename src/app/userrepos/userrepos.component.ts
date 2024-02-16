@@ -14,6 +14,8 @@ export class UserreposComponent {
   @Input() userData: any;
   @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
   @Output() pageSizeChange: EventEmitter<number> = new EventEmitter<number>();
+  @Input() loadingRepos!: boolean;
+  @Input() loading!: boolean;
   constructor() {
     this.userRepos = [];
     this.pageNo = 1;
@@ -43,6 +45,7 @@ export class UserreposComponent {
   }
 
   emitPageSizeChange(event: Event) {
+    console.log("emitPageSizeChange");
     this.emitPageChange(1);
     const value= (event.target as HTMLSelectElement).value;
     this.pageSizeChange.emit(parseInt(value, 10));

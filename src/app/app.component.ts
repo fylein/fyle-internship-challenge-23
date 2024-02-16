@@ -13,7 +13,9 @@ export class AppComponent implements OnInit{
   userRepos: any=[];
   page: number = 1;
   pageSize: number = 10;
-  username: string = 'karthik-924';
+  username: string = '';
+  loading: boolean = false;
+  loadingRepos: boolean = false;
   constructor(
     private apiService: ApiService,
     private cdf: ChangeDetectorRef
@@ -24,18 +26,22 @@ export class AppComponent implements OnInit{
   }
   
   fetchUserDetails() {
+    this.loading = true;
     this.apiService.getUser(this.username).subscribe((data: any) => {
       this.userData = data
+      this.loading = false;
       console.log(this.userData);
     });
     this.fetchUserRepos();
   }
   fetchUserRepos() {
-    console.log(this.page,this.pageSize);
+    console.log(this.page, this.pageSize);
+    this.loadingRepos = true;
     this.apiService.getRepos(this.username,this.page,this.pageSize).subscribe((data: any) => {
       this.userRepos = data;
       console.log(this.userRepos);
       this.cdf.detectChanges();
+      this.loadingRepos = false;
     });
   }
   ngOnChanges() {

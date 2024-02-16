@@ -7,6 +7,7 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
 import { UserreposComponent } from './userrepos/userrepos.component';
 import { UserrepoComponent } from './userrepo/userrepo.component';
 import { FormsModule } from '@angular/forms';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgxSkeletonLoaderModule,
     FormsModule
   ],
   providers: [],

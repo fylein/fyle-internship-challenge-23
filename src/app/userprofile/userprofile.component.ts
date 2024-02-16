@@ -7,6 +7,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 })
 export class UserprofileComponent implements OnChanges{
   @Input() userData: any;
+  @Input() loading!: boolean;
   constructor() {
   }
 

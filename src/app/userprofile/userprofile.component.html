@@ -1,4 +1,4 @@
-<div class="ml-10 mt-10 flex gap-10" *ngIf="userData !== null">
+<div class="ml-10 mt-10 max-sm:ml-0 max-sm:justify-center max-sm:items-center max-sm:flex-col flex gap-10" *ngIf="!loading && userData!==null">
   <div class="flex justify-center items-center flex-col gap-5">
     <img
       [src]="userData.avatar_url"
@@ -12,7 +12,7 @@
       </div>
     </a>
   </div>
-  <div class="flex flex-col gap-3">
+  <div class="flex flex-col max-sm:justify-center max-sm:items-center gap-3">
     <p class="text-2xl font-semibold">{{ userData.name }}</p>
     <p class="text-base font-semibold">{{ userData.bio }}</p>
     <div class="flex gap-3">
