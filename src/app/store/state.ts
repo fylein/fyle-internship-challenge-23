@@ -36,6 +36,7 @@ export interface githubData {
   load_Error: {
     isLoading: boolean;
     isError: boolean;
+    isDirty: boolean;
   };
 }
 
@@ -73,5 +74,6 @@ export const AppState: githubData = {
   load_Error: {
     isLoading: false,
     isError: false,
+    isDirty: false,
   },
 };

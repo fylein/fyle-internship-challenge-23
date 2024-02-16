@@ -45,5 +45,5 @@ export const setPageNo = createAction(
 );
 export const setLoadError = createAction(
   '[GitHub RecCount] Set Error',
-  props<{ isError: boolean; isLoading: boolean }>()
+  props<{ isError: boolean; isLoading: boolean; isDirty: boolean }>()
 );

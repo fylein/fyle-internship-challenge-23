@@ -14,7 +14,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { selectState } from './store/selectors';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -50,101 +49,28 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should subscribe and update responseLength & loadError during ngOnInit', () => {
+  it('should subscribe and update loadError during ngOnInit', () => {
     const mockData = {
-      repos: [
-        {
-          name: 'Basic-MERN-CRUD',
-          html_url: 'www.xyz.com',
-          startgazers_count: 5,
-          description: 'Here goes desc',
-        },
-
-        {
-          name: 'Basic-MERN-CRUD-Backend',
-          html_url: 'www.abcxyz.com',
-          startgazers_count: 5,
-          description: 'Here goes desc',
-        },
-        {
-          name: 'BasicGalleryApp',
-          html_url: 'www.xyzz.com',
-          startgazers_count: 5,
-          description: 'Here goes desc',
-        },
-        {
-          name: 'DeeTomPanda',
-          html_url: 'www.xxyz.com',
-          startgazers_count: 4,
-          description: 'Here goes desc',
-        },
-
-        {
-          name: 'Devops_dummy_test',
-          html_url: 'www.xyyz.com',
-          startgazers_count: 2,
-          description: 'Here goes desc',
-        },
-      ],
-      loadError: { isLoading: false, isError: false },
+      loadError: { isLoading: false, isError: false, isDirty: false },
     };
     storeMock.select.and.returnValue(of(mockData));
 
     // ngOnInit
     component.ngOnInit();
 
-    expect(component.dataLengthSub).toBeDefined();
     expect(component.loadErrorSub).toBeDefined();
-    expect(component.responseLength).toEqual(mockData.repos.length);
     expect(storeMock.select).toHaveBeenCalled();
   });
 
   it('should unsubscribe on ngOnDestroy', () => {
     const mockData = {
-      repos: [
-        {
-          name: 'Basic-MERN-CRUD',
-          html_url: 'www.xyz.com',
-          startgazers_count: 5,
-          description: 'Here goes desc',
-        },
-
-        {
-          name: 'Basic-MERN-CRUD-Backend',
-          html_url: 'www.abcxyz.com',
-          startgazers_count: 5,
-          description: 'Here goes desc',
-        },
-        {
-          name: 'BasicGalleryApp',
-          html_url: 'www.xyzz.com',
-          startgazers_count: 5,
-          description: 'Here goes desc',
-        },
-        {
-          name: 'DeeTomPanda',
-          html_url: 'www.xxyz.com',
-          startgazers_count: 4,
-          description: 'Here goes desc',
-        },
-
-        {
-          name: 'Devops_dummy_test',
-          html_url: 'www.xyyz.com',
-          startgazers_count: 2,
-          description: 'Here goes desc',
-        },
-      ],
-      loadError: { isLoading: false, isError: false },
+      loadError: { isLoading: false, isError: false, isDirty: false },
     };
     storeMock.select.and.returnValue(of(mockData));
     component.ngOnInit();
-    expect(component.dataLengthSub).toBeDefined();
 
-    let dlSpy = spyOn(component['dataLengthSub'], 'unsubscribe');
     let leSpy = spyOn(component['loadErrorSub'], 'unsubscribe');
     component.ngOnDestroy();
-    expect(dlSpy).toHaveBeenCalled();
     expect(leSpy).toHaveBeenCalled();
   });
 });

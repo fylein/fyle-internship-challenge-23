@@ -17,43 +17,12 @@ import { catchError } from 'rxjs';
 export class Effects {
   constructor(private action$: Actions, private apiService: ApiService) {}
 
-  // loadData$ = createEffect(() =>
-  //   this.action$.pipe(
-  //     ofType(fetchUserData),
-  //     switchMap((action) =>
-  //       forkJoin([
-  //         this.apiService.getUserBio(action.username),
-  //         this.apiService.getUserRepos(
-  //           action.username,
-  //           action.noOfRepos,
-  //           action.page
-  //         ),
-  //       ]).pipe(
-  //         switchMap(([userDataRes, reposDataRes]) => {
-  //           return [
-  //             setLoadError({ isError: false, isLoading: false }),
-  //             setUserData({
-  //               userData: userDataRes.data,
-  //               reposData: reposDataRes.data,
-  //               noOfRecords: action.noOfRepos,
-  //               totalRepos: userDataRes.data.public_repos,
-  //             }),
-  //           ];
-  //         }),
-  //         catchError((error) => {
-  //           return of(setLoadError({ isError: true, isLoading: false }));
-  //         })
-  //       )
-  //     )
-  //   )
-  // );
-
   loadData$ = createEffect(() =>
     this.action$.pipe(
       ofType(fetchUserData),
       switchMap((action) =>
         concat(
-          of(setLoadError({ isLoading: true, isError: false })),
+          of(setLoadError({ isLoading: true, isError: false, isDirty: true })),
           forkJoin([
             this.apiService.getUserBio(action.username),
             this.apiService.getUserRepos(
@@ -63,7 +32,7 @@ export class Effects {
             ),
           ]).pipe(
             switchMap(([userDataRes, reposDataRes]) => [
-              setLoadError({ isError: false, isLoading: false }),
+              setLoadError({ isError: false, isLoading: false, isDirty: true }),
               setUserData({
                 userData: userDataRes.data,
                 reposData: reposDataRes.data,
@@ -71,9 +40,12 @@ export class Effects {
                 totalRepos: userDataRes.data.public_repos,
               }),
             ]),
-            catchError((error) =>
-              of(setLoadError({ isError: true, isLoading: false }))
-            )
+            catchError((error) => {
+              console.error(error);
+              return of(
+                setLoadError({ isError: true, isLoading: false, isDirty: true })
+              );
+            })
           )
         )
       )
@@ -85,13 +57,17 @@ export class Effects {
       ofType(updateNoOfRecords),
       switchMap((action) =>
         concat(
-          of(setLoadError({ isLoading: true, isError: false })),
+          of(setLoadError({ isLoading: true, isError: false, isDirty: true })),
           this.apiService
             .getUserRepos(action.username, action.noOfRecords, action.page)
             .pipe(
               switchMap((updatedRecords) => {
                 return [
-                  setLoadError({ isError: false, isLoading: false }),
+                  setLoadError({
+                    isError: false,
+                    isLoading: false,
+                    isDirty: true,
+                  }),
                   setNoRecords({
                     reposData: updatedRecords.data,
                     noOfRecords: action.noOfRecords,
@@ -100,7 +76,13 @@ export class Effects {
                 ];
               }),
               catchError((error) => {
-                return of(setLoadError({ isError: true, isLoading: false }));
+                return of(
+                  setLoadError({
+                    isError: true,
+                    isLoading: false,
+                    isDirty: true,
+                  })
+                );
               })
             )
         )
@@ -113,13 +95,17 @@ export class Effects {
       ofType(updatePageNo),
       switchMap((action) =>
         concat(
-          of(setLoadError({ isLoading: true, isError: false })),
+          of(setLoadError({ isLoading: true, isError: false, isDirty: true })),
           this.apiService
             .getUserRepos(action.username, action.noOfRecords, action.page)
             .pipe(
               switchMap((updatedPage) => {
                 return [
-                  setLoadError({ isError: false, isLoading: false }),
+                  setLoadError({
+                    isError: false,
+                    isLoading: false,
+                    isDirty: true,
+                  }),
                   setPageNo({
                     reposData: updatedPage.data,
                     page: action.page,
@@ -128,7 +114,13 @@ export class Effects {
                 ];
               }),
               catchError((error) => {
-                return of(setLoadError({ isError: true, isLoading: false }));
+                return of(
+                  setLoadError({
+                    isError: true,
+                    isLoading: false,
+                    isDirty: true,
+                  })
+                );
               })
             )
         )

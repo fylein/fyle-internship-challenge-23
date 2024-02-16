@@ -51,7 +51,7 @@ export const appReducer = createReducer(
       },
     };
   }),
-  on(setLoadError, (state, { isError, isLoading }) => {
-    return { ...state, load_Error: { isError, isLoading } };
+  on(setLoadError, (state, { isError, isLoading, isDirty }) => {
+    return { ...state, load_Error: { isError, isLoading, isDirty } };
   })
 );

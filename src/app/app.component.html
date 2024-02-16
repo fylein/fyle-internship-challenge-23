@@ -1,10 +1,7 @@
 <div class="w-full mt-5 md:mt-10 flex flex-col gap-6 text-sm md:text-base">
   <app-search-user />
   <ng-container
-    *ngIf="
-      responseLength > 0 && !loadError['isError'] && !loadError['isLoading'];
-      else touchedDisplay
-    "
+    *ngIf="loadError['isDirty'] && !loadError['isError']; else touchedDisplay"
   >
     <app-user-bio />
     <app-repos />
@@ -19,7 +16,7 @@
 
   <ng-template #showLoader>
     <ng-container *ngIf="loadError['isLoading']">
-      <div>LOADING</div>
+      <app-loading></app-loading>
     </ng-container>
   </ng-template>
 </div>

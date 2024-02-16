@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { userReposType } from 'src/app/store/state';
-import { getUserRepos, selectState } from 'src/app/store/selectors';
+import { getUserRepos } from 'src/app/store/selectors';
 import { Subscription } from 'rxjs';
 
 @Component({

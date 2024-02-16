@@ -7,7 +7,10 @@
       <div class="text-xl font-bold">{{ repo.name }}</div>
       <div class="text-sm text-justify p-2 px-4">{{ repo.description }}</div>
       <div class="w-fit flex flex-row gap-2 my-1 flex-wrap">
-        <div class="h-fit w-full ml-3 flex flex-wrap gap-y-2 gap-x-1 pb-2">
+        <div
+          *ngIf="repo.topics.length > 0"
+          class="h-fit w-full ml-3 flex flex-wrap gap-y-2 gap-x-1 pb-2"
+        >
           <div
             *ngFor="let topic of repo.topics; let i = index"
             class="p-1 px-4 text-sm text-white bg-sky-400 rounded-md font-bold h-fit"
@@ -37,7 +40,10 @@
           {{ repo.description }}
         </div>
         <div class="w-fit flex flex-row gap-x-2 gap-y-1 p-1">
-          <div class="h-fit w-full mx-3 flex flex-wrap gap-y-2 gap-x-1 pb-2">
+          <div
+            *ngIf="repo.topics.length > 0"
+            class="h-fit w-full mx-3 flex flex-wrap gap-y-2 gap-x-1 pb-2"
+          >
             <div
               *ngFor="let topic of repo.topics; let i = index"
               class="p-1 px-4 text-xs text-white bg-sky-400 rounded-md font-bold h-fit"
