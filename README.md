@@ -71,4 +71,7 @@ Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn 
 
 ## Contribution
 
-Don't forget to start this repo and if you like to add more features, feel free to fork it. 
+Don't forget to star this repo if you like it , to add more features feel free to fork and customise it! 
+
+# Screens
+Checkout https://imgur.com/a/13QqRND for the visual designs.
