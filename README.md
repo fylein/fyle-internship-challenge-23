@@ -1,8 +1,8 @@
 # Fyle Frontend Challenge
 
-#### Live on URL -> https://fyle-internship-challenge-23-ruby.vercel.app/
+#### Live Demo: https://fyle-internship-challenge-23-ruby.vercel.app/
 
-### Prerequsites
+### Prerequisites
 
 - Install angular cli [Ref](https://angular.io/cli)
 
@@ -64,7 +64,11 @@ src
 
 ```
 
-## Further help
+## Technology Used
 
+Designed with Angular and TailwindCSS 
 Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+
+## Contribution
+
+Don't forget to start this repo and if you like to add more features, feel free to fork it. 
