@@ -13,7 +13,7 @@
 
   <ng-template #touchedDisplay>
     <ng-container *ngIf="loadError['isError']; else showLoader">
-      <div>Oops, The User doesnt exist!</div>
+      <app-error />
     </ng-container>
   </ng-template>
 

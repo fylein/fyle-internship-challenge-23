@@ -8,7 +8,7 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "module": "app.module.ts"
+          "module": "app/app.module.ts"
         }
       },
       "root": "",

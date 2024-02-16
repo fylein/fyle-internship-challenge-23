@@ -15,6 +15,8 @@ import { appReducer } from './store/reducers';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { Effects } from './store/effects';
+import { ErrorComponent } from './components/error/error.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { Effects } from './store/effects';
     ReposComponent,
     SearchUserComponent,
     NavigationComponent,
+    ErrorComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
