@@ -16,7 +16,9 @@ export class SearchUserComponent implements OnInit, OnDestroy {
   public recordsSub!: Subscription;
 
   public get(username: string, noOfRepos: number): void {
-    this.store.dispatch(fetchUserData({ username, noOfRepos, page: 1 }));
+    this.store.dispatch(
+      fetchUserData({ username: username.trim(), noOfRepos, page: 1 })
+    );
   }
   ngOnInit(): void {
     this.recordsSub = this.store
