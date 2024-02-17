@@ -61,11 +61,11 @@ Here are thr unit tests for this project :
 
 ![Screenshot 2024-02-17 132319](https://github.com/sarveshpyadav/Repo-Fetcher/assets/127607339/6e2318d1-be00-4315-a009-72c629260b79)
 
-- For `User Input` Component :
+- For `User Input` Component -
 
 ![Screenshot 2024-02-17 132059](https://github.com/sarveshpyadav/Repo-Fetcher/assets/127607339/9f7b6f5a-570c-4d97-8c97-44c6be598c58)
 
-- For `API Service` :
+- For `API Service` -
 
 ![Screenshot 2024-02-17 173317](https://github.com/sarveshpyadav/Repo-Fetcher/assets/127607339/a380c511-e0dd-49d6-82d1-76b2c776a07d)
 
