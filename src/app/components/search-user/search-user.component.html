@@ -1,0 +1,15 @@
+<div class="grid grid-cols-5 gap-4 md:grid-cols-11">
+  <input
+    class="col-start-2 md:col-start-5 col-span-2 p-2 border-2 border-blue-200 outline-none"
+    type="text"
+    placeholder="Enter Username"
+    (keyup.enter)="get(username, noOfRepos)"
+    [(ngModel)]="username"
+  />
+  <button
+    class="col-span-1 bg-silver border-2 rounded-sm focus:ring focus:outline-none focus:ring-sky-300 hover:bg-sky-600 transition ease-in-out delay-125"
+    (click)="get(username, noOfRepos)"
+  >
+    Get
+  </button>
+</div>

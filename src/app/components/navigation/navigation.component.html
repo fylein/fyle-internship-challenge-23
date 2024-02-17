@@ -1,0 +1,33 @@
+<div
+  *ngIf="totalRepos > 0"
+  class="w-fit ml-auto flex flex-row justify-around align-base gap-2 pr-5"
+>
+  <div class="font-bold text-xs md:text-sm">Displaying</div>
+  <select
+    class="bg-white border rounded shadow-lg text-gray-800 hover:bg-blue-500 hover:text-white"
+    (change)="setNoRecords($event)"
+    [(ngModel)]="noRepos"
+  >
+    <option
+      *ngFor="let no of showRecordsArr"
+      [value]="no"
+      [attr.selected]="no == noRepos ? true : false"
+    >
+      {{ no }}
+    </option>
+  </select>
+  <div class="font-bold text-xs md:text-sm">records</div>
+</div>
+
+<div
+  *ngIf="totalRepos > 0"
+  class="flex flex-row gap-2 w-full justify-center text-xs"
+>
+  <button
+    *ngFor="let pg of pagesList; let i = index"
+    (click)="setPage(pg, i, $event)"
+    class="py-1 px-2 mb-2 border-1 rounded-sm border-blue-200 focus:ring focus:outline-none focus:ring-sky-300 delay-125 rounded-md my-2"
+  >
+    {{ pg }}
+  </button>
+</div>

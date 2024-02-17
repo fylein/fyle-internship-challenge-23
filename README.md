@@ -1,43 +1,80 @@
 # Fyle Frontend Challenge
 
-## Who is this for?
+#### Live Demo: https://fyle-internship-challenge-23-ruby.vercel.app/
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+### Prerequisites
 
-## Why work at Fyle?
-
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
-
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
-
-## Challenge outline
-
-This challenge involves implementing application using github api. 
-
-The services that you need to use are already implemented - check out ApiService.
-
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
-
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
-
-## What happens next?
-
-You will hear back within 48 hours from us via email.
+- Install angular cli [Ref](https://angular.io/cli)
 
 ## Installation
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+1. Clone the forked repository
+2. In *package.json*, replace the **build** command with **ng build**(The config.js was configured for deployment, ignore that)
+3. Create a *src/environments* folder and create an environment.ts file in it, initialise an object named environment and then save the file with your token in it.
+4. Proceed with the following
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+### Docs on Testing
 
-## Development server
+1. Make sure you have installed angular cli.
+2. After cloning this repo, run ```npm i``` to install all packages.
+3. Run the following commands(from project's root) to generate test results for "App.component.ts" & "api.service.ts"
+
+```
+ ng test --main 'src/app/app.component.spec.ts --code-coverage'
+
+ ng test --main 'src/app/services/api/api.service.spec.ts --code-coverage'
+```
+
+4. Headover to _coverage/fyle-frontend-challenge_ (from project's root) and you'll find index.html to check the status of test coverage of every component,service etc.. (I had chosen App.component and api.service).
+5. Cheers
+
+### Development server
 
 Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
-## Further help
+### Structure of the project
 
+```
+src
+├── app
+   |
+   ├── components
+   │   ├── error
+   │   │  
+   │   ├── loading
+   │   │  
+   │   ├── navigation
+   │   │  
+   │   ├── repos
+   │   │  
+   │   ├── search-user
+   │   │  
+   │   └── user-bio
+   │  
+   ├── services
+   │   ├── api
+   │   │  
+   │   ├── cache
+   │   │  
+   │   └── polling
+   │  
+   └── store
+       ├── actions.ts
+       ├── effects.ts
+       ├── reducers.ts
+       ├── selectors.ts
+       └── state.ts
+
+```
+
+## Technology Used
+
+Designed with Angular and TailwindCSS 
 Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+
+## Contribution
+
+Don't forget to star this repo if you like it , to add more features feel free to fork and customise it! 
+
+# Screens
+Checkout https://imgur.com/a/13QqRND for the visual designs.
