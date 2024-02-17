@@ -11,7 +11,12 @@ Want to find repos of a GitHub User? Search here!
 <form class="flex pl-0 lg:pl-8 md:pl-8 lg:pr-8 md:pr-8 items-center lg:space-x-2 pt-3 justify-center">
   <!-- GitHub Username Input -->
   <input
-    class="text-txt-dark font-semibold border px-4 w-60 py-2 md:w-2/3 lg:w-1/2 focus:outline-none focus:border-whitw"
+    class="text-txt-dark font-semibold border px-4 w-60 py-2 md:w-2/3 lg:w-1/2 focus:outline-none focus:border-white"
+    [class]="
+      appTheme === 'light'
+        ? 'bg-back-dark border-edge-dark text-txt-dark'
+        : 'bg-back-light border-edge-light text-txt-light'
+    "
     type="text"
     placeholder="Enter GitHub Username"
     name="username"
