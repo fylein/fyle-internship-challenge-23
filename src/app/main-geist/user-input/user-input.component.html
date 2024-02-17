@@ -1,0 +1,38 @@
+<!-- User Input -->
+
+<!-- Heading  -->
+<div style="text-align: center;">
+<h3 class="font-semibold text-3xl pt-10 lg:pt-15 md:pt-15 pl-0 lg:pl-8 md:pl-8 pr-0 mb-4">
+Want to find repos of a GitHub User? Search here!
+</h3>
+</div>
+
+<!-- Input Form -->
+<form class="flex pl-0 lg:pl-8 md:pl-8 lg:pr-8 md:pr-8 items-center lg:space-x-2 pt-3 justify-center">
+  <!-- GitHub Username Input -->
+  <input
+    class="text-txt-dark font-semibold border px-4 w-60 py-2 md:w-2/3 lg:w-1/2 focus:outline-none focus:border-white"
+    [class]="
+      appTheme === 'light'
+        ? 'bg-back-dark border-edge-dark text-txt-dark'
+        : 'bg-back-light border-edge-light text-txt-light'
+    "
+    type="text"
+    placeholder="Enter GitHub Username"
+    name="username"
+    [(ngModel)]="username"
+  />
+  <!-- Search Button -->
+  <button
+    class="border border-edge-dark mt-0 font-semibold px-4 py-2 ml-2 lg:ml-10"
+    [class]="
+      appTheme === 'light'
+        ? 'bg-back-dark border-edge-dark text-txt-dark'
+        : 'bg-back-light border-edge-light text-txt-light'
+    "
+    type="button"
+    (click)="emitSearchResult()"
+  >
+    Fetch
+  </button>
+</form>

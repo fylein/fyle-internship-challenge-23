@@ -1,5 +1,14 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
-  </div>
-</div>
+<!-- Header Component -->
+<app-header
+  [appTitle]="appTitle"
+></app-header>
+
+<!-- Main Geist Component : Contains Hero Section and Search Results -->
+<app-main-geist [appTitle]="appTitle"></app-main-geist>
+
+<!-- Footer Component -->
+<app-footer
+  [appTitle]="appTitle"
+  [currentYear]="currentYear"
+  [developer]="developer"
+></app-footer>

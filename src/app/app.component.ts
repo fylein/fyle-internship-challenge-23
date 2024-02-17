@@ -1,17 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from './services/api.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Developer } from './models/Developer';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
-  constructor(
-    private apiService: ApiService
-  ) {}
+export class AppComponent implements OnInit {
+  // Application title
+  appTitle: string = 'REPOFETCH';
 
-  ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
+  // Current year for the footer
+  currentYear: number = new Date().getFullYear();
+
+  // Developer information
+  developer: Developer = {
+    name: '@sarveshpyadav',
+    githubUrl: 'https://github.com/sarveshpyadav',
+  };
+
+   /**
+   * @brief Initializes the component and emits the initial theme to parent components.
+   * @params None
+   * @returns None
+   */
+  ngOnInit():void {
   }
 }

@@ -1,0 +1,69 @@
+<div
+  class="w-full flex flex-col items-center lg:items-start py-2 lg:py-12"
+>
+  <div class="flex lg:block my-4 lg:my-0">
+    <img
+      class="w-[80px] md:w-[80px] lg:w-[300px] border mr-4 lg:my-8 mb-6 rounded-circle self-center"
+      [src]="searchedUser?.avatar_url"
+      alt="Profile Image"
+    />
+    <div>
+      <!-- Name -->
+      <p class="text-2xl font-semibold mb-2">{{ searchedUser?.name }}</p>
+      <!-- Login -->
+      <p
+        class="text-xl mb-2"
+        [class]="
+          appTheme === 'light' ? 'text-sub-txt-light ' : 'text-sub-txt-dark'
+        "
+      >
+        {{ searchedUser?.login }}
+      </p>
+    </div>
+  </div>
+  <!-- Profile Details -->
+  <div class="flex flex-col">
+    <!-- bio -->
+    <p *ngIf="searchedUser?.bio" class="mb-4">{{ searchedUser?.bio }}</p>
+
+    <!-- Followers & Following -->
+    <div class="flex items-center text-sm mb-2">
+      <i
+        class="fas fa-users mr-1"
+        [class]="
+          appTheme === 'light' ? 'text-sub-txt-light ' : 'text-sub-txt-dark'
+        "
+      ></i>
+      <p>
+        {{ searchedUser?.followers || 0 }}
+        <span
+          [class]="
+            appTheme === 'light' ? 'text-sub-txt-light ' : 'text-sub-txt-dark'
+          "
+          >followers</span
+        >
+      </p>
+      <span class="mx-2">•</span>
+      <p>
+        {{ searchedUser?.following || 0 }}
+        <span
+          [class]="
+            appTheme === 'light' ? 'text-sub-txt-light ' : 'text-sub-txt-dark'
+          "
+          >following</span
+        >
+      </p>
+    </div>
+
+    <!-- Location -->
+    <div *ngIf="searchedUser?.location" class="flex items-center">
+      <i
+        class="fas fa-location-dot mr-1"
+        [class]="
+          appTheme === 'light' ? 'text-sub-txt-light ' : 'text-sub-txt-dark'
+        "
+      ></i>
+      <span>{{ searchedUser?.location }}</span>
+    </div>
+  </div>
+</div>

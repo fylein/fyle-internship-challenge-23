@@ -1,43 +1,74 @@
-# Fyle Frontend Challenge
+# Repo Fetch
 
-## Who is this for?
+This is a simple web application for easily discovering and accessing public repositories of a GitHub user.
+## Features :
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+- The home page has a search bar where users can enter the GitHub username they want to search for.
+- The search results page displays a list of public repositories associated with the entered GitHub username. Each repository has a link to its GitHub page, and some basic information like the number of stars, languages, etc.
 
-## Why work at Fyle?
+## Tech Used :
+ 
+ - ![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white) 
+ - ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+      
+## Project Structure :
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+```
+src
+ └── app
+      |
+      ├── footer
+      | 
+      ├── header
+      |
+      ├── main-geist
+      │   │  
+      |   ├── invalid-user-profile
+      │   │  
+      |   ├── user-github-profile
+      │   │  
+      |   ├── user-input
+      │   │  
+      |   ├── user-repo-list
+      │   │  
+      |   ├── util-pagination
+      │   │
+      |   ├── util-user-profile-loader
+      │   │  
+      |   └── util-user-repo-loader
+      |
+      ├── models
+      |
+      └── services
+```
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+## How to Setup :
 
-## Challenge outline
+1. Install [Angular CLI](https://angular.io/cli).
+2. Fork this repository to your github account.
+3. Clone the forked repository in your local machine.
+4. Run `npm install` or `npm i` in this repository. This will install all the required packages and dependencies to run the application.
+5. To start the development server, run `ng serve`. At this point, the application is ready to use. Navigate to http://localhost:4200/.
 
-This challenge involves implementing application using github api. 
+## Running Tests :
 
-The services that you need to use are already implemented - check out ApiService.
+- Before running the tests, please ensure you have installed the project dependencies using `npm install` or `npm i`.
+- To run tests using the Angular CLI, use `ng test`. This command will initiate the Karma Test Runner in your default web browser and run all the unit tests in the application.
 
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
+Here are thr unit tests for this project :
 
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
+- For Entire Application -
 
-## What happens next?
+![Screenshot 2024-02-17 132319](https://github.com/sarveshpyadav/Repo-Fetcher/assets/127607339/6e2318d1-be00-4315-a009-72c629260b79)
 
-You will hear back within 48 hours from us via email.
+- For `User Input` Component -
 
-## Installation
+![Screenshot 2024-02-17 132059](https://github.com/sarveshpyadav/Repo-Fetcher/assets/127607339/9f7b6f5a-570c-4d97-8c97-44c6be598c58)
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+- For `API Service` -
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+![Screenshot 2024-02-17 173317](https://github.com/sarveshpyadav/Repo-Fetcher/assets/127607339/a380c511-e0dd-49d6-82d1-76b2c776a07d)
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Further help
-
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+#
+>**_NOTE :_** I have built this project as a part of Fyle Frontend Challenge 2023.
+>
