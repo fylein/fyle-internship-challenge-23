@@ -10,7 +10,8 @@
 
 1. Clone the forked repository
 2. In *package.json*, replace the **build** command with **ng build**(The config.js was configured for deployment, ignore that)
-3. Proceed with the following
+3. Create an environment folder and create an environment.ts file in it, initialise an object named environment and then save the file with your token in it.
+4. Proceed with the following
 
 ### Docs on Testing
 
