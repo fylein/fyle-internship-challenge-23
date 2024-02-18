@@ -1,0 +1,38 @@
+<!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
+<nav aria-label="Page navigation example">
+    <ul class="list-style-none flex gap-3 mt-4 ml-96 pl-4">
+      <li>
+        <button
+          class="text-black relative block rounded px-3 py-1.5 text-sm transition-all duration-300 bg-neutral-500 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+          (click)="handler('Previous')"
+          >Previous</button>
+      </li>
+      <li *ngFor="let num of [].constructor(limit); index as i">
+        <button
+          class="relative block rounded  px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 bg-neutral-500 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+          (click)="fetchPageination(lastDigit+i+1)"
+          >{{lastDigit+i+1}}</button
+        >
+      <li>
+        <button
+          class="relative block rounded px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 bg-neutral-500 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+          (click)="handler('Next')"
+          >Next</button>
+      </li>
+      <li>
+         
+            <select id="countries" (change)="onChange($event)" class="bg-neutral-500 border border-gray-300 text-neutral-600 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-1.5 dark:text-white ">
+              <option selected>Select repos per Result </option>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+              <option value="35">35</option>
+              <option value="100">100</option>
+            </select>
+       
+      </li>
+    </ul>
+  </nav>

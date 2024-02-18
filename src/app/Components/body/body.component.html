@@ -1,0 +1,20 @@
+<div class="flex mt-2 ml-4">
+    <img [src]="this.apiService.user.avatar_url" class="rounded-full" width="250"/>
+    <div class="flex-col pt-8 ml-5 space-y-4">
+        <h1 class="ml-3 text-2xl">User Id : {{this.apiService.user.login}}</h1>
+        <h1 class="ml-3 text-xl">Bio : {{this.apiService.user.bio ?this.apiService.user.bio : "--Not Available--"}}</h1>
+        <h2 class="ml-3">Total Public Repos : {{this.apiService.user.public_repos}}</h2>
+    </div>
+</div>
+<div class=" flex flex-row flex-wrap gap-3 mt-4 mx-4">
+    <div *ngFor = "let repo of this.apiService.repos" class="w-1/4 border-2" >
+        <div class="p-3">
+            <h1 class="text-xl font-semibold">{{repo.name}}</h1>
+            <h1>{{repo.description ? repo.description : "No Description"}}</h1>
+                <app-language [repo]="repo.name"></app-language>
+        </div>  
+    </div>  
+</div>
+
+<app-pagination></app-pagination>
+
