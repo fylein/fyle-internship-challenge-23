@@ -17,4 +17,8 @@ describe('ApiService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should be created', () => {
+    expect(service.testValue).toBe('test-value');
+  });
 });

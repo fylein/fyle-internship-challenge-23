@@ -16,6 +16,7 @@ export class ApiService {
   total:number = 0
   searchVal : string = ''
   apiResults : any ={}
+  testValue : string='test-value'
 
   getUser(githubUsername: string) {
     return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
