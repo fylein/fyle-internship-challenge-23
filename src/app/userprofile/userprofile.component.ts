@@ -12,7 +12,7 @@ export class UserprofileComponent implements OnChanges{
   }
 
   ngOnChanges() {
-    console.log(this.userData);
+    // console.log(this.userData);
   }
 
 }

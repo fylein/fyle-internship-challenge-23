@@ -45,7 +45,7 @@ export class UserreposComponent {
   }
 
   emitPageSizeChange(event: Event) {
-    console.log("emitPageSizeChange");
+    // console.log("emitPageSizeChange");
     this.emitPageChange(1);
     const value= (event.target as HTMLSelectElement).value;
     this.pageSizeChange.emit(parseInt(value, 10));
@@ -54,7 +54,7 @@ export class UserreposComponent {
     return Math.ceil(number);
   }
   ngOnChanges() {
-    console.log(this.pageNo)
-    console.log(this.userRepos);
+    // console.log(this.pageNo)
+    // console.log(this.userRepos);
   }
 }

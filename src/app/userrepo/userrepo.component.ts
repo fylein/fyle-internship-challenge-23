@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
 export class UserrepoComponent {
   @Input() userRepo: any;
   ngOnChanges() {
-      console.log(this.userRepo);
+      // console.log(this.userRepo);
   }
 }

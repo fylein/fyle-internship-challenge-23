@@ -33,7 +33,7 @@ export class AppComponent implements OnInit{
     this.apiService.getUser(this.username).subscribe({
       next: (data: any) => {
         this.userData = data;
-        console.log(this.userData);
+        // console.log(this.userData);
         this.cdf.detectChanges();
         this.loading = false;
       },
@@ -46,12 +46,12 @@ export class AppComponent implements OnInit{
     this.fetchUserRepos();
   }
   fetchUserRepos() {
-    console.log(this.page, this.pageSize);
+    // console.log(this.page, this.pageSize);
     this.loadingRepos = true;
     this.apiService.getRepos(this.username, this.page, this.pageSize).subscribe({
       next: (data: any) => {
         this.userRepos = data;
-        console.log(this.userRepos);
+        // console.log(this.userRepos);
         this.cdf.detectChanges();
         this.loadingRepos = false;
       },
@@ -62,11 +62,11 @@ export class AppComponent implements OnInit{
     });
   }
   ngOnChanges() {
-    console.log(this.userData);
+    // console.log(this.userData);
   }
   onPageChange(page: number) {
     this.page = page;
-    console.log(this.page);
+    // console.log(this.page);
     this.fetchUserRepos();
   }
   onPageSizeChange(pageSize: number) {
