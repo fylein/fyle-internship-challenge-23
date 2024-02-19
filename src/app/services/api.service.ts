@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, tap, throwError } from 'rxjs';
 
@@ -7,9 +7,14 @@ import { catchError, tap, throwError } from 'rxjs';
 })
 export class ApiService {
 
+
   constructor(
     private httpClient: HttpClient
   ) { }
+
+  // headers = new HttpHeaders({
+  //   'Authorization': `token ${this.personalAccessToken}`
+  // });
 
   getUser(githubUsername: string) {
     return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);

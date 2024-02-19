@@ -30,38 +30,36 @@ export class AppComponent implements OnInit{
     this.loading = true;
     this.error = '';
     this.loadingRepos = true;
-    this.apiService.getUser(this.username).subscribe((data: any) => {
-      this.userData = data
-      this.loading = false;
-      console.log(this.userData);
-    },
-      (err: any) => {
-        // if(err.)
-        if (err.status === 404) {
-          this.error = 'User not found';
-        }
-        this.userData = null;
-        this.userRepos = [];
+    this.apiService.getUser(this.username).subscribe({
+      next: (data: any) => {
+        this.userData = data;
+        console.log(this.userData);
+        this.cdf.detectChanges();
         this.loading = false;
-        this.loadingRepos = false;
-      }
-    )
+      },
+      error: (err: any) => {
+        this.error = 'User not found';
+        this.userData = null;
+        this.loading = false;
+    }
+    });
     this.fetchUserRepos();
   }
   fetchUserRepos() {
     console.log(this.page, this.pageSize);
     this.loadingRepos = true;
-    this.apiService.getRepos(this.username, this.page, this.pageSize).subscribe((data: any) => {
-      this.userRepos = data;
-      console.log(this.userRepos);
-      this.cdf.detectChanges();
-      this.loadingRepos = false;
-    },
-      (err: Error) => {
+    this.apiService.getRepos(this.username, this.page, this.pageSize).subscribe({
+      next: (data: any) => {
+        this.userRepos = data;
+        console.log(this.userRepos);
+        this.cdf.detectChanges();
+        this.loadingRepos = false;
+      },
+      error: (err: any) => {
         this.userRepos = [];
         this.loadingRepos = false;
       }
-    );
+    });
   }
   ngOnChanges() {
     console.log(this.userData);
