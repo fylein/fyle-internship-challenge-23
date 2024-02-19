@@ -51,13 +51,16 @@ export class PaginationComponent {
   }
 
   fetchPageination= (page:number)=>{
-    // let doc = (<HTMLInputElement>document.getElementById('countries')).value
-    // this.perPage = parseInt(doc)
-    // console.log(page)
-    // console.log(this.perPage)
-    this.apiService.getRepos(this.apiService.searchVal ,{per_page:this.perPage,page:page}).subscribe((response :any)=>{
+    if(this.apiService.apiResults[this.apiService.searchVal+this.perPage+page]){
+      console.log('api cancelled')
+      this.repos = this.apiService.apiResults[this.apiService.searchVal+this.perPage+page]
+      this.apiService.setRepos(this.repos)
+      return
+    }
+      this.apiService.getRepos(this.apiService.searchVal ,{per_page:this.perPage,page:page}).subscribe((response :any)=>{
       this.repos = response
       this.apiService.setRepos(this.repos)
+      this.apiService.apiResults[this.apiService.searchVal+this.perPage+page] = response
     })
   }
 }

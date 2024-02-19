@@ -15,6 +15,7 @@ export class ApiService {
   repos :any = []
   total:number = 0
   searchVal : string = ''
+  apiResults : any ={}
 
   getUser(githubUsername: string) {
     return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);

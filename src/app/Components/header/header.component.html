@@ -2,5 +2,6 @@
     <div class="text-4xl p-2 font-semibold mr-5">GitHub Profile</div>
     <input class="h-8 p-2 my-4 border-slate-500 border rounded-l-md" placeholder="Enter username" [(ngModel)]="value" />
     <button class="my-4 px-4 bg-slate-500  text-white rounded-r-md" (click)="handler()" >Search</button>
+    <h2 *ngIf="error" class="ml-3 my-4 px-4  text-red-600 rounded font-semibold">Enter valid user name/Check Spelling</h2>
 </div>
 
