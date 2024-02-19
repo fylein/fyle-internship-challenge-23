@@ -1,0 +1,150 @@
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; 
+  margin: 10px;
+}
+
+.name {
+  font-weight: 600;
+  color: rgb(142, 31, 31);
+  margin: 10px;
+}
+
+.personal-details {
+  border-right: 1px solid #e9ecef;
+  height: 100vh;
+  max-width: 250px;
+}
+
+.socials {
+  display: flex;
+  flex-direction: column; 
+  gap: 10px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(230, 230, 230, 0.163);
+  width: 100%;
+  height: 100%;
+}
+
+.cus-box {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  border-radius: 10px;
+  gap: 1rem;
+  margin-left: 0.4rem;
+  background: rgba(155, 153, 153, 0.152);
+}
+
+.repos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 80%;
+}
+
+.paginator {
+  background: rgba(155, 153, 153, 0.152);
+  border-radius: 10px;
+  width: 83%;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .personal-details {
+    border: none; 
+    max-width: 100%;
+  }
+
+  .repos,
+  .paginator {
+    width: 100%; 
+  }
+}
+
+
+
+.pulse {
+  $from: #e8e8e8; /* Dark color, you can change this to your desired dark color */
+  $to: scale-color($from, $lightness: 70%); /* Adjust lightness as needed */
+  
+  height: 100px;
+  width: 300px;
+
+  background: linear-gradient(-90deg, #ebeaea 0%, #d5d2d2 50%, #ffffff 100%); /* Darker gradient colors */
+  background-size: 400% 400%;
+  animation: pulse 1.2s ease-in-out infinite;
+  @keyframes pulse {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: -135% 0%;
+    }
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+.content {
+  display: flex;
+}
+
+.lines {  
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+  .line, .thumb {
+    background-color: #d9d7d7; /* Dark color */
+    width: 15rem;
+    height: 1rem;
+    margin: 0.25rem;
+  }
+  
+  .thumb {
+    height: 7.5rem;
+  }
+}
+
+.container {
+  display: grid;
+  align-items: center;
+}
+
+
+.search-bar {
+  border: 1px solid gray;
+  padding: 4px 10px;
+  margin-top: 10px;
+  width: 50%;
+  border-radius: 10px;
+  font-family: verdana;
+}
+
+.search-btn {
+margin-top: 10px;
+margin-left: 10px;
+padding: 4px 10px;
+border-radius: 10px;
+border: 1px solid;
+background: rgb(52, 51, 51);
+color: whitesmoke;
+
+&:hover{
+  color: rgb(52, 51, 51);
+background: whitesmoke;
+}
+
+}
