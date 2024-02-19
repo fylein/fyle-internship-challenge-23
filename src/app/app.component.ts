@@ -19,9 +19,7 @@ export class AppComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit() {
-<<<<<<< Updated upstream
-    this.apiService.getUser('johnpapa').subscribe(console.log);
-=======
+
     const cachedUserDetails = localStorage.getItem('userDetails');
     const cachedRepos = localStorage.getItem('repos');
 
@@ -95,7 +93,7 @@ export class AppComponent implements OnInit {
   handleError(errorMessage: string, error: any) {
     console.error(errorMessage, error);
     this.isLoading = false;
->>>>>>> Stashed changes
+
   }
 }
 

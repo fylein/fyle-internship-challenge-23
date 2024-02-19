@@ -20,10 +20,6 @@ import { FormsModule } from '@angular/forms';
 
   ],
   imports: [
-    BrowserModule,
-<<<<<<< Updated upstream
-    HttpClientModule
-=======
     HttpClientModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
@@ -33,7 +29,7 @@ import { FormsModule } from '@angular/forms';
 
 
 
->>>>>>> Stashed changes
+
   ],
   providers: [],
   bootstrap: [AppComponent]
