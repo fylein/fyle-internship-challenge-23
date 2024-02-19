@@ -22,13 +22,11 @@ export class HeaderComponent {
       this.result=response
     // console.log(this.result)
     this.apiService.setUser(this.result)  
-    console.log(this.apiService.user)
   });
 
-    this.apiService.getRepos(this.value,{per_page:5,page:1}).subscribe((response :any)=>{
+    this.apiService.getRepos(this.value,{per_page:10,page:1}).subscribe((response :any)=>{
       this.repos = response
       this.apiService.setRepos(this.repos)
-      console.log(this.apiService.repos)
     })
   }
 }

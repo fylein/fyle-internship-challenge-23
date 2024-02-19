@@ -8,7 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class PaginationComponent {
 
-  perPage:number = 5 
+  perPage:number = 10 
   page: number =10
   total: number = 0
   totalPages:number =0
@@ -30,7 +30,6 @@ export class PaginationComponent {
     this.total = this.apiService.total
     this.totalPages = (this.total%this.perPage===0)?this.total/this.perPage: Math.floor(this.total/this.perPage)+1
     this.limit = this.limit>=this.totalPages?this.totalPages:3
-    console.log(this.perPage)
   }
 
 
@@ -42,8 +41,6 @@ export class PaginationComponent {
     else if(val==='Next' && this.lastDigit+3<this.totalPages)
       {this.limit = (this.totalPages-(this.lastDigit+3))>3?3:(this.totalPages-(this.lastDigit+3))
       this.lastDigit=this.lastDigit+3}
-    
-    console.log(this.perPage)
     
   }
   onChange(element:any){
@@ -61,7 +58,6 @@ export class PaginationComponent {
     this.apiService.getRepos(this.apiService.searchVal ,{per_page:this.perPage,page:page}).subscribe((response :any)=>{
       this.repos = response
       this.apiService.setRepos(this.repos)
-      console.log(this.apiService.repos)
     })
   }
 }

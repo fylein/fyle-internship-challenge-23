@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaginationComponent } from './pagination.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PaginationComponent', () => {
   let component: PaginationComponent;
@@ -8,7 +9,9 @@ describe('PaginationComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PaginationComponent]
+      declarations: [PaginationComponent],
+      imports: [ HttpClientTestingModule ],
+
     });
     fixture = TestBed.createComponent(PaginationComponent);
     component = fixture.componentInstance;

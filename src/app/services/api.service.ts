@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +22,6 @@ export class ApiService {
   setUser(users : any){
     this.user = {...users}
     this.total = users.public_repos
-    console.log(this.total)
   }
 
   setSearchVal(val:string){
@@ -31,7 +29,7 @@ export class ApiService {
   }
 
   getRepos(githubUsername: string ,options :any){
-    return this.httpClient.get(`https://api.github.com/users/${githubUsername}/repos`, {params:options});
+    return this.httpClient.get(`https://api.github.com/users/${githubUsername}/repos`);
   }
 
   setRepos(repos :any){
@@ -41,6 +39,5 @@ export class ApiService {
   getLanguages(githubUsername: string , repo: string){
     return this.httpClient.get(`https://api.github.com/repos/${githubUsername}/${repo}/languages`)
   }
-
   // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
 }

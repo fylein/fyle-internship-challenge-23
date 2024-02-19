@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { LanguageComponent } from './Components/body/language/language.component';
 import { PaginationComponent } from './Components/body/pagination/pagination.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+// import { HttpModule } from '@angular/http';
+import {  HttpClient } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,7 +22,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FooterComponent,
     LanguageComponent,
     BodyComponent,
-    PaginationComponent
+    PaginationComponent,
   ],
   imports: [
     BrowserModule,

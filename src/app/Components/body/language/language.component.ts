@@ -14,7 +14,6 @@ export class LanguageComponent {
   constructor(private apiService: ApiService){}
 
   ngOnInit(){
-    console.log(this.repo)
     this.apiService.getLanguages(this.apiService.searchVal , this.repo).subscribe((res:any)=>{
       this.lan = Object.keys(res)
     })

@@ -1,4 +1,9 @@
 <app-header></app-header>
+<div class="grid h-screen place-items-center box-content" *ngIf="!this.apiService.user.login">
+    <div class="font-bold text-3xl" id="init">
+      Search Valid Github Username to Browse Repos
+    </div>
+  </div>
 <app-body class="h-auto" *ngIf="this.apiService.user.login"></app-body>
 <!-- <app-footer class="mt-auto"></app-footer> -->
 <!-- <h1 *ngFor="let num of [].constructor(10) ; index as i">{{i}}</h1> -->
