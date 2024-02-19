@@ -6,7 +6,7 @@ Welcome to the GithubUserFinder project! This Angular application allows you to 
 
 ## Live Link 🌐
 
-Check out the live version of GithubUserFinder: [Live Demo]()
+Check out the live version of GithubUserFinder: [Live Demo](https://fyle-internship-challenge-23-black.vercel.app/)
 
 ## Features 🌟
 
