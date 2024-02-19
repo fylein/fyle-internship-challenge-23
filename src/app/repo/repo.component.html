@@ -1,0 +1,8 @@
+<div class="hover:scale-110 duration-500 bg-black transition-transform rounded-lg shadow-lg shadow-blue-500/20 w-96 lg:w-72 h-auto p-3 flex flex-col items-center justify-center gap-5 border border-blue-400">
+    <h2 class="text-yellow-400 text-xl font-semibold w-full">{{repo.name}}</h2>
+    <h3 class="text-white font-normal w-full whitespace-nowrap overflow-hidden text-ellipsis">{{repo.description || "No description"}}</h3>
+    <div class="w-full flex flex-row flex-wrap items-center justify-start gap-3">
+        <span *ngFor="let topic of repo.topics" class="text-yellow-200 font-medium w-auto h-auto p-2 rounded-full border-2 border-blue-600">{{topic}}</span>
+        <span *ngIf="repo.topics.length ===0" class="text-yellow-200 font-medium w-auto h-auto p-2 rounded-full border-2 border-blue-600">No topics</span>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="w-full h-auto p-2 flex flex-col lg:flex-row lg:flex items-center justify-center gap-10">
+    <input placeholder="Enter github username..." [(ngModel)]="query" class="focus:scale-110 duration-300 transition-all text-white text-center w-2/3 lg:w-1/3 h-12 rounded-md bg-black outline-none border-2  border-gray-800 focus:border-gray-400" type="text">
+    <button class="p-1 w-20 h-12 bg-white hover:scale-110 text-black font-semibold rounded-md text-center" (click)="search()">search</button>
+    <div class="w-auto p-2 h-full flex items-center gap-5 justify-center">
+        <label for="perpage" class="text-white text-lg">Per page</label>
+        <select #myselect (input)="setPerpage(myselect.value);search();" class="w-16 h-10 text-center rounded-md text-white bg-black border-2 border-gray-800 focus:scale-110 focus:border-gray-400"  name="per page" id="perpage">
+            <option value="10" selected>10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+    </div>
+    
+</div>

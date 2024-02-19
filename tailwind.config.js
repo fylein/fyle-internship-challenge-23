@@ -7,5 +7,6 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+
 }
 
