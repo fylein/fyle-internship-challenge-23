@@ -1,0 +1,337 @@
+:root {
+	// + /* --------------- Font family --------------- */
+	$inter-bold-path: "/assets/fonts/Inter-Bold";
+	$poppins-regular-path: "/assets/fonts/Poppins-Regular";
+	$woff2: ".woff2";
+	$woff: ".woff";
+	$ttf: ".ttf";
+
+	@font-face {
+		font-family: "Inter";
+		font-weight: bold;
+		font-display: swap;
+		src:
+			local("Inter"),
+			url("#{$inter-bold-path}#{$woff2}") format("woff2"),
+			url("#{$inter-bold-path}#{$woff}") format("woff"),
+			url("#{$inter-bold-path}#{$ttf}") format("truetype");
+	}
+
+	@font-face {
+		font-family: "Poppins";
+		font-weight: normal;
+		font-display: swap;
+		src:
+			local("Poppins"),
+			url("#{$poppins-regular-path}#{$woff2}") format("woff2"),
+			url("#{$poppins-regular-path}#{$woff}") format("woff"),
+			url("#{$poppins-regular-path}#{$ttf}") format("truetype");
+	}
+
+	--heading-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+		"Segoe UI Symbol";
+
+	--main-font: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+		"Segoe UI Symbol";
+
+	font-family: var(--main-font);
+
+	// + /* --------------- Font size --------------- */
+
+	.text-xs {
+		font-size: 0.75rem; /* 12px */
+		line-height: 1rem; /* 16px */
+	}
+	.text-sm {
+		font-size: 0.875rem; /* 14px */
+		line-height: 1.25rem; /* 20px */
+	}
+
+	.text-base {
+		font-size: 1rem; /* 16px */
+		line-height: 1.5rem; /* 24px */
+	}
+
+	.text-lg {
+		font-size: 1.125rem; /* 18px */
+		line-height: 1.75rem; /* 28px */
+	}
+
+	.text-xl {
+		font-size: 1.25rem; /* 20px */
+		line-height: 1.75rem; /* 28px */
+	}
+
+	.text-2xl {
+		font-size: 1.5rem; /* 24px */
+		line-height: 2rem; /* 32px */
+	}
+
+	.text-3xl {
+		font-size: 1.875rem; /* 30px */
+		line-height: 2.25rem; /* 36px */
+	}
+
+	.text-4xl {
+		font-size: 2.25rem; /* 36px */
+		line-height: 2.5rem; /* 40px */
+	}
+
+	.text-5xl {
+		font-size: 3rem; /* 48px */
+		line-height: 1;
+	}
+
+	.text-6xl {
+		font-size: 3.75rem; /* 60px */
+		line-height: 1;
+	}
+
+	.text-7xl {
+		font-size: 4.5rem; /* 72px */
+		line-height: 1;
+	}
+
+	.text-8xl {
+		font-size: 6rem; /* 96px */
+		line-height: 1;
+	}
+
+	.text-9xl {
+		font-size: 8rem; /* 128px */
+		line-height: 1;
+	}
+
+	// + /* --------------- Font size and Line height --------------- */
+
+	--fontSizes-3xs: 0.45rem;
+	--fontSizes-2xs: 0.625rem;
+	--fontSizes-xs: 0.75rem;
+	--fontSizes-sm: 0.875rem;
+	--fontSizes-md: 1rem;
+	--fontSizes-lg: 1.125rem;
+	--fontSizes-xl: 1.25rem;
+	--fontSizes-2xl: 1.5rem;
+	--fontSizes-3xl: 1.875rem;
+	--fontSizes-4xl: 2.25rem;
+	--fontSizes-5xl: 3rem;
+	--fontSizes-6xl: 3.75rem;
+	--fontSizes-7xl: 4.5rem;
+	--fontSizes-8xl: 6rem;
+	--fontSizes-9xl: 8rem;
+
+	// + /* --------------- Line height --------------- */
+
+	--lineHeights-3: 0.75rem;
+	--lineHeights-4: 1rem;
+	--lineHeights-5: 1.25rem;
+	--lineHeights-6: 1.5rem;
+	--lineHeights-7: 1.75rem;
+	--lineHeights-8: 2rem;
+	--lineHeights-9: 2.25rem;
+	--lineHeights-10: 2.5rem;
+	--lineHeights-normal: normal;
+	--lineHeights-none: 1;
+	--lineHeights-shorter: 1.25;
+	--lineHeights-short: 1.375;
+	--lineHeights-base: 1.5;
+	--lineHeights-tall: 1.625;
+	--lineHeights-taller: 2;
+
+	// + /* --------------- Breakpoints --------------- */
+
+	--breakpoint-sm: 640px;
+	--breakpoint-md: 768px;
+	--breakpoint-lg: 1024px;
+	--breakpoint-xl: 1280px;
+
+	// + /* --------------- Sizes --------------- */
+
+	--sizes-1: 0.25rem;
+	--sizes-2: 0.5rem;
+	--sizes-3: 0.75rem;
+	--sizes-4: 1rem;
+	--sizes-5: 1.25rem;
+	--sizes-6: 1.5rem;
+	--sizes-7: 1.75rem;
+	--sizes-8: 2rem;
+	--sizes-9: 2.25rem;
+	--sizes-10: 2.5rem;
+	--sizes-12: 3rem;
+	--sizes-14: 3.5rem;
+	--sizes-16: 4rem;
+	--sizes-20: 5rem;
+	--sizes-24: 6rem;
+	--sizes-28: 7rem;
+	--sizes-32: 8rem;
+	--sizes-36: 9rem;
+	--sizes-40: 10rem;
+	--sizes-44: 11rem;
+	--sizes-48: 12rem;
+	--sizes-52: 13rem;
+	--sizes-56: 14rem;
+	--sizes-60: 15rem;
+	--sizes-64: 16rem;
+	--sizes-72: 18rem;
+	--sizes-80: 20rem;
+	--sizes-96: 24rem;
+	--sizes-px: 1px;
+	--sizes-0-5: 0.125rem;
+	--sizes-1-5: 0.375rem;
+	--sizes-2-5: 0.625rem;
+	--sizes-3-5: 0.875rem;
+	--sizes-max: max-content;
+	--sizes-min: min-content;
+	--sizes-full: 100%;
+	--sizes-3xs: 14rem;
+	--sizes-2xs: 16rem;
+	--sizes-xs: 20rem;
+	--sizes-sm: 24rem;
+	--sizes-md: 28rem;
+	--sizes-lg: 32rem;
+	--sizes-xl: 36rem;
+	--sizes-2xl: 42rem;
+	--sizes-3xl: 48rem;
+	--sizes-4xl: 56rem;
+	--sizes-5xl: 64rem;
+	--sizes-6xl: 72rem;
+	--sizes-7xl: 80rem;
+	--sizes-8xl: 90rem;
+
+	// + /* --------------- Spaced --------------- */
+
+	--space-1: 0.25rem;
+	--space-2: 0.5rem;
+	--space-3: 0.75rem;
+	--space-4: 1rem;
+	--space-5: 1.25rem;
+	--space-6: 1.5rem;
+	--space-7: 1.75rem;
+	--space-8: 2rem;
+	--space-9: 2.25rem;
+	--space-10: 2.5rem;
+	--space-12: 3rem;
+	--space-14: 3.5rem;
+	--space-16: 4rem;
+	--space-20: 5rem;
+	--space-24: 6rem;
+	--space-28: 7rem;
+	--space-32: 8rem;
+	--space-36: 9rem;
+	--space-40: 10rem;
+	--space-44: 11rem;
+	--space-48: 12rem;
+	--space-52: 13rem;
+	--space-56: 14rem;
+	--space-60: 15rem;
+	--space-64: 16rem;
+	--space-72: 18rem;
+	--space-80: 20rem;
+	--space-96: 24rem;
+	--space-px: 1px;
+	--space-0-5: 0.125rem;
+	--space-1-5: 0.375rem;
+	--space-2-5: 0.625rem;
+	--space-3-5: 0.875rem;
+
+	// + /* --------------- Radius --------------- */
+
+	--radii-none: 0;
+	--radii-sm: 0.125rem;
+	--radii-base: 0.25rem;
+	--radii-md: 0.375rem;
+	--radii-lg: 0.5rem;
+	--radii-xl: 0.75rem;
+	--radii-2xl: 1rem;
+	--radii-3xl: 1.5rem;
+	--radii-full: 9999px;
+
+	// + /* --------------- Z Index --------------- */
+
+	--zIndices-hide: -1;
+	--zIndices-auto: auto;
+	--zIndices-base: 0;
+	--zIndices-docked: 10;
+	--zIndices-dropdown: 1000;
+	--zIndices-sticky: 1100;
+	--zIndices-banner: 1200;
+	--zIndices-overlay: 1300;
+	--zIndices-modal: 1400;
+	--zIndices-popover: 1500;
+	--zIndices-skipLink: 1600;
+	--zIndices-toast: 1700;
+	--zIndices-tooltip: 1800;
+
+	// + /* --------------- Shadow --------------- */
+
+	--shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+	--shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+	--shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+	--shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+		0 4px 6px -4px rgb(0 0 0 / 0.1);
+	--shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+		0 8px 10px -6px rgb(0 0 0 / 0.1);
+	--shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+	--shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+	--shadow-none: 0 0 #0000;
+
+	// + /* --------------- Transitions --------------- */
+
+	--transition-property-common: background-color, border-color, color, fill,
+		stroke, opacity, box-shadow, transform;
+	--transition-property-colors: background-color, border-color, color, fill,
+		stroke;
+	--transition-property-dimensions: width, height;
+	--transition-property-position: left, right, top, bottom;
+	--transition-property-background: background-color, background-image,
+		background-position;
+
+	--transition-easing-linear: linear;
+	--transition-easing-ease-in: cubic-bezier(0.4, 0, 1, 1);
+	--transition-easing-ease-out: cubic-bezier(0, 0, 0.2, 1);
+	--transition-easing-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+	--transition-duration-0: 0ms;
+	--transition-duration-75: 75ms;
+	--transition-duration-100: 100ms;
+	--transition-duration-150: 150ms;
+	--transition-duration-200: 200ms;
+	--transition-duration-300: 300ms;
+	--transition-duration-500: 500ms;
+	--transition-duration-700: 700ms;
+	--transition-duration-1000: 1000ms;
+	--transition-duration-2000: 2000ms;
+}
+
+// + /* --------------- Other --------------- */
+
+:host {
+	--bright-blue: oklch(51.01% 0.274 263.83);
+	--electric-violet: oklch(53.18% 0.28 296.97);
+	--french-violet: oklch(47.66% 0.246 305.88);
+	--vivid-pink: oklch(69.02% 0.277 332.77);
+	--hot-red: oklch(61.42% 0.238 15.34);
+	--orange-red: oklch(63.32% 0.24 31.68);
+
+	--gray-900: oklch(19.37% 0.006 300.98);
+	--gray-700: oklch(36.98% 0.014 302.71);
+	--gray-400: oklch(70.9% 0.015 304.04);
+
+	--red-to-pink-to-purple-vertical-gradient: linear-gradient(
+		180deg,
+		var(--orange-red) 0%,
+		var(--vivid-pink) 50%,
+		var(--electric-violet) 100%
+	);
+
+	--red-to-pink-to-purple-horizontal-gradient: linear-gradient(
+		90deg,
+		var(--orange-red) 0%,
+		var(--vivid-pink) 50%,
+		var(--electric-violet) 100%
+	);
+
+	--pill-accent: var(--bright-blue);
+}

@@ -1,0 +1,28 @@
+.loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: var(--space-2);
+	background-color: var(--colors-purple-950);
+	padding: var(--space-4);
+	color: var(--colors-purple-500);
+	border: 1px solid currentColor;
+	border-radius: var(--radii-md);
+}
+
+.loader {
+	transition:
+		var(--transition-property-common),
+		var(--transition-duration-300) var(--transition-easing-ease-in-out);
+	animation: rotate var(--transition-duration-1000) linear infinite;
+
+	@keyframes rotate {
+		to {
+			transform: rotate(-360deg);
+			opacity: 1;
+		}
+		from {
+			opacity: 0.4;
+		}
+	}
+}

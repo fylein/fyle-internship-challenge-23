@@ -1,0 +1,37 @@
+:root {
+	--sb-track-color: var(--colors-dark-900);
+	--sb-thumb-color: var(--colors-dark-700);
+	--sb-thumb-hover: var(--colors-dark-600);
+	--sb-size: 8px;
+	--sb-radii: var(--sb-size);
+}
+
+*,
+html {
+	scrollbar-width: thin;
+	scroll-behavior: smooth;
+	scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+}
+
+*::-webkit-scrollbar,
+html::-webkit-scrollbar {
+	width: var(--sb-size);
+}
+
+*::-webkit-scrollbar-track,
+html::-webkit-scrollbar-track {
+	background-color: var(--sb-track-color);
+}
+
+*::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-thumb {
+	background-color: var(--sb-thumb-color);
+	border-radius: var(--sb-radii);
+	transition:
+		var(--transition-property-common),
+		var(--transition-duration-1000) var(--transition-easing-ease-in-out);
+
+	&:hover {
+		background-color: var(--sb-thumb-hover);
+	}
+}

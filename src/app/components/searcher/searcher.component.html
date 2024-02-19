@@ -1,0 +1,25 @@
+<div class="searcher">
+	<div class="form">
+		<input
+			type="text"
+			placeholder="User"
+			class="search-field"
+			[ngClass]="{ alert: isEmpty }"
+			required
+			autofocus
+			[(ngModel)]="termToSearch"
+			(keyup.enter)="searchTerm(termToSearch)"
+		/>
+
+		<input
+			type="submit"
+			value="Search"
+			(click)="searchTerm(termToSearch)"
+			class="btn"
+		/>
+	</div>
+
+	<small *ngIf="isEmpty" class="error-message">
+		should fill in the field
+	</small>
+</div>

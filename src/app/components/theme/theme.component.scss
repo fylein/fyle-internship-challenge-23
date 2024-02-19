@@ -1,0 +1,22 @@
+.toggle {
+	--puri-size-toggle: var(--space-8);
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: var(--space-4);
+	color: var(--colors-yellow-500);
+	width: fit-content;
+	height: fit-content;
+	border-radius: var(--radii-md);
+
+	&__icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		width: var(--puri-size-toggle);
+		height: var(--puri-size-toggle);
+		cursor: pointer;
+	}
+}

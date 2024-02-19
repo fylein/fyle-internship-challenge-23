@@ -1,0 +1,11 @@
+// ==> Config <==
+@import "./config/vars.scss";
+@import "./config/colors.scss";
+
+// ==> Base <==
+@import "./base/reset.scss";
+@import "./base/base.scss";
+
+// ==> Utils <==
+@import "./utils/scroll.scss";
+@import "./utils/global-clases.scss";

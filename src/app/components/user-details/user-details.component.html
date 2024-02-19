@@ -1,0 +1,94 @@
+<div>
+	<article class="card">
+		<!-- Heading -->
+		<header class="header">
+			<!-- Photo -->
+			<picture class="picture">
+				<img
+					*ngIf="githubUser.avatar_url"
+					[src]="githubUser.avatar_url"
+					[alt]="githubUser.name"
+					class="avatar"
+				/>
+				<app-svg-icon
+					*ngIf="!githubUser.avatar_url"
+					iconID="user"
+					ngClass="avatar"
+				/>
+			</picture>
+
+			<div class="information">
+				<!-- Name -->
+				<h2 class="name">
+					{{ githubUser.name || "anonymous" | titlecase }}
+				</h2>
+
+				<!-- User -->
+				<p class="user-login">
+					<a
+						[href]="githubUser.html_url"
+						target="_blank"
+						class="user-link"
+						rel="nofollow noopener noreferrer"
+					>
+						@{{ githubUser.login || "anonymous" }}
+					</a>
+				</p>
+
+				<!-- Created at -->
+				<span class="creation-date">
+					{{ githubUser.created_at || currentDate | date: "dd-MM-Y" }}
+				</span>
+			</div>
+		</header>
+
+		<!-- Body -->
+		<div class="card-body">
+			<!-- Bio -->
+			<p class="biography">
+				{{ githubUser.bio || "Anonymous" }}
+			</p>
+
+			<!-- Repos - Folowers - Folowing -->
+			<div class="repository-details">
+				<div class="public">
+					<span>Repositories</span>
+					<span>{{ githubUser.public_repos || 0 }}</span>
+				</div>
+
+				<div class="followers">
+					<span>Followers</span>
+					<span>{{ githubUser.followers || 0 }}</span>
+				</div>
+
+				<div class="following">
+					<span>Following</span>
+					<span>{{ githubUser.following || 0 }}</span>
+				</div>
+			</div>
+
+			<!-- Location -->
+			<p class="location">
+				<app-svg-icon iconID="location" otherClass="icon-sm" />
+
+				<span>{{ githubUser.location || "Anonymous" }}</span>
+			</p>
+
+			<!-- Networks -->
+			<div class="networks">
+				<app-social-network
+					[blogPath]="githubUser.blog"
+					pathname="Website"
+					iconID="link"
+				/>
+				<app-social-network
+					[blogPath]="'https://twitter.com/@' + githubUser.twitter_username"
+					[pathname]="'@' + githubUser.twitter_username || 'anonymous'"
+					iconID="twitter"
+				/>
+			</div>
+
+			<!-- <pre>{{ githubUser | json }}</pre> -->
+		</div>
+	</article>
+</div>
