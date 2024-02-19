@@ -1,5 +1,125 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+
+
+
+<ng-template #content>
+  <div class="container-fluid">
+    <div class="row mb-3">
+      <div class="col-md-4 themed-grid-col personal-details">
+        <span class="socials">
+          <img *ngIf="userDetails?.avatar_url" [src]="userDetails?.avatar_url" class="avatar" />
+          <h2 *ngIf="userDetails?.name" class="name">{{ userDetails?.name }}</h2>
+          <h2 *ngIf="!userDetails?.name" class="name">{{ userDetails?.login }}</h2>
+          <i class="bi bi-geo-alt-fill">{{ userDetails?.location }}</i>
+          <p class="m-2">{{ userDetails?.bio }}</p>
+          <a *ngIf="userDetails?.twitter_username" [href]="'https://twitter.com/' + userDetails?.twitter_username" target="_blank" rel="noopener">
+            <i class="bi bi-twitter-x"></i>
+          </a>
+          <a [href]="userDetails?.html_url" target="_blank" rel="noopener" class="p-1">
+            <i class="bi bi-github"></i>
+          </a>
+        </span>
+      </div>
+      <div class="col-md-8 themed-grid-col repos">
+        <div class="container">
+          <form>
+            <input class="search-bar" type="text" id="searchedUser" name="searchedUser" placeholder="Enter Username" [(ngModel)]="searchedUser" />
+            <button class="search-btn" type="button" name="search" (click)="search()"><i class="bi bi-search"></i></button>
+          </form>
+
+          <h2 class="pb-2 mt-2 border-bottom" style="font-family: Segoe UI">
+            Fetched <i class="bi bi-github"></i> Repositories
+          </h2>
+          <div class="row row-cols-5 g-4 py-5">
+            <div *ngFor="let item of repos" class="col cus-box">
+              <div>
+                <a [href]="item?.html_url" style="font-weight: bold; color: brown;" target="_blank" rel="norel">
+                  {{ item?.name }} <i class="bi bi-box-arrow-up-right"></i>
+                </a>
+                <p *ngIf="item?.description" style="font-size: smaller">{{ item?.description }}</p>
+                <span *ngIf="item?.language" class="badge bg-success-subtle border border-success-subtle text-success rounded-pill">
+                  {{ item?.language }}
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <mat-paginator
+          #paginator
+          class="paginator mb-4"
+          [length]="repos?.length"
+          [pageSizeOptions]="[10, 20, 30]"
+          aria-label="Select page"
+        >
+        </mat-paginator> 
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div *ngIf="isLoading; else content">
+
+  <div class="container-fluid" >
+    <div class="row mb-3">
+      <div class="col-md-4 themed-grid-col personal-details">
+        <span class="socials"
+          ><img
+           
+            class="avatar thumb pulse"
+          />
+
+          <button>
+            <a
+              
+              target="_blank"
+              rel="noopener"
+              ><i class="bi bi-twitter-x"> </i></a>
+          </button>
+          <button>
+            <a
+              target="_blank"
+              rel="noopener"
+              class="p-1"
+              ><i class="bi bi-github"> </i></a>
+          </button>
+        </span>
+      </div>
+      <div class="col-md-8 themed-grid-col repos">
+        <div class="container" id="icon-grid">
+          <form>
+            <input class="search-bar" type="text" id="searchedUser" name="searchedUser" placeholder="Enter Username" [(ngModel)]="searchedUser" />
+            <button class="search-btn" type="button" name="search" (click)="search()"><i class="bi bi-search"></i></button>
+          </form>
+          <h2 class="pb-2 mt-2 border-bottom" style="font-family: Segoe UI">
+            Fetched <i class="bi bi-github"></i> Repositories
+          </h2>
+  
+          <div class="row row-cols-5 g-4 py-5">
+            <div  class="col cus-box thumb pulse">
+            </div>
+            <div  class="col cus-box thumb pulse">
+            </div>
+            <div  class="col cus-box thumb pulse">
+            </div>
+            <div  class="col cus-box thumb pulse">
+            </div>
+            <div  class="col cus-box thumb pulse">
+            </div>
+            <div  class="col cus-box thumb pulse">
+            </div>
+            <div  class="col cus-box thumb pulse">
+            </div>
+            <div  class="col cus-box thumb pulse">
+            </div>
+            <div  class="col cus-box thumb pulse">
+            </div>
+  
+            
+          </div>
+  
+        
+        </div>
+      </div>
+    </div>
   </div>
 </div>
