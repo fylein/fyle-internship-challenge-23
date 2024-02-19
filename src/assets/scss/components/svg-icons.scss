@@ -1,0 +1,21 @@
+.cross-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.svg-icon {
+	--size-svg: 24px;
+	display: inline-block;
+	width: var(--size-svg);
+	height: var(--size-svg);
+	fill: currentColor;
+
+	&--md {
+		--size-svg: 28px;
+	}
+
+	&--xl {
+		--size-svg: 38px;
+	}
+}

@@ -1,0 +1,48 @@
+@mixin buttons() {
+	.btn {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		outline: none;
+		font-family: inherit;
+		font-size: inherit;
+		padding: 0.8em 1.5em;
+		border-radius: var(--puri-s-radius);
+		background-color: var(--puri-background);
+		color: var(--puri-color);
+		text-decoration: none;
+		cursor: pointer;
+		border: 1px solid transparent;
+		transition: background-color, transform, border,
+			var(--puri-transi-duration) var(--puri-transi-timing-func);
+		transform: scale(1);
+
+		&:active {
+			transform: scale(0.98);
+		}
+	}
+
+	.btn-primary {
+		color: var(--puri-primary-50);
+		background-color: var(--puri-primary-500);
+		border: 1px solid var(--puri-primary-500);
+
+		&:hover {
+			border-color: var(--puri-primary-600);
+			background-color: var(--puri-primary-600);
+		}
+	}
+
+	.btn-secondary {
+		color: var(--puri-primary-500);
+		background-color: transparent;
+		border-color: currentColor;
+
+		&:hover {
+			color: var(--puri-primary-600);
+			background-color: transparent;
+		}
+	}
+}
+
+@include buttons();

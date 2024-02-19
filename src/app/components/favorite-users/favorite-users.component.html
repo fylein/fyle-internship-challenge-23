@@ -1,0 +1,49 @@
+<section>
+	<div class="favorites">
+		<h2 class="title">Repositories with the most stars</h2>
+
+		<div class="repositories">
+			<ng-container *ngIf="topRepositories.length <= 0">
+				<div class="alert">
+					<p class="">This user has no repositories</p>
+				</div>
+			</ng-container>
+
+			<app-loading *ngIf="loading" />
+
+			<ng-container *ngFor="let repository of topRepositories">
+				<article [id]="repository.node_id" class="card">
+					<header class="header">
+						<h3>{{ repository.name | titlecase }}</h3>
+					</header>
+
+					<div>
+						<p class="description">{{ repository.description }}</p>
+
+						<footer class="footer">
+							<p>
+								<a
+									[href]="repository.html_url"
+									title="Repositories"
+									target="_blank"
+									class="link"
+								>
+									<app-svg-icon iconID="github" otherClass="icon-sm" />
+								</a>
+							</p>
+
+							<p class="star-details">
+								<app-svg-icon
+									iconID="star-fill"
+									otherClass="icon-sm"
+									ngClass="star"
+								/>
+								<span>{{ repository.stargazers_count }}</span>
+							</p>
+						</footer>
+					</div>
+				</article>
+			</ng-container>
+		</div>
+	</div>
+</section>

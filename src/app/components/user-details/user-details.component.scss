@@ -1,0 +1,121 @@
+.card {
+	--max-width: 600px;
+
+	padding: var(--space-8);
+	margin: 0 auto;
+	box-shadow: var(--shadow-md);
+	border-radius: var(--radii-md);
+	max-width: var(--max-width);
+	border: 1px solid var(--colors-dark-700);
+	background-color: var(--colors-dark-800);
+}
+
+.header {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-4);
+	align-items: center;
+	margin-bottom: var(--space-4);
+
+	@media (min-width: #{var(--breakpoint-sm) and 640px}) {
+		flex-direction: row;
+		justify-content: center;
+	}
+}
+
+.information,
+.picture {
+	flex: 1;
+}
+
+.picture {
+	color: var(--colors-purple-500);
+}
+
+.avatar {
+	--puri-avatar-size: 120px;
+
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	padding: var(--space-3);
+	width: var(--puri-avatar-size);
+	height: var(--puri-avatar-size);
+	border-radius: var(--radii-full);
+	object-fit: cover;
+	border: 1px solid var(--colors-dark-700);
+	transition:
+		var(--transition-property-common),
+		var(--transition-duration-300) var(--transition-easing-ease-in-out);
+}
+
+.name,
+.user-login,
+.creation-date {
+	text-align: center;
+
+	@media (min-width: #{var(--breakpoint-sm) and 640px}) {
+		text-align: left;
+	}
+}
+
+.name,
+.user-login {
+	margin-bottom: var(--space-2);
+}
+
+.user-link {
+	color: var(--colors-purple-500);
+}
+
+.creation-date {
+	display: inherit;
+	color: var(--colors-dark-400);
+}
+
+.biography {
+	margin-bottom: var(--space-4);
+}
+
+.repository-details {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-4);
+	text-align: center;
+	margin-bottom: var(--space-4);
+}
+
+.public,
+.followers,
+.following {
+	flex: 1;
+	padding: var(--space-4);
+	border: 1px solid var(--colors-dark-700);
+	box-shadow: var(--shadow-md);
+	border-radius: var(--radii-md);
+	color: var(--colors-dark-300);
+	width: 100%;
+	min-width: 120px;
+
+	& span:last-child {
+		display: block;
+		font-weight: bold;
+		margin-bottom: var(--space-2);
+	}
+}
+
+.location {
+	display: flex;
+	align-items: center;
+	gap: var(--space-2);
+	margin-bottom: var(--space-4);
+	color: var(--colors-dark-300);
+}
+
+.networks {
+	display: flex;
+	text-align: center;
+	gap: var(--space-4);
+}

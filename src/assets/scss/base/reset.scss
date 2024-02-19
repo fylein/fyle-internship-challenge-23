@@ -1,0 +1,64 @@
+html,
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+	vertical-align: baseline;
+}
+
+*::before,
+*::after {
+	display: block;
+}
+
+/* Evitamos problemas con las imagenes */
+img,
+picture,
+video,
+iframe,
+figure {
+	max-width: 100%;
+	width: 100%;
+	display: block;
+	/* (Opcional) */
+	object-fit: cover;
+	/* (Opcional) */
+	object-position: center center;
+}
+
+/* Reseteamos los enlaces para funcionar como cajas... */
+a {
+	display: block;
+	text-decoration: none;
+	color: inherit;
+	font-size: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+b,
+.bold {
+	font-family: var(--heading-font);
+}
+
+img,
+video {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+/* Evitamos problemas con los SVG */
+svg {
+	width: 100%;
+	display: block;
+	fill: currentColor;
+}

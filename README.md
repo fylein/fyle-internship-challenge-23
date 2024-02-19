@@ -1,43 +1,40 @@
-# Fyle Frontend Challenge
+# Github find User🚀
 
-## Who is this for?
+## Overview
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+Welcome to the GithubUserFinder project! This Angular application allows you to search for GitHub users and explore their profiles.
 
-## Why work at Fyle?
+## Live Link 🌐
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+Check out the live version of GithubUserFinder: [Live Demo]()
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+## Features 🌟
 
-## Challenge outline
+- **User Search:** Easily search for GitHub users by their usernames.
+- **User Profile:** View detailed profiles of the searched users, including their repositories, followers, and following.
 
-This challenge involves implementing application using github api. 
+## Development Environment 🛠️
 
-The services that you need to use are already implemented - check out ApiService.
+This project was generated with Angular CLI version 15.2.6. Here are some key commands to help you navigate and develop the application:
 
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
+- **Development Server:** Run `ng serve` for a dev server. Navigate to `http://localhost:4200/` to see your changes in real-time.
 
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
+- **Code Generation:** Use `ng generate` to scaffold new components, directives, pipes, services, classes, guards, interfaces, enums, or modules.
 
-## What happens next?
+- **Building the Project:** Execute `ng build` to build the project. The artifacts will be stored in the `dist/` directory.
 
-You will hear back within 48 hours from us via email.
+- **Unit Testing:** Run `ng test` to execute unit tests using Karma.
 
-## Installation
+- **End-to-End Testing:** Execute `ng e2e` to run end-to-end tests. Make sure to add a package that implements end-to-end testing capabilities.
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+## Get Started 🚦
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `npm install` to install dependencies.
+4. Run `ng serve` to start the development server.
+5. Open your browser and go to `http://localhost:4200/` to explore the GithubUserFinder app!
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
 
-## Further help
 
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).

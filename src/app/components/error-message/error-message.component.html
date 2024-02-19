@@ -1,0 +1,11 @@
+<div class="modal open" [ngClass]="{ open: isError }">
+	<div class="error">
+		<div class="text-2xl">
+			<h5>{{ errors.status || "404" }} {{ errors.message || "Not found" }}</h5>
+		</div>
+
+		<div class="description">
+			<p>{{ errors.message || "Error de petición" }}</p>
+		</div>
+	</div>
+</div>

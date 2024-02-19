@@ -1,0 +1,44 @@
+.container {
+	width: var(--sizes-full);
+	max-width: var(--breakpoint-lg);
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;
+	height: inherit;
+}
+
+@keyframes floating {
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+}
+
+@keyframes ping {
+	75%,
+	100% {
+		transform: scale(2);
+		opacity: 0;
+	}
+}
+
+@keyframes bounce {
+	0%,
+	100% {
+		transform: translateY(-25%);
+		animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+	}
+	50% {
+		transform: translateY(0);
+		animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+	}
+}

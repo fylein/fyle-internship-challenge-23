@@ -1,0 +1,22 @@
+// ==> Estilos base <==
+html,
+body {
+	font-family: var(--main-font);
+	line-height: var(--lineHeights-base);
+
+	background-color: var(--colors-dark-900);
+	color: var(--colors-dark-50);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	transition:
+		var(--transition-property-common),
+		var(--transition-duration-300) var(--transition-easing-ease-in-out);
+
+	background: linear-gradient(
+		to top,
+
+		var(--colors-dark-800),
+		var(--colors-dark-900)
+	);
+}

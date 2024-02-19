@@ -1,0 +1,35 @@
+.modal {
+	position: fixed;
+	right: var(--space-4);
+	top: var(--sizes-40);
+	z-index: var(--zIndices-modal);
+	transition:
+		var(--transition-property-common),
+		var(--transition-duration-300) var(--transition-easing-ease-in-out);
+	transform: translateX(100vw);
+	transform-origin: right center;
+
+	&.open {
+		transform: translateX(0);
+	}
+}
+
+.error {
+	--modal-max-width: 500px;
+	--modal-min-width: 300px;
+
+	text-align: center;
+	padding: var(--space-2) var(--space-4);
+
+	width: var(--sizes-full);
+	min-width: var(--modal-min-width);
+	max-width: var(--modal-max-width);
+	background-color: var(--colors-red-950);
+	color: var(--colors-red-500);
+	border: 1px solid currentColor;
+	border-radius: var(--radii-md);
+}
+
+.description {
+	margin-top: var(--space-1);
+}

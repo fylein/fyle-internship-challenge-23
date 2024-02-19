@@ -1,0 +1,6 @@
+<div class="toggle">
+	<div class="toggle__icon" (click)="changeTheme()">
+		<app-svg-icon *ngIf="isDarkTheme" iconID="sun" />
+		<app-svg-icon *ngIf="!isDarkTheme" iconID="moon" />
+	</div>
+</div>

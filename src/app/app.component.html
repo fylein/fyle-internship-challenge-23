@@ -1,5 +1,29 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
-  </div>
-</div>
+<main class="main">
+	<app-theme></app-theme>
+
+	<section>
+		<div class="container">
+			<app-searcher (termToSearchEvent)="searchTerm($event)" />
+		</div>
+	</section>
+
+	<section>
+		<div class="container">
+			<ng-container *ngIf="isError">
+				<app-error-message
+					[errors]="errors"
+					[isError]="isError"
+				></app-error-message>
+			</ng-container>
+
+			<!-- NOTE: User details -->
+			<app-user-details [githubUser]="githubUser" />
+
+			<!-- NOTE: Favorites table -->
+			<app-favorite-users
+				[topRepositories]="topRepositories"
+				[loading]="loading"
+			></app-favorite-users>
+		</div>
+	</section>
+</main>

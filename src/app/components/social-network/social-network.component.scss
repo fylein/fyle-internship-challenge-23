@@ -1,0 +1,27 @@
+.network-link {
+	width: 100%;
+	text-decoration: none;
+	background: var(--colors-dark-700);
+	box-shadow: var(--shadow-md);
+	color: var(--colors-purple-500);
+	border-radius: var(--radii-md);
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: var(--space-1) var(--space-3);
+	transition:
+		var(--transition-property-common),
+		var(--transition-duration-300) var(--transition-easing-ease-in-out);
+
+	&:hover {
+		transform: scale(0.9);
+	}
+
+	&:active {
+		transform: scale(1.2);
+	}
+}
+
+.network-icon {
+	display: inherit;
+}
