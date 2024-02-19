@@ -15,6 +15,7 @@ export class HeaderComponent {
   result = {}
   repos =[]
   error:Boolean = false
+  message:string =''
 
   handler = ()=>{ 
     this.apiService.setSearchVal(this.value)
@@ -22,7 +23,22 @@ export class HeaderComponent {
     this.result=response
     this.apiService.setUser(this.result)  
     this.error=false
-  },(err)=>{this.error=true});
+  },(err)=>{
+    this.error=true 
+    if(err.error.message!='Not Found'){
+      this.message =err.error.message.split(' ').slice(0,4).join(' ')
+      setTimeout(()=>{
+        this.error=false
+      },2000)
+      return
+    }
+      
+
+      this.message = "Enter valid user name/Check Spelling - " + err.error.message
+      setTimeout(()=>{
+        this.error=false
+      },3000)
+  });
 
     this.apiService.getRepos(this.value,{per_page:10,page:1}).subscribe((response :any)=>{
       this.repos = response
