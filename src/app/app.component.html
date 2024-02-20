@@ -2,6 +2,7 @@
 <div class="grid h-screen place-items-center box-content" *ngIf="!this.apiService.user.login">
     <div class="font-bold text-3xl" id="init">
       Search Valid Github Username to Browse Repos
+      <!-- <img src="../assets/loader.gif" alt="Shimmer"> -->
     </div>
   </div>
 <app-body class="h-auto" *ngIf="this.apiService.user.login"></app-body>

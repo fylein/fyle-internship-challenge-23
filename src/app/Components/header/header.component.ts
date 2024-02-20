@@ -23,6 +23,7 @@ export class HeaderComponent {
     this.result=response
     this.apiService.setUser(this.result)  
     this.error=false
+    this.apiService.apiResults[this.apiService.searchVal+'101']=response
   },(err)=>{
     this.error=true 
     if(err.error.message!='Not Found'){

@@ -8,8 +8,8 @@
 </div>
 <div class=" flex flex-row flex-wrap gap-3 mt-4 mx-4">
     <div *ngIf="this.apiService.repos.length===0" class="bg-red-500">
-        <h1 class="text-6xl">Loading...</h1>
-        <img src="../../../loader.gif" alt="Shimmer">
+        <!-- <h1 class="text-6xl">Loading...</h1> -->
+        <img src="../../../assets/loader.gif" alt="Shimmer">
     
     </div>
     <div *ngFor = "let repo of this.apiService.repos" class="w-1/4 border-2" >
