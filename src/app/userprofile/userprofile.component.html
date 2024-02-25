@@ -1,0 +1,29 @@
+<div class="ml-10 mt-10 max-sm:ml-0 max-sm:justify-center max-sm:items-center max-sm:flex-col flex gap-10" *ngIf="!loading && userData!==null">
+  <div class="flex justify-center items-center flex-col gap-5">
+    <img
+      [src]="userData.avatar_url"
+      alt="avatar"
+      class="rounded-full h-44 w-44"
+    />
+    <a [href]="userData.html_url" target="_blank" class="text-sm">
+      <div class="flex gap-1 items-center">
+        <img src="assets/link.png" alt="link" class="h-5 w-5 inline pointer-events-none" />
+        <p class="text-sm font-semibold">{{ userData.html_url }}</p>
+      </div>
+    </a>
+  </div>
+  <div class="flex flex-col max-sm:justify-center max-sm:items-center gap-3">
+    <p class="text-2xl font-semibold">{{ userData.name }}</p>
+    <p class="text-base font-semibold">{{ userData.bio }}</p>
+    <div class="flex gap-3">
+      <img src="assets/Location.svg" alt="location" class="h-5 w-5 pointer-events-none" />
+      <p class="text-base font-semibold">{{ userData.location }}</p>
+    </div>
+    <a
+      href="https://twitter.com/{{ userData.twitter_username }}"
+      target="_blank"
+      class="text-base font-semibold"
+      >Twitter: https://twitter.com/{{ userData.twitter_username }}</a
+    >
+  </div>
+</div>

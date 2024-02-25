@@ -1,0 +1,18 @@
+<a href="{{ userRepo.html_url }}" target="_blank" class="text-sm">
+  <div
+    class="w-full h-full p-2 flex gap-5 flex-col border border-solid border-black shadow-lg"
+  >
+    <p class="text-xl max-sm:text-lg text-[#5494cc] capitalize font-bold">
+      {{ userRepo.name }}
+    </p>
+    <p class="text-base font-semibold">{{ userRepo.description }}</p>
+    <div class="flex flex-row flex-wrap">
+      <div
+        *ngFor="let topic of userRepo.topics"
+        class="bg-[#5494cc] font-bold p-2 m-1 rounded-md shadow-md"
+      >
+        <p class="text-sm text-white capitalize">{{ topic }}</p>
+      </div>
+    </div>
+  </div>
+</a>
