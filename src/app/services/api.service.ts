@@ -17,6 +17,7 @@ export class ApiService {
   searchVal : string = ''
   apiResults : any ={}
   testValue : string='test-value'
+  shimmer:boolean = true
 
   getUser(githubUsername: string) {
     return this.httpClient.get(`https://api.github.com/users/${githubUsername}`);
