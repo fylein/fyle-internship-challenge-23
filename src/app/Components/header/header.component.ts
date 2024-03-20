@@ -22,8 +22,7 @@ export class HeaderComponent {
         this.result = response;
         this.apiService.setUser(this.result);
         this.error = false;
-        this.apiService.apiResults[this.apiService.searchVal + '101'] =
-          response;
+        
         this.apiService.shimmer = false;
       },
       (err) => {
@@ -50,6 +49,8 @@ export class HeaderComponent {
       .subscribe((response: any) => {
         this.repos = response;
         this.apiService.setRepos(this.repos);
+        this.apiService.apiResults[this.apiService.searchVal + '101'] =
+          this.repos;
       });
   };
 }

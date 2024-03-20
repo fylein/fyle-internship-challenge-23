@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class PaginationComponent {
 
   perPage:number = 10 
-  page: number =10
+  page: number =1
   total: number = 0
   totalPages:number =0
   lastDigit:number =0
@@ -30,6 +30,7 @@ export class PaginationComponent {
     this.total = this.apiService.total
     this.totalPages = (this.total%this.perPage===0)?this.total/this.perPage: Math.floor(this.total/this.perPage)+1
     this.limit = this.limit>=this.totalPages?this.totalPages:3
+    
   }
 
 
