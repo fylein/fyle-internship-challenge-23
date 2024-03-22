@@ -11,18 +11,10 @@ export class ApiService {
   ) { }
 
   getUser(gitHubUsername: string) {
-    return this.httpClient.get(`https://api.github.com/users/${gitHubUsername}`, {
-      headers: {
-        'Authorization': `Bearer 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`
-      }
-    });
+    return this.httpClient.get(`https://api.github.com/users/${gitHubUsername}`);
   }
   getAllRepo(gituser:string) {
-    return this.httpClient.get(`https://api.github.com/users/${gituser}/repos`,{
-      headers: {
-        'Authorization': `Bearer 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`
-      }
-    });
+    return this.httpClient.get(`https://api.github.com/users/${gituser}/repos`);
   }
 
   // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
