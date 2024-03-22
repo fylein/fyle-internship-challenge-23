@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +13,14 @@ export class ApiService {
   getUser(gitHubUsername: string) {
     return this.httpClient.get(`https://api.github.com/users/${gitHubUsername}`, {
       headers: {
-        'Authorization': `Bearer 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`
+        'Authorization': `Bearer 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`
       }
     });
   }
   getAllRepo(gituser:string) {
     return this.httpClient.get(`https://api.github.com/users/${gituser}/repos`,{
       headers: {
-        'Authorization': `Bearer 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`
+        'Authorization': `Bearer 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`
       }
     });
   }
