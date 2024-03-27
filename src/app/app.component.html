@@ -1,5 +1,83 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
-  </div>
+<div class="flex items-center justify-center mt-10">
+  <input type="text" #searchRepo placeholder="Search Github user..."
+    class=" w-1/2 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-300">
+  <button (click)="onSearch(searchRepo.value)"
+    class="w-32 ml-2 px-4 py-2 bg-blue-500 text-white rounded-md focus:outline-none focus:ring focus:border-blue-300">Find</button>
 </div>
+<div *ngIf="showLoading ;else notloading" class="container border-2 border-indigo-600  mx-auto mt-10">
+  <img class="w-screen" src="../assets/loader.gif" alt="loading...">
+</div>
+<ng-template #notloading>
+  <div *ngIf="user?.name && !notFoundError"
+    class="container border-2 border-indigo-600 min-w-96 max-w-3xl mx-auto mt-10">
+    <div class="flex">
+      <div class="row">
+        <div class="rounded overflow-hidden">
+          <div class="flex px-6 pt-6">
+            <img class=" mr-4" src="../assets/user_img.png" alt="image">
+            <div class="text-left">
+              <div class="font-bold text-xl mb-2">{{user?.name}}</div>
+              <p class="text-gray-700 text-base mb-2">{{user?.bio}}</p>
+              <p class="text-gray-700 text-base mb-2 flex"><svg class="h-6 w-6 text-blue-700 me-2" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>{{user?.location}}</p>
+              <div class="mb-2">
+                <a href="https://twitter.com/{{user?.twitter_username}}" target="_blank"
+                  class="text-blue-500 cursor-pointer">Twitter:https://twitter.com/{{user?.twitter_username}}</a>
+              </div>
+
+            </div>
+          </div>
+          <div class="ps-6 pb-6">
+            <a [href]="user?.html_url" target="_blank" class="cursor-pointer text-blue-500">{{user?.html_url}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- select options -->
+    <div class="relative p-6">
+      <select
+        class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded leading-tight focus:outline-none focus:border-indigo-500"
+        [(ngModel)]="repoPerPage">
+        <option *ngFor="let pageSize of pageSizes" [value]="pageSize">{{ pageSize }}</option>
+      </select>
+      <div class="pointer-events-none absolute inset-y-0 right-6 flex items-center px-2 text-gray-700">
+        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <path
+            d="M10 12.586l-4.293-4.293a1 1 0 0 1 1.414-1.414L10 10.758l3.879-3.879a1 1 0 1 1 1.414 1.414L10 12.586z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- this is for repo -->
+    <div class=" grid grid-cols-2 gap-4 px-6 pb-6">
+      <div class="border-2 border-indigo-600 p-2" *ngFor="let repo of allUserRepo | paginate: {id:'first',
+      itemsPerPage: repoPerPage,
+      currentPage: currentRepoPage,
+      totalItems: allUserRepo?.length }">
+
+        <h1 class="text-blue-700 text-xl ms-2 mb-1 whitespace-nowrap overflow-hidden overflow-ellipsis">{{repo.name |
+          titlecase}}</h1>
+        <p class="ms-2 mb-1 whitespace-nowrap overflow-hidden overflow-ellipsis">{{repo.description}}</p>
+        <span *ngIf="repo.language" class="ms-2 mb-1 bg-indigo-700 text-white p-0.5 rounded">{{repo.language}}</span>
+      </div>
+
+    </div>
+    <div class="flex justify-center">
+      <pagination-controls id="first" (pageChange)="pageChanged($event)" (pageBoundsCorrection)="pageChanged($event)"
+        previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page">
+      </pagination-controls>
+    </div>
+  </div>
+  <div *ngIf="!user.name || notFoundError" class="flex justify-center text-4xl">
+    USER NOT FUND
+  </div>
+</ng-template>
+
+
+
+<!-- pegination -->
